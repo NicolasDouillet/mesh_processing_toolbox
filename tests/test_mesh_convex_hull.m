@@ -6,29 +6,27 @@ addpath('../src');
 addpath('../data');
 
 
-N = 256;
-X = 2*(rand(N,1)-0.5);
-Y = 2*(rand(N,1)-0.5);
-Z = 2*(rand(N,1)-0.5);
+nb_vtx = 64;
+X = 2*(rand(nb_vtx,1)-0.5);
+Y = 2*(rand(nb_vtx,1)-0.5);
+Z = 2*(rand(nb_vtx,1)-0.5);
 
 Rho = X.^2 + Y.^2 + Z.^2;
 i = Rho <= 1;
 X = X(i);
 Y = Y(i);
 Z = Z(i);
-
 V = cat(2,X,Y,Z);
 
-T = mesh_convex_hull(V);
-% Tc = convhull(V(:,1),V(:,2),V(:,3));
+Ch = mesh_convex_hull(V);
+Cv = convhull(V(:,1),V(:,2),V(:,3));
 
-% ismeshwatertight(V,T,'closed')
-% isequal(sortrows(T),sortrows(sort(Tc,2)))
+isequal(sortrows(sort(Ch,2)),sortrows(sort(Cv,2)))
 
-% plot_mesh(V,Tc);
-% alpha(0.5);
-% axis equal, axis square;
+plot_mesh(V,Cv);
+alpha(0.5);
+axis equal, axis square;
 
-plot_mesh(V,T);
+plot_mesh(V,Ch);
 alpha(0.5);
 axis equal, axis square;
