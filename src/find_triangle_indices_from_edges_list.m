@@ -23,7 +23,7 @@ function [tgl_idx_list] = find_triangle_indices_from_edges_list(T, edg_list)
 
 %% Body
 % tic;
-tgl_idx_list = cellfun(@(r) find(sum(bitor(T == r(1,1),T == r(1,2)),2) == 2)',num2cell(edg_list,2),'UniformOutput',false);
+tgl_idx_list = cellfun(@(r) find(sum(bitor(T == r(1,1),T == r(1,2)),2) == 2)',num2cell(edg_list,2),'un',0);
 % fprintf('find_triangle_indices_from_edges_list request executed in %d seconds.\n',toc);
 
 

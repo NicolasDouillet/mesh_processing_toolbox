@@ -37,8 +37,7 @@ function [V_out, T_out] = submesh_selection(V_in, T_in, n, I)
 tic;
 
 % I Project vertices on the plan
-[ortho_proj] = point_to_plane_distance(V_in,n,I);
-H_in = ortho_proj(:,2:end);
+[~,H_in] = point_to_plane_distance(V_in,n,I);
 
 % II Compute signed distances
 sgn = dot((V_in-H_in),repmat(n,[size(V_in,1),1]),2);

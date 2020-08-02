@@ -56,7 +56,7 @@ end
 for k = 1:nb_iterations
     
     % Basic mean on vertex neighbors
-    V_out = cell2mat(cellfun(@(r) sum(V_out(r,:),1)/numel(r),neighbor_list,'UniformOutput',false));
+    V_out = cell2mat(cellfun(@(r) sum(V_out(r,:),1)/numel(r),neighbor_list,'un',0));
     
 end
 

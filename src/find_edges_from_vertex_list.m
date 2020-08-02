@@ -22,8 +22,8 @@ function [edg_lists] = find_edges_from_vertex_list(T, vtx_idx)
 
 %% Body
 % tic;
-edg_lists = cellfun(@(i) reshape(setdiff(T(any(T==i,2),:),i),[],1),num2cell(vtx_idx),'UniformOutput',false);
-edg_lists = cellfun(@(c,i) cat(2,c,i*ones(numel(c),1)),edg_lists,num2cell(vtx_idx),'UniformOutput',false);
+edg_lists = cellfun(@(i) reshape(setdiff(T(any(T==i,2),:),i),[],1),num2cell(vtx_idx),'un',0);
+edg_lists = cellfun(@(c,i) cat(2,c,i*ones(numel(c),1)),edg_lists,num2cell(vtx_idx),'un',0);
 % fprintf('find_edges_from_vertex_list request executed in %d seconds.\n',toc);
 
 

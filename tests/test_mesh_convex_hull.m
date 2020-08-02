@@ -6,7 +6,7 @@ addpath('../src');
 addpath('../data');
 
 
-nb_vtx = 64;
+nb_vtx = 128;
 X = 2*(rand(nb_vtx,1)-0.5);
 Y = 2*(rand(nb_vtx,1)-0.5);
 Z = 2*(rand(nb_vtx,1)-0.5);

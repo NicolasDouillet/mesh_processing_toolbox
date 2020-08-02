@@ -32,7 +32,7 @@ function [edg_list] = query_edges_list(T, mode)
 L = cat(2,T,T(:,1)); % loop
 R = repelem(L,1,[1 2 2 1]); % replicated
 
-edg_list = cell2mat(cellfun(@(x) reshape(x,[2,3])',num2cell(R,2),'UniformOutput',false));
+edg_list = cell2mat(cellfun(@(x) reshape(x,[2,3])',num2cell(R,2),'un',0));
 
 if nargin  > 1 && strcmpi(mode,'sorted')
     

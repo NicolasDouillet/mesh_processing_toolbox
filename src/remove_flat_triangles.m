@@ -33,7 +33,7 @@ function [V_out, T_out] = remove_flat_triangles(V_in, T_in)
 tic;
 [V_out,T_out] = remove_duplicated_vertices(V_in,T_in);
 C = num2cell(T_out,2);
-F = cell2mat(cellfun(@(r) numel(unique(r)) < 3,C,'UniformOutput',false));
+F = cell2mat(cellfun(@(r) numel(unique(r)) < 3,C,'un',0));
 T_out = T_out(~F,:);
 fprintf('%d flat triangle(s) removed in %d seconds.\n',size(T_in,1)-size(T_out,1),toc);
 

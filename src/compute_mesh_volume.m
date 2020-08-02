@@ -29,7 +29,7 @@ tic;
 
 mesh_volume = abs(sum(cell2mat(cellfun(@(r)...
               dot(cross(V(r(1,1),:),V(r(1,2),:),2),V(r(1,3),:),2),...
-              num2cell(T,2),'UniformOutput',false))))/6;
+              num2cell(T,2),'un',0))))/6;
           
 fprintf('Mesh volume computed in %d seconds.\n',toc);
 

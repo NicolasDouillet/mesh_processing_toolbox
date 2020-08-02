@@ -1,4 +1,4 @@
-function [T] = quick_hull(V)
+function [V,T] = quick_hull(V)
 % quick_hull : function to compute the 3D convex hull of
 % a given point cloud with the divide & conquer algorithm.
 %
@@ -22,7 +22,7 @@ function [T] = quick_hull(V)
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
-epsilon = 1e8*eps; % floating point tolerance error
+epsilon = 1e4*eps; % floating point tolerance error
 nb_vtx = size(V,1);
 
 % Template seed = tetrahedron centred in the unit sphere
@@ -54,11 +54,8 @@ T = [f1 f3 f2;...
      f2 f3 f4;...
      f3 f1 f4];
 
-% edg_list = query_edges_list(T,'sorted'); 
-% hull_vtx_idx = [f1,f2,f3,f4];
-% 
-% % Inside points removal
-% [V,T,edg_list,hull_vtx_idx] = remove_inside_pts(V,T,edg_list,hull_vtx_idx);
+% Original inside points removal
+[V,T] = remove_inside_pts(V,T,epsilon);
 
 nb_tgl = size(T,1);
 curr_tgl_idx = 1; % loop on hull tgl idx
@@ -67,7 +64,7 @@ nb_new_tgl = 1; % to start with
 N = compute_face_normals(V,T,'norm');
 delta = det(N(1:3,:));
 
-if abs(delta) < epsilon % dim(V) < 3
+if abs(delta) < epsilon
     
     error('Coplanar or collinear input point set.');
     
@@ -76,12 +73,11 @@ end
 
 while nb_new_tgl > 0 && curr_tgl_idx < 1 + size(T,1)
     
-    [T,N,new_vtx_idx] = grow_tetrahedron(V,T,N,curr_tgl_idx);    
+    [T,N,new_vtx_idx] = grow_tetrahedron(V,T,N,curr_tgl_idx);
     
     if new_vtx_idx % effective grow with new triangles
         
-        % hull_vtx_idx = cat(2,hull_vtx_idx,new_vtx_idx);
-        edg_list = query_edges_list(T,'sorted');        
+        edg_list = query_edges_list(T,'sorted');
         i = 1;
         
         while i < 1 + size(edg_list,1)
@@ -99,14 +95,13 @@ while nb_new_tgl > 0 && curr_tgl_idx < 1 + size(T,1)
                 
             end
             
-%             % Inside points removal
-%             [V,T,edg_list,hull_vtx_idx] = remove_inside_pts(V,T,edg_list,hull_vtx_idx);
-            
         end
         
+        % Inside points removal
+        [V,T] = remove_inside_pts(V,T,epsilon);
         curr_tgl_idx = curr_tgl_idx - 1;
         
-    end        
+    end
     
     curr_tgl_idx = curr_tgl_idx + 1;
     nb_new_tgl = size(T,1) - nb_tgl;
@@ -146,17 +141,9 @@ if find(d > 0)
         new_tgl3 = cat(2,T(tgl_idx,3),T(tgl_idx,1),f);
         
         % Add 3 new triangles and face normals
-        T = cat(1,T,new_tgl1);
-        new_face_normals = compute_face_normals(V,T(end,:),'norm');
-        N = cat(1,N,new_face_normals);
-        
-        T = cat(1,T,new_tgl2);
-        new_face_normals = compute_face_normals(V,T(end,:),'norm');
-        N = cat(1,N,new_face_normals);
-        
-        T = cat(1,T,new_tgl3);
-        new_face_normals = compute_face_normals(V,T(end,:),'norm');
-        N = cat(1,N,new_face_normals);                
+        T = cat(1,T,new_tgl1,new_tgl2,new_tgl3);
+        new_face_normals = compute_face_normals(V,T(end-2:end,:),'norm');
+        N = cat(1,N,new_face_normals);           
         
         % Remove one triangle and its normal
         T(tgl_idx,:) = [];        
@@ -248,33 +235,19 @@ edg_list(all(bsxfun(@eq,edg_list,sort(cmn_edg)),2),:) = [];
 end % flip_two_ngb_triangles
 
 
-% function [V, T, edg_list, hull_vtx_idx] = remove_inside_pts(V, T, edg_list, hull_vtx_idx)
-% % remove_inside_pts : function to remove points inside
-% % the convex hull during its computational iterations
-% % to save cpu time.
-%
-%
-% Cv = V(hull_vtx_idx,:)';
-% in_vtx_set_idx = [];
-%
-% for m = 1:size(V,1)
-%
-%     if isinconvexset(Cv,V(m,:)')
-%
-%         in_vtx_set_idx = cat(2,in_vtx_set_idx,m);
-%
-%     end
-%
-% end
-%
-% if ~isempty(in_vtx_set_idx)
-%
-%     [V,T] = remove_vertices(in_vtx_set_idx,V,T,'indices');
-%     edg_list = query_edges_list(T,'sorted');
-%     hull_vtx_idx = unique(T(:))';
-%     fprintf('%d vertices removed.\n',numel(in_vtx_set_idx));
-%
-% end
-%
-%
-% end % remove_inside_pts
+function [V, T] = remove_inside_pts(V, T, epsilon)
+% remove_inside_pts : function to remove points inside the convex hull
+% during its computational iterations to save cpu time.
+
+
+in_vtx_set_idx = find(isin3Dconvexset(V,T,V,epsilon));
+
+if ~isempty(in_vtx_set_idx)
+    
+    [V,T] = remove_vertices(in_vtx_set_idx,V,T,'indices');
+    % fprintf('%d vertices removed.\n',numel(in_vtx_set_idx));
+    
+end
+
+
+end % remove_inside_pts

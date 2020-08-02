@@ -50,17 +50,17 @@ if ngb_degre > 1
     for n = 1:ngb_degre-1
         
         % New ngb triangle unique union list with the current tgl_idx_list
-        tgl_idx_list = cellfun(@(c) unique(union(c,cell2mat(find_neighbor_triangle_indices(T,c))')),tgl_idx_list,'UniformOutput',false);                
+        tgl_idx_list = cellfun(@(c) unique(union(c,cell2mat(find_neighbor_triangle_indices(T,c))')),tgl_idx_list,'un',0);                
         
     end
     
-    vtx_ngb_face_normals = cellfun(@(c) compute_face_normals(V,T(c,:),'norm'),tgl_idx_list,'UniformOutput',false);
-    N = cell2mat(cellfun(@(c) mean(c,1),vtx_ngb_face_normals,'UniformOutput',false));
+    vtx_ngb_face_normals = cellfun(@(c) compute_face_normals(V,T(c,:),'norm'),tgl_idx_list,'un',0);
+    N = cell2mat(cellfun(@(c) mean(c,1),vtx_ngb_face_normals,'un',0));
     
 else % if ngb_degre < 2        
                                                        
-    vtx_ngb_face_normals = cellfun(@(c) compute_face_normals(V,T(c,:),'norm'),tgl_idx_list,'UniformOutput',false);                   
-    N = cell2mat(cellfun(@(c1) mean(c1,1),vtx_ngb_face_normals,'UniformOutput',false));                                                           
+    vtx_ngb_face_normals = cellfun(@(c) compute_face_normals(V,T(c,:),'norm'),tgl_idx_list,'un',0);                   
+    N = cell2mat(cellfun(@(c1) mean(c1,1),vtx_ngb_face_normals,'un',0));                                                           
     
 end                
 

@@ -29,8 +29,8 @@ function [T] = rebuild_triangulation_from_edge_list(E)
 %% Body
 % tic;
 C = mat2cell(E,repelem(3,floor(size(E,1)/3)),2);
-R_list = cellfun(@(t) reshape(t',[1,6]),C,'UniformOutput',false); % replicated
-U = cellfun(@(i) unique(i,'stable'),R_list,'UniformOutput',false); % unique
+R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % replicated
+U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % unique
 T = cell2mat(U);
 % fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',size(T,1),size(E,1),toc);
 

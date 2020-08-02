@@ -21,7 +21,7 @@ function [tgl_idx_list] = find_triangle_sets_from_vertex_list(T, vtx_idx)
 
 %% Body
 % tic;
-tgl_idx_list = cellfun(@(i) find(sum(ismember(T,i),2))',num2cell(vtx_idx,2),'UniformOutput',false);
+tgl_idx_list = cellfun(@(i) find(sum(ismember(T,i),2))',num2cell(vtx_idx,2),'un',0);
 % fprintf('find_triangle_sets_from_vertex_list request executed in %d seconds.\n',toc);
 
 

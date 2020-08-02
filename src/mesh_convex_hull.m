@@ -1,5 +1,5 @@
 function [T] = mesh_convex_hull(V)
-% mesh_convex_hull : function to compute the 3D convex hull of a given
+%% mesh_convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
 % Author & support nicolas.douillet (at) free.fr, 2020.
@@ -17,11 +17,12 @@ function [T] = mesh_convex_hull(V)
 %       [ |  |  |]
 
 
+%% Body
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
 nb_vtx = size(V,1); % nb vertices
-epsilon = 1e8*eps; % floating point tolerance error
+epsilon = 1e4*eps; % floating point tolerance error
 
 % 1st vertex : the one with z_min
 [~,v1] = min(V(:,3));
@@ -102,7 +103,7 @@ nxt_vtc = [];
 % Candidate triangles
 idx_vect = setdiff(1:nb_vtx,edg);
 cnd_tgl = cat(2,repmat(edg,[nb_vtx-2,1]),idx_vect');
-G = cell2mat(cellfun(@(r) mean(V(r,:),1),num2cell(cnd_tgl,2),'UniformOutput',false));
+G = cell2mat(cellfun(@(r) mean(V(r,:),1),num2cell(cnd_tgl,2),'un',0));
 
 % Normalized normal vectors
 cnd_tgl_norm_vect = cross(V(cnd_tgl(:,3),:)-V(cnd_tgl(:,1),:),V(cnd_tgl(:,2),:)-V(cnd_tgl(:,1),:),2);

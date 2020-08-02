@@ -26,8 +26,8 @@ tic;
 
 tgl_area = cellfun(@(r1,r2,r3) sqrt(sum(r1.^2,2))*point_to_line_distance(r2,r1,r3),...
                    num2cell(V(T_set(:,2),:)-V(T_set(:,1),:),2),num2cell(V(T_set(:,3),:),2),...
-                   num2cell(V(T_set(:,1),:),2),'UniformOutput',false);
-               
+                   num2cell(V(T_set(:,1),:),2),'un',0);
+
 area = 0.5*sum([tgl_area{:}]);
 
 fprintf('Face selection area computed in %d seconds.\n',toc);

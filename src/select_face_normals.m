@@ -41,7 +41,7 @@ if nargin < 4
 end
 
 N = compute_face_normals(V,T,mode);
-G = cell2mat(cellfun(@(r) mean(V(r,:),1),num2cell(T,2),'UniformOutput',false));
+G = cell2mat(cellfun(@(r) mean(V(r,:),1),num2cell(T,2),'un',0));
 
 if option_display
     

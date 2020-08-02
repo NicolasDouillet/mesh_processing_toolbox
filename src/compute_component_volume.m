@@ -34,7 +34,7 @@ for k = 1:cc_nb
     
     component_volume(1,k) = abs(sum(cell2mat(cellfun(@(r)...
                             dot(cross(V(r(1,1),:),V(r(1,2),:),2),V(r(1,3),:),2),num2cell(R,2),...
-                            'UniformOutput',false))))/6;
+                            'un',0))))/6;
 
 end
 

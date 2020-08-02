@@ -25,8 +25,8 @@ tic;
 
 tgl_area = cellfun(@(r1,r2,r3) sqrt(sum(r1.^2,2))*point_to_line_distance(r2,r1,r3),...
                    num2cell(V(T(:,2),:)-V(T(:,1),:),2),num2cell(V(T(:,3),:),2),...
-                   num2cell(V(T(:,1),:),2),'UniformOutput',false);
-               
+                   num2cell(V(T(:,1),:),2),'un',0);
+                        
 mesh_area = 0.5*sum([tgl_area{:}]);
 
 fprintf('Mesh total area computed in %d seconds.\n',toc);

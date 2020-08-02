@@ -1,4 +1,4 @@
-function [ortho_proj] = point_to_plane_distance(M, n, I)
+function [d2H, H] = point_to_plane_distance(M, n, I)
 %% point_to_plane_distance : function to compute the distance between
 % the 3D point M and the plane (I,n). Also provides the coordinates
 % of H, the projection of M on (I,n), and also works for a list of points.
@@ -21,10 +21,8 @@ function [ortho_proj] = point_to_plane_distance(M, n, I)
 % 
 % Output argument
 %
-% - ortho_proj = cat(2,d2H,H), with : 
-%
-% * d2H : real scalar -or vector- double, the euclidian distance between M and the plane (I,n). size(d2H) = [N,1].
-% * H : real vector double, the projected point(s) on the plane. size(H) = [N,3].
+% - d2H : real scalar -or vector- double, the euclidian distance between M and the plane (I,n). size(d2H) = [N,1].
+% - H : real vector double, the projected point(s) on the plane. size(H) = [N,3].
 
 
 %% Body
@@ -39,7 +37,6 @@ z_H = M(:,3) + t_H*n(3);
 % Orthogonal projected point
 H = cat(2,x_H,y_H,z_H);
 d2H = sqrt(sum((M-H).^2,2));
-ortho_proj = cat(2,d2H,H);
 
 
 end % point_to_plane_distance

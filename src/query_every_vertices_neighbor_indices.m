@@ -37,7 +37,7 @@ else
     
 end
 
-M = cell2mat(cellfun(@(c) nchoosek(c,2),num2cell(T,2),'UniformOutput',false));
+M = cell2mat(cellfun(@(c) nchoosek(c,2),num2cell(T,2),'un',0));
 neighbor_list = accumarray([M(:,1);M(:,2)],[M(:,2);M(:,1)],[],@(x){unique(x)'});
 
 
@@ -47,10 +47,10 @@ if ngb_degre > 1
         
     for k = 2:ngb_degre
                 
-        kth_degre_neighbor_list = cellfun(@(c) neighbor_list(c),neighbor_list,'UniformOutput',false);
-        kth_degre_neighbor_list = cellfun(@(c) c(:),kth_degre_neighbor_list,'UniformOutput',false);
-        kth_degre_neighbor_list = cellfun(@(c) c(:)',kth_degre_neighbor_list,'UniformOutput',false);
-        neighbor_list = cellfun(@(c1,c2) setdiff(cell2mat(c1),c2),kth_degre_neighbor_list,vtx_idx,'UniformOutput',false);               
+        kth_degre_neighbor_list = cellfun(@(c) neighbor_list(c),neighbor_list,'un',0);
+        kth_degre_neighbor_list = cellfun(@(c) c(:),kth_degre_neighbor_list,'un',0);
+        kth_degre_neighbor_list = cellfun(@(c) c(:)',kth_degre_neighbor_list,'un',0);
+        neighbor_list = cellfun(@(c1,c2) setdiff(cell2mat(c1),c2),kth_degre_neighbor_list,vtx_idx,'un',0);               
         
     end
     

@@ -30,7 +30,7 @@ tic;
 T_out = T_in;
 edg_list = query_edges_list(T_in,'raw');
 tgl_idx_list = find_triangle_indices_from_edges_list(T_in,edg_list);
-nmnfld_tgl_idx_list = cellfun(@(r) r(numel(r) > 2,:),tgl_idx_list,'UniformOutput',false);
+nmnfld_tgl_idx_list = cellfun(@(r) r(numel(r) > 2,:),tgl_idx_list,'un',0);
 nmnfld_tgl_idx_list = nmnfld_tgl_idx_list(~cellfun('isempty',nmnfld_tgl_idx_list));
 nmnfld_tgl_idx_list = unique([nmnfld_tgl_idx_list{:}]);
 T_out(nmnfld_tgl_idx_list,:) = [];

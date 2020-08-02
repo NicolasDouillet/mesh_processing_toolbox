@@ -30,15 +30,15 @@ function [min_dst] = compute_point_to_mesh_min_distance(P, V, T)
 tic;
 
 % Step I : Orthogonnaly project P on H for each triangle planes
-H_mat = cell2mat(cellfun(@(r) point_to_plane_distance(P,cross(V(r(1,2),:)-V(r(1,1),:),...
-        V(r(1,3),:)-V(r(1,1),:),2),V(r(1,1),:)),num2cell(T,2),'UniformOutput',false));
+[d2H,H] = cellfun(@(r) point_to_plane_distance(P,cross(V(r(1,2),:)-V(r(1,1),:),...
+                  V(r(1,3),:)-V(r(1,1),:),2),V(r(1,1),:)),num2cell(T,2),'un',0);
 
 % Step II : Keep only the H ones which are inside their triangles ; in case there
 % are none, take the min distance to the point set
 isin = cell2mat(cellfun(@(r1,r2) is_point_inside_triangle(V(r1,:),...
-       r2(1,2:end)),num2cell(T,2),num2cell(H_mat,2),'UniformOutput',false));
+                r2),num2cell(T,2),H,'un',0));
 
-dst_vect = H_mat(isin,1);
+dst_vect = [d2H{isin,:}];
 
 % Step III : Keep the minimum only
 min_dst = min(dst_vect);
@@ -49,7 +49,7 @@ if ~isempty(min_dst)
     
     min_dst = min_dst(1,1);
     
-    if min_dst > min_dst_2_pt_set;
+    if min_dst > min_dst_2_pt_set
        
         min_dst = min_dst_2_pt_set;
         

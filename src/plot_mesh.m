@@ -31,7 +31,7 @@ ax.Clipping = 'off';
 
 set(gca, 'Color', [0 0 0], 'XColor', [1 1 1], 'YColor', [1 1 1], 'ZColor', [1 1 1]);
 
-fprintf('Mesh with %d vertices and %d triangles displayed in %d seconds.\n',size(V,1),size(T,1),toc);
+fprintf('Mesh with %d vertices and %d triangles displayed in %d seconds.\n',numel(unique(T(:))),size(T,1),toc);
 
 
 end % plot_mesh
