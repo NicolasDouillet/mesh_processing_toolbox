@@ -18,15 +18,23 @@ Y = Y(i);
 Z = Z(i);
 V = cat(2,X,Y,Z);
 
+% load('torus_light.mat');
+
 Ch = mesh_convex_hull(V);
 Cv = convhull(V(:,1),V(:,2),V(:,3));
 
-isequal(sortrows(sort(Ch,2)),sortrows(sort(Cv,2)))
+if isequal(sortrows(sort(Ch,2)),sortrows(sort(Cv,2)))
+   
+    disp('Same point sets and triangulations.');
+    
+else
+    
+    disp('Point sets and triangulations are different, probably due to some coplanar points.');
+    
+end
 
 plot_mesh(V,Cv);
-alpha(0.5);
 axis equal, axis square;
 
 plot_mesh(V,Ch);
-alpha(0.5);
 axis equal, axis square;

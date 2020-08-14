@@ -1,5 +1,5 @@
 function [T] = mesh_convex_hull(V)
-%% mesh_convex_hull : function to compute the 3D convex hull of a given
+% mesh_convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
 % Author & support nicolas.douillet (at) free.fr, 2020.
@@ -17,7 +17,7 @@ function [T] = mesh_convex_hull(V)
 %       [ |  |  |]
 
 
-%% Body
+% Body
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
@@ -34,58 +34,77 @@ d = dot(U,repmat([0 0 1],[nb_vtx,1]),2);
 [~,v2] = mink(d,2); 
 v2 = setdiff(v2,v1); % remove dot prod with null vector
 
-% 3rd vertex : the one which define the plane such that all the other
-% vertices (except v1 & v2) remain in only one single and unique side of
-% this plane (v1,v2,v3) -dot product of constant or null sign with the plane normal vector-
-
-edg = [min([v1,v2]),max([v1,v2])];
-curr_edg = edg;
-edg_list = edg;
+curr_edg = [min([v1,v2]),max([v1,v2])]; % initial edge
+edg_list = curr_edg;
+proc_edg_list = zeros(0,2); % processed edge list
 T = zeros(0,3);
 curr_edg_idx = 1;
 
 
 while ~isempty(curr_edg)
    
-    nxt_vtc = find_nxt_vertex(curr_edg,V,nb_vtx,epsilon);   
-    nb_tgl = numel(nxt_vtc);
-    tgl = sort(cat(2,repmat(curr_edg,[nb_tgl,1]),nxt_vtc'),2);
-    new_tgl = [];
+    nxt_vtc = find_nxt_vertex(curr_edg,V,nb_vtx,epsilon); % next vertices
+    nb_tgl = numel(nxt_vtc); % number of new triangles
+    tgl = sort(cat(2,repmat(curr_edg,[nb_tgl,1]),nxt_vtc'),2); % newly potential triangles created
+    new_tgl = zeros(0,3);        
     
-    for s = 1:nb_tgl                
+    for s = 1:nb_tgl                                
         
-        if isempty(find(all(bsxfun(@eq,T,tgl(s,:)),2),1)) % not already exists
-            
-            new_tgl = cat(1,new_tgl,tgl(s,:));                        
-            
-        end
-        
-    end       
-    
-    
-    if ~isempty(new_tgl)
-        
-        T = cat(1,T,new_tgl);
-        
-        for s = 1:nb_tgl % ou requery
-            
-            edg_list = cat(1,edg_list,sort(cat(2,curr_edg',[nxt_vtc(1,s);nxt_vtc(1,s)]),2));
+        if isempty(find(all(bsxfun(@eq,T,tgl(s,:)),2),1))
+                        
+            new_tgl = cat(1,new_tgl,tgl(s,:));           
             
         end
         
     end
+    
+    
+    if ~isempty(new_tgl)
         
-    curr_edg_idx = curr_edg_idx + 1;
+        T = cat(1,T,new_tgl); % add valid new triangles
+        
+        for s = 1:nb_tgl
             
+            % create the two new edges
+            new_edg1 = sort([curr_edg(1,1),nxt_vtc(1,s)]);
+            new_edg2 = sort([curr_edg(1,2),nxt_vtc(1,s)]);
+            
+            % Add valid new edges
+            if isempty(find(all(bsxfun(@eq,new_edg1,edg_list),2),1)) % ~ismember(new_edg1,edg_list,'rows')
+                
+                edg_list = cat(1,edg_list,new_edg1);
+                
+            end
+            
+            if isempty(find(all(bsxfun(@eq,new_edg2,edg_list),2),1)) % ~ismember(new_edg2,edg_list,'rows')
+                
+                edg_list = cat(1,edg_list,new_edg2);
+                
+            end
+            
+        end
+        
+    end    
+       
+    proc_edg_list = cat(1,proc_edg_list,curr_edg);
+    curr_edg_idx = curr_edg_idx + 1;
+        
+    % Compute new edge
     if curr_edg_idx < 1 + size(edg_list,1)
         
-        curr_edg = edg_list(curr_edg_idx,:); 
+        nxt_edg = edg_list(curr_edg_idx,:);
+        
+        if ~ismember(nxt_edg,proc_edg_list,'rows')
+            
+            curr_edg = nxt_edg;
+            
+        end
         
     else
         
         curr_edg = [];
         
-    end    
+    end
     
 end
 
@@ -96,6 +115,10 @@ end % mesh_convex_hull
 
 
 function [nxt_vtc] = find_nxt_vertex(edg, V, nb_vtx, epsilon)
+% find_nxt_vertex : function to find the next vertices in the algorithm
+% given a current edge. These candidate new vertices are the ones which
+% build a triangle which has all the other vertices of the point set on one
+% same unique side.
 
 
 nxt_vtc = [];
@@ -123,7 +146,7 @@ for i = 1:numel(idx_vect)
         
         nxt_vtc = cat(2,nxt_vtc,idx_vect(i));
         
-    end
+    end        
     
 end
 

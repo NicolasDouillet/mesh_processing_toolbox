@@ -40,7 +40,7 @@ function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 % tic;
 if nargin  < 4
     
-    mode = 'indices'
+    mode = 'indices';
     
 else
     

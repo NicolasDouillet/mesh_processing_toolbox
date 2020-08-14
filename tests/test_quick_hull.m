@@ -6,7 +6,7 @@ addpath('../src');
 addpath('../data');
 
 
-nb_vtx = 256;
+nb_vtx = 128;
 X = 2*(rand(nb_vtx,1)-0.5);
 Y = 2*(rand(nb_vtx,1)-0.5);
 Z = 2*(rand(nb_vtx,1)-0.5);
@@ -18,18 +18,30 @@ Y = Y(i);
 Z = Z(i);
 V = cat(2,X,Y,Z);
 
+% load('torus_light.mat');
+
 Vc = V;
-Ch = convhull(Vc(:,1),Vc(:,2),Vc(:,3));
-[Vc,Ch] = remove_vertices(setdiff(1:size(Vc,1),unique(Ch(:))),Vc,Ch,'indices');
-plot_mesh(Vc,Ch);
-alpha(0.5);
+Cv = convhull(Vc(:,1),Vc(:,2),Vc(:,3));
+
+% For random point sets only
+[Vc,Cv] = remove_vertices(setdiff(1:size(Vc,1),unique(Cv(:))),Vc,Cv,'indices');
+
+plot_mesh(Vc,Cv);
 axis equal, axis square;
 view(3);
 
 [V,Qh] = quick_hull(V);
+
+if isequal(sortrows(sort(Cv,2)),sortrows(sort(Qh,2)))
+    
+    disp('Same point sets and triangulations.');
+    
+else
+    
+    disp('Point sets and triangulations are different, probably due to some coplanar points.');
+    
+end
+
 plot_mesh(V,Qh), hold on;
-alpha(0.5);
 axis equal, axis square;
 view(3);
-
-isequal(sortrows(sort(Qh,2)),sortrows(sort(Ch,2)))
