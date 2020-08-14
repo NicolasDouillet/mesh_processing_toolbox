@@ -54,7 +54,7 @@ N = compute_vertex_normals(V,T,ngb_degre,mode);
 if option_display
     
     plot_mesh(V,T);
-    quiver3(V(:,1),V(:,2),V(:,3),N(:,1),N(:,2),N(:,3),'Color',[1 1 0]), hold on;
+    quiver3(V(:,1),V(:,2),V(:,3),N(:,1),N(:,2),N(:,3),'Color',[1 0.5 0],'LineWidth',2), hold on;
     alpha(0.5);
     
 end

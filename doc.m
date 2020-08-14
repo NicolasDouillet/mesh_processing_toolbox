@@ -76,3 +76,14 @@ V = mesh_smooth(V,T,nb_iterations,ngb_degre);
 
 plot_mesh(V,T), shading interp, camlight right;
 view(0,90);
+
+%% Example #9 : convex hull
+load('torus_light.mat');
+plot_mesh(V,T);
+axis equal;
+view(3);
+
+[V,Qh] = quick_hull(V);
+plot_mesh(V,Qh);
+axis equal;
+view(3);

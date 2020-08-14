@@ -34,7 +34,7 @@ else
 end
 
 plot_mesh(V,Cv);
-axis equal, axis square;
+axis equal;
 
 plot_mesh(V,Ch);
-axis equal, axis square;
+axis equal;

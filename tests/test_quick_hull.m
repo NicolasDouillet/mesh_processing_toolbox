@@ -27,7 +27,7 @@ Cv = convhull(Vc(:,1),Vc(:,2),Vc(:,3));
 [Vc,Cv] = remove_vertices(setdiff(1:size(Vc,1),unique(Cv(:))),Vc,Cv,'indices');
 
 plot_mesh(Vc,Cv);
-axis equal, axis square;
+axis equal;
 view(3);
 
 [V,Qh] = quick_hull(V);
@@ -43,5 +43,5 @@ else
 end
 
 plot_mesh(V,Qh), hold on;
-axis equal, axis square;
+axis equal;
 view(3);
