@@ -13,10 +13,6 @@ function [boundaries] = detect_mesh_holes_and_boundary(T)
 %
 % Input arguments
 %
-% %       [| | |]
-% % - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_vertices,3].
-% %       [| | |]
-%
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]

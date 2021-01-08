@@ -78,8 +78,19 @@ plot_mesh(V,T), shading interp, camlight right;
 view(0,90);
 
 %% Example #9 : convex hull
-load('torus_light.mat');
-plot_mesh(V,T);
+nb_vtx = 128;
+X = 2*(rand(nb_vtx,1)-0.5);
+Y = 2*(rand(nb_vtx,1)-0.5);
+Z = 2*(rand(nb_vtx,1)-0.5);
+
+Rho = X.^2 + Y.^2 + Z.^2;
+i = Rho <= 1;
+X = X(i);
+Y = Y(i);
+Z = Z(i);
+V = cat(2,X,Y,Z);
+
+plot_point_set(V,'o','y',4);
 axis equal;
 view(3);
 

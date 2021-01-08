@@ -1,5 +1,5 @@
 function [T] = mesh_convex_hull(V)
-% mesh_convex_hull : function to compute the 3D convex hull of a given
+%% mesh_convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
 % Author & support nicolas.douillet (at) free.fr, 2020.
@@ -17,7 +17,7 @@ function [T] = mesh_convex_hull(V)
 %       [ |  |  |]
 
 
-% Body
+%% Body
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
@@ -114,6 +114,7 @@ fprintf('Mesh convex hull computed in %ds.\n',toc);
 end % mesh_convex_hull
 
 
+%% find_nxt_vertex subfunction
 function [nxt_vtc] = find_nxt_vertex(edg, V, nb_vtx, epsilon)
 % find_nxt_vertex : function to find the next vertices in the algorithm
 % given a current edge. These candidate new vertices are the ones which

@@ -28,7 +28,7 @@ where :
 - A triangle (or a triplet) is a 1 x 3 row double vector of positive integers.
 - An edge is a 1 x 2 row double vector of positive integers.
 
-By default, and unless exceptions, vertices and triangles arguments are index based.
+By default, and unless exceptions, vertex and triangle arguments are index based.
 
 Another common argument is ngb_degre which corresponds to the neighborhood degre whished on the mesh, and which is used to find one vertex neighborhood.
 For commun usages, this value is in the range |[1 ; 4]|. Tune it relatively to the local curvature of your mesh.
@@ -51,11 +51,11 @@ Each one of the algorithms / functions included have been independently tested, 
 Downloading and using this toolbox or just part of it assume you to have read and accept all the condition in this current description. 
 
 This toolbox and its content is free of use and distribution with the following condition :
-this desciption_read_me file must be included as well as each function header must be preserved.
+this description_read_me file must be included as well as each function header must be preserved.
 
 Modification of any kind are done under your own, only, and unique responsability.
 
-Please report me any bug (with data set used and code attached) or suggestion at nicolas.douillet (at) free.fr
+Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) free.fr
 
 
 %% KNOWN LIMITATIONS
@@ -109,4 +109,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : august 2020, friday the 14th. 
+Last update : 01 / 04 /2021.

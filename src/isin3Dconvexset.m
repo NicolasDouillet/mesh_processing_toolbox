@@ -1,5 +1,5 @@
 function [isin] = isin3Dconvexset(V, H, M, epsilon)
-% isin3Dconvexset : function to check if a vertex is located inside or outside a given
+%% isin3Dconvexset : function to check if a vertex is located inside or outside a given
 % convex set, boundary not included (opened set). Supports dimensions 2 and 3.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2018-2020.
@@ -46,7 +46,8 @@ function [isin] = isin3Dconvexset(V, H, M, epsilon)
 % - isin = [logical 1 / 0], logical true (1)/false (0) scalar / column vector. The boolean result. Size(isin) = [size(M,1),1].
 %          [      |      ]
 
-% Body
+
+%% Body
 nb_h = size(H,1);
 
 % Hyperplane isobarycentres
