@@ -2,6 +2,8 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 %% edge_collapse : function to collapse one ore more edge(s).
 % Triangle set needs to be 2D-manifold for edge_collapse to work
 % and edge couple must be valid existing edges.
+% Working principle : each edge to collapse is replaced by its middle
+% point.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2021.
 %
@@ -17,7 +19,7 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 %          [  |     |     |  ]
 %
 %              [ | | ]
-% - edg_list = [e1 e2], positive integer matrix double, the edge set to collapse, size(edg_list) = [nb_edges,2].
+% - edg_list = [v1 v2], positive integer matrix double, the edge set to collapse, size(edg_list) = [nb_edges,2].
 %              [ | | ] 
 %
 %
@@ -27,14 +29,12 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],
 %           [  |     |     |  ]
 %
-%           where nb_output_vertices = nb_input_vertices - nb_duplicata.
-%
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
 
 %% Body
-% edg_list = unique(sort(edg_list,2),'rows'); % precondition
+edg_list = unique(sort(edg_list,2),'rows');
 edg_cat_list = unique(reshape(edg_list.',1,[]));
 
 V_out = V_in;
@@ -42,35 +42,31 @@ T_out = T_in;
 
 while ~isempty(edg_list)
     
-    e1 = edg_list(1,1);
-    e2 = edg_list(1,2);
+    v1 = edg_list(1,1);
+    v2 = edg_list(1,2);
     
     % Find and suppress the triangle couple the edge belong to
     f = sum(ismember(T_out,edg_list(1,:)),2) == 2;
     T_out(f,:) = [];
     
     % Create the middle vertex
-    mid_vtx = mean(V_out(edg_list(1,:),:),1);
-    
-    %     % Remove every couple vertices of the edges
-    %     [V_out,T_out] = remove_vertices([e1,e2],V_out,T_out);
-    %     + reindex edg_list !
+    mid_vtx = mean(V_out(edg_list(1,:),:),1);        
     
     % Add th middle vertex
     V_out = cat(1,V_out,mid_vtx);
     
     % Find the neighbor triangles which have one vertex of these edges
     % and replace them by the middle vertex.
-    T_out(T_out == e1 | T_out == e2) = size(V_out,1); % new vertex index
+    T_out(T_out == v1 | T_out == v2) = size(V_out,1); % new vertex index
     
     % Update edg_list
-    edg_list(1,:) = []; % suppress edg
-    edg_list(edg_list == e1 | edg_list == e2) = size(V_out,1); % reindex with new vertex        
+    edg_list(1,:) = []; % remove edge from the list
+    edg_list(edg_list == v1 | edg_list == v2) = size(V_out,1); % reindex with new vertex index        
     
 end
 
 % Remove every couple vertices of the edges
-[V_out,T_out] = remove_vertices(unique(edg_cat_list),V_out,T_out);
+[V_out,T_out] = remove_vertices(edg_cat_list,V_out,T_out);
 
 
 end % edge_collapse
