@@ -35,28 +35,42 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 
 %% Body
 % edg_list = unique(sort(edg_list,2),'rows'); % precondition
+edg_cat_list = unique(reshape(edg_list.',1,[]));
 
 V_out = V_in;
 T_out = T_in;
 
-% Find and suppress the triangle couples the edges belong to 
-tgl_idx_list = find_triangle_indices_from_edges_list(T_out,edg_list);
-T_out(unique([tgl_idx_list{:}]),:) = [];
-% T_out = remove_triangles([tgl_idx_list{:}],T_out);
-
-% Create and add the middle vertices
-mid_vtx = 0.5*(V_out(edg_list(:,1),:) + V_out(edg_list(:,2),:));
-V_out = cat(1,V_out,mid_vtx);
-new_vtx_idx = repelem(1+size(V_in,1):size(V_out,1),2);
-
-% Find the neighbor triangles which have one vertex of these edges
-% and replace them by the middle vertex.
-edg_cat_list = reshape(edg_list.',1,[]);
-M = containers.Map(edg_cat_list,new_vtx_idx);
-f_vtx2sub = isKey(M,num2cell(T_out));
-T_out(f_vtx2sub) = cell2mat(values(M,num2cell(T_out(f_vtx2sub))));
+while ~isempty(edg_list)
+    
+    e1 = edg_list(1,1);
+    e2 = edg_list(1,2);
+    
+    % Find and suppress the triangle couple the edge belong to
+    f = sum(ismember(T_out,edg_list(1,:)),2) == 2;
+    T_out(f,:) = [];
+    
+    % Create the middle vertex
+    mid_vtx = mean(V_out(edg_list(1,:),:),1);
+    
+    %     % Remove every couple vertices of the edges
+    %     [V_out,T_out] = remove_vertices([e1,e2],V_out,T_out);
+    %     + reindex edg_list !
+    
+    % Add th middle vertex
+    V_out = cat(1,V_out,mid_vtx);
+    
+    % Find the neighbor triangles which have one vertex of these edges
+    % and replace them by the middle vertex.
+    T_out(T_out == e1 | T_out == e2) = size(V_out,1); % new vertex index
+    
+    % Update edg_list
+    edg_list(1,:) = []; % suppress edg
+    edg_list(edg_list == e1 | edg_list == e2) = size(V_out,1); % reindex with new vertex        
+    
+end
 
 % Remove every couple vertices of the edges
 [V_out,T_out] = remove_vertices(unique(edg_cat_list),V_out,T_out);
+
 
 end % edge_collapse
