@@ -56,8 +56,7 @@ while ~isempty(vtx_idx2suppr)
     T_out(T_out == vtx_idx) = nrst_vtx_idx;    
     
     % Update vertex list 
-    vtx_idx2suppr(1) = []; % remove current vertex index
-    % edg_list(edg_list == v1 | edg_list == v2) = size(V_out,1); % reindex with new vertex index             
+    vtx_idx2suppr(1) = []; % remove current vertex index              
     
 end
 
