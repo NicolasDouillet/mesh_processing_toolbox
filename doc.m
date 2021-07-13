@@ -1,6 +1,6 @@
 %% mesh processing toolbox
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2021.
 
 
 
@@ -59,11 +59,10 @@ view(-90,0);
 
 n = [0 1 0];
 I = [0 -25 800];
-[V_out,T_out] = submesh_selection(V,T,n,I); % Gargoyle top part 
+[V_out,T_out] = submesh_selection(V,T,n,I); %% Gargoyle top part 
 
 plot_mesh(V_out,T_out);
 view(-90,0);
-
 
 %% Example #8 : smoothing
 plot_mesh(V,T), shading interp, camlight right;
@@ -98,3 +97,26 @@ view(3);
 plot_mesh(V,Qh);
 axis equal;
 view(3);
+
+%% Example #10 : boundary smoothing
+load('kitten_components.mat');
+
+show_holes_and_boundary(V,T);
+shading interp;
+camlight right;
+alpha(0.5);
+view(3);
+axis off;
+
+boundaries = detect_mesh_holes_and_boundary(T);
+
+nb_iterations = 2;
+ngb_degre = 6;
+V_out = smooth_mesh_boundaries(V,boundaries,nb_iterations,ngb_degre);
+
+show_holes_and_boundary(V_out,T);
+shading interp;
+camlight right;
+alpha(0.5);
+view(3);
+axis off;
