@@ -45,13 +45,15 @@ Then to create your own .mat file for vertex set V and triangle set T, just use 
 
 %% COPYRIGHT & SUPPORT
 
-All the code included in this toolbox is the result of my unique personal own work and effort in 2020, and going on for upcoming updates.
+All the code included in this toolbox is the result of my unique personal own work and effort on the period 2020-2023, and going on for upcoming updates.
 
 Each one of the algorithms / functions included have been independently tested, however I cannot provide any warrantee of any kind about them. Use them at your own risks.
 Downloading and using this toolbox or just part of it assume you to have read and accept all the condition in this current description. 
 
 This toolbox and its content is free of use and distribution with the following condition :
 this description_read_me file must be included as well as each function header must be preserved.
+
+SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED.
 
 Modification of any kind are done under your own, only, and unique responsability.
 
@@ -109,4 +111,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 07 / 13 /2021.
+Last update : 01 / 09 /2023.
