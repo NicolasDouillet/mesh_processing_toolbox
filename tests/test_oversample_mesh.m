@@ -12,6 +12,6 @@ addpath('../data');
 filename = strcat('octahedron','.mat'); 
 load(filename);
 
-[V,T] = oversample_mesh(V,T);
+[V,T] = oversample_mesh(V,T,2);
 
 select_face_normals(V,T);
