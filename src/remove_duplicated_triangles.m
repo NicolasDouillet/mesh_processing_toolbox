@@ -1,8 +1,8 @@
-function [T_out] = remove_duplicated_triangles(T_in)
+function T_out = remove_duplicated_triangles(T_in)
 %% remove_duplicated_triangles : function to remove duplicated
 % triangles present in the triangulation T_in.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input argument

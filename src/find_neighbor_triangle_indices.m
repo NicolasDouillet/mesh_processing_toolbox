@@ -1,8 +1,8 @@
-function [ngb_T] = find_neighbor_triangle_indices(T, T_subset, mode)
+function ngb_T = find_neighbor_triangle_indices(T, T_subset, mode)
 %% find_neighbor_triangle_indices : function to compute the list of triangles
 % which are neighbors (share one edge) to the triangles in T_subset.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -61,6 +61,8 @@ end
 
 ngb_T = cellfun(@(t) find(sum(bitor(bitor(T==T_subset(t,1),T==T_subset(t,2)),T==T_subset(t,3)),2)==2),...
                      num2cell((1:size(T_subset,1))'),'un',0);
+                 
+% ngb_T = find(sum(ismember(T, T(T_subset,:)),2)==2);                 
 
 % fprintf('find_neighbor_triangle_indices request executed in %d seconds.\n',toc);
 

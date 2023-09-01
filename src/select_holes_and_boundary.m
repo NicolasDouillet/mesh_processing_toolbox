@@ -1,11 +1,11 @@
-function [boundaries] = select_holes_and_boundary(V, T)
+function boundaries = select_holes_and_boundary(V, T)
 %% select_holes_and_boundary : function to select and display
 % holes and boundary of the mesh.
 %
 % About : holes and boundary are identified and segmented
 % (detect_mesh_holes_and_boundary), and their displays use different colors.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 % 
 % Input arguments

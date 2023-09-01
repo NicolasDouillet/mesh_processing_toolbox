@@ -1,0 +1,51 @@
+function [V_out, T_out] = oversample_mesh(V_in, T_in)
+%
+% Author & support : nicolas.douillet (at) free.fr, 2023.
+%
+%
+% Input arguments
+%
+%          [ |    |    |  ]
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+%          [ |    |    |  ]
+%
+%          [  |     |     |  ]
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+%          [  |     |     |  ]
+%
+%
+% Output arguments
+%
+%           [  |     |     |  ]
+% - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3].
+%           [  |     |     |  ]
+%
+%           [  |      |      |   ]
+% - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
+%           [  |      |      |   ]
+%
+%
+% Keep faces orientation
+
+
+nb_vtx = size(V_in,1);
+V_new = zeros(0,3);
+T = zeros(0,3);
+
+for k = 1:size(T_in,1)
+   
+    E = combnk(T_in(k,:),2);
+    V_new = cat(1,V_new,0.5*(V_in(E(:,2),:)+V_in(E(:,1),:)));
+    T = cat(1,T,[nb_vtx+3*k-2, nb_vtx+3*k, nb_vtx+3*k-1],...
+                [T_in(k,1), nb_vtx+3*k-2, nb_vtx+3*k-1],...
+                [T_in(k,2), nb_vtx+3*k, nb_vtx+3*k-2],...
+                [T_in(k,3), nb_vtx+3*k-1, nb_vtx+3*k]);
+              
+    
+end
+
+V = cat(1,V_in,V_new);
+[V_out,T_out] = remove_duplicated_vertices(V,T);
+
+
+end % oversample_mesh

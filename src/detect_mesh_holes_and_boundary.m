@@ -1,8 +1,8 @@
-function [boundaries] = detect_mesh_holes_and_boundary(T)
+function boundaries = detect_mesh_holes_and_boundary(T)
 %% detect_mesh_holes_and_boundary : function to detect vertices which are part of
 % the mesh boundary and list their indices in boundary vectors.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %                                         
 % From the vertex and triangle lists, this function computes
 % the mesh boundaries when there are some (opened surface

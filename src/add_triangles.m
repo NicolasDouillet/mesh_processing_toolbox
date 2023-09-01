@@ -1,7 +1,7 @@
 function T_out = add_triangles(T_set, T_in, nb_vtx)
 %% add_triangles : function to add new triangles to the triangle set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2023.
 %
 %
 % Input arguments
@@ -33,8 +33,8 @@ function T_out = add_triangles(T_set, T_in, nb_vtx)
 if T_set > 0 & T_set <= nb_vtx & isreal(T_set) & rem(T_set,1) == 0 & floor(T_set) == T_set
     
     % Check if some triangles of T_set already part of T_in
-    dpl_tgl_idx = ismember(T_set,T_in,'rows');
-    
+    dpl_tgl_idx = ismember(sort(T_set,2),sort(T_in,2),'rows');
+           
     if ~nnz(dpl_tgl_idx) 
         
         T_out = cat(1,T_in,T_set);

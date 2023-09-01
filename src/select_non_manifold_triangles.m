@@ -1,8 +1,8 @@
-function [nmnfld_tgl_idx_list] = select_non_manifold_triangles(V, T)
+function nmnfld_tgl_idx_list = select_non_manifold_triangles(V, T)
 %% select_non_manifold_triangles : function to select and display
 % non manifold triangles on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments

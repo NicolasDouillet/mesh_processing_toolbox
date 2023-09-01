@@ -4,7 +4,7 @@ function [T_out] = fill_mesh_holes(V, T_in, boundaries, surf_type, max_perim_sz)
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author and support : nicolas.douillet (at) free.fr, 2020.
+% Author and support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -116,9 +116,9 @@ for h = holes_begin_idx:nb_holes % loop on every holes
                 
                 min_angle_idx = 1; % special possible case of the last triangle; index of min doesn't matter
             
-            end;                        
+            end                        
                                                          
-            if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end;                                    
+            if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end                                    
             
             new_triangle = [mat_boundary_forward(min_angle_idx), mat_boundary(min_angle_idx), mat_boundary_backward(min_angle_idx)];                                                
             T_out = add_triangles(new_triangle,T_out,size(V,1));
