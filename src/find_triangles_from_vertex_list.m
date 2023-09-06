@@ -21,7 +21,7 @@ function tgl_idx_list = find_triangles_from_vertex_list(T, vtx_idx)
 
 %% Body
 % tic;
-tgl_idx_list = find(sum(reshape(ismember(T(:),vtx_idx),[size(T,1),size(T,2)]),2));
+tgl_idx_list = find(sum(reshape(ismember(T(:),vtx_idx),size(T)),2));
 % fprintf('find_triangles_from_vertex_list request executed in %d seconds.\n',toc);
 
 

@@ -42,7 +42,7 @@ if T_set > 0 & T_set <= nb_vtx & isreal(T_set) & rem(T_set,1) == 0 & floor(T_set
         
     else % if nnz(dpl_tgl_idx) 
        
-        warning('One or more triangle from this set already exist in the current triangulation. Duplicated triangles have been ignored.\n');
+        % warning('One or more triangle from this set already exist in the current triangulation. Duplicated triangles have been ignored.\n');
         
         % Suppress duplicated triangles
         T_set = T_set(~dpl_tgl_idx,:);
