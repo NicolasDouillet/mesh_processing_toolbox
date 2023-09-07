@@ -1,5 +1,5 @@
-function [T_out] = fill_mesh_holes(V, T_in, boundaries, surf_type, max_perim_sz)
-%% fill_mesh_holes : function to fill the mesh holes.
+function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
+% fill_mesh_holes : function to fill the mesh holes.
 %
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
@@ -19,9 +19,6 @@ function [T_out] = fill_mesh_holes(V, T_in, boundaries, surf_type, max_perim_sz)
 %
 % - boundaries : cell array of positive integer row vectors double (vertex indices), the boundaries and/or holes of the mesh.
 %
-% - surf_type : character string in the set {'closed','opened','CLOSED','OPENED'},
-%               the type of surface considered. Case insensitive.
-%
 % - max_perim_sz : real scalar double, the maximum perimeter size admitted for the holes to fill.
 %
 %
@@ -32,13 +29,13 @@ function [T_out] = fill_mesh_holes(V, T_in, boundaries, surf_type, max_perim_sz)
 %           [  |      |      |   ]
 
 
-%% Body
+% Body
 tic;
 
 assert(nargin > 3,'Not enough input arguments. fill_mesh_holes takes at least four input arguments.');
-assert(nargin < 6,'Too many output arguments.');
+assert(nargin < 5,'Too many output arguments.');
 
-if nargin < 5
+if nargin < 4
    
     max_perim_sz = Inf; % default behaviour ; fill every holes
     
@@ -53,16 +50,9 @@ edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*sqrt(sum(cross_prod.^2,2)),dot
 % Curvature continuity condition
 ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*sqrt(sum(cross(vertex_normals,cross_prod).^2,2)),dot(vertex_normals,cross_prod,2));
 
-
-if strcmpi(surf_type,'closed')
-   
-    holes_begin_idx = 1;
-    
-elseif strcmpi(surf_type,'opened')
-    
-    holes_begin_idx = 2;
-    
-end
+% Select hole index from which every hole perimeters are below max_perim_sz
+cellsz = cell2mat(cellfun(@numel,boundaries,'un',0));
+holes_begin_idx = find(cellsz <= max_perim_sz);
 
 nb_holes = size(boundaries,1);
 T_out = T_in;
@@ -145,7 +135,7 @@ fprintf('%d hole(s) filled by adding %d triangles in %d seconds.\n',nb_holes,nb_
 end % fill_mesh_holes
 
 
-%% Subfunction
+% Subfunction
 function bov = compute_boundary_orientation_vector(mat_boundary,V)
 
 nb_edg = numel(mat_boundary); 

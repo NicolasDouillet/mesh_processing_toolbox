@@ -25,6 +25,6 @@ load('kitten_big_hole.mat');
 
 boundaries = detect_mesh_holes_and_boundary(T);
 
-max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundaries,'closed',max_perim_sz);
+max_perim_sz = 54; % fill every holes except the largest ones on 'kitten_big_hole.mat'
+T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);

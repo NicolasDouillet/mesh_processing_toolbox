@@ -7,7 +7,9 @@ addpath('../src');
 addpath('../data');
 
             
-load('tetrahedron.mat'); % tetrahedron % cube % octahedron % icosahedron % dodecahedron2
+load('kitten.mat'); % tetrahedron % cube % octahedron % icosahedron % dodecahedron2 % disk % torus_light
+
+plot_mesh(V,T);
 
 [V_dual,T_dual] = dual_of_trimesh(V,T);
 plot_mesh(V_dual,T_dual);       

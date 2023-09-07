@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>mesh processing toolbox</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-07-13"><meta name="DC.source" content="doc.m"><style type="text/css">
+      --><title>mesh processing toolbox</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-09-07"><meta name="DC.source" content="doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -72,44 +72,39 @@ load(<span class="string">'icosahedron.mat'</span>);
 
 ngb_degre = 1;
 select_vertex_normals(V,T,ngb_degre);
-</pre><pre class="codeoutput">Mesh with 12 vertices and 20 triangles displayed in 8.823230e-02 seconds.
 </pre><img vspace="5" hspace="5" src="doc_01.png" alt=""> <h2 id="2">Example #2 : non manifold triangles</h2><pre class="codeinput">load(<span class="string">'kitten_nmnfld.mat'</span>);
 nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);
 view(0,90);
-</pre><pre class="codeoutput">Mesh with 5224 vertices and 10911 triangles displayed in 6.622400e-02 seconds.
 </pre><img vspace="5" hspace="5" src="doc_02.png" alt=""> <h2 id="3">Example #3 : connected components</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
 
 [cc_nb,components] = segment_connected_components(T);
 show_mesh_components(V,components);
 view(0,90);
-</pre><pre class="codeoutput">4 components found in 1.456060e+00 seconds.
+</pre><pre class="codeoutput">4 components found in 1.257137e+00 seconds.
 </pre><img vspace="5" hspace="5" src="doc_03.png" alt=""> <h2 id="4">Example #4 : holes and boundary selection</h2><pre class="codeinput">load(<span class="string">'kitten_holed.mat'</span>);
 
 nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
 [V,T] = clone_solve_nmnfld_vertices(V,T,nmnfld_vtx_idx);
 boundaries = select_holes_and_boundary(V,T);
 view(0,90);
-</pre><pre class="codeoutput">1 components found in 3.221600e-03 seconds.
-1 components found in 2.486000e-04 seconds.
-1 components found in 1.486000e-04 seconds.
-1 components found in 4.373200e-03 seconds.
-2 components found in 1.635100e-03 seconds.
-duplicate_nmnfld_vertices request executed in 4.883580e-02 seconds. 5 clone vertices added.
-6 boundaries detected in 5.899060e-02 seconds.
-Mesh with 5120 vertices and 10115 triangles displayed in 6.692050e-02 seconds.
+</pre><pre class="codeoutput">1 components found in 8.503000e-03 seconds.
+1 components found in 1.158600e-03 seconds.
+1 components found in 8.717000e-04 seconds.
+1 components found in 7.472100e-03 seconds.
+2 components found in 5.384000e-03 seconds.
+duplicate_nmnfld_vertices request executed in 5.305730e-02 seconds. 5 clone vertices added.
+6 boundaries detected in 6.860020e-02 seconds.
 </pre><img vspace="5" hspace="5" src="doc_04.png" alt=""> <h2 id="5">Example #5 : hole filling</h2><pre class="codeinput">[V,T] = remove_non_manifold_vertices(V,T);
 boundaries = select_holes_and_boundary(V,T);
 view(-180,-90);
 
 max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundaries,<span class="string">'closed'</span>,max_perim_sz);
+T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);
 view(-180,-90);
-</pre><pre class="codeoutput">0 non manifold vertices removed in 8.454634e-01 seconds.
-6 boundaries detected in 5.331150e-02 seconds.
-Mesh with 5120 vertices and 10115 triangles displayed in 7.560410e-02 seconds.
-6 hole(s) filled by adding 121 triangles in 4.894738e-01 seconds.
-Mesh with 5120 vertices and 10236 triangles displayed in 6.502630e-02 seconds.
+</pre><pre class="codeoutput">0 non manifold vertices removed in 7.116851e-01 seconds.
+6 boundaries detected in 5.715980e-02 seconds.
+6 hole(s) filled by adding 121 triangles in 4.310040e-01 seconds.
 </pre><img vspace="5" hspace="5" src="doc_05.png" alt=""> <img vspace="5" hspace="5" src="doc_06.png" alt=""> <h2 id="6">Example #6 : curvature</h2><pre class="codeinput">load(<span class="string">'kitten.mat'</span>);
 
 ngb_degre = 2;
@@ -117,7 +112,7 @@ N = compute_vertex_normals(V,T,ngb_degre,<span class="string">'raw'</span>);
 curvature = compute_mesh_curvature(V,T,N,ngb_degre,<span class="string">'mean'</span>);
 show_mesh_curvature(V,T,curvature);
 view(0,90);
-</pre><pre class="codeoutput">mean curvature computed in 6.634594e-01 seconds.
+</pre><pre class="codeoutput">mean curvature computed in 6.361673e-01 seconds.
 </pre><img vspace="5" hspace="5" src="doc_07.png" alt=""> <h2 id="7">Example #7 : subselection</h2><pre class="codeinput">load(<span class="string">'Gargoyle_3k.mat'</span>);
 
 plot_mesh(V,T);
@@ -129,10 +124,8 @@ I = [0 -25 800];
 
 plot_mesh(V_out,T_out);
 view(-90,0);
-</pre><pre class="codeoutput">Mesh with 1429 vertices and 2836 triangles displayed in 6.653440e-02 seconds.
-submesh with 729 vertices and 4221 triangles selected in 2.063470e-02 seconds.
-Mesh with 726 vertices and 4221 triangles displayed in 6.742760e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_08.png" alt=""> <img vspace="5" hspace="5" src="doc_09.png" alt=""> <h2 id="8">Example #8 : smoothing</h2><pre class="codeinput">plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">right</span>;
+</pre><pre class="codeoutput">submesh with 729 vertices and 4221 triangles selected in 3.423050e-02 seconds.
+</pre><img vspace="5" hspace="5" src="doc_08.png" alt=""> <img vspace="5" hspace="5" src="doc_09.png" alt=""> <img vspace="5" hspace="5" src="doc_10.png" alt=""> <h2 id="8">Example #8 : smoothing</h2><pre class="codeinput">plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">right</span>;
 view(0,90);
 
 N = compute_vertex_normals(V,T,2);
@@ -142,10 +135,8 @@ V = mesh_smooth(V,T,nb_iterations,ngb_degre);
 
 plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">right</span>;
 view(0,90);
-</pre><pre class="codeoutput">Mesh with 1429 vertices and 2836 triangles displayed in 6.695690e-02 seconds.
-Laplacian mesh smoothed in 5.025830e-02 seconds.
-Mesh with 1429 vertices and 2836 triangles displayed in 6.563310e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_10.png" alt=""> <img vspace="5" hspace="5" src="doc_11.png" alt=""> <h2 id="9">Example #9 : convex hull</h2><pre class="codeinput">nb_vtx = 128;
+</pre><pre class="codeoutput">Laplacian mesh smoothed in 6.753150e-02 seconds.
+</pre><img vspace="5" hspace="5" src="doc_11.png" alt=""> <img vspace="5" hspace="5" src="doc_12.png" alt=""> <h2 id="9">Example #9 : convex hull</h2><pre class="codeinput">nb_vtx = 128;
 X = 2*(rand(nb_vtx,1)-0.5);
 Y = 2*(rand(nb_vtx,1)-0.5);
 Z = 2*(rand(nb_vtx,1)-0.5);
@@ -165,9 +156,8 @@ view(3);
 plot_mesh(V,Qh);
 axis <span class="string">equal</span>;
 view(3);
-</pre><pre class="codeoutput">Mesh quick hull computed in 4.081604e-01s.
-Mesh with 29 vertices and 54 triangles displayed in 6.616000e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_12.png" alt=""> <img vspace="5" hspace="5" src="doc_13.png" alt=""> <h2 id="10">Example #10 : boundary smoothing</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
+</pre><pre class="codeoutput">Mesh quick hull computed in 6.053576e-01s.
+</pre><img vspace="5" hspace="5" src="doc_13.png" alt=""> <img vspace="5" hspace="5" src="doc_14.png" alt=""> <h2 id="10">Example #10 : boundary smoothing</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
 
 show_holes_and_boundary(V,T);
 shading <span class="string">interp</span>;
@@ -188,11 +178,9 @@ camlight <span class="string">right</span>;
 alpha(0.5);
 view(3);
 axis <span class="string">off</span>;
-</pre><pre class="codeoutput">Mesh with 4975 vertices and 9669 triangles displayed in 7.658990e-02 seconds.
-8 boundaries detected in 5.604570e-02 seconds.
-Mesh boundaries smoothed in 5.843100e-03 seconds.
-Mesh with 4975 vertices and 9669 triangles displayed in 6.768830e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_14.png" alt=""> <img vspace="5" hspace="5" src="doc_15.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
+</pre><pre class="codeoutput">8 boundaries detected in 5.565410e-02 seconds.
+Mesh boundaries smoothed in 8.659100e-03 seconds.
+</pre><img vspace="5" hspace="5" src="doc_15.png" alt=""> <img vspace="5" hspace="5" src="doc_16.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% mesh processing toolbox
 %
@@ -234,7 +222,7 @@ boundaries = select_holes_and_boundary(V,T);
 view(-180,-90);
 
 max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundaries,'closed',max_perim_sz);
+T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);
 view(-180,-90);
 

@@ -1,6 +1,6 @@
 %% mesh processing toolbox
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2021.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 
 
 
@@ -38,7 +38,7 @@ boundaries = select_holes_and_boundary(V,T);
 view(-180,-90);
 
 max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundaries,'closed',max_perim_sz);
+T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);
 view(-180,-90);
 

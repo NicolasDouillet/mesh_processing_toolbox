@@ -61,8 +61,7 @@ for vtx_idx = 1:size(V,1)
 end
 
 % % Remove duplicated vertices
-% [V_dual,T_dual] = remove_duplicated_vertices(V_dual,T_dual); % à adapter
-% dans le cas ou T_dual est de type cell
+% [V_dual,T_dual] = remove_duplicated_vertices(V_dual,T_dual);
 
 
 end % dual_of_trimesh
