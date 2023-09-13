@@ -1,4 +1,4 @@
-% test compute_holes_and_boundary_perimeters
+% test compute_boundaries_and_holes_perimeters
 
 clear all, close all, clc;
 
@@ -12,5 +12,5 @@ load('kitten_holed.mat');
 % If necessary (presence of non manifold vertices, 'kitten_holed.mat' for instance)
 [V,T] = remove_non_manifold_vertices(V,T);
 
-boundaries = detect_mesh_holes_and_boundary(T);
-bound_lengths = compute_holes_and_boundary_perimeters(V,boundaries)
+boundaries = detect_mesh_boundaries_and_holes(T);
+bound_lengths = compute_boundaries_and_holes_perimeters(V,boundaries)

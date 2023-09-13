@@ -1,12 +1,12 @@
-function [V_out] = mesh_smooth(V_in, T, nb_iterations, ngb_degre)
-%% mesh_smooth : function to smooth the mesh following Laplace
+function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
+%% smooth_mesh : function to smooth the mesh following Laplace
 % technique.
 %
 % Basic working principle : each vertex coordinate is replace by 
 % the mean of its neighbors. The number of vertices stays the same.
 %
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 % 
 % Input arguments
@@ -63,4 +63,4 @@ end
 fprintf('Laplacian mesh smoothed in %d seconds.\n',toc);
 
 
-end % mesh_smooth
+end % smooth_mesh

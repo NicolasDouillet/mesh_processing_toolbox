@@ -1,10 +1,10 @@
-function [] = show_holes_and_boundary(V, T)
-%% show_holes_and_boundary : function to highlight holes in the mesh.
+function [] = show_mesh_boundaries_and_holes(V, T)
+%% show_mesh_boundaries_and_holes : function to highlight holes in the mesh.
 %
 % About : display holes and boundary without identifying them, and based
 % and non shared edges detection.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 % 
 % Input arguments
@@ -39,4 +39,4 @@ for i = 1:size(lone_edges_list,1)
 end
 
 
-end % show_holes_and_boundary
+end % show_mesh_boundaries_and_holes

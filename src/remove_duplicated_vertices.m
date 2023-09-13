@@ -1,6 +1,6 @@
 function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in)
-%% remove_duplicated_vertices : function to remove duplicated
-% vertices from the point set.
+%% remove_duplicated_vertices : function to remove
+% duplicated vertices from the point set.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %

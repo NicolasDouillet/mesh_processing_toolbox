@@ -2,7 +2,7 @@ function [edg_list] = query_edges_list(T, mode)
 %% query_edges_list : function to query the edges list
 % corresponding to the triangulation T.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -38,11 +38,11 @@ if nargin  > 1 && strcmpi(mode,'sorted')
     
     edg_list = sort(edg_list,2);
     
-elseif nargin  < 2 || strcmpi(mode,'raw')
+    % elseif nargin  < 2 || strcmpi(mode,'raw')
     
     % do nothing
     
-else
+    % else
     
     % do nothing
     

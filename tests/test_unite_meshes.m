@@ -1,4 +1,4 @@
-% test mesh_union
+% test unite_meshes
 
 clear all, close all, clc;
 
@@ -24,5 +24,5 @@ load(filename2);
 V2 = V + 2;
 T2 = T;
 
-[V,T] = mesh_union(V1,V2,T1,T2);
+[V,T] = unite_meshes(V1,V2,T1,T2);
 plot_mesh(V,T);

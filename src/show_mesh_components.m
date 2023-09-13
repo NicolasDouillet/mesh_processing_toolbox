@@ -2,7 +2,7 @@ function [] = show_mesh_components(V, C)
 %% show_mesh_components : function to color individually and specifically
 % each component of the mesh with a different color.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -17,7 +17,7 @@ function [] = show_mesh_components(V, C)
 
 %% Body
 h = figure;
-set(h,'Position',get(0,'ScreenSize'));
+% set(h,'Position',get(0,'ScreenSize'));
 set(gcf,'Color',[0 0 0]);
 
 colorstring = 'cmygrbw';

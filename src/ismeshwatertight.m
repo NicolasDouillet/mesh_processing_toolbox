@@ -2,7 +2,7 @@ function [b] = ismeshwatertight(V, T, surf_type)
 %% ismeshwatertight : Boolean state function to test
 % if the surface is watertight or not.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -29,7 +29,7 @@ tic;
 assert(nargin > 1,'Error, not enough input arguments.');
 
 [~,T] = remove_isolated_triangles(V,T,true);
-boundaries = detect_mesh_holes_and_boundary(T)
+boundaries = detect_mesh_boundaries_and_holes(T);
 
 if strcmpi(surf_type,'closed')
     

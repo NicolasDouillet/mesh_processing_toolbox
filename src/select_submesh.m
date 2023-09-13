@@ -1,10 +1,10 @@
-function [V_out, T_out] = submesh_selection(V_in, T_in, n, I)
-%% submesh_selection : function to extract a subselection from the initial mesh.
+function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
+%% select_submesh : function to extract a subselection from the initial mesh.
 %
 % General principle of the algorithm : extract vertices and associated triangles
 % of the mesh which are located on one side / half space of the plan defined by (n, I).
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %  
 % Input arguments
@@ -72,4 +72,4 @@ T_out = reshape(cell2mat(T_out),[H,W]);
 fprintf('submesh with %d vertices and %d triangles selected in %d seconds.\n',size(V_out,1),size(T_out,1),toc);
 
 
-end % submesh_selection
+end % select_submesh

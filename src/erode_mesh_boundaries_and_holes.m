@@ -1,8 +1,8 @@
-function [V_out, T_out] = erode_mesh_holes_and_boundary(V_in, T_in, nb_it, mode)
-%% erode_mesh_holes_and_boundary : function to erode holes and boundary
-% by vertex and triangle removal.
+function [V_out, T_out] = erode_mesh_boundaries_and_holes(V_in, T_in, nb_it, mode)
+%% erode_mesh_boundaries_and_holes : function to erode
+% mesh boundaries and holes by vertex and triangle removal.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -81,4 +81,4 @@ end
 fprintf('boundary and holes eroded in %d seconds.\n',toc);
 
 
-end % erode_mesh_holes_and_boundary
+end % erode_mesh_boundaries_and_holes

@@ -1,7 +1,7 @@
 function [] = show_mesh_curvature(V, T, C)
 %% show_mesh_curvature : function to colorize the mesh curvature on it.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %  
 % Input arguments                                                        
@@ -19,7 +19,7 @@ function [] = show_mesh_curvature(V, T, C)
 
 %% Body
 h = figure;
-set(h,'Position',get(0,'ScreenSize'));
+% set(h,'Position',get(0,'ScreenSize'));
 set(gcf,'Color',[0 0 0]);
 
 trisurf(T,V(:,1),V(:,2),V(:,3),C); hold on;

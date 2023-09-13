@@ -1,5 +1,5 @@
-function [V_out] = smooth_mesh_boundaries(V_in, boundaries, nb_iterations, ngb_degre)
-%% mesh_smooth : function to smooth the mesh boundaries, without
+function [V_out] = smooth_mesh_boundaries_and_holes(V_in, boundaries, nb_iterations, ngb_degre)
+%% smooth_mesh_boundaries_and_holes : function to smooth the mesh boundaries, without
 % renormalization. To avoid singularities creation, remove small components
 % and close small holes before smoothing.
 %
@@ -8,7 +8,7 @@ function [V_out] = smooth_mesh_boundaries(V_in, boundaries, nb_iterations, ngb_d
 % and no connectivity change happen in the mesh.
 %
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021.
+% Author & support : nicolas.douillet (at) free.fr, 2021-2023.
 %
 %
 %% Input arguments
@@ -71,4 +71,4 @@ end
 fprintf('Mesh boundaries smoothed in %d seconds.\n',toc);
 
 
-end % smooth_mesh_boundaries
+end % smooth_mesh_boundaries_and_holes

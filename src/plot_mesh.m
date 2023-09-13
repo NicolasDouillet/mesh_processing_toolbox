@@ -18,7 +18,7 @@ function [] = plot_mesh(V, T)
 %% Body
 % tic;
 h = figure;
-set(h,'Position',get(0,'ScreenSize'));
+% set(h,'Position',get(0,'ScreenSize'));
 set(gcf,'Color',[0 0 0]);
 
 

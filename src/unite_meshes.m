@@ -1,7 +1,7 @@
-function [V, T] = mesh_union(V1, V2, T1, T2)
-%% mesh_union function to perform the union of two meshes.
+function [V, T] = unite_meshes(V1, V2, T1, T2)
+%% unite_meshes function to perform the union of two meshes.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -48,4 +48,4 @@ Tm = remove_duplicated_triangles(Ts);
 fprintf('Mesh union performed in %d seconds.\n',toc);
 
 
-end % mesh_union
+end % unite_meshes

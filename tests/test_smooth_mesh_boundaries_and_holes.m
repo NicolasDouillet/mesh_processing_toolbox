@@ -9,7 +9,7 @@ addpath('../data');
 % load('kitten_big_hole.mat');
 load('kitten_components.mat');
 
-show_mesh_boundaries_and_holes(V,T);
+show_holes_and_boundary(V,T);
 shading interp;
 camlight left;
 alpha(0.5);
@@ -22,7 +22,7 @@ nb_iterations = 2;
 ngb_degre = 6;
 V_out = smooth_mesh_boundaries_and_holes(V,boundaries,nb_iterations,ngb_degre);
 
-show_mesh_boundaries_and_holes(V_out,T);
+show_holes_and_boundary(V_out,T);
 shading interp;
 camlight left;
 alpha(0.5);

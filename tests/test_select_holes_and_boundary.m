@@ -1,4 +1,4 @@
-% test select_holes_and_boundary
+% test select_mesh_boundaries_and_holes
 
 clear all, close all, clc;
 
@@ -11,4 +11,4 @@ load('kitten_components.mat');
 
 nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
 [V,T] = clone_solve_nmnfld_vertices(V,T,nmnfld_vtx_idx);
-boundaries = select_holes_and_boundary(V,T);
+boundaries = select_mesh_boundaries_and_holes(V,T);

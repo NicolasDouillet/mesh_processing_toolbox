@@ -1,9 +1,9 @@
-function boundaries = select_holes_and_boundary(V, T)
-%% select_holes_and_boundary : function to select and display
+function boundaries = select_mesh_boundaries_and_holes(V, T)
+%% select_mesh_boundaries_and_holes : function to select and display
 % holes and boundary of the mesh.
 %
 % About : holes and boundary are identified and segmented
-% (detect_mesh_holes_and_boundary), and their displays use different colors.
+% (detect_mesh_boundaries_and_holes), and their displays use different colors.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
@@ -25,7 +25,7 @@ function boundaries = select_holes_and_boundary(V, T)
 
 
 %% Body
-boundaries = detect_mesh_holes_and_boundary(T);
+boundaries = detect_mesh_boundaries_and_holes(T);
 plot_mesh(V,T);
 
 colorstring = 'myrgbwk';
@@ -44,4 +44,4 @@ for n = 1:size(boundaries,1)
 end
 
 
-end % select_holes_and_boundary
+end % select_mesh_boundaries_and_holes
