@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>mesh processing toolbox</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-09-12"><meta name="DC.source" content="doc.m"><style type="text/css">
+      --><title>doc</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-09-13"><meta name="DC.source" content="doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,33 +66,35 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>mesh processing toolbox</h1><!--introduction--><p>Author &amp; support : nicolas.douillet (at) free.fr, 2020-2023.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Example #1 : vertex normals</a></li><li><a href="#2">Example #2 : non manifold triangles</a></li><li><a href="#3">Example #3 : connected components</a></li><li><a href="#4">Example #4 : boundaries and holes selection</a></li><li><a href="#5">Example #5 : hole filling</a></li><li><a href="#6">Example #6 : curvature</a></li><li><a href="#7">Example #7 : subselection</a></li><li><a href="#8">Example #8 : smoothing</a></li><li><a href="#9">Example #9 : convex hull</a></li><li><a href="#10">Example #10 : boundary smoothing</a></li></ul></div><h2 id="1">Example #1 : vertex normals</h2><pre class="codeinput">addpath(<span class="string">'data/'</span>);
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">mesh processing toolbox</a></li><li><a href="#2">Example #3 : connected components</a></li><li><a href="#3">Example #4 : boundaries and holes selection</a></li><li><a href="#4">Example #5 : hole filling</a></li><li><a href="#5">Example #6 : curvature</a></li><li><a href="#6">Example #10 : boundary smoothing</a></li><li><a href="#7">Example #11 : dual of triangular mesh</a></li><li><a href="#8">Example #12 : mesh slicing</a></li></ul></div><h2 id="1">mesh processing toolbox</h2><p>Author &amp; support : nicolas.douillet (at) free.fr, 2020-2023.</p><pre class="codeinput"><span class="comment">% %% Example #1 : vertex normals</span>
+addpath(<span class="string">'data/'</span>);
 addpath(<span class="string">'src/'</span>);
-load(<span class="string">'icosahedron.mat'</span>);
+<span class="comment">% load('icosahedron.mat');</span>
+<span class="comment">%</span>
+<span class="comment">% ngb_degre = 1;</span>
+<span class="comment">% select_vertex_normals(V,T,ngb_degre);</span>
 
-ngb_degre = 1;
-select_vertex_normals(V,T,ngb_degre);
-</pre><img vspace="5" hspace="5" src="doc_01.png" alt=""> <h2 id="2">Example #2 : non manifold triangles</h2><pre class="codeinput">load(<span class="string">'kitten_nmnfld.mat'</span>);
-nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);
-view(180,0);
-</pre><img vspace="5" hspace="5" src="doc_02.png" alt=""> <h2 id="3">Example #3 : connected components</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
+<span class="comment">% %% Example #2 : non manifold triangles</span>
+<span class="comment">% load('kitten_nmnfld.mat');</span>
+<span class="comment">% nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);</span>
+<span class="comment">% view(180,0);</span>
+</pre><h2 id="2">Example #3 : connected components</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
 [cc_nb,components] = segment_connected_components(T);
 show_mesh_components(V,components);
 view(180,0);
-</pre><pre class="codeoutput">4 components found in 1.384350e+00 seconds.
-</pre><img vspace="5" hspace="5" src="doc_03.png" alt=""> <h2 id="4">Example #4 : boundaries and holes selection</h2><pre class="codeinput">load(<span class="string">'kitten_holed.mat'</span>);
+</pre><pre class="codeoutput">4 components found in 1.640035e+00 seconds.
+</pre><img vspace="5" hspace="5" src="doc_01.png" alt=""> <h2 id="3">Example #4 : boundaries and holes selection</h2><pre class="codeinput">load(<span class="string">'kitten_holed.mat'</span>);
 nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
 [V,T] = clone_solve_nmnfld_vertices(V,T,nmnfld_vtx_idx);
-boundaries = select_mesh_boundaries_and_holes(V,T);
-view(180,0);
-</pre><pre class="codeoutput">1 components found in 5.428800e-03 seconds.
-1 components found in 7.225000e-04 seconds.
-1 components found in 8.416000e-04 seconds.
-1 components found in 6.347000e-03 seconds.
-2 components found in 4.416700e-03 seconds.
-duplicate_nmnfld_vertices request executed in 5.411550e-02 seconds. 5 clone vertices added.
-6 boundaries detected in 6.673270e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_04.png" alt=""> <h2 id="5">Example #5 : hole filling</h2><pre class="codeinput">[V,T] = remove_non_manifold_vertices(V,T);
+<span class="comment">% boundaries = select_mesh_boundaries_and_holes(V,T);</span>
+<span class="comment">% view(180,0);</span>
+</pre><pre class="codeoutput">1 components found in 7.826000e-03 seconds.
+1 components found in 1.083700e-03 seconds.
+1 components found in 8.548000e-04 seconds.
+1 components found in 1.161420e-02 seconds.
+2 components found in 5.070500e-03 seconds.
+duplicate_nmnfld_vertices request executed in 5.706620e-02 seconds. 5 clone vertices added.
+</pre><h2 id="4">Example #5 : hole filling</h2><pre class="codeinput">[V,T] = remove_non_manifold_vertices(V,T);
 boundaries = select_mesh_boundaries_and_holes(V,T);
 view(0,0);
 
@@ -100,60 +102,63 @@ max_perim_sz = 200;
 T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);
 view(0,0);
-</pre><pre class="codeoutput">0 non manifold vertices removed in 7.981906e-01 seconds.
-6 boundaries detected in 6.067110e-02 seconds.
-6 hole(s) filled by adding 121 triangles in 5.252709e-01 seconds.
-</pre><img vspace="5" hspace="5" src="doc_05.png" alt=""> <img vspace="5" hspace="5" src="doc_06.png" alt=""> <h2 id="6">Example #6 : curvature</h2><pre class="codeinput">load(<span class="string">'kitten.mat'</span>);
+</pre><pre class="codeoutput">0 non manifold vertices removed in 8.326063e-01 seconds.
+6 boundaries detected in 7.294600e-02 seconds.
+6 hole(s) filled by adding 121 triangles in 5.766918e-01 seconds.
+</pre><img vspace="5" hspace="5" src="doc_02.png" alt=""> <img vspace="5" hspace="5" src="doc_03.png" alt=""> <h2 id="5">Example #6 : curvature</h2><pre class="codeinput">load(<span class="string">'kitten.mat'</span>);
 ngb_degre = 2;
 N = compute_vertex_normals(V,T,ngb_degre,<span class="string">'raw'</span>);
 curvature = compute_mesh_curvature(V,T,N,ngb_degre,<span class="string">'mean'</span>);
 show_mesh_curvature(V,T,curvature);
 view(180,0);
-</pre><pre class="codeoutput">mean curvature computed in 6.434679e-01 seconds.
-</pre><img vspace="5" hspace="5" src="doc_07.png" alt=""> <h2 id="7">Example #7 : subselection</h2><pre class="codeinput">load(<span class="string">'Gargoyle_3k.mat'</span>);
-plot_mesh(V,T);
-view(-90,0);
 
-n = [0 1 1];
-I = [-23 -751 -13];
-[V_out,T_out] = select_submesh(V,T,n,I); <span class="comment">% Gargoyle top part</span>
+<span class="comment">% %% Example #7 : subselection</span>
+<span class="comment">% load('Gargoyle_3k.mat');</span>
+<span class="comment">% plot_mesh(V,T);</span>
+<span class="comment">% view(-90,0);</span>
+<span class="comment">%</span>
+<span class="comment">% n = [0 1 1];</span>
+<span class="comment">% I = [-23 -751 -13];</span>
+<span class="comment">% [V_out,T_out] = select_submesh(V,T,n,I); % Gargoyle top part</span>
+<span class="comment">%</span>
+<span class="comment">% plot_mesh(V_out,T_out);</span>
+<span class="comment">% view(-90,0);</span>
 
-plot_mesh(V_out,T_out);
-view(-90,0);
-</pre><pre class="codeoutput">submesh with 586 vertices and 3372 triangles selected in 2.845650e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_08.png" alt=""> <img vspace="5" hspace="5" src="doc_09.png" alt=""> <h2 id="8">Example #8 : smoothing</h2><pre class="codeinput">plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">left</span>;
-view(-90,0);
+<span class="comment">% %% Example #8 : smoothing</span>
+<span class="comment">% plot_mesh(V,T), shading interp, camlight left;</span>
+<span class="comment">% view(-90,0);</span>
+<span class="comment">%</span>
+<span class="comment">% N = compute_vertex_normals(V,T,2);</span>
+<span class="comment">% nb_iterations = 1;</span>
+<span class="comment">% ngb_degre = 1;</span>
+<span class="comment">% V = smooth_mesh(V,T,nb_iterations,ngb_degre);</span>
+<span class="comment">%</span>
+<span class="comment">% plot_mesh(V,T), shading interp, camlight left;</span>
+<span class="comment">% view(-90,0);</span>
 
-N = compute_vertex_normals(V,T,2);
-nb_iterations = 1;
-ngb_degre = 1;
-V = smooth_mesh(V,T,nb_iterations,ngb_degre);
-
-plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">left</span>;
-view(-90,0);
-</pre><pre class="codeoutput">Laplacian mesh smoothed in 5.861100e-02 seconds.
-</pre><img vspace="5" hspace="5" src="doc_10.png" alt=""> <img vspace="5" hspace="5" src="doc_11.png" alt=""> <h2 id="9">Example #9 : convex hull</h2><pre class="codeinput">nb_vtx = 128;
-X = 2*(rand(nb_vtx,1)-0.5);
-Y = 2*(rand(nb_vtx,1)-0.5);
-Z = 2*(rand(nb_vtx,1)-0.5);
-
-Rho = X.^2 + Y.^2 + Z.^2;
-i = Rho &lt;= 1;
-X = X(i);
-Y = Y(i);
-Z = Z(i);
-V = cat(2,X,Y,Z);
-
-plot_point_set(V,<span class="string">'o'</span>,[1 0.5 0],4);
-axis <span class="string">equal</span>;
-view(3);
-
-[V,Qh] = quick_hull(V);
-plot_mesh(V,Qh);
-axis <span class="string">equal</span>;
-view(3);
-</pre><pre class="codeoutput">Mesh quick hull computed in 5.010050e-01s.
-</pre><img vspace="5" hspace="5" src="doc_12.png" alt=""> <img vspace="5" hspace="5" src="doc_13.png" alt=""> <h2 id="10">Example #10 : boundary smoothing</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
+<span class="comment">% %% Example #9 : convex hull</span>
+<span class="comment">% nb_vtx = 128;</span>
+<span class="comment">% X = 2*(rand(nb_vtx,1)-0.5);</span>
+<span class="comment">% Y = 2*(rand(nb_vtx,1)-0.5);</span>
+<span class="comment">% Z = 2*(rand(nb_vtx,1)-0.5);</span>
+<span class="comment">%</span>
+<span class="comment">% Rho = X.^2 + Y.^2 + Z.^2;</span>
+<span class="comment">% i = Rho &lt;= 1;</span>
+<span class="comment">% X = X(i);</span>
+<span class="comment">% Y = Y(i);</span>
+<span class="comment">% Z = Z(i);</span>
+<span class="comment">% V = cat(2,X,Y,Z);</span>
+<span class="comment">%</span>
+<span class="comment">% plot_point_set(V,'o',[1 0.5 0],4);</span>
+<span class="comment">% axis equal;</span>
+<span class="comment">% view(3);</span>
+<span class="comment">%</span>
+<span class="comment">% [V,Qh] = quick_hull(V);</span>
+<span class="comment">% plot_mesh(V,Qh);</span>
+<span class="comment">% axis equal;</span>
+<span class="comment">% view(3);</span>
+</pre><pre class="codeoutput">mean curvature computed in 6.696891e-01 seconds.
+</pre><img vspace="5" hspace="5" src="doc_04.png" alt=""> <h2 id="6">Example #10 : boundary smoothing</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
 
 show_mesh_boundaries_and_holes(V,T);
 shading <span class="string">interp</span>;
@@ -174,9 +179,30 @@ camlight <span class="string">left</span>;
 alpha(0.5);
 view(180,0);
 axis <span class="string">off</span>;
-</pre><pre class="codeoutput">8 boundaries detected in 5.909920e-02 seconds.
-Mesh boundaries smoothed in 8.300600e-03 seconds.
-</pre><img vspace="5" hspace="5" src="doc_14.png" alt=""> <img vspace="5" hspace="5" src="doc_15.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
+</pre><pre class="codeoutput">8 boundaries detected in 6.967810e-02 seconds.
+Mesh boundaries smoothed in 8.277000e-03 seconds.
+</pre><img vspace="5" hspace="5" src="doc_05.png" alt=""> <img vspace="5" hspace="5" src="doc_06.png" alt=""> <h2 id="7">Example #11 : dual of triangular mesh</h2><pre class="codeinput">load(<span class="string">'kitten.mat'</span>);
+[V_dual,T_dual] = dual_of_trimesh(V,T);
+plot_mesh(V_dual,T_dual);
+view(180,0);
+</pre><img vspace="5" hspace="5" src="doc_07.png" alt=""> <h2 id="8">Example #12 : mesh slicing</h2><pre class="codeinput"> load(<span class="string">'Armadillo_20k.mat'</span>);
+thres = -11;
+n = [0 0 1];
+P = [0 0 thres];
+slc_step = 3;
+
+raw_edges_list = query_edges_list(T,<span class="string">'sorted'</span>);
+srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,3,<span class="string">'vertical'</span>,slc_step);
+
+plot_mesh(V,T);
+draw_slice_contours({srt_itx_vtx_lsts});
+camlight <span class="string">left</span>;
+shading <span class="string">interp</span>;
+patch([max(V(:,1)) min(V(:,1)) min(V(:,1)) max(V(:,1))], [max(V(:,2)) max(V(:,2)) min(V(:,2)) min(V(:,2))], thres*ones(1,4), [1 1 1 1], <span class="string">'FaceColor'</span>, [1 1 0]), hold <span class="string">on</span>;
+zoom(1.5);
+alpha(0.7);
+view(150,30);
+</pre><img vspace="5" hspace="5" src="doc_08.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% mesh processing toolbox
 %
@@ -184,18 +210,18 @@ Mesh boundaries smoothed in 8.300600e-03 seconds.
 
 
 
-%% Example #1 : vertex normals
+% %% Example #1 : vertex normals
 addpath('data/');
 addpath('src/');
-load('icosahedron.mat');
+% load('icosahedron.mat');
+% 
+% ngb_degre = 1;
+% select_vertex_normals(V,T,ngb_degre);
 
-ngb_degre = 1;
-select_vertex_normals(V,T,ngb_degre);
-
-%% Example #2 : non manifold triangles
-load('kitten_nmnfld.mat');
-nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);
-view(180,0);
+% %% Example #2 : non manifold triangles
+% load('kitten_nmnfld.mat');
+% nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);
+% view(180,0);
 
 %% Example #3 : connected components
 load('kitten_components.mat');
@@ -207,8 +233,8 @@ view(180,0);
 load('kitten_holed.mat');
 nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
 [V,T] = clone_solve_nmnfld_vertices(V,T,nmnfld_vtx_idx);
-boundaries = select_mesh_boundaries_and_holes(V,T);
-view(180,0);
+% boundaries = select_mesh_boundaries_and_holes(V,T);
+% view(180,0);
 
 %% Example #5 : hole filling
 [V,T] = remove_non_manifold_vertices(V,T);
@@ -228,51 +254,51 @@ curvature = compute_mesh_curvature(V,T,N,ngb_degre,'mean');
 show_mesh_curvature(V,T,curvature);
 view(180,0);
 
-%% Example #7 : subselection
-load('Gargoyle_3k.mat');
-plot_mesh(V,T);
-view(-90,0);
+% %% Example #7 : subselection
+% load('Gargoyle_3k.mat');
+% plot_mesh(V,T);
+% view(-90,0);
+% 
+% n = [0 1 1];
+% I = [-23 -751 -13];
+% [V_out,T_out] = select_submesh(V,T,n,I); % Gargoyle top part 
+% 
+% plot_mesh(V_out,T_out);
+% view(-90,0);
 
-n = [0 1 1];
-I = [-23 -751 -13];
-[V_out,T_out] = select_submesh(V,T,n,I); % Gargoyle top part 
+% %% Example #8 : smoothing
+% plot_mesh(V,T), shading interp, camlight left;
+% view(-90,0);
+% 
+% N = compute_vertex_normals(V,T,2);
+% nb_iterations = 1;
+% ngb_degre = 1;
+% V = smooth_mesh(V,T,nb_iterations,ngb_degre);
+% 
+% plot_mesh(V,T), shading interp, camlight left;
+% view(-90,0);
 
-plot_mesh(V_out,T_out);
-view(-90,0);
-
-%% Example #8 : smoothing
-plot_mesh(V,T), shading interp, camlight left;
-view(-90,0);
-
-N = compute_vertex_normals(V,T,2);
-nb_iterations = 1;
-ngb_degre = 1;
-V = smooth_mesh(V,T,nb_iterations,ngb_degre);
-
-plot_mesh(V,T), shading interp, camlight left;
-view(-90,0);
-
-%% Example #9 : convex hull
-nb_vtx = 128;
-X = 2*(rand(nb_vtx,1)-0.5);
-Y = 2*(rand(nb_vtx,1)-0.5);
-Z = 2*(rand(nb_vtx,1)-0.5);
-
-Rho = X.^2 + Y.^2 + Z.^2;
-i = Rho <= 1;
-X = X(i);
-Y = Y(i);
-Z = Z(i);
-V = cat(2,X,Y,Z);
-
-plot_point_set(V,'o',[1 0.5 0],4);
-axis equal;
-view(3);
-
-[V,Qh] = quick_hull(V);
-plot_mesh(V,Qh);
-axis equal;
-view(3);
+% %% Example #9 : convex hull
+% nb_vtx = 128;
+% X = 2*(rand(nb_vtx,1)-0.5);
+% Y = 2*(rand(nb_vtx,1)-0.5);
+% Z = 2*(rand(nb_vtx,1)-0.5);
+% 
+% Rho = X.^2 + Y.^2 + Z.^2;
+% i = Rho <= 1;
+% X = X(i);
+% Y = Y(i);
+% Z = Z(i);
+% V = cat(2,X,Y,Z);
+% 
+% plot_point_set(V,'o',[1 0.5 0],4);
+% axis equal;
+% view(3);
+% 
+% [V,Qh] = quick_hull(V);
+% plot_mesh(V,Qh);
+% axis equal;
+% view(3);
 
 %% Example #10 : boundary smoothing
 load('kitten_components.mat');
@@ -296,5 +322,30 @@ camlight left;
 alpha(0.5);
 view(180,0);
 axis off;
+
+%% Example #11 : dual of triangular mesh
+load('kitten.mat');
+[V_dual,T_dual] = dual_of_trimesh(V,T);
+plot_mesh(V_dual,T_dual);
+view(180,0);
+
+%% Example #12 : mesh slicing
+ load('Armadillo_20k.mat');
+thres = -11;
+n = [0 0 1];
+P = [0 0 thres];
+slc_step = 3;
+
+raw_edges_list = query_edges_list(T,'sorted');
+srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,3,'vertical',slc_step);
+
+plot_mesh(V,T);
+draw_slice_contours({srt_itx_vtx_lsts});
+camlight left;
+shading interp;
+patch([max(V(:,1)) min(V(:,1)) min(V(:,1)) max(V(:,1))], [max(V(:,2)) max(V(:,2)) min(V(:,2)) min(V(:,2))], thres*ones(1,4), [1 1 1 1], 'FaceColor', [1 1 0]), hold on;
+zoom(1.5);
+alpha(0.7);
+view(150,30);
 ##### SOURCE END #####
 --></body></html>
