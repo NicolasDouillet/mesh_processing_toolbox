@@ -23,7 +23,7 @@ filenames = {'tetrahedron';...
              'Armadillo_10k';...             
              };
 
-filename = strcat(cell2mat(filenames(4,1)),'.mat');         
+filename = strcat(cell2mat(filenames(8,1)),'.mat');         
 load(filename);
 
 % Randomly mess up the edge set

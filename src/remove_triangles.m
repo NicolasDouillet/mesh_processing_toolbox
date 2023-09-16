@@ -1,7 +1,7 @@
-function [T_out] = remove_triangles(T_set, T_in, mode)
+function T_out = remove_triangles(T_set, T_in, mode)
 %% remove_triangles : function to remove triangles from the triangle set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -47,7 +47,7 @@ if strcmpi(mode,'indices') && ismember(1,size(T_set))
     
 elseif strcmpi(mode,'explicit') && size(T_set,2) == 3
     
-    T_out = setdiff(T_in,T_set,'rows','stable');
+    T_out = setdiff(T_in,T_set,'rows','stable'); % TODO : pre sort of each container ?
     
 else
     

@@ -32,7 +32,7 @@ function [V_dual, T_dual] = dual_of_trimesh(V, T)
 
 
 %% Body
-V_dual = zeros(0,3);
+V_dual = cell2mat(cellfun(@(r) mean(V(r,:),1),num2cell(T,2),'un',0));
 T_dual = cell(0,1);
 
 % Loop on every vertices of the set
@@ -46,23 +46,16 @@ for vtx_idx = 1:size(V,1)
     
     new_polyhedron = [];
     
-    % Compute new vertices and polyhedron
-    for k = sorted_ngb_tgl_idx
+    % Compute new vertices and polyhedron            
+    for k = sorted_ngb_tgl_idx                
         
-        % [~,new_vtx,~] = triangle_circumcircle(V(T(k,1),:)',V(T(k,2),:)',V(T(k,3),:)',6);
-        new_vtx = mean(cat(1,V(T(k,1),:),V(T(k,2),:),V(T(k,3),:)),1);
-        
-        V_dual = cat(1,V_dual,new_vtx);
-        new_polyhedron = cat(2,new_polyhedron,size(V_dual,1));
+        new_polyhedron = cat(2,new_polyhedron,k);
                 
     end
     
     T_dual(vtx_idx,1) = num2cell(new_polyhedron,2);            
 
 end
-
-% % Remove duplicated vertices
-% [V_dual,T_dual] = remove_duplicated_vertices(V_dual,T_dual);
 
 
 end % dual_of_trimesh
