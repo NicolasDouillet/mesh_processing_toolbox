@@ -50,7 +50,7 @@ elseif nargin < 2 || strcmpi(mode,'raw')
             
             if ~isempty(third_vtx)
                 
-                % no need to sort new triangles here since add_triangle already check for duplicata
+                % No need to sort new triangles here since add_triangle already check for duplicata
                 new_tgl_set = cat(2,repmat([i,j],[numel(third_vtx),1]),third_vtx');
                 T = add_triangles(new_tgl_set,T,numel(vtx_idx_list));
                 

@@ -18,7 +18,6 @@ function [] = show_mesh_boundaries_and_holes(V, T)
 %       [ |  |  |]
 
 
-
 %% Body
 raw_edges_list = query_edges_list(T);
 [~,~,iu] = unique(sort(raw_edges_list,2),'rows'); % unique(raw_edges_list,'rows');
@@ -30,13 +29,10 @@ lone_edges_list = raw_edges_list(lone_edges_idx_vect,:);
 
 plot_mesh(V,T);
 
-for i = 1:size(lone_edges_list,1)
-    
-    line([V(lone_edges_list(i,1),1) V(lone_edges_list(i,2),1)],...
-        [V(lone_edges_list(i,1),2) V(lone_edges_list(i,2),2)],...
-        [V(lone_edges_list(i,1),3) V(lone_edges_list(i,2),3)],'Color',[1 0 0],'Linewidth',2), hold on;
-    
-end
+cellfun(@(r) line([V(r(1),1) V(r(2),1)],...
+                  [V(r(1),2) V(r(2),2)],...
+                  [V(r(1),3) V(r(2),3)],'Color',[1 0 0],'Linewidth',2),...
+                  num2cell(lone_edges_list,2),'un',0);
 
 
 end % show_mesh_boundaries_and_holes

@@ -6,8 +6,8 @@ addpath('../src');
 addpath('../data');
 
 
-% load('filled_cube.mat'); % 6 triangles removed
-load('half_filled_octahedron.mat'); % half octahedron remains
+load('filled_cube.mat'); % 8 triangles removed
+% load('half_filled_octahedron.mat'); % half octahedron remains (Y < 0 part)
 
 plot_mesh(V,T);
 alpha(0.5);

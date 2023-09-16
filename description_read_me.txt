@@ -1,4 +1,4 @@
-Please first check the doc tab on the right to get some relevant and functional examples of this toobox functions.
+Please first check the doc tab on the right to get some relevant and use examples of this toobox functions.
 
 Please don'tforget ta rate if this code helped you. Thanks ! ;-)
 
@@ -113,4 +113,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 13 / 09 /2023.
+Last update : 16/ 09 /2023.

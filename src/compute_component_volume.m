@@ -1,11 +1,11 @@
-function [component_volume] = compute_component_volume(V, C)
+function component_volume = compute_component_volume(V, C)
 %% compute_component_volume : function to compute volume per component.
 %
 % Components must be 2D-manifold closed watertight surfaces, without
 % duplicated triangles.
 % 
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments

@@ -1,11 +1,11 @@
-function [mesh_volume] = compute_mesh_volume(V, T)
+function mesh_volume = compute_mesh_volume(V, T)
 %% compute_mesh_volume : function to compute the volume of the mesh
 % defined by the vertex set V, and the triangle set T.
 %
 % Requirements : 2D-manifold closed watertight surface,
 % without duplicated or self intersecting triangles.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments

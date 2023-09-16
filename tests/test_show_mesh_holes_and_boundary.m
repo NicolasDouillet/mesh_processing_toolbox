@@ -2,9 +2,9 @@
 
 clear all, close all, clc;
 
+
 addpath('../src');
 addpath('../data');
-
 
 % load('meshed_mtlb_logo.mat');
 load('kitten_components.mat');
