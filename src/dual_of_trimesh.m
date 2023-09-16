@@ -49,9 +49,10 @@ for vtx_idx = 1:size(V,1)
     % Compute new vertices and polyhedron
     for k = sorted_ngb_tgl_idx
         
-        [~,new_vtx,~] = triangle_circumcircle(V(T(k,1),:)',V(T(k,2),:)',V(T(k,3),:)',6);
+        % [~,new_vtx,~] = triangle_circumcircle(V(T(k,1),:)',V(T(k,2),:)',V(T(k,3),:)',6);
+        new_vtx = mean(cat(1,V(T(k,1),:),V(T(k,2),:),V(T(k,3),:)),1);
         
-        V_dual = cat(1,V_dual,new_vtx');
+        V_dual = cat(1,V_dual,new_vtx);
         new_polyhedron = cat(2,new_polyhedron,size(V_dual,1));
                 
     end

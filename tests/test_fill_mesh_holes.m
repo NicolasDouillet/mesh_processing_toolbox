@@ -5,10 +5,15 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
-% load('kitten_holed.mat');
-load('kitten_big_hole.mat');
-% load('kitten_components.mat');
-% load('meshed_mtlb_logo.mat');
+
+filenames = {'kitten_holed';...
+             'kitten_big_hole';...
+             'kitten_components';...
+             'meshed_mtlb_logo'};
+
+filename = strcat(cell2mat(filenames(3,1)),'.mat');         
+load(filename);
+
 
 % % If necessary (presence of non manifold vertices, 'kitten_holed.mat' for instance)
 % [V,T] = remove_non_manifold_vertices(V,T);

@@ -1,4 +1,4 @@
-function [V_out] = smooth_mesh_boundaries_and_holes(V_in, boundaries, nb_iterations, ngb_degre)
+function V_out = smooth_mesh_boundaries_and_holes(V_in, boundaries, nb_iterations, ngb_degre, hole_ids)
 %% smooth_mesh_boundaries_and_holes : function to smooth the mesh boundaries, without
 % renormalization. To avoid singularities creation, remove small components
 % and close small holes before smoothing.
@@ -23,6 +23,8 @@ function [V_out] = smooth_mesh_boundaries_and_holes(V_in, boundaries, nb_iterati
 %
 % - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1.
 %
+% - hole_ids : positive integer vector double, vector of the holes ids.
+%
 %
 %% Output argument
 %
@@ -34,6 +36,13 @@ function [V_out] = smooth_mesh_boundaries_and_holes(V_in, boundaries, nb_iterati
 %% Body
 tic;
 
+if nargin < 5
+   
+    hole_ids = 1:size(boundaries,1);
+    
+end
+
+boundaries = boundaries(hole_ids,1);
 V_out = V_in;
 nb_bound = size(boundaries,1);
 

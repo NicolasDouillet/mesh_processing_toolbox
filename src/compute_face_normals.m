@@ -1,7 +1,7 @@
-function [N] = compute_face_normals(V, T, mode)
+function N = compute_face_normals(V, T, mode)
 %% compute_face_normals : function to compute faces (triangles) normals.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -34,7 +34,7 @@ if nargin < 3
     
 end
 
-N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,3),:)-V(T(:,1),:),2);
+N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,end),:)-V(T(:,1),:),2);
 
 if strcmpi(mode,'norm')
     

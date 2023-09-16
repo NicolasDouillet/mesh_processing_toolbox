@@ -1,4 +1,4 @@
-% Test dual_of_trimesh
+% test compute_face_normals
 
 clear all, close all, clc;
 
@@ -20,13 +20,14 @@ filenames = {'tetrahedron';...
              'kitten';...
              'Gargoyle_3k';...
              'Gargoyle_5k';...
-             'Armadillo_10k'};
+             'Armadillo_10k';...             
+             };
 
-         
-filename = strcat(cell2mat(filenames(10,1)),'.mat');         
+filename = strcat(cell2mat(filenames(13,1)),'.mat');         
 load(filename);
 
-plot_mesh(V,T);
+% % If needed
+% T = reorient_all_faces_coherently(V,T);
+% T = flip_faces_orientation(T);
 
-[V_dual,T_dual] = dual_of_trimesh(V,T);
-plot_mesh(V_dual,T_dual);       
+select_face_normals(V,T);

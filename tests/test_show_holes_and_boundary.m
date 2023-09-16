@@ -5,8 +5,9 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 % load('meshed_mtlb_logo.mat');
 load('kitten_components.mat');
 
-show_holes_and_boundary(V,T);
+show_mesh_boundaries_and_holes(V,T);
 axis equal; % square;

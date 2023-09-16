@@ -59,11 +59,8 @@ else
     
 end
 
-ngb_T = cellfun(@(t) find(sum(bitor(bitor(T==T_subset(t,1),T==T_subset(t,2)),T==T_subset(t,3)),2)==2),...
-                     num2cell((1:size(T_subset,1))'),'un',0);
                  
-% ngb_T = find(sum(ismember(T, T(T_subset,:)),2)==2);                 
-
+ngb_T = cellfun(@(t) find(sum(ismember(T,t),2)==2),num2cell(T_subset,2),'un',0);
 % fprintf('find_neighbor_triangle_indices request executed in %d seconds.\n',toc);
 
 

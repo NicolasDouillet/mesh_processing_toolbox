@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 load('Gargoyle_3k.mat');
 
 nb_vtx = size(V,1);

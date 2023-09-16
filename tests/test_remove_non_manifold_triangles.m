@@ -1,9 +1,10 @@
-% test remove non manifold triangles
+% test remove_non_manifold_triangles
 
 clear all, close all, clc;
 
 addpath('../src');
 addpath('../data');
+
 
 % load('filled_cube.mat'); % 6 triangles removed
 load('half_filled_octahedron.mat'); % half octahedron remains

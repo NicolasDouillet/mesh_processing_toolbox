@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data/');
 
+
 load('union_mesh.mat');
 
 [~,C] = segment_connected_components(T,'explicit');

@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 % load('singularity'); % 1 nmnfld vertex to remove
 load('kitten_holed.mat'); % 5 nmnfld vertices to remove | flat triangle(s) created -> pb not solved yet
 

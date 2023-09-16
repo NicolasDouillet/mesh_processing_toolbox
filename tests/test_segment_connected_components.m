@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 filename = 'kitten_components'; % 4 components
 % filename = 'Gargoyle_5k'; % 3 components :  3 = main + 2 isolated tetrahedrons
 % filename = 'singularity'; % 3 components

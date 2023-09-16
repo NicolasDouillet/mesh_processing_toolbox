@@ -1,10 +1,10 @@
-function [T] = quad2trimesh(Q)
+function T = quad2trimesh(Q)
 %% quadmesh2trimesh : function to convert a quadrangular mesh
 % into a triangular mesh.
 %
 % Assumption : % V1, V2, V3, V4 vertices of each quadrangle are assumed to be coplanar.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input argument

@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 load('kitten_holed.mat');
 % load('kitten_components.mat');
 

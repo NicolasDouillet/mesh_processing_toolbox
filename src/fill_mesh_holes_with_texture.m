@@ -1,10 +1,10 @@
-function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
-%% fill_mesh_holes : function to fill the mesh holes.
+function [T_out, TF_out] = fill_mesh_holes_with_texture(V, UV, T_in, TF_in, boundaries, txt_boundaries, max_perim_sz)
+%% fill_mesh_holes_with_texture : function to fill holes in one given mesh with texture.
 %
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author and support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author and support : nicolas.douillet (at) free.fr, 2023.
 %
 %
 % Input arguments
@@ -13,28 +13,36 @@ function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
 %       [| | |]
 %
+% - UV :
+%
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
+% - TF_in : input triangle texture.
+%
 % - boundaries : cell array of positive integer row vectors double (vertex indices), the boundaries and/or holes of the mesh.
+%
+% - txt_boundaries : 
 %
 % - max_perim_sz : real scalar double, the maximum perimeter size admitted for the holes to fill.
 %
 %
-% Output argument
+% Output arguments
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
+%
+% - TF_out : output triangle texture.
 
 
 %% Body
 tic;
 
-if nargin < 4
+if nargin < 7
    
-    max_perim_sz = Inf; % default behaviour ; fill every holes
+    max_perim_sz = Inf; 
     
 end
 
@@ -47,19 +55,19 @@ edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*sqrt(sum(cross_prod.^2,2)),dot
 % Curvature continuity condition
 ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*sqrt(sum(cross(vertex_normals,cross_prod).^2,2)),dot(vertex_normals,cross_prod,2));
 
-% Select hole index from which every hole perimeters are below max_perim_sz
-cellsz = cell2mat(cellfun(@numel,boundaries,'un',0));
-holes_begin_idx = find(cellsz <= max_perim_sz);
 
 nb_holes = size(boundaries,1);
 T_out = T_in;
+TF_out = TF_in;
 nb_added_tgl = 0;
 N = compute_vertex_normals(V,T_out,1,'norm');
 
 
-for h = holes_begin_idx:nb_holes % loop on every holes
-        
-    mat_boundary = cell2mat(boundaries(h,:));   
+for h = 1:nb_holes % loop on every holes                        
+    
+    mat_boundary     = cell2mat(boundaries(h,:));
+    mat_txt_boundary = cell2mat(txt_boundaries(h,:));
+    
     bound_nb_vtx = numel(mat_boundary);
     
     if bound_nb_vtx <= max_perim_sz % current hole perimeter (bound_nb_vtx) smaller than the max defined                                                                              
@@ -68,8 +76,11 @@ for h = holes_begin_idx:nb_holes % loop on every holes
         
         while bound_nb_vtx > 2 % smallest hole is a triangle (3 edges)                                                                                       
             
-            mat_boundary_forward = circshift(mat_boundary,-1);
+            mat_boundary_forward  = circshift(mat_boundary,-1);
             mat_boundary_backward = circshift(mat_boundary,1);
+            
+            mat_txt_boundary_forward  = circshift(mat_txt_boundary,-1);
+            mat_txt_boundary_backward = circshift(mat_txt_boundary,1);
             
             c_prod = cross_prod(mat_boundary_backward,mat_boundary,mat_boundary_forward);                                
             d_prod = dot_prod(mat_boundary_backward,mat_boundary,mat_boundary_forward);           
@@ -81,7 +92,11 @@ for h = holes_begin_idx:nb_holes % loop on every holes
                 
                 mat_boundary = fliplr(mat_boundary);
                 mat_boundary_forward = circshift(mat_boundary,-1);
-                mat_boundary_backward = circshift(mat_boundary,1);                
+                mat_boundary_backward = circshift(mat_boundary,1);
+                
+                mat_txt_boundary = fliplr(mat_txt_boundary);
+                mat_txt_boundary_forward  = circshift(mat_txt_boundary,-1);
+                mat_txt_boundary_backward = circshift(mat_txt_boundary,1);      
             
                 c_prod = cross_prod(mat_boundary_backward,mat_boundary,mat_boundary_forward);                                                
                 d_prod = dot_prod(mat_boundary_backward,mat_boundary,mat_boundary_forward);                
@@ -103,12 +118,18 @@ for h = holes_begin_idx:nb_holes % loop on every holes
                 
                 min_angle_idx = 1; % special possible case of the last triangle; index of min doesn't matter
             
-            end                        
+            end                  
                                                          
-            if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end                                    
+            if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end;                                    
             
-            new_triangle = [mat_boundary_forward(min_angle_idx), mat_boundary(min_angle_idx), mat_boundary_backward(min_angle_idx)];                                                
-            T_out = add_triangles(new_triangle,T_out,size(V,1));
+            new_tgl = [mat_boundary_forward(min_angle_idx), mat_boundary(min_angle_idx), mat_boundary_backward(min_angle_idx)];                                                
+            T_out = add_triangles(new_tgl,T_out,size(V,1));
+            
+            new_txt_tgl = [mat_txt_boundary_forward(min_angle_idx),... 
+                           mat_txt_boundary(min_angle_idx),...         
+                           mat_txt_boundary_backward(min_angle_idx)];  
+            
+            TF_out = add_triangles(new_txt_tgl,TF_out,size(UV,1));
             
             % Update 2 vertex normals
             N(mat_boundary_backward(min_angle_idx),:) = mean(compute_face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_idx)),:)),1);
@@ -116,11 +137,13 @@ for h = holes_begin_idx:nb_holes % loop on every holes
             
             nb_added_tgl = nb_added_tgl + 1;
             mat_boundary(min_angle_idx) = [];
+            mat_txt_boundary(min_angle_idx) = [];
             bound_nb_vtx = numel(mat_boundary);
             
         end
                    
         boundaries(h,:) = {mat_boundary}; % empty if less than 3 vertices
+        txt_boundaries(h,:) = {mat_txt_boundary};
         
     end
         
@@ -129,7 +152,7 @@ end
 fprintf('%d hole(s) filled by adding %d triangles in %d seconds.\n',nb_holes,nb_added_tgl,toc);
 
 
-end % fill_mesh_holes
+end % fill_mesh_holes_with_texture
 
 
 %% compute_boundary_orientation_vector subfunction

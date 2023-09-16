@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 % load('cross_filled_cube.mat'); % 4 intern traingles + 4 bottom and top triangles removed
 load('cross_filled_octahedron.mat'); % 4 intern triangles remove.
 

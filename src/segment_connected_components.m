@@ -1,8 +1,8 @@
 function [cc_nb, components] = segment_connected_components(T, mode)
-%% segment_connected_components : function to compute the number cc_nb of connected
+% segment_connected_components : function to compute the number cc_nb of connected
 % components and consequently segment the triangulation into cc_nb triangulation cells.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -24,15 +24,16 @@ function [cc_nb, components] = segment_connected_components(T, mode)
 % - components : cell array of triangle sets (positive integer matrices double), the component array.
 
 
-%% Body
-tic;
-
+%% Input parsing
 if nargin < 2
     
     mode = 'explicit'; % default
     
 end
 
+
+%% Body
+tic;
 components = {};
 component = [];
 cc_nb = 0; % hypothesis : T non empty

@@ -5,8 +5,14 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
-load('data/Gargoyle_5k.mat');
-% load('data/Armadillo_10k.mat');
+
+filenames = {'Gargoyle_3k';...
+             'Gargoyle_5k';...
+             'Armadillo_10k';...             
+             };
+
+filename = strcat(cell2mat(filenames(2,1)),'.mat');         
+load(filename);
 
 plot_mesh(V,T), shading interp, camlight right;
 

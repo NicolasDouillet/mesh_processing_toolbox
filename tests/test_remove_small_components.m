@@ -5,11 +5,15 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
-filename = 'kitten_components'; % 4 components
-% filename = 'Gargoyle_5k'; % 3 components
-% filename = 'singularity'; % 3 components
 
-load(strcat(filename,'.mat'));
+filenames = {'kitten_components';... % 4 components
+             'Gargoyle_5k';...       % 3 components
+             'singularity';...       % 3 components      
+             };
+
+filename = strcat(cell2mat(filenames(3,1)),'.mat');         
+load(filename);
+
 [cc_nb,components] = segment_connected_components(T);
 
 % percentage of the total number of triangles under which a component is

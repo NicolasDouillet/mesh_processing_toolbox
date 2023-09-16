@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 load('cube_quad_meshed.mat');
 
 select_face_normals(V,Q);

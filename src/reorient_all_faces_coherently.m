@@ -3,7 +3,7 @@ function T_out = reorient_all_faces_coherently(V, T_in)
 % the orientation of certain triangles of the mesh
 % in order to have a coherently oriented mesh as a result.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments

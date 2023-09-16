@@ -30,6 +30,7 @@ tic;
 C = num2cell(T_in,2);
 F = cell2mat(cellfun(@(r) abs(mod(atan2(norm(cross(V_in(r(2),:)-V_in(r(1),:),V_in(r(3),:)-V_in(r(1),:))),...
                                                dot(V_in(r(2),:)-V_in(r(1),:),V_in(r(3),:)-V_in(r(1),:))),pi)) < 1e3*eps,C,'un',0));
+                                           
 T_out = T_in(~F,:);
 fprintf('%d degenerated triangle(s) removed in %d seconds.\n',size(T_in,1)-size(T_out,1),toc);
 

@@ -5,19 +5,20 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
-filenames = {'tetrahedron';...
-             'cube';...         % ~8 ok
-             'octahedron';...
-             'icosahedron';...
+
+filenames = {'tetrahedron';...  % S = 8/sqrt(3) -> ok
+             'cube';...         % S = 8 -> ok
+             'octahedron';...   % S = 4*sqrt(3) -> ok
+             'icosahedron';... 
              'dodecahedron';...
-             'geoid_lvl_16';... % 12.5664 ~ 4*pi -> ok
+             'geoid_lvl_16';... % S =12.5664 ~ 4*pi -> ok
              'meshed_mtlb_logo';...
-             'kitten';... % 16898 ~ 1.689798 -> ok
+             'kitten';...       % S = 16898 ~ 1.689798 -> ok
              'Gargoyle_3k';...
-             'Gargoyle_5k';... % 45855 = 45855 -> ok
+             'Gargoyle_5k';...  % S = 45855 = 45855 -> ok
              'Armadillo_10k'};
 
-filename = strcat(cell2mat(filenames(6,1)),'.mat');         
+filename = strcat(cell2mat(filenames(1,1)),'.mat');         
 load(filename);
 
 % % If NaN encountered (Gargoyle_5k for instance)

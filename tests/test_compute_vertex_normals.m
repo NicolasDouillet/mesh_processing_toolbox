@@ -5,6 +5,7 @@ clear all, close all, clc;
 addpath('../src');
 addpath('../data');
 
+
 filenames = {'tetrahedron';...
              'cube';...
              'octahedron';...
@@ -17,7 +18,7 @@ filenames = {'tetrahedron';...
              'Gargoyle_5k';...
              'Armadillo_10k'};
 
-filename = strcat(cell2mat(filenames(10,1)),'.mat');         
+filename = strcat(cell2mat(filenames(5,1)),'.mat');         
 load(filename);
 
 % % If needed

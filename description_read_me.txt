@@ -1,17 +1,19 @@
 Please first check the doc tab on the right to get some relevant and functional examples of this toobox functions.
 
+Please don'tforget ta rate if this code helped you. Thanks ! ;-)
+
 
 %% DESCRIPTION
 
 This package is a mesh processing toolbox which aim at providing a command line mesh lab in Matlab(R) console. It is designed to deal with and process 3D triangular meshes.
-Quadrangular meshes as well as sorted edge lists are also possible as inputs thanks to "quad2trimesh" and "rebuild_triangulation_from_edge_list" conversion functions. For 2D
-mesh processing, you can just set Z to a vector of zeros.
+Quadrangular meshes as well as edge lists are also possible inputs thanks to "quad2trimesh" and "rebuild_triangulation_from_edge_list" conversion functions. For 2D
+mesh processing, you can just set Z to zeros vector.
 
 
 %% HELP
 
 A basic help is included in the header of each source file. It especially includes input and output arguments precise descriptions (role, class, size, etc).
-Just like for any Matlab (R) function, typewrite "help my_mesh_processing_file" in Matlab console to access  it.
+Just like for any Matlab (R) function, typewrite "help my_mesh_processing_file" in Matlab console to access it.
 
 
 %% DATA FORMATS & HYPOTHESIS ON THE MESH
@@ -111,4 +113,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 01 / 09 /2023.
+Last update : 13 / 09 /2023.

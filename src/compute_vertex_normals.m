@@ -1,7 +1,7 @@
-function [N] = compute_vertex_normals(V, T, ngb_degre, mode)
+function N = compute_vertex_normals(V, T, ngb_degre, mode)
 %% compute_vertex_normals : function to compute vertex normals.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -27,9 +27,7 @@ function [N] = compute_vertex_normals(V, T, ngb_degre, mode)
 %       [ |  |  |]
 
 
-%% Body
-% tic;
-
+%% Input parsing
 if nargin < 4
    
     mode = 'norm';
@@ -42,6 +40,9 @@ if nargin < 4
     
 end
 
+
+%% Body
+% tic;
 vtx_idx = (1:size(V,1))';
 tgl_idx_list = find_triangle_sets_from_vertex_list(T,vtx_idx);
 

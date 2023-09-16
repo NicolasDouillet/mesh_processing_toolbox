@@ -1,4 +1,4 @@
-function boundaries = select_mesh_boundaries_and_holes(V, T)
+function boundaries = select_mesh_boundaries_and_holes(V, T, hole_ids)
 %% select_mesh_boundaries_and_holes : function to select and display
 % holes and boundary of the mesh.
 %
@@ -18,6 +18,8 @@ function boundaries = select_mesh_boundaries_and_holes(V, T)
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]
 %
+% - hole_ids : positive integer vector double, vector of the holes ids.
+%
 %
 % Output argument
 %
@@ -26,6 +28,14 @@ function boundaries = select_mesh_boundaries_and_holes(V, T)
 
 %% Body
 boundaries = detect_mesh_boundaries_and_holes(T);
+
+if nargin < 3
+   
+    hole_ids = 1:size(boundaries,1);
+    
+end
+
+boundaries = boundaries(hole_ids,1);
 plot_mesh(V,T);
 
 colorstring = 'myrgbwk';
