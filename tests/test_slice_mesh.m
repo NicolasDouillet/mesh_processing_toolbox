@@ -18,6 +18,12 @@ slices_nb_max_contours = 4;
 % P = [0 0 thres];
 % slices_nb_max_contours = 3;
 
+% load('bunny_16k.mat');
+% thres = 0.08;
+% n = [0 0 1];
+% P = [0 0 thres];
+% slices_nb_max_contours = 4;
+
 % load('Armadillo_20k.mat');
 % thres = -11;
 % n = [0 0 1];
