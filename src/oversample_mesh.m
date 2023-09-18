@@ -52,7 +52,7 @@ for k = 1:nb_tgl
     
 end
 
-V_out = add_vertices(V_new,V_out);
+V_out = cat(1,V_out,V_new);
 T_out = cat(1,T_out,T_new); % do not use add_triangles since no risk of duplicata here
 [V_out,T_out] = remove_duplicated_vertices(V_out,T_out);
 

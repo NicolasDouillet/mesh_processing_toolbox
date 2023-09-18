@@ -2,7 +2,7 @@ function [V_out, T_out] = clone_solve_nmnfld_vertices(V_in, T_in, nmnfld_vtx_idx
 %% clone_solve_nmnfld_vertices : function to virtually solve
 % non manifold vertex issues by cloning them.
 %
-% Author and support : nicolas.douillet (at) free.fr, 2020.
+% Author and support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -62,8 +62,9 @@ for i = 1:numel(nmnfld_vtx_idx)
         
         if ismember(nmnfld_vtx_idx(i),T_out(tgl_patch_idx,:))
             
-            [V_out,clone_idx] = add_vertices(clone_vtx,V_out);
-            T_out(r(ismember(r,tgl_patch_idx)),c(ismember(r,tgl_patch_idx))) = clone_idx;
+            % [V_out,clone_idx] = add_vertices(clone_vtx,V_out);
+            V_out = cat(1,V_out,clone_vtx);
+            T_out(r(ismember(r,tgl_patch_idx)),c(ismember(r,tgl_patch_idx))) = size(V_out,1)-size(clone_vtx,1)+1:size(V_out,1);
             
         end
         

@@ -1,7 +1,7 @@
 function [V_out, new_id] = add_vertices(V_set, V_in)
 %% add_vertices : function to add some new vertices to the vertex set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -29,8 +29,29 @@ function [V_out, new_id] = add_vertices(V_set, V_in)
 
 %% Body
 % tic;
-V_out = cat(1,V_in,V_set);
-new_id = (1+size(V_in,1)):size(V_in,1)+size(V_set,1);
+epsilon = 1e3*eps;
+
+if isreal(V_set)
+    
+    dpl_vtx_idx = ismembertol(sort(V_set,2),sort(V_in,2),epsilon,'ByRows',true);
+    
+    if nnz(dpl_vtx_idx)
+        
+        % Suppress duplicated vertices
+        V_set = V_set(~dpl_vtx_idx,:);
+        % warning('One or more vertex from this set already exist in the current vertex set. Duplicated vertices have been ignored.\n');
+        
+    end
+    
+    V_out = cat(1,V_in,V_set);
+    new_id = (1+size(V_in,1)):size(V_in,1)+size(V_set,1);
+    
+else
+    
+    error('Unable to perform vertex addition because V_set contains some invalid vertex coordinates. Vertex indices must be real numbers.');
+    
+end
+
 % fprintf('%d vertices added in % d seconds.\n',size(V_set,1),toc);
 
 
