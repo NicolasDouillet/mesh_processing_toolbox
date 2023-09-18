@@ -106,8 +106,7 @@ Difference between show functions and select functions is that the last ones ret
 
 Gargoyle meshed models are provided courtesy of VCG-ISTI by the AIM@SHAPE-VISIONAIR Shape Repository.
 
-Armadillo is a simplified version of the one you can find on Stanford 3D scanning repository : https://graphics.stanford.edu/data/3Dscanrep/
-
+Armadillo and bunny are simplified versions of the ones you can find on Stanford 3D scanning repository : https://graphics.stanford.edu/data/3Dscanrep/
 Since I am not native english speaker, please forgive my langage approximations.
 
 Matlab release version used for development and tests : R2019b.

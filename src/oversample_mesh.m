@@ -1,4 +1,4 @@
-function [V_out, T_out] = oversample_mesh(V_in, T_in, nb_it)
+function [V_out, T_out] = oversample_mesh(V_in, T_in)
 %% oversample_mesh : function to oversample a mesh.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2023.
@@ -13,8 +13,6 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in, nb_it)
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
-%
-% - nb_it : positive integer scalar double, the number of iterations to perform.
 %
 %
 % Output arguments
@@ -32,37 +30,31 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in, nb_it)
 
 
 %% Body
-V = V_in;
-T = T_in;
+V_out = V_in;
+T_out = zeros(0,3);
 
+nb_vtx = size(V_in,1);
+nb_tgl = size(T_in,1);
 
-for n = 1:nb_it
+V_new  = zeros(0,3);
+T_new  = zeros(0,3);
+
+for k = 1:nb_tgl
     
-    nb_vtx = size(V,1);
-    nb_tgl = size(T,1);
+    E = combnk(T_in(k,:),2);
     
-    V_new  = zeros(0,3);
-    T_new  = zeros(0,3);
+    V_new = cat(1,V_new,0.5*(V_in(E(:,2),:) + V_in(E(:,1),:))); % middle of each edge
     
-    for k = 1:nb_tgl
-        
-        E = combnk(T(k,:),2);
-        
-        V_new = cat(1,V_new,0.5*(V(E(:,2),:) + V(E(:,1),:))); % middle of each edge
-        
-        T_new = cat(1,T_new, [nb_vtx+3*k-2, nb_vtx+3*k, nb_vtx+3*k-1],...
-                             [T(k,1), nb_vtx+3*k-2, nb_vtx+3*k-1],...
-                             [T(k,2), nb_vtx+3*k,   nb_vtx+3*k-2],...
-                             [T(k,3), nb_vtx+3*k-1, nb_vtx+3*k]);
-                                          
-    end
-    
-    V = cat(1,V,V_new);
-    T = cat(1,T,T_new);
+    T_new = cat(1,T_new, [nb_vtx+3*k-2, nb_vtx+3*k, nb_vtx+3*k-1],...
+                         [T_in(k,1), nb_vtx+3*k-2, nb_vtx+3*k-1],...
+                         [T_in(k,2), nb_vtx+3*k,   nb_vtx+3*k-2],...
+                         [T_in(k,3), nb_vtx+3*k-1, nb_vtx+3*k]);
     
 end
 
-[V_out,T_out] = remove_duplicated_vertices(V,T);
+V_out = add_vertices(V_new,V_out);
+T_out = cat(1,T_out,T_new); % do not use add_triangles since no risk of duplicata here
+[V_out,T_out] = remove_duplicated_vertices(V_out,T_out);
 
 
 end % oversample_mesh
