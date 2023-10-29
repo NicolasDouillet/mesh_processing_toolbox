@@ -55,7 +55,7 @@ T_out = add_triangles(new_tgl_set1,T_in,size(V_out,1));
 T_out = add_triangles(new_tgl_set2,T_out,size(V_out,1));
 
 % Remove old triangles
-T_out  = remove_triangles(tgl_idx_list,T_out,'indices');
+T_out  = remove_triangles(T_out,tgl_idx_list,'indices');
 
 
 end % split_edge

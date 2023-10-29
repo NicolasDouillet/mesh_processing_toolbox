@@ -72,7 +72,7 @@ for k = 1:nb_it
     elseif strcmpi(mode,'saw')
         
         tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_out,lone_edges_list));
-        T_out = remove_triangles(tgl_idx_list,T_out,'indices');
+        T_out = remove_triangles(T_out,tgl_idx_list,'indices');
         
     end
     

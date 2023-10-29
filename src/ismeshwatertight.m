@@ -1,4 +1,4 @@
-function [b] = ismeshwatertight(V, T, surf_type)
+function b = ismeshwatertight(V, T, surf_type)
 %% ismeshwatertight : Boolean state function to test
 % if the surface is watertight or not.
 %

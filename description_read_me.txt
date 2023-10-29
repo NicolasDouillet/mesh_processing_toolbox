@@ -85,6 +85,8 @@ It is mostly efficient on regular meshes (where all faces have more or less the 
 The two convex hull algorithms are mostly here for the demo and pedagogic purposes.
 They are indeed slower than Matlab (R) compiled binaries used for th convex hull.
 
+The function dual_of_trimesh mostly works on quasi planar triangular meshes.
+
 
 %% MISC INFORMATION
 

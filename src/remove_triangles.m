@@ -1,4 +1,4 @@
-function T_out = remove_triangles(T_set, T_in, mode)
+function T_out = remove_triangles(T_in, T_set, mode)
 %% remove_triangles : function to remove triangles from the triangle set.
 %
 % Author & support : nicolas.douillet (at) free.fr, 2020-2023.
@@ -6,16 +6,16 @@ function T_out = remove_triangles(T_set, T_in, mode)
 %
 % Input arguments
 %
+%          [  |     |     |  ]
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+%          [  |     |     |  ]
+%
 %           [|  |  | ]
 % - T_set = [i1 i2 i3], positive integer matrix double, the triangle set, size(T_set) = [nb_triangles,3], 
 %           [|  |  | ]
 %
 %           or integer vector of indices, size(T_set) = [1,nb_triangles]. NB : in the case size(T_set) = [1,3]
 %           the difference between the two possible options is only made thanks to the input argument mode value.
-%
-%          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
-%          [  |     |     |  ]
 %
 % - mode : character string in the set {'indices','explicit','INDICES','EXPLICIT'}. Case insensitive.
 % 

@@ -48,7 +48,7 @@ if isreal(V_set)
     
 else
     
-    error('Unable to perform vertex addition because V_set contains some invalid vertex coordinates. Vertex indices must be real numbers.');
+    error('Unable to perform vertex addition because V_set contains some invalid vertex coordinates. Vertex coordinates must be real numbers.');
     
 end
 

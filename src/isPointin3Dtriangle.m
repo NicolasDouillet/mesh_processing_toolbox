@@ -5,7 +5,7 @@ function isin = isPointin3Dtriangle(A, B, C, P) % row vectors 1 x 3 % is3DPointo
 % Boundary included
 
 
-epsilon = 1e4*eps;
+epsilon = eps;
 
 % Unitary line director vectors
 uAB = B-A;

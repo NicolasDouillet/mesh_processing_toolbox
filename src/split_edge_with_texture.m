@@ -87,8 +87,8 @@ TF_out = add_triangles(new_tgl_txt_set1,TF_in,size(VTEXT_out,1));
 TF_out = add_triangles(new_tgl_txt_set2,TF_out,size(VTEXT_out,1));
 
 % Remove old triangles
-T_out  = remove_triangles(tgl_idx_list,T_out,'indices');
-TF_out = remove_triangles(tgl_txt_idx_list,TF_out,'indices');
+T_out  = remove_triangles(T_out,tgl_idx_list,'indices');
+TF_out = remove_triangles(TF_out,tgl_txt_idx_list,'indices');
 
 
 end % split_edge

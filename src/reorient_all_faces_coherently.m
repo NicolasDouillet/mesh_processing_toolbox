@@ -82,7 +82,7 @@ else
     
 end
 
-fprintf('%d faces coherently orientated in %d seconds.\n',size(T_in,1),toc);
+fprintf('%d faces coherently oriented in %d seconds.\n',size(T_in,1),toc);
 
 
 end % reorient_all_faces_coherently

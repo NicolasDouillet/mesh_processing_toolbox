@@ -16,7 +16,8 @@ filenames = {'cube';...                     % 1 / true
              'singularity';...              % 0 / false            
              };
 
-filename = strcat(cell2mat(filenames(1,1)),'.mat');         
+id = 1;
+filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 
 b = ismesh2Dmanifold(V,T)

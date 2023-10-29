@@ -1,7 +1,7 @@
 function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 %% remove_vertices : function to remove vertices from the vertex set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
 %
 %
 % Input arguments
@@ -54,26 +54,26 @@ T_out = T_in;
 
 if strcmpi(mode,'indices') && ismember(1,size(V_set)) || nargin < 4
        
-    vtx_idx_2_suppr = V_set;                   
+    vtx_idx_2_rm = V_set;                   
     
 elseif strcmpi(mode,'explicit') && size(V_set,2) == 3
        
-    vtx_idx_2_suppr = ismember(V_in,V_set,'rows');
+    vtx_idx_2_rm = ismember(V_in,V_set,'rows');
     
 end
 
 % I Suppress vertices & triangles
-V_out(vtx_idx_2_suppr,:) = [];
-tgl_idx_2_suppr = find_triangles_from_vertex_list(T_in,vtx_idx_2_suppr);
-T_out(tgl_idx_2_suppr,:) = [];
+V_out(vtx_idx_2_rm,:) = [];
+tgl_idx_2_rm = find_triangles_from_vertex_list(T_in,vtx_idx_2_rm);
+T_out(tgl_idx_2_rm,:) = [];
 
 % II Reindex triangulation
-keep_idx = setdiff(1:size(V_in,1),vtx_idx_2_suppr); % what V_out indices are relatively to V_in ones
+keep_idx = setdiff(1:size(V_in,1),vtx_idx_2_rm); % what V_out indices are relatively to V_in ones
 M = containers.Map(keep_idx,1:size(V_out,1));
 T_suppr_idx = isKey(M,num2cell(T_out));
 T_out(T_suppr_idx) = cell2mat(values(M,num2cell(T_out(T_suppr_idx))));
 
-% fprintf('%d vertices removed in %d seconds.\n',nnz(vtx_idx_2_suppr),toc);
+% fprintf('%d vertices removed in %d seconds.\n',nnz(vtx_idx_2_rm),toc);
 
 
 end % remove_vertices
