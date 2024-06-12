@@ -2,7 +2,7 @@ function b = ismeshwatertight(V, T, surf_type)
 %% ismeshwatertight : Boolean state function to test
 % if the surface is watertight or not.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

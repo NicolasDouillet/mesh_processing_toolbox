@@ -2,7 +2,7 @@ function [area] = compute_face_selection_area(V, T_set)
 %% compute_face_selection_area : function to compute
 % the area of a face selection.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

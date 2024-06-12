@@ -2,7 +2,7 @@ function [] = show_triangle_selection(V, T, T_subset, mode)
 %% show_triangle_selection : function to highlight a
 % selection of triangles on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -24,7 +24,7 @@ function [] = show_triangle_selection(V, T, T_subset, mode)
 %          Case insensitive.
 
 
-%% Body
+%% Input parsing and body
 assert(nargin > 2,'Not enough input argument. show_triangle_selection takes at least 3 input arguments.')
 
 if nargin > 2

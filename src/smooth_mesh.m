@@ -6,7 +6,7 @@ function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
 % the mean of its neighbors. The number of vertices stays the same.
 %
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
 % Input arguments

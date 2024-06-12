@@ -1,8 +1,8 @@
-function [self_inter_tgl_idx] = select_self_intersecting_triangles(V, T)
+function self_inter_tgl_idx = select_self_intersecting_triangles(V, T)
 %% select_self_intersecting_triangles : function to display self intersecting
 % triangles on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

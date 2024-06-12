@@ -2,7 +2,7 @@ function [I, u, rc] = planes_intersection(n1, M1, n2, M2)
 %% planes_intersection : function to compute the intersection
 % between P1(M1,n1) and P2(M2,n2) planes of the 3D space.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2019-2023.
+% Author : nicotangente (at) free.fr, 2019-2024.
 
 % Inputs arguments
 %

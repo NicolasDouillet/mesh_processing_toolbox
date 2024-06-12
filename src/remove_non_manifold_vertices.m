@@ -5,7 +5,7 @@ function [V_out, T_out] = remove_non_manifold_vertices(V_in, T_in)
 % Working principle & criterion : non manifold vertices have at least
 % two more linked edges than linked triangles.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

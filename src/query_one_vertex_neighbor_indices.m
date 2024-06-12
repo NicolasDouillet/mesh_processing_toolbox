@@ -1,7 +1,7 @@
-function [vtx_ngb_idx] = query_one_vertex_neighbor_indices(T, vtx_idx)
-%% query_one_vertex_neighbor_indices : function to
+function vtx_ngb_idx = query_one_vertex_neighbor_indices(T, vtx_idx)
+%% query_one_vertex_neighbor_indices : function to query one vertex neighbor indices.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments
@@ -19,7 +19,6 @@ function [vtx_ngb_idx] = query_one_vertex_neighbor_indices(T, vtx_idx)
 
 
 %% Body
-
 vtx_ngb_idx = setdiff(T(any(T==vtx_idx,2),:),vtx_idx)';
 
 

@@ -2,7 +2,7 @@ function [] = show_mesh_components(V, C)
 %% show_mesh_components : function to color individually and specifically
 % each component of the mesh with a different color.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet @free.fr (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

@@ -2,7 +2,7 @@ function [V_out, T] = quick_hull(V_in)
 %% quick_hull : function to compute the 3D convex hull of
 % a given point cloud with the divide & conquer algorithm.
 %
-% Author & support nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input argument
@@ -149,9 +149,9 @@ fprintf('Mesh quick hull computed in %ds.\n',toc);
 end % quick_hull
 
 
-%% grow_tetrahedron subfunction
+% grow_tetrahedron subfunction
 function [T, N, new_vtx_idx] = grow_tetrahedron(V, T, N, tgl_idx, epsilon)
-% grow_tetrahedron : function to find one
+%% grow_tetrahedron : function to find one
 % new vertex belonging to the convex hull
 % for one given triangle, to create the three
 % newborn triangles and erase the previous one.
@@ -192,9 +192,9 @@ end
 end % grow_tetrahedron
 
 
-%% detect_concavity subfunction
+% detect_concavity subfunction
 function [isconcave] = detect_concavity(V, T, N, tgl_pair_idx, epsilon)
-% detect_concavity : function to detect
+%% detect_concavity : function to detect
 % concave triangle pair configurations.
 
 
@@ -219,13 +219,11 @@ isconcave = sign(dot(n1+n2,H2-H1,2)) > epsilon;
 end % detect_concavity
 
 
-%% flip_two_ngb_triangles subfunction
+% flip_two_ngb_triangles subfunction
 function [T, N, edg_list] = flip_two_ngb_triangles(tgl_pair_idx, T, V, N, edg_list)
-% flip_two_ngb_triangles : function to flip
+%% flip_two_ngb_triangles : function to flip
 % two triangles sharing one common edge.
 
-
-nb_vtx = size(V,1);
 
 T1 = T(tgl_pair_idx(1),:);
 T2 = T(tgl_pair_idx(2),:);
@@ -256,8 +254,8 @@ else
 end
 
 % Add 2 triangles and their face normals
-T = add_triangles(Ta,T,nb_vtx);
-T = add_triangles(Tb,T,nb_vtx);
+T = add_triangles(Ta,T);
+T = add_triangles(Tb,T);
 
 % Remove 2 triangles and their face normals
 T(tgl_pair_idx,:) = [];
@@ -271,9 +269,9 @@ edg_list(all(bsxfun(@eq,edg_list,sort(cmn_edg)),2),:) = [];
 end % flip_two_ngb_triangles
 
 
-%% remove_inside_pts subfunction
+% remove_inside_pts subfunction
 function [V_out, T] = remove_inside_pts(V_in, T, epsilon)
-% remove_inside_pts : function to remove points inside the convex hull
+%% remove_inside_pts : function to remove points inside the convex hull
 % during its computational iterations to save cpu time.
 
 

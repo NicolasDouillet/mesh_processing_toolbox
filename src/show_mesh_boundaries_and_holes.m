@@ -4,7 +4,8 @@ function [] = show_mesh_boundaries_and_holes(V, T)
 % About : display holes and boundary without identifying them, and based
 % and non shared edges detection.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+%
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
 % Input arguments

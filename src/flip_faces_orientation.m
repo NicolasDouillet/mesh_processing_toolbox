@@ -1,8 +1,8 @@
-function [T_out] = flip_faces_orientation(T_in)
+function T_out = flip_faces_orientation(T_in)
 %% flip_faces_orientation : function to flip the
 % orientation of each triangle of the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input argument

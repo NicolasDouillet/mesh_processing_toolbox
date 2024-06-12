@@ -1,7 +1,7 @@
 function [R, I, r] = triangle_circumcircle(A, B, C, nb_samples)
 %% triangle_circumcircle : function to compute and display the circumcircle of one given triangle
 %
-% Author & support : nicolas.douillet (at) free.fr, 2022-2023.
+% Author : nicolas.douillet (at) free.fr, 2022-2024.
 %
 % Syntax
 %

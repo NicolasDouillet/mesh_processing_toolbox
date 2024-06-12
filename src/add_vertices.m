@@ -1,7 +1,7 @@
 function [V_out, new_id] = add_vertices(V_set, V_in)
 %% add_vertices : function to add some new vertices to the vertex set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -31,20 +31,24 @@ function [V_out, new_id] = add_vertices(V_set, V_in)
 % tic;
 epsilon = 1e3*eps;
 
-if isreal(V_set)
+if isreal(V_set)        
     
-    dpl_vtx_idx = ismembertol(sort(V_set,2),sort(V_in,2),epsilon,'ByRows',true);
+    dpl_vtx_idx = ismembertol(V_set,V_in,epsilon,'ByRows',true);
+    V_set = V_set(~dpl_vtx_idx,:); % suppress duplicated vertices    
     
-    if nnz(dpl_vtx_idx)
+    if ~isempty(V_set)
+                        
+        % warning('One or more vertex from this set already exist in the current vertex set. Duplicated vertices have been ignored.\n');                                     
+        V_out = cat(1,V_in,V_set);
+        new_id = (1+size(V_in,1)):size(V_in,1)+size(V_set,1);
         
-        % Suppress duplicated vertices
-        V_set = V_set(~dpl_vtx_idx,:);
-        % warning('One or more vertex from this set already exist in the current vertex set. Duplicated vertices have been ignored.\n');
+    else
+    
+        V_out = V_in;
+        new_id = [];
+        warning('Provided vertex to add already exists in the set; no vertex added.')
         
     end
-    
-    V_out = cat(1,V_in,V_set);
-    new_id = (1+size(V_in,1)):size(V_in,1)+size(V_set,1);
     
 else
     

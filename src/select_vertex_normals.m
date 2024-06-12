@@ -1,7 +1,7 @@
 function N = select_vertex_normals(V, T, ngb_degre, mode, option_display)
 %% select_vertex_normals : function to display the vertex normals on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -30,7 +30,7 @@ function N = select_vertex_normals(V, T, ngb_degre, mode, option_display)
 %       [ |  |  |]
 
 
-%% Body
+%% Input parsing and parameter default values
 if nargin < 5
     
     option_display = true;
@@ -49,6 +49,8 @@ if nargin < 5
     
 end
 
+
+%% Body
 N = compute_vertex_normals(V,T,ngb_degre,mode);
 
 if option_display

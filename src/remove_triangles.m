@@ -1,7 +1,7 @@
 function T_out = remove_triangles(T_in, T_set, mode)
 %% remove_triangles : function to remove triangles from the triangle set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -29,9 +29,10 @@ function T_out = remove_triangles(T_in, T_set, mode)
 %           with nb_output_triangles = nb_input_triangles - nb_removed_triangles.
 
 
-%% Body
-
 % tic;
+
+
+%% Input parsing
 if nargin < 3
 
     mode = 'indices'; % default behaviour
@@ -39,6 +40,7 @@ if nargin < 3
 end
 
 
+%% Body
 T_out = T_in;
 
 if strcmpi(mode,'indices') && ismember(1,size(T_set))

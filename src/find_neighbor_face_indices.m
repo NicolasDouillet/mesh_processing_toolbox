@@ -2,7 +2,7 @@ function ngb_T = find_neighbor_face_indices(F, F_subset)
 %% find_neighbor_face_indices : function to compute the list of faces
 % which are neighbors (share one edge) to the faces in F_subset.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments

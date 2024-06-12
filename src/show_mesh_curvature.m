@@ -1,7 +1,7 @@
 function [] = show_mesh_curvature(V, T, C)
 %% show_mesh_curvature : function to colorize the mesh curvature on it.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %  
 % Input arguments                                                        

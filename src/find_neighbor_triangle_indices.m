@@ -2,7 +2,7 @@ function ngb_T = find_neighbor_triangle_indices(T, T_subset, mode)
 %% find_neighbor_triangle_indices : function to compute the list of triangles
 % which are neighbors (share one edge) to the triangles in T_subset.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

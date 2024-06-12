@@ -2,7 +2,7 @@ function bound_lengths = compute_boundaries_and_holes_perimeters(V, boundary)
 %% compute_boundaries_and_holes_perimeters : function to compute perimeters
 % of holes and boundary of the mesh in length unit.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

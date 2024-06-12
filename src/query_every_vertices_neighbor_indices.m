@@ -1,8 +1,8 @@
-function [neighbor_list] = query_every_vertices_neighbor_indices(T, ngb_degre, nb_vtx)
+function neighbor_list = query_every_vertices_neighbor_indices(T, ngb_degre, nb_vtx)
 %% query_every_vertices_neighbor_indices : function to find the indices list
 % of neighbor vertices of every vertices the triangulation T refers to.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -22,8 +22,10 @@ function [neighbor_list] = query_every_vertices_neighbor_indices(T, ngb_degre, n
 %                   size(neighbor_list) = [nb_vertices,1].
 
 
-%% Body
 % tic;
+
+
+%% Input parsing
 assert(nargin > 1,'Not enough input arguments.');
 assert(nargin < 4,'Too many input arguments.');
     
@@ -37,6 +39,8 @@ else
     
 end
 
+
+%% Body
 M = cell2mat(cellfun(@(c) nchoosek(c,2),num2cell(T,2),'un',0));
 neighbor_list = accumarray([M(:,1);M(:,2)],[M(:,2);M(:,1)],[],@(x){unique(x)'});
 

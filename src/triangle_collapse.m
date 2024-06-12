@@ -6,7 +6,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_idx_list)
 % isobarycentre, which is equivalent to consecutively collapse
 % two edges of this triangle.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments
@@ -31,6 +31,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_idx_list)
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
+
 
 %% Body
 edg_list = query_edges_list(T_in(tgl_idx_list,:));

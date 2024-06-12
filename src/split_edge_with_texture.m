@@ -1,7 +1,7 @@
 function [V_out, T_out, VTEXT_out, TF_out] = split_edge_with_texture(V_in, T_in, E_set, edg_idx, VTEXT_in, TF_in)
 %% split_edge : function to split edges with texture.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021-2023.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments
@@ -69,8 +69,8 @@ new_tgl_set1 = cat(2,summit_vtx_idx_list,E_set(:,1),new_vtx_id');
 new_tgl_set2 = cat(2,summit_vtx_idx_list,new_vtx_id',E_set(:,2));
 
 % Add new triangles
-T_out = add_triangles(new_tgl_set1,T_in,size(V_out,1));
-T_out = add_triangles(new_tgl_set2,T_out,size(V_out,1));
+T_out = add_triangles(new_tgl_set1,T_in);
+T_out = add_triangles(new_tgl_set2,T_out);
 
 % Create new textures
 tgl_txt_idx_list = cell2mat(find_triangle_indices_from_edges_list(TF_in,E_txt_set));
@@ -83,8 +83,8 @@ new_tgl_txt_set1 = cat(2,summit_vtx_txt_idx_list,E_txt_set(:,1),new_vtxt_id');
 new_tgl_txt_set2 = cat(2,summit_vtx_txt_idx_list,new_vtxt_id',E_txt_set(:,2));
 
 % Add new textures
-TF_out = add_triangles(new_tgl_txt_set1,TF_in,size(VTEXT_out,1));
-TF_out = add_triangles(new_tgl_txt_set2,TF_out,size(VTEXT_out,1));
+TF_out = add_triangles(new_tgl_txt_set1,TF_in);
+TF_out = add_triangles(new_tgl_txt_set2,TF_out);
 
 % Remove old triangles
 T_out  = remove_triangles(T_out,tgl_idx_list,'indices');

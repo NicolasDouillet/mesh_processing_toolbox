@@ -59,7 +59,7 @@ SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED.
 
 Modification of any kind are done under your own, only, and unique responsability.
 
-Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) free.fr
+Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicotangente (at) free.fr
 
 
 %% KNOWN LIMITATIONS
@@ -114,4 +114,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 16/ 09 /2023.
+Last update : 10 / 04 /2024.

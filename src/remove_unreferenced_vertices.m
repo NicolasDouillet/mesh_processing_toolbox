@@ -2,7 +2,7 @@ function [V_out, T_out] = remove_unreferenced_vertices(V_in, T_in)
 %% remove_unreferenced_vertices : function to remove vertices
 % which are not referenced in the triangulation.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

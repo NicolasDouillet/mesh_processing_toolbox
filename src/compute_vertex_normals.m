@@ -1,7 +1,7 @@
 function N = compute_vertex_normals(V, T, ngb_degre, mode)
 %% compute_vertex_normals : function to compute vertex normals.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

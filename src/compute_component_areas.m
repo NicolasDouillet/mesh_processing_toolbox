@@ -1,7 +1,7 @@
-function [component_area] = compute_component_areas(V, C)
+function component_area = compute_component_areas(V, C)
 %% compute_component_areas : function to compute the area of every component of the mesh, in area unit.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

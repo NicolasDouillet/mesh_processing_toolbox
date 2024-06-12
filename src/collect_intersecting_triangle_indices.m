@@ -1,7 +1,7 @@
-function [self_inter_tgl_idx_out] = collect_intersecting_triangle_indices(V, T, i1, i2, self_inter_tgl_idx_in)
+function self_inter_tgl_idx_out = collect_intersecting_triangle_indices(V, T, i1, i2, self_inter_tgl_idx_in)
 %% collect_intersecting_triangle_indices : function to collect intersecting triangle indices.
 % 
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % Hypothesis : edges, except vertices, belong to the boundary.
 %
@@ -104,7 +104,7 @@ end
 end % collect_intersecting_triangle_indices
 
 
-%% Subfunction
+%% is_point_inside_triangle subfunction
 function isin = is_point_inside_triangle(C, P)
 
 

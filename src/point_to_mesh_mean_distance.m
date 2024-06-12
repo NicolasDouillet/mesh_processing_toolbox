@@ -1,6 +1,8 @@
 function pt2mesh_mean_dst = point_to_mesh_mean_distance(M, V, T)
+%% pt2mesh_mean_dst : function to compute the mean distance of a given
+% M point  to the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments
@@ -14,10 +16,7 @@ function pt2mesh_mean_dst = point_to_mesh_mean_distance(M, V, T)
 %       [ |  |  |]
 
 
-% with point to plane distance on every plane defined by the triangles of
-% the set
-
-
+%% Body
 dst_vect = zeros(1,size(T,1)); 
 
 for k = 1:size(T,1)

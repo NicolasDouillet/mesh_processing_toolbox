@@ -1,7 +1,7 @@
 function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 %% remove_vertices : function to remove vertices from the vertex set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -36,8 +36,9 @@ function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 %           [  |      |      |   ]
 
 
-%% Body
 % tic;
+
+%% Input parsing
 if nargin  < 4
     
     mode = 'indices';
@@ -49,6 +50,8 @@ else
     
 end
 
+
+%% Body
 V_out = V_in;
 T_out = T_in;
 

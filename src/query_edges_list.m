@@ -2,7 +2,7 @@ function edg_list = query_edges_list(T, mode)
 %% query_edges_list : function to query the edges list
 % corresponding to the triangulation T.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

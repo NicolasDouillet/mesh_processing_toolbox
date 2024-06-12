@@ -2,7 +2,7 @@ function [I, rc] = line_plane_intersection(u, N, n, M)
 %% line_plane_intersection : function to compute the intersection point
 % between the (N,u) line and the (M,n) plane of the 3D space.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet free.fr, 2020-2024.
 %
 %
 % Input arguments

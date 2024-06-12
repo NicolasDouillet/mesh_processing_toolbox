@@ -19,8 +19,8 @@ filenames = {'tetrahedron';...
              'Gargoyle_3k';...                        
              };
 
-filename = strcat(cell2mat(filenames(8,1)),'.mat');         
+filename = strcat(cell2mat(filenames(4,1)),'.mat');         
 load(filename);
 
-[V,T] = oversample_mesh(V,T,2);
-plot_mesh(V,T);
+[V,T] = oversample_mesh(V,T);
+select_face_normals(V,T);

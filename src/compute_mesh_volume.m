@@ -5,7 +5,7 @@ function mesh_volume = compute_mesh_volume(V, T)
 % Requirements : 2D-manifold closed watertight surface,
 % without duplicated or self intersecting triangles.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

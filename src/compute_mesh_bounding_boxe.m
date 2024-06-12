@@ -1,7 +1,7 @@
 function [bboxe] = compute_mesh_bounding_boxe(V)
 %% compute_mesh_bounding_boxe : function to compute the bounding boxe of the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input argument

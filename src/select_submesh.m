@@ -4,7 +4,7 @@ function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
 % General principle of the algorithm : extract vertices and associated triangles
 % of the mesh which are located on one side / half space of the plan defined by (n, I).
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %  
 % Input arguments

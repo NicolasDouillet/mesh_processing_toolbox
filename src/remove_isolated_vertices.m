@@ -2,7 +2,7 @@ function [V_out, T_out] = remove_isolated_vertices(V_in, T_in) % not listed in t
 %% remove_isolated_vertices : function to remove isolated vertices (missing in the triangulation)
 % from the vertex set.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments

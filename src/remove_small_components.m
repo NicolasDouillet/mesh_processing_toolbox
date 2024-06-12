@@ -2,7 +2,7 @@ function [T_out, V_out] = remove_small_components(C, pct2rm ,V_in, rm_isl_vtx)
 %% remove_small_components : function to remove from the mesh components smaller
 % (in relative number of triangles) than a certain percent of the total.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

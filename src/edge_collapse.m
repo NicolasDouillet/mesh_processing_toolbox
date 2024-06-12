@@ -5,7 +5,7 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 % Working principle : each edge to collapse is replaced by its middle
 % point.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments

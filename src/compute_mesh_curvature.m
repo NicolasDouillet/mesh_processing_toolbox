@@ -1,7 +1,7 @@
-function [curvature] = compute_mesh_curvature(V, T, N, ngb_degre, curv_type)
+function curvature = compute_mesh_curvature(V, T, N, ngb_degre, curv_type)
 %% compute_mesh_curvature : function to compute curvature on every vertex of the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
 % Info / about : homemade temporary version of a curvature computation algorithm.
@@ -33,9 +33,10 @@ function [curvature] = compute_mesh_curvature(V, T, N, ngb_degre, curv_type)
 % - curvature : real column vector double, the vertex curvature map / field, size(C) = size(V). 
 
 
-%% Body
 tic;
 
+
+%% Input parsing and default parameters
 if nargin < 5
     
     curv_type = 'mean';
@@ -49,6 +50,7 @@ if nargin < 5
 end
 
 
+%% Body
 cell_vtx_idx = num2cell((1:size(V,1))',2);
 vtx_ngb_idx_list = query_every_vertices_neighbor_indices(T,ngb_degre,size(V,1));
 vect2ngb_cell = cellfun(@(c1,c2) V(c1,:)-repmat(V(c2,:),[numel(c1),1]),vtx_ngb_idx_list,cell_vtx_idx,'un',0);

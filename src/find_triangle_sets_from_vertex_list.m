@@ -2,7 +2,7 @@ function tgl_idx_list = find_triangle_sets_from_vertex_list(T, vtx_idx)
 %% find_triangle_sets_from_vertex_list : function to compute the index
 % list of triangles containing the vertex indices listed in cell_vtx_idx.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

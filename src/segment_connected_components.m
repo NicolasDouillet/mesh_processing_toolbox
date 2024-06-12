@@ -1,8 +1,8 @@
 function [cc_nb, components] = segment_connected_components(T, mode)
-% segment_connected_components : function to compute the number cc_nb of connected
+%% segment_connected_components : function to compute the number cc_nb of connected
 % components and consequently segment the triangulation into cc_nb triangulation cells.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

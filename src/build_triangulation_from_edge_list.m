@@ -2,7 +2,7 @@ function T = build_triangulation_from_edge_list(E, mode)
 %% build_triangulation_from_edge_list : function to build the
 % triangulation T from the edge list E. 
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input argument
@@ -52,7 +52,7 @@ elseif nargin < 2 || strcmpi(mode,'raw')
                 
                 % No need to sort new triangles here since add_triangle already check for duplicata
                 new_tgl_set = cat(2,repmat([i,j],[numel(third_vtx),1]),third_vtx');
-                T = add_triangles(new_tgl_set,T,numel(vtx_idx_list));
+                T = add_triangles(new_tgl_set,T);
                 
             end
             
@@ -71,7 +71,7 @@ end % build_triangulation_from_edge_list
 %% get_vertex_linked_vertices subfunction
 function vtx_idx_list = get_vertex_linked_vertices(E, vtx_idx)
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 
 
 vtx_idx_list = setdiff(E(any(E==vtx_idx,2),:),vtx_idx)';

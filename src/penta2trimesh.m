@@ -3,7 +3,7 @@ function T = penta2trimesh(P)
 %
 % Assumption : % V1, V2, V3, V4, V5, and V6 vertices of each pentagon are assumed to be coplanar.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input argument

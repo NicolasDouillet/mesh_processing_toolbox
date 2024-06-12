@@ -1,7 +1,7 @@
 function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_nb_max_contours, sort_direction, slc_step)
 %% slice_mesh : function to slice one given triangular mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments
@@ -36,7 +36,15 @@ function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_n
 
 %% Body
 Perim = @(P)sum(sqrt(sum(diff(P(:,:),1).^2,2)),1);
+
+
+% I Find and sort triangles
+% 1.1 Look for candidate edges
+% Sub horizontal mesh selection
+
+% /_!_\ caution : sensitive coefficient to adjust /_!_\ : 
 mesh_substripe_margin_coeff = 8;
+% function of slicing step, meshing technique and simplification
 
 if substripe_selection
     
@@ -49,7 +57,7 @@ T = unique(sort(T,2,'ascend'),'rows');
 raw_edges_list = query_edges_list(T,'sorted');
 edges_list = unique(raw_edges_list,'rows');
 nb_edges = size(edges_list,1);
-itx_edg_lst = [];
+itx_edg_lst = []; % intersecting edges list
 
 
 for i = 1:nb_edges
@@ -68,8 +76,8 @@ for i = 1:nb_edges
     
     if (sign(s2) == -sign(s1)) | (s1 == 0 & s2 == 0)
         
-        itx_edg_lst = cat(1,itx_edg_lst,edges_list(i,:)); 
-        
+        itx_edg_lst = cat(1,itx_edg_lst,edges_list(i,:)); % edges are unique in this list
+                                                          % and all shared by -at least- two triangles            
     end
     
 end
@@ -77,14 +85,21 @@ end
 
 if ~isempty(itx_edg_lst)
         
-    tgl_idx_list = find_triangle_indices_from_edges_list(T,itx_edg_lst);            
+    % Find every corresponding unique triangles
+    tgl_idx_list = find_triangle_indices_from_edges_list(T,itx_edg_lst);
+    
+    % 1.2 Sort / connect edges ; to get new intersection vertices well sorted too
     srt_itx_edg_lsts = {};
-    go_on = 1;
+    go_on = 1; % first while loop continuing conditions
         
     while go_on
-                
+               
+        % Output list initialization
         srt_itx_edg_lst = zeros(0,2);             
         
+        % 1st edge special case processing
+        % first one not already in srt_itx_edg_lst
+        % Detect edges belonging to boundaries of the mesh
         if ~isempty(srt_itx_edg_lsts)
             
             first_row_idx = find(~ismember(itx_edg_lst,cell2mat(srt_itx_edg_lsts),'rows'),1,'first');
@@ -108,7 +123,8 @@ if ~isempty(itx_edg_lst)
         first_tgl_idx = first_cdt_row_idc(1,1);
         first_tgl = sort(nchoosek(T(first_tgl_idx,:),2),2);
         first_edge = itx_edg_lst(first_row_idx,:);
-                
+             
+        % List update : always cat first edge
         if ~isempty(first_edge) & ~ismember(first_edge,srt_itx_edg_lst,'rows')
             
             srt_itx_edg_lst = cat(1,srt_itx_edg_lst,first_edge);
@@ -118,7 +134,8 @@ if ~isempty(itx_edg_lst)
         [~,curr_edge_pos] = ismember(first_edge,first_tgl,'rows');
         curr_row_idx = find_nxt_edg_idx(itx_edg_lst,first_tgl,curr_edge_pos);                
         curr_edge = itx_edg_lst(curr_row_idx,:);
-                
+              
+        % Update list
         if ~isempty(curr_edge) & ~ismember(curr_edge,srt_itx_edg_lst,'rows')
             
             srt_itx_edg_lst = cat(1,srt_itx_edg_lst,curr_edge);
@@ -142,17 +159,19 @@ if ~isempty(itx_edg_lst)
         curr_row_idx_list = curr_row_idx;
         
         stop_flag = false;
-        go_on2 = curr_row_idx & ~stop_flag;
+        go_on2 = curr_row_idx & ~stop_flag; % second nested while loop continuing conditions
         
         while go_on2
                         
+            % Position of the edge in its triangle : 1, 2, or 3
             [~,curr_edge_pos] = ismember(curr_edge,curr_tgl,'rows');
             nxt_row_idx = find_nxt_edg_idx(itx_edg_lst,curr_tgl,curr_edge_pos);
             
             if nxt_row_idx & ~stop_flag
                 
                 nxt_edge = itx_edg_lst(nxt_row_idx,:);
-                                
+                       
+                % Update list
                 if ~isempty(nxt_edge)
                     
                     srt_itx_edg_lst = cat(1,srt_itx_edg_lst,nxt_edge);
@@ -164,7 +183,9 @@ if ~isempty(itx_edg_lst)
                 
                 if nxt_tgl_idx & isvector(T(nxt_tgl_idx,:)) & ~stop_flag
                     
-                    nxt_tgl = sort(nchoosek(T(nxt_tgl_idx,:),2),2);                                     
+                    nxt_tgl = sort(nchoosek(T(nxt_tgl_idx,:),2),2); % different from immediate previous one
+                    
+                    % Update variables
                     prev_row_idx = curr_row_idx;
                     curr_row_idx = nxt_row_idx;
                     curr_row_idx_list = cat(2,curr_row_idx_list,curr_row_idx);
@@ -179,7 +200,8 @@ if ~isempty(itx_edg_lst)
                     break;
                     
                 end
-                                
+                       
+                % Update list
                 if ~isempty(curr_edge)
                     srt_itx_edg_lst = cat(1,srt_itx_edg_lst,curr_edge);
                 end
@@ -195,7 +217,7 @@ if ~isempty(itx_edg_lst)
             
         end
         
-        if ~isempty(srt_itx_edg_lst) & size(srt_itx_edg_lst,1) > 2
+        if ~isempty(srt_itx_edg_lst) & size(srt_itx_edg_lst,1) > 2 % at least 3 edges
             
             srt_itx_edg_lsts = cat(1,srt_itx_edg_lsts,{srt_itx_edg_lst});
             
@@ -206,6 +228,7 @@ if ~isempty(itx_edg_lst)
         
     end            
     
+    % Cleaning meaningless small perimeters
     if size(srt_itx_edg_lsts,1) > slices_nb_max_contours
         
         perim_vect = zeros(size(srt_itx_edg_lsts,1),1);
@@ -222,10 +245,12 @@ if ~isempty(itx_edg_lst)
         
     end            
     
+    % III Compute intersecting -new- vertices and store them in a list
+    % Simultaneous bboxes and G arrays creation
     nb_contours = size(srt_itx_edg_lsts,1);
     srt_itx_vtx_lsts = cell(nb_contours,1);
-    bbxes = zeros(nb_contours,4);
-    CDG = zeros(nb_contours,3);
+    bbxes = zeros(nb_contours,4); % [xmin, xmax, ymin, ymax]
+    CDG = zeros(nb_contours,3); % [x_G, y_G z_G]
     
     for i = 1:size(srt_itx_edg_lsts,1)
         
@@ -244,7 +269,7 @@ if ~isempty(itx_edg_lst)
             
         end
         
-        if ~isempty(unique(srt_itx_vtx_lst,'rows')) & size(srt_itx_vtx_lst,1) > 2 
+        if ~isempty(unique(srt_itx_vtx_lst,'rows')) & size(srt_itx_vtx_lst,1) > 2 % at least 3 vertices
             
             x_G = mean(srt_itx_vtx_lst(:,1));
             y_G = mean(srt_itx_vtx_lst(:,2));
@@ -264,6 +289,9 @@ if ~isempty(itx_edg_lst)
         
     end    
     
+    % Cleaning inside meaningless perimeters
+    % Find contours which CDG belongs to
+    % The bboxe of another contour
     nb_contours = size(srt_itx_vtx_lsts,1);
     F = zeros(nb_contours,nb_contours);
     F = F - diag(ones(1,nb_contours));
@@ -284,20 +312,25 @@ if ~isempty(itx_edg_lst)
         
     end
         
+    % Suppress nested contours & update arrays
     f = find(F == 1);
     [i,~] = ind2sub([nb_contours,nb_contours],f);
     srt_itx_vtx_lsts = srt_itx_vtx_lsts(setdiff(1:nb_contours,i),:);
     CDG = CDG(setdiff(1:nb_contours,i),:);
     
-    if strcmpi(sort_direction,'horizontal')
+    if strcmpi(sort_direction,'horizontal') % Left - center - right perimeters sort
         
-        [~,srt_idx] = sort(CDG(:,2),'descend');
+        [~,srt_idx] = sort(CDG(:,2),'descend'); % -> from left to right
         srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_idx,:);
         
-    elseif strcmpi(sort_direction,'vertical') 
+    elseif strcmpi(sort_direction,'vertical') % Up - down sort
         
-        [~,srt_idx] = sort(CDG(:,3),'descend');
-        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_idx,:);                
+        [~,srt_idx] = sort(CDG(:,3),'descend'); % -> from top to bottom
+        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_idx,:);
+        
+    else % if strcmpi(sort_direction,'none') or any other string
+    
+    % Do not sort, do nothing
         
     end
         

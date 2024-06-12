@@ -5,7 +5,8 @@ function boundaries = select_mesh_boundaries_and_holes(V, T, hole_ids)
 % About : holes and boundary are identified and segmented
 % (detect_mesh_boundaries_and_holes), and their displays use different colors.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+%
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
 % Input arguments

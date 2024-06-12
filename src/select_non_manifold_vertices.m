@@ -1,7 +1,7 @@
 function nmnfld_vtx_idx = select_non_manifold_vertices(V, T, option_display)
 %% select_non_manifold_vertices : function to display non manifold vertices on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

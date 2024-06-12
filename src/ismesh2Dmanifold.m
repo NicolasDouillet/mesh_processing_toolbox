@@ -2,7 +2,7 @@ function [b, nmnfld_edg_idx] = ismesh2Dmanifold(V, T)
 %% ismesh2Dmanifold : boolean state function to test
 % wether the mesh is 2D-manifold or not.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

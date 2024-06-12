@@ -1,8 +1,8 @@
-function [edg_lists] = find_edges_from_vertex_list(T, vtx_idx)
+function edg_lists = find_edges_from_vertex_list(T, vtx_idx)
 %% find_edges_from_vertex_list : function to compute the edges lists
 % in the triangulation T which contain the vertex indices of vtx_idx.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

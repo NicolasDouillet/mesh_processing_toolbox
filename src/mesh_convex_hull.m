@@ -1,8 +1,8 @@
-function [T] = mesh_convex_hull(V)
+function T = mesh_convex_hull(V)
 %% mesh_convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
-% Author & support nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 %       [| | |]

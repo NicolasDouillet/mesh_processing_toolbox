@@ -2,7 +2,7 @@ function [V_out, T_out] = remove_flat_triangles(V_in, T_in)
 %% remove_flat_triangles : function to find then suppress
 % triangles containing twice or more the same vertex.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -31,7 +31,8 @@ function [V_out, T_out] = remove_flat_triangles(V_in, T_in)
 
 %% Body
 tic;
-[V_out,T_out] = remove_duplicated_vertices(V_in,T_in);
+tol = 1e3*eps;
+[V_out,T_out] = remove_duplicated_vertices(V_in,T_in,tol);
 C = num2cell(T_out,2);
 F = cell2mat(cellfun(@(r) numel(unique(r)) < 3,C,'un',0));
 T_out = T_out(~F,:);

@@ -3,7 +3,7 @@ function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_idx2suppr)
 % Working principle : in the triangulation the vertex
 % to decimate is replaced by its nearest neighbor.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments
@@ -30,6 +30,7 @@ function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_idx2suppr)
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
+
 
 %% Body
 vtx_idx2suppr = unique(vtx_idx2suppr);

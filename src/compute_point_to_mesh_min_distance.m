@@ -1,10 +1,10 @@
-function [min_dst] = compute_point_to_mesh_min_distance(P, V, T)
+function min_dst = compute_point_to_mesh_min_distance(P, V, T)
 %% compute_point_to_mesh_min_distance : function to compute
 % the minimum distance between a given 3D point and the mesh.
 % In case the point doesn't orthogonally project on a face/triangle,
 % the minimum distance to the point set is taken.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -68,7 +68,7 @@ fprintf('Point to mesh minimum distance computed in %d seconds.\n',toc);
 end % compute_point_to_mesh_min_distance
 
 
-%% Subfunction
+%% is_point_inside_triangle subfunction
 function isin = is_point_inside_triangle(C, P)
 
 

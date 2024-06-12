@@ -1,10 +1,10 @@
-function [T_out, TF_out] = fill_mesh_holes_with_texture(V, UV, T_in, TF_in, boundaries, txt_boundaries, max_perim_sz)
+function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundaries, txt_boundaries, max_perim_sz)
 %% fill_mesh_holes_with_texture : function to fill holes in one given mesh with texture.
 %
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author and support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments
@@ -12,8 +12,6 @@ function [T_out, TF_out] = fill_mesh_holes_with_texture(V, UV, T_in, TF_in, boun
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
 %       [| | |]
-%
-% - UV :
 %
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
@@ -123,13 +121,13 @@ for h = 1:nb_holes % loop on every holes
             if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end;                                    
             
             new_tgl = [mat_boundary_forward(min_angle_idx), mat_boundary(min_angle_idx), mat_boundary_backward(min_angle_idx)];                                                
-            T_out = add_triangles(new_tgl,T_out,size(V,1));
+            T_out = add_triangles(new_tgl,T_out);
             
             new_txt_tgl = [mat_txt_boundary_forward(min_angle_idx),... 
                            mat_txt_boundary(min_angle_idx),...         
                            mat_txt_boundary_backward(min_angle_idx)];  
             
-            TF_out = add_triangles(new_txt_tgl,TF_out,size(UV,1));
+            TF_out = add_triangles(new_txt_tgl,TF_out);
             
             % Update 2 vertex normals
             N(mat_boundary_backward(min_angle_idx),:) = mean(compute_face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_idx)),:)),1);

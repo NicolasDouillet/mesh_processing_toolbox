@@ -2,7 +2,7 @@ function [V_out, T_out] = clone_solve_nmnfld_vertices(V_in, T_in, nmnfld_vtx_idx
 %% clone_solve_nmnfld_vertices : function to virtually solve
 % non manifold vertex issues by cloning them.
 %
-% Author and support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -81,7 +81,7 @@ fprintf('duplicate_nmnfld_vertices request executed in %d seconds. %d clone vert
 end % clone_solve_nmnfld_vertices
 
 
-%% Subfunction
+%% back_map_triangle_sets_indices subfunction
 function [out_tgl_patches] = back_map_triangle_sets_indices(in_tgl_patches, tgl_idx_list)
 
 

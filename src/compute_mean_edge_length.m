@@ -1,6 +1,7 @@
 function mel = compute_mean_edge_length(V, T)
+%% compute_mean_edge_length : function to compute the average length of the mesh edges.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2023.
+% Author : nicolas.douillet (at) free.fr, 2024.
 %
 %
 % Input arguments
@@ -19,13 +20,9 @@ function mel = compute_mean_edge_length(V, T)
 % - mel, positive real scalar double, the mean edge length.
 
 
-% compute_component_mean_edge_length
-
+%% Body
 E = query_edges_list(T);
-
-% Remove duplicated edges
 E = unique(sort(E,2),'rows');
-
 mel = mean(sqrt(sum((V(E(:,2),:)- V(E(:,1),:)).^2,2)),1);
 
 

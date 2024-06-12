@@ -1,7 +1,10 @@
-function [V_out, T_out] = split_edge(V_in, T_in, E_set)
-%% split_edge : function to split edges. 
+function [V_out, T_out] = split_edge(V_in, T_in, edge2split)
+%% split_edge : function to split one ore more edges of the mesh into two edges.
+% Process and take one edge at a time in input.
+% Preserves normals orientation.
+% For 2D manifold meshes only.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2021-2023.
+% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
 % Input arguments
@@ -14,9 +17,9 @@ function [V_out, T_out] = split_edge(V_in, T_in, E_set)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
-%           [|   |]      
-% - E_set = [e1 e2], positive integer matrix double, the set of the edges to split. size(E_set) = [nb_edges_to_split, 2].
-%           [|   |]
+%                [|   |]      
+% - edge2split = [e1 e2], positive integer matrix double, the set of the edges to split. size(edge2split) = [1, 2].
+%                [|   |]
 %
 %
 % Output arguments
@@ -25,36 +28,62 @@ function [V_out, T_out] = split_edge(V_in, T_in, E_set)
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],
 %           [  |     |     |  ]
 %
-%           where nb_output_vertices = nb_input_vertices + number of edges in E_set.
+%           where nb_output_vertices = nb_input_vertices + 1.
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
 %
-%           with nb_output_triangles = nb_input_triangles + number of edges in E_set.
+%           with nb_output_triangles = nb_input_triangles + 2.
 
 
 %% Body
+V_out = V_in;
+T_out = T_in;
 
-% Create new vertices
-new_vtx_coord = 0.5 * (V_in(E_set(:,1),:) + V_in(E_set(:,2),:));
-[V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_in);
+% Create and add new vertex
+new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:));
+[V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
 
-% Create new triangles
-tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_in,E_set));
+% Find triangles and edge opposite vertices
+tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split(1,:)));
 
-mask = all(bsxfun(@ne,T_in(tgl_idx_list,:),permute(E_set,[1 3 2])),3);
-At = T_in(tgl_idx_list,:).';
-summit_vtx_idx_list = reshape(At(mask.'),[],size(T_in(tgl_idx_list,:),1)).';
+% Retrieve originally oriented edge in triangles
+orientedg = zeros(numel(tgl_idx_list),2);
+op_vtx    = zeros(1,numel(tgl_idx_list)); % opposite vertex
 
-new_tgl_set1 = cat(2,summit_vtx_idx_list,E_set(:,1),new_vtx_id');
-new_tgl_set2 = cat(2,summit_vtx_idx_list,new_vtx_id',E_set(:,2));
+for t = 1:numel(tgl_idx_list)
+    
+    tgl = T_out(tgl_idx_list(t),:);
+    edgpos = bitor(tgl == edge2split(1,1),tgl == edge2split(1,2));
+    
+    if isequal(edgpos,logical([1 0 1]))
+        
+        orientedg(t,:) = fliplr(tgl(edgpos));
+        
+    else
+        
+        orientedg(t,:) = tgl(edgpos);
+        
+    end
+    
+    op_vtx(1,t) = tgl(~edgpos);
+    
+end
 
-% Add new triangles
-T_out = add_triangles(new_tgl_set1,T_in,size(V_out,1));
-T_out = add_triangles(new_tgl_set2,T_out,size(V_out,1));
+for p = 1:numel(op_vtx)
+    
+    % Create new triangles
+    new_tgl_set1 = cat(2,orientedg(p,1),new_vtx_id,op_vtx(p));
+    new_tgl_set2 = cat(2,new_vtx_id,orientedg(p,2),op_vtx(p));
+    
+    % Add new triangles
+    T_out = add_triangles(new_tgl_set1,T_out);
+    T_out = add_triangles(new_tgl_set2,T_out);
+    
+end
 
-% Remove old triangles
+% Remove old splited triangles
 T_out  = remove_triangles(T_out,tgl_idx_list,'indices');
 
 

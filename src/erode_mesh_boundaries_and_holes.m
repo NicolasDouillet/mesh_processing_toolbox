@@ -2,7 +2,7 @@ function [V_out, T_out] = erode_mesh_boundaries_and_holes(V_in, T_in, nb_it, mod
 %% erode_mesh_boundaries_and_holes : function to erode
 % mesh boundaries and holes by vertex and triangle removal.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
@@ -35,10 +35,10 @@ function [V_out, T_out] = erode_mesh_boundaries_and_holes(V_in, T_in, nb_it, mod
 %           [  |      |      |   ]
 
 
-%% Body
 tic
 
-% Input parsing and defaultvalues
+
+%% Input parsing and defaultvalues
 if nargin < 4
     
     mode = 'smooth';
@@ -51,6 +51,8 @@ if nargin < 4
     
 end
 
+
+%% Body
 V_out = V_in;
 T_out = T_in;
 

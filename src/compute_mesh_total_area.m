@@ -1,7 +1,7 @@
-function [mesh_area] = compute_mesh_total_area(V, T)
+function mesh_area = compute_mesh_total_area(V, T)
 %% compute_mesh_total_area : function to compute the area of the whole mesh, in area unit.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

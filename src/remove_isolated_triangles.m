@@ -3,7 +3,7 @@ function [V_out, T_out] = remove_isolated_triangles(V_in, T_in, rm_isl_vtx)
 % (triangles which don't share any edge with the other triangles of the
 % mesh (i.e : no neighbor triangle).
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

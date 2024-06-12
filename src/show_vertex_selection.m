@@ -2,7 +2,7 @@ function [] = show_vertex_selection(V, T, V_subset_idx)
 %% show_vertex_selection : function to highlight a
 % selection of vertices on the mesh.
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
