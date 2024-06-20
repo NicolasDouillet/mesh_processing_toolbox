@@ -1,4 +1,4 @@
-function [V_out, T_out] = oversample_mesh(V_in, T_in)
+function [V_out, T_out] = oversample_mesh(V_in, T_in, mode)
 %% oversample_mesh : function to oversample a mesh.
 %
 % Author : nicolas.douillet (at) free.fr, 2023-2024.
@@ -15,6 +15,9 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in)
 %          [  |     |     |  ]
 %
 %
+% - mode : charachter string in the set {'default','DEFAULT','midedge','MIDEDGE','centre','CENTRE'}, the oversampling mode.
+%
+%
 % Output arguments
 %
 %           [  |     |     |  ]
@@ -29,31 +32,53 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in)
 % Keep faces orientation
 
 
-%% Body
-V_out = V_in;
-T_out = zeros(0,3);
+%% Input parsing
+if nargin < 3
+   
+    mode = 'midedge';
+    
+end
 
+
+%% Body
 nb_vtx = size(V_in,1);
 nb_tgl = size(T_in,1);
 
 V_new  = zeros(0,3);
 T_new  = zeros(0,3);
 
-for k = 1:nb_tgl
+if strcmpi(mode,'midedge') || strcmpi(mode,'default')
     
-    E = combnk(T_in(k,:),2);
+    for k = 1:nb_tgl
+        
+        E = combnk(T_in(k,:),2);
+        
+        V_new = cat(1,V_new,0.5*(V_in(E(:,2),:) + V_in(E(:,1),:))); % middle of each edge
+        
+        T_new = cat(1,T_new, [nb_vtx+3*k-2, nb_vtx+3*k, nb_vtx+3*k-1],...
+                             [T_in(k,1), nb_vtx+3*k-2, nb_vtx+3*k-1],...
+                             [T_in(k,2), nb_vtx+3*k,   nb_vtx+3*k-2],...
+                             [T_in(k,3), nb_vtx+3*k-1, nb_vtx+3*k]);
+        
+    end
     
-    V_new = cat(1,V_new,0.5*(V_in(E(:,2),:) + V_in(E(:,1),:))); % middle of each edge
+else % if strcmpi(mode,'centre')
     
-    T_new = cat(1,T_new, [nb_vtx+3*k-2, nb_vtx+3*k, nb_vtx+3*k-1],...
-                         [T_in(k,1), nb_vtx+3*k-2, nb_vtx+3*k-1],...
-                         [T_in(k,2), nb_vtx+3*k,   nb_vtx+3*k-2],...
-                         [T_in(k,3), nb_vtx+3*k-1, nb_vtx+3*k]);
+    
+    for k = 1:nb_tgl
+        
+        V_new = cat(1,V_new,mean(V_in(T_in(k,:),:),1)); % isobarycentre of each triangle
+        
+        T_new = cat(1,T_new,[T_in(k,1) T_in(k,2) nb_vtx+k],...
+                            [T_in(k,2) T_in(k,3) nb_vtx+k],...
+                            [T_in(k,3) T_in(k,1) nb_vtx+k]);
+        
+    end
     
 end
 
-V_out = cat(1,V_out,V_new);
-T_out = cat(1,T_out,T_new); % do not use add_triangles since no risk of duplicata here
+V_out = cat(1,V_in,V_new);
+T_out = T_new;
 
 tol = 1e3*eps;
 [V_out,T_out] = remove_duplicated_vertices(V_out,T_out,tol);

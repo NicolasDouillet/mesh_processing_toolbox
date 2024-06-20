@@ -26,7 +26,7 @@ Cv = convhull(Vc(:,1),Vc(:,2),Vc(:,3));
 % For random point sets only
 [Vc,Cv] = remove_vertices(setdiff(1:size(Vc,1),unique(Cv(:))),Vc,Cv,'indices');
 
-plot_mesh(Vc,Cv);
+select_face_normals(Vc,Cv);
 axis equal;
 view(3);
 
@@ -42,6 +42,6 @@ else
     
 end
 
-plot_mesh(V,Qh), hold on;
+select_face_normals(V,Qh), hold on;
 axis equal;
 view(3);

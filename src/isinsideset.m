@@ -5,6 +5,8 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 %
 % Author and support nicolas.douillet (at) free.fr, 2023-2024.
 %
+% TODO : + option boundaries included / excluded*
+%
 %
 % Input arguments
 %

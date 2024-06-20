@@ -19,8 +19,9 @@ filenames = {'tetrahedron';...
              'Gargoyle_3k';...                        
              };
 
-filename = strcat(cell2mat(filenames(4,1)),'.mat');         
+id = 4;         
+filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 
-[V,T] = oversample_mesh(V,T);
-select_face_normals(V,T);
+[V,T] = oversample_mesh(V,T); % 'default' / midedge or 'centre'
+plot_mesh(V,T);

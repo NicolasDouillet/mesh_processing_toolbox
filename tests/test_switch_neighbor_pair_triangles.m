@@ -15,9 +15,9 @@ V = cat(1,I,J,K,O);
 T = [4 1 2;...
      4 2 3];
  
-plot_mesh(V,T); 
+select_face_normals(V,T); 
 
 tid1 = 1;
 tid2 = 2;
 T = switch_neighbor_pair_triangles(T,tid1,tid2);
-plot_mesh(V,T); 
+select_face_normals(V,T); 
