@@ -1,4 +1,4 @@
-function [V_out, T_out] = oversample_mesh(V_in, T_in, mode)
+function [V_out, T_out] = oversample_mesh(V_in, T_in, mode, tgl_idx)
 %% oversample_mesh : function to oversample a mesh.
 %
 % Author : nicolas.douillet (at) free.fr, 2023-2024.
@@ -14,6 +14,7 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in, mode)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
+% - tgl_idx : row vector double of positive integers, the index vector of the triangles to oversample.
 %
 % - mode : charachter string in the set {'default','DEFAULT','midedge','MIDEDGE','centre','CENTRE'}, the oversampling mode.
 %
@@ -29,27 +30,34 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in, mode)
 %           [  |      |      |   ]
 %
 %
-% Keep faces orientation
+% Preserves face normals orientation
 
+
+nb_tgl = size(T_in,1);
 
 %% Input parsing
-if nargin < 3
-   
-    mode = 'midedge';
+if nargin < 4
+    
+    tgl_idx = 1:nb_tgl;
+    
+    if nargin < 3
+        
+        mode = 'midedge';
+        
+    end
     
 end
 
 
 %% Body
 nb_vtx = size(V_in,1);
-nb_tgl = size(T_in,1);
 
 V_new  = zeros(0,3);
 T_new  = zeros(0,3);
 
 if strcmpi(mode,'midedge') || strcmpi(mode,'default')
     
-    for k = 1:nb_tgl
+    for k = tgl_idx
         
         E = combnk(T_in(k,:),2);
         
@@ -65,7 +73,7 @@ if strcmpi(mode,'midedge') || strcmpi(mode,'default')
 else % if strcmpi(mode,'centre')
     
     
-    for k = 1:nb_tgl
+    for k = tgl_idx
         
         V_new = cat(1,V_new,mean(V_in(T_in(k,:),:),1)); % isobarycentre of each triangle
         
@@ -78,6 +86,7 @@ else % if strcmpi(mode,'centre')
 end
 
 V_out = cat(1,V_in,V_new);
+T_new = cat(1,T_new,T_in(setdiff(1:size(T_in,1),tgl_idx),:));
 T_out = T_new;
 
 tol = 1e3*eps;

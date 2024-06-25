@@ -61,7 +61,7 @@ else % if numel(hull_vtx_idx) < 3
     
 end
 
-N = compute_face_normals(V_in(hull_vtx_idx,:),T,'norm');
+N = face_normals(V_in(hull_vtx_idx,:),T,'norm');
     
 % Avoid initial flat tetrahedron cases (octahedron example)
 while isequal(N,repmat(N(1,:),[size(N,1),1]))
@@ -75,7 +75,7 @@ while isequal(N,repmat(N(1,:),[size(N,1),1]))
         
     end
         
-    N = compute_face_normals(V_in(hull_vtx_idx,:),T,'norm');
+    N = face_normals(V_in(hull_vtx_idx,:),T,'norm');
     
 end
 
@@ -85,7 +85,7 @@ hull_vtx_idx = hull_vtx_idx(1:nb_t);
 
 T = nchoosek(hull_vtx_idx,3);
 G = mean(V_in(hull_vtx_idx,:),1);
-N = compute_face_normals(V_in,T,'norm');
+N = face_normals(V_in,T,'norm');
 
 % Orient normals outward
 Gt = cell2mat(cellfun(@(r) mean(V_in(r,:),1),num2cell(T,2),'un',0));
@@ -143,15 +143,18 @@ while nb_new_tgl
     
 end
 
+% To retrieve the original point set
+V_out = cat(1,V_out,setdiff(V_in,V_out,'rows'));
+
 fprintf('Mesh quick hull computed in %ds.\n',toc);
 
 
 end % quick_hull
 
 
-% grow_tetrahedron subfunction
+%% grow_tetrahedron subfunction
 function [T, N, new_vtx_idx] = grow_tetrahedron(V, T, N, tgl_idx, epsilon)
-%% grow_tetrahedron : function to find one
+% grow_tetrahedron : function to find one
 % new vertex belonging to the convex hull
 % for one given triangle, to create the three
 % newborn triangles and erase the previous one.
@@ -176,7 +179,7 @@ if find(abs(d) > epsilon)
                 
         % Add 3 new triangles and face normals
         T = cat(1,T,new_tgl1,new_tgl2,new_tgl3);
-        new_face_normals = compute_face_normals(V,T(end-2:end,:),'norm');
+        new_face_normals = face_normals(V,T(end-2:end,:),'norm');
         N = cat(1,N,new_face_normals);           
         
         % Remove one triangle and its normal
@@ -192,9 +195,9 @@ end
 end % grow_tetrahedron
 
 
-% detect_concavity subfunction
-function [isconcave] = detect_concavity(V, T, N, tgl_pair_idx, epsilon)
-%% detect_concavity : function to detect
+%% detect_concavity subfunction
+function isconcave = detect_concavity(V, T, N, tgl_pair_idx, epsilon)
+% detect_concavity : function to detect
 % concave triangle pair configurations.
 
 
@@ -219,9 +222,9 @@ isconcave = sign(dot(n1+n2,H2-H1,2)) > epsilon;
 end % detect_concavity
 
 
-% flip_two_ngb_triangles subfunction
+%% flip_two_ngb_triangles subfunction
 function [T, N, edg_list] = flip_two_ngb_triangles(tgl_pair_idx, T, V, N, edg_list)
-%% flip_two_ngb_triangles : function to flip
+% flip_two_ngb_triangles : function to flip
 % two triangles sharing one common edge.
 
 
@@ -259,7 +262,7 @@ T = add_triangles(Tb,T);
 
 % Remove 2 triangles and their face normals
 T(tgl_pair_idx,:) = [];
-new_face_normals = compute_face_normals(V,T(end-1:end,:),'norm');
+new_face_normals = face_normals(V,T(end-1:end,:),'norm');
 N = cat(1,N,new_face_normals);
 N(tgl_pair_idx,:) = [];
 edg_list = cat(1,edg_list,sort(new_cmn_edg));
@@ -269,9 +272,9 @@ edg_list(all(bsxfun(@eq,edg_list,sort(cmn_edg)),2),:) = [];
 end % flip_two_ngb_triangles
 
 
-% remove_inside_pts subfunction
+%% remove_inside_pts subfunction
 function [V_out, T] = remove_inside_pts(V_in, T, epsilon)
-%% remove_inside_pts : function to remove points inside the convex hull
+% remove_inside_pts : function to remove points inside the convex hull
 % during its computational iterations to save cpu time.
 
 

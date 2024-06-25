@@ -8,8 +8,8 @@ addpath('../data/');
 
 load('mesh_piece_with_texture.mat');
 
-boundaries = select_holes_and_boundary(V,T);
-boundary_edges = cell2mat(boundaries(1));
+boundary = select_mesh_boundary_and_holes(V,T);
+boundary_edges = cell2mat(boundary(1));
 boundary_edges = reshape(circshift(repelem(boundary_edges,2),1)',[2,numel(boundary_edges)])';
 
 E = query_edges_list(T,'raw');

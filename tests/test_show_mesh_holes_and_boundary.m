@@ -9,5 +9,5 @@ addpath('../data');
 % load('meshed_mtlb_logo.mat');
 load('kitten_components.mat');
 
-show_mesh_boundaries_and_holes(V,T);
+show_mesh_boundary_and_holes(V,T);
 axis equal; % square;

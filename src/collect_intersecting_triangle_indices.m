@@ -53,7 +53,7 @@ for k = 1:size(E1,1)
     
     u1 = diff(V(E1(k,:),:),1,1);
     N1 = V(E1(k,1),:);
-    [I1,rc1] = line_plane_intersection(u1,N1,n2,V(T2(1,1),:),false);
+    [I1,rc1] = line_plane_intersection(u1,N1,n2,V(T2(1,1),:));
     
     % Convex set corresponding to T2
     C2 = V(T2,:);
@@ -79,7 +79,7 @@ for k = 1:size(E2,1)
     
     u2 = diff(V(E2(k,:),:),1,1);
     N2 = V(E2(k,1),:);
-    [I2,rc2] = line_plane_intersection(u2,N2,n1,V(T1(1,1),:),false);
+    [I2,rc2] = line_plane_intersection(u2,N2,n1,V(T1(1,1),:));
     
     % Convex set corresponding to T1
     C1 = V(T1,:);

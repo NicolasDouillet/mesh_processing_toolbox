@@ -1,11 +1,11 @@
 function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
-% isinsideset : function to compute if a point belong to the inside of a
+%% isinsideset : function to compute if a point belong to the inside of a
 % one component given closed watertight 2D-manifold triangulated surface / set.
 % Boundary is excluded.
 %
 % Author and support nicolas.douillet (at) free.fr, 2023-2024.
 %
-% TODO : + option boundaries included / excluded*
+% TODO : + option boundary included / excluded*
 %
 %
 % Input arguments
@@ -34,10 +34,8 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % - isin : logical vector, the resulting boolean vector.
 
 
-addpath('C:\Users\Nicolas\Desktop\TMW_contributions\mesh_processing_toolbox\src');
 
-
-% Input parsing
+%% Input parsing
 assert(nargin > 2,'Not enought input arguments.');
 assert(nargin < 6,'Too many input arguments.');
 assert(isequal(size(V,2),size(P,2),3),'All the inputs must have the same number of colums.');
@@ -85,7 +83,7 @@ assert(isequal(size(V,2),size(P,2),3),'All the inputs must have the same number 
 % end
 
 
-% Body
+%% Body
 Gi = zeros(size(T));
 
 % Compute face isobarycentres

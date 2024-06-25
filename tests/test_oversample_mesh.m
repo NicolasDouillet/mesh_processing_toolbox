@@ -25,3 +25,8 @@ load(filename);
 
 [V,T] = oversample_mesh(V,T); % 'default' / midedge or 'centre'
 plot_mesh(V,T);
+
+% Triangle subset only
+load(filename);
+[V,T] = oversample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
+plot_mesh(V,T);

@@ -1,4 +1,4 @@
-function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundaries, txt_boundaries, max_perim_sz)
+function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundary, txt_boundary, max_perim_sz)
 %% fill_mesh_holes_with_texture : function to fill holes in one given mesh with texture.
 %
 % Working principle : without vertex addition. If the surface is opened,
@@ -19,9 +19,9 @@ function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundari
 %
 % - TF_in : input triangle texture.
 %
-% - boundaries : cell array of positive integer row vectors double (vertex indices), the boundaries and/or holes of the mesh.
+% - boundary : cell array of positive integer row vectors double (vertex indices), the boundary and/or holes of the mesh.
 %
-% - txt_boundaries : 
+% - txt_boundary : 
 %
 % - max_perim_sz : real scalar double, the maximum perimeter size admitted for the holes to fill.
 %
@@ -54,23 +54,23 @@ edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*sqrt(sum(cross_prod.^2,2)),dot
 ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*sqrt(sum(cross(vertex_normals,cross_prod).^2,2)),dot(vertex_normals,cross_prod,2));
 
 
-nb_holes = size(boundaries,1);
+nb_holes = size(boundary,1);
 T_out = T_in;
 TF_out = TF_in;
 nb_added_tgl = 0;
-N = compute_vertex_normals(V,T_out,1,'norm');
+N = vertex_normals(V,T_out,1,'norm');
 
 
 for h = 1:nb_holes % loop on every holes                        
     
-    mat_boundary     = cell2mat(boundaries(h,:));
-    mat_txt_boundary = cell2mat(txt_boundaries(h,:));
+    mat_boundary     = cell2mat(boundary(h,:));
+    mat_txt_boundary = cell2mat(txt_boundary(h,:));
     
     bound_nb_vtx = numel(mat_boundary);
     
     if bound_nb_vtx <= max_perim_sz % current hole perimeter (bound_nb_vtx) smaller than the max defined                                                                              
         
-        bov = compute_boundary_orientation_vector(mat_boundary,V);                                
+        bov = boundary_orientation_vector(mat_boundary,V);                                
         
         while bound_nb_vtx > 2 % smallest hole is a triangle (3 edges)                                                                                       
             
@@ -130,8 +130,8 @@ for h = 1:nb_holes % loop on every holes
             TF_out = add_triangles(new_txt_tgl,TF_out);
             
             % Update 2 vertex normals
-            N(mat_boundary_backward(min_angle_idx),:) = mean(compute_face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_idx)),:)),1);
-            N(mat_boundary_forward(min_angle_idx),:)  = mean(compute_face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_forward(min_angle_idx)),:)),1);   
+            N(mat_boundary_backward(min_angle_idx),:) = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_idx)),:)),1);
+            N(mat_boundary_forward(min_angle_idx),:)  = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_forward(min_angle_idx)),:)),1);   
             
             nb_added_tgl = nb_added_tgl + 1;
             mat_boundary(min_angle_idx) = [];
@@ -140,8 +140,8 @@ for h = 1:nb_holes % loop on every holes
             
         end
                    
-        boundaries(h,:) = {mat_boundary}; % empty if less than 3 vertices
-        txt_boundaries(h,:) = {mat_txt_boundary};
+        boundary(h,:) = {mat_boundary}; % empty if less than 3 vertices
+        txt_boundary(h,:) = {mat_txt_boundary};
         
     end
         
@@ -153,12 +153,12 @@ fprintf('%d hole(s) filled by adding %d triangles in %d seconds.\n',nb_holes,nb_
 end % fill_mesh_holes_with_texture
 
 
-%% compute_boundary_orientation_vector subfunction
-function bov = compute_boundary_orientation_vector(mat_boundary,V)
+%% boundary_orientation_vector subfunction
+function bov = boundary_orientation_vector(mat_boundary,V)
 
 nb_edg = numel(mat_boundary); 
 
 bov = cross(mean(V(mat_boundary(1,2:floor(0.5*nb_edg)),:)-repmat(V(mat_boundary(1,1),:),[floor(0.5*nb_edg)-1,1]),1),...
             mean(V(mat_boundary(1,ceil(0.5*nb_edg):end),:)-repmat(V(mat_boundary(1,1),:),[nb_edg-ceil(0.5*nb_edg)+1,1]),1),2);
 
-end % compute_boundary_orientation_vector
+end % boundary_orientation_vector

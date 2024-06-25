@@ -1,6 +1,6 @@
 function isin = isPointin3Dtriangle(A, B, C, P) % row vectors 1 x 3 % is3DPointonPlane(n, M, P)
 %% isPointin3Dtriangle : function to check if a point P of the 3D space is
-% included in a given ABC triangle, including its boundaries.
+% included in a given ABC triangle, including its boundary.
 %
 % Author : nicolas.douillet (at) free.fr, 2023-2024.
 

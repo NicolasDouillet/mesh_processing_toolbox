@@ -28,5 +28,5 @@ for i = 1:size(T,1)
         
 end
 
-T = reorient_all_faces_coherently(V,T); % works ok
+T = reorient_all_faces_coherently(V,T);
 select_face_normals(V,T);

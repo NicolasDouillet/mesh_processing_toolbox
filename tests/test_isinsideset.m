@@ -27,7 +27,7 @@ load(filename);
 % [V,T] = remove_non_manifold_vertices(V,T);
 % T     = remove_non_manifold_triangles(T);
 % T     = reorient_all_faces_coherently(V,T);
-% ni    = compute_vertex_normals(V,T);
+% ni    = vertex_normals(V,T);
 % select_face_normals(V,T); % to check normals orientation
 
 
@@ -38,7 +38,7 @@ ni = zeros(nb_vtx,3);
 
 for i = 1:nb_vtx    
     tgl_idx_list = find(sum(ismember(T,i),2));
-    vtx_ngb_face_normals = compute_face_normals(V,T(tgl_idx_list,:));
+    vtx_ngb_face_normals = face_normals(V,T(tgl_idx_list,:));
     ni(i,:) = mean(vtx_ngb_face_normals,1);        
 end
 

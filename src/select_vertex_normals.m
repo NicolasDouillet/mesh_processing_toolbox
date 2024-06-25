@@ -51,7 +51,7 @@ end
 
 
 %% Body
-N = compute_vertex_normals(V,T,ngb_degre,mode);
+N = vertex_normals(V,T,ngb_degre,mode);
 
 if option_display
     

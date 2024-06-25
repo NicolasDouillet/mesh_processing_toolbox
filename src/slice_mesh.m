@@ -99,7 +99,7 @@ if ~isempty(itx_edg_lst)
         
         % 1st edge special case processing
         % first one not already in srt_itx_edg_lst
-        % Detect edges belonging to boundaries of the mesh
+        % Detect edges belonging to boundary of the mesh
         if ~isempty(srt_itx_edg_lsts)
             
             first_row_idx = find(~ismember(itx_edg_lst,cell2mat(srt_itx_edg_lsts),'rows'),1,'first');

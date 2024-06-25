@@ -1,6 +1,6 @@
 %% mesh processing toolbox
 %
-% Author & support : nicolas.douillet (at) free.fr, 2020-2023.
+% Author & support : nicolas.douillet (at) free.fr, 2020-2024.
 
 
 
@@ -23,28 +23,28 @@ load('kitten_components.mat');
 show_mesh_components(V,components);
 view(180,0);
 
-%% Example #4 : boundaries and holes selection
+%% Example #4 : boundary and holes selection
 load('kitten_holed.mat');
 nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
 [V,T] = clone_solve_nmnfld_vertices(V,T,nmnfld_vtx_idx);
-% boundaries = select_mesh_boundaries_and_holes(V,T);
+% boundary = select_mesh_boundary_and_holes(V,T);
 % view(180,0);
 
 %% Example #5 : hole filling
 [V,T] = remove_non_manifold_vertices(V,T);
-boundaries = select_mesh_boundaries_and_holes(V,T);
+boundary = select_mesh_boundary_and_holes(V,T);
 view(0,0);
 
 max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
+T = fill_mesh_holes(V,T,boundary,max_perim_sz);
 plot_mesh(V,T);
 view(0,0);
 
 %% Example #6 : curvature
 load('kitten.mat');
 ngb_degre = 2;
-N = compute_vertex_normals(V,T,ngb_degre,'raw');
-curvature = compute_mesh_curvature(V,T,N,ngb_degre,'mean');
+N = vertex_normals(V,T,ngb_degre,'raw');
+curvature = mesh_curvature(V,T,N,ngb_degre,'mean');
 show_mesh_curvature(V,T,curvature);
 view(180,0);
 
@@ -64,7 +64,7 @@ view(180,0);
 % plot_mesh(V,T), shading interp, camlight left;
 % view(-90,0);
 % 
-% N = compute_vertex_normals(V,T,2);
+% N = vertex_normals(V,T,2);
 % nb_iterations = 1;
 % ngb_degre = 1;
 % V = smooth_mesh(V,T,nb_iterations,ngb_degre);
@@ -97,20 +97,20 @@ view(180,0);
 %% Example #10 : boundary smoothing
 load('kitten_components.mat');
 
-show_mesh_boundaries_and_holes(V,T);
+show_mesh_boundary_and_holes(V,T);
 shading interp;
 camlight left;
 alpha(0.5);
 view(180,0);
 axis off;
 
-boundaries = detect_mesh_boundaries_and_holes(T);
+boundary = detect_mesh_boundary_and_holes(T);
 
 nb_iterations = 2;
 ngb_degre = 6;
-V_out = smooth_mesh_boundaries_and_holes(V,boundaries,nb_iterations,ngb_degre);
+V_out = smooth_mesh_boundary_and_holes(V,boundary,nb_iterations,ngb_degre);
 
-show_mesh_boundaries_and_holes(V_out,T);
+show_mesh_boundary_and_holes(V_out,T);
 shading interp;
 camlight left;
 alpha(0.5);

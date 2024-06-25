@@ -12,7 +12,7 @@ mesh processing, you can just set Z to zeros vector.
 
 %% HELP
 
-A basic help is included in the header of each source file. It especially includes input and output arguments precise descriptions (role, class, size, etc).
+A basic help is included in the header of each source file. It especially includes the function role and its input and output arguments precise descriptions (role, class, size, etc).
 Just like for any Matlab (R) function, typewrite "help my_mesh_processing_file" in Matlab console to access it.
 
 
@@ -82,8 +82,9 @@ However it is still possible to remove them a posteriori with the function remov
 Curvature computation algorithm is a homemade temporary version.
 It is mostly efficient on regular meshes (where all faces have more or less the same size, and all the vertices have the same valence).
 
-The two convex hull algorithms are mostly here for the demo and pedagogic purposes.
-They are indeed slower than Matlab (R) compiled binaries used for th convex hull.
+The convex hull / Gift wrapping / Jarvis algorithm is mostly here for the demo and pedagogic purposes.
+It is indeed slower than Matlab (R) compiled binaries used for the convex hull (convhull). It may also contain some self intersecting triangles, and output triangulation is not coherently oriented.
+However, the second algorithm for the convex hull, quickhull, algorithm performs well. 
 
 The function dual_of_trimesh mostly works on quasi planar triangular meshes.
 
@@ -114,4 +115,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 10 / 04 /2024.
+Last update : 25 / 06 /2024.

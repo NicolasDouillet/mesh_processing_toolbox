@@ -29,11 +29,11 @@ tic;
 assert(nargin > 1,'Error, not enough input arguments.');
 
 [~,T] = remove_isolated_triangles(V,T,true);
-boundaries = detect_mesh_boundaries_and_holes(T);
+boundary = detect_mesh_boundary_and_holes(T);
 
 if strcmpi(surf_type,'closed')
     
-    b = isempty(boundaries);
+    b = isempty(boundary);
     
     if b
         
@@ -41,13 +41,13 @@ if strcmpi(surf_type,'closed')
         
     else
         
-        fprintf('%d hole(s) detected on a closed surface. Mesh is not watertight.\n',size(boundaries,1));
+        fprintf('%d hole(s) detected on a closed surface. Mesh is not watertight.\n',size(boundary,1));
         
     end
     
 elseif strcmpi(surf_type,'opened')
     
-    b = size(boundaries,1) < 2;
+    b = size(boundary,1) < 2;
     
     if b
         
@@ -55,7 +55,7 @@ elseif strcmpi(surf_type,'opened')
         
     else
         
-        fprintf('%d hole(s) (>1) detected on an opened surface. Mesh is not watertight.\n',size(boundaries,1));
+        fprintf('%d hole(s) (>1) detected on an opened surface. Mesh is not watertight.\n',size(boundary,1));
         
     end
     
