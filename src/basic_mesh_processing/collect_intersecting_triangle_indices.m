@@ -59,8 +59,8 @@ for k = 1:size(E1,1)
     C2 = V(T2,:);
     
     if ~isempty(I1) && ~ismember(I1,C2,'rows')
-        
-        isin1 = is_point_inside_triangle(C2,I1);
+               
+        isin1 = isPointin3Dtriangle(C2(1,:),C2(2,:),C2(3,:),I1);
         
         if (rc1 == 1 || rc1 == 2) && isin1 % there exists at least one intersection point in T2
             
@@ -85,8 +85,8 @@ for k = 1:size(E2,1)
     C1 = V(T1,:);
     
     if ~isempty(I2) && ~ismember(I2,C1,'rows')
-        
-        isin2 = is_point_inside_triangle(C1,I2);
+                
+        isin2 = isPointin3Dtriangle(C1(1,:),C1(2,:),C1(3,:),I2);
         
         if (rc2 == 1 || rc2 == 2) && isin2 % there exists at least one intersection point in T1
             
@@ -102,20 +102,3 @@ end
 
 
 end % collect_intersecting_triangle_indices
-
-
-%% is_point_inside_triangle subfunction
-function isin = is_point_inside_triangle(C, P)
-
-
-comb = num2cell([1 2; 2 3; 3 1],2); % for triangles only
-V = C - repmat(P,[size(C,1),1]);
-
-outward_centre_angles = cellfun(@(r) atan2d(sqrt(sum(cross(V(r(1,1),:),V(r(1,2),:),2).^2,2)),...
-                                     dot(V(r(1,1),:),V(r(1,2),:),2)),comb); 
-                                 
-angle_sum = sum(outward_centre_angles);
-isin = round(angle_sum) == 360;
-
-
-end % is_point_inside_triangle

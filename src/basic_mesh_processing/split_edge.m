@@ -1,6 +1,9 @@
 function [V_out, T_out] = split_edge(V_in, T_in, edge2split)
 %% split_edge : function to split one ore more edges of the mesh into two edges.
 % Process and take one edge at a time in input.
+% Beware of updating edge2split if you split edges in a loop,
+% since the triangulation and then the indices will change at
+% each new iteration.
 % Preserves normals orientation.
 % For 2D manifold meshes only.
 %

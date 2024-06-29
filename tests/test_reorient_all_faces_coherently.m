@@ -1,8 +1,8 @@
 % test reorient_all_faces_coherently
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

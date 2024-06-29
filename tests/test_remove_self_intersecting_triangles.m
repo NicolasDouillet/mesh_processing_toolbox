@@ -1,8 +1,8 @@
 % test remove_self_intersecting_triangles
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

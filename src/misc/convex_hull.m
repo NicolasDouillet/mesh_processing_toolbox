@@ -1,5 +1,5 @@
 function T = convex_hull(V)
-% convex_hull : function to compute the 3D convex hull of a given
+%% convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
@@ -17,18 +17,7 @@ function T = convex_hull(V)
 %       [ |  |  |]
 
 
-% Fonctionnement ok, mais 2 pb subsistent :
-%
-% - Possibles auto-intersections de triangles
-% - Orientation des normales non cohérente
-
-% -> L'ordre de parcours des arètes est important.
-% -> Tourner dans un sens (arète droite par exemple) tant qu'on peut, pour
-% créer une nappe, sinon, dès qu'on ne peut plus, tourner dans l'autre sens
-% tant qu'on peut
-
-
-% Body
+%% Body
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
@@ -102,7 +91,7 @@ fprintf('Mesh convex hull computed in %ds.\n',toc);
 end % convex_hull
 
 
-% find_nxt_vertex subfunction
+%% find_nxt_vertex subfunction
 function [new_tgl,nxt_vtx_idx] = find_nxt_vertex(edge, V, nb_vtx, epsilon)
 % find_nxt_vertex : function to find the next vertices in the algorithm
 % given a current edge. These candidate new vertices are the ones which

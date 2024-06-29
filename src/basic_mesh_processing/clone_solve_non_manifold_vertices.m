@@ -1,6 +1,6 @@
 function [V_out, T_out] = clone_solve_non_manifold_vertices(V_in, T_in, nmnfld_vtx_idx)
 %% clone_solve_non_manifold_vertices : function to virtually solve
-% non manifold vertex issues by cloning them.
+% non manifold vertex issues by cloning them. May create flat triangles.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 %

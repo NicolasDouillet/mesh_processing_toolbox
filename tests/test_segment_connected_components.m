@@ -1,8 +1,8 @@
 % test segment_connected_components
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

@@ -1,5 +1,5 @@
-function neighbor_list = query_every_vertices_neighbor_indices(T, ngb_degre, nb_vtx)
-%% query_every_vertices_neighbor_indices : function to find the indices list
+function neighbor_list = find_every_vertices_neighbor_indices(T, ngb_degre, nb_vtx)
+%% find_every_vertices_neighbor_indices : function to find the indices list
 % of neighbor vertices of every vertices the triangulation T refers to.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
@@ -60,7 +60,7 @@ if ngb_degre > 1
     
 end
 
-% fprintf('query_every_vertices_neighbor_indices request executed in %d seconds.\n',toc);
+% fprintf('find_every_vertices_neighbor_indices request executed in %d seconds.\n',toc);
 
 
-end % query_every_vertices_neighbor_indices
+end % find_every_vertices_neighbor_indices

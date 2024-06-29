@@ -1,8 +1,9 @@
 % test convex_hull
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+% addpath();
+addpath(genpath('../src'));
 addpath('../data');
 
 

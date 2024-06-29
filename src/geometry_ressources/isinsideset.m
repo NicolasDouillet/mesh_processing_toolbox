@@ -41,46 +41,46 @@ assert(nargin < 6,'Too many input arguments.');
 assert(isequal(size(V,2),size(P,2),3),'All the inputs must have the same number of colums.');
 
 
-% % Mesh oversampling preprocessing step
-% min_edglength = min_edge_length(V,T);
-% max_edglength = max_edge_length(V,T);
-% 
-% if (max_edglength/min_edglength > 2 && max_edglength/min_edglength <= 8)
-%     
-%     while max_edglength > 2*min_edglength              
-%         
-%         [V,T] = oversample_mesh(V,T);
-%         max_edglength = max_edge_length(V,T);
-%         
-%     end
-%     
-%     
-% elseif (max_edglength/min_edglength) > 8
-%     
-%     % Find every triangles whom one edge is greater than the threshold
-%     E = query_edges_list(T);
-%     E = unique(sort(E,2),'rows');
-%     
-%     while max_edglength > 2*min_edglength
-%         
-%             edglength = sqrt(sum((V(E(:,2),:)- V(E(:,1),:)).^2,2));
-%             edgidx2split = find(edglength > 2*min_edglength);
-%         
-%             for p = 1:numel(edgidx2split)
-%         
-%                 [V,T] = split_edge(V,T,E(edgidx2split(p),:));
-%         
-%             end
-%                 
-%         max_edglength = max_edge_length(V,T);
-%         E = query_edges_list(T);
-%         E = unique(sort(E,2),'rows');
-%         
-%     end
-%         
-%     T = reorient_all_faces_coherently(V,T);
-%         
-% end
+% Mesh oversampling preprocessing step
+min_edglength = min_edge_length(V,T);
+max_edglength = max_edge_length(V,T);
+
+if (max_edglength/min_edglength > 2 && max_edglength/min_edglength <= 8)
+    
+    while max_edglength > 2*min_edglength              
+        
+        [V,T] = oversample_mesh(V,T);
+        max_edglength = max_edge_length(V,T);
+        
+    end
+    
+    
+elseif (max_edglength/min_edglength) > 8
+    
+    % Find every triangles whom one edge is greater than the threshold
+    E = query_edges_list(T);
+    E = unique(sort(E,2),'rows');
+    
+    while max_edglength > 2*min_edglength
+        
+            edglength = sqrt(sum((V(E(:,2),:)- V(E(:,1),:)).^2,2));
+            edgidx2split = find(edglength > 2*min_edglength);
+        
+            for p = 1:numel(edgidx2split)
+        
+                [V,T] = split_edge(V,T,E(edgidx2split(p),:));
+        
+            end
+                
+        max_edglength = max_edge_length(V,T);
+        E = query_edges_list(T);
+        E = unique(sort(E,2),'rows');
+        
+    end
+        
+    T = reorient_all_faces_coherently(V,T);
+        
+end
 
 
 %% Body

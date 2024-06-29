@@ -1,5 +1,5 @@
 function V_out = smooth_mesh_boundary_and_holes(V_in, boundaries, nb_iterations, ngb_degre, hole_ids)
-% smooth_mesh_boundary_and_holes : function to smooth the mesh boundaries, without
+%% smooth_mesh_boundary_and_holes : function to smooth the mesh boundaries, without
 % renormalization. To avoid singularities creation, remove small components
 % and close small holes before smoothing.
 %
@@ -33,7 +33,7 @@ function V_out = smooth_mesh_boundary_and_holes(V_in, boundaries, nb_iterations,
 %           [  |     |     |  ]
 
 
-% Body
+%% Body
 tic;
 
 if nargin < 5

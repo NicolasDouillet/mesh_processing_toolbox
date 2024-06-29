@@ -1,5 +1,5 @@
 function edg_list = query_edges_list(T, mode)
-% query_edges_list : function to query the edges list
+%% query_edges_list : function to query the edges list
 % corresponding to the triangulation T.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
@@ -27,7 +27,7 @@ function edg_list = query_edges_list(T, mode)
 %              with nb_edg the number of edges.
 
 
-% Body
+%% Body
 % tic;
 L = cat(2,T,T(:,1)); % loop
 R = repelem(L,1,[1 2 2 1]); % replicated
@@ -37,7 +37,7 @@ edg_list = cell2mat(cellfun(@(x) reshape(x,[2,face_nb_vtx])',num2cell(R,2),'un',
 
 if nargin  > 1 && strcmpi(mode,'sorted')
     
-    edg_list = unique(sort(edg_list,2),'rows');
+    edg_list = sort(edg_list,2);
     
     % elseif nargin  < 2 || strcmpi(mode,'raw')
     

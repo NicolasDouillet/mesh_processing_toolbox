@@ -1,8 +1,8 @@
-% Test smooth_mesh_boundary_and_holes
+% test smooth_mesh_boundary_and_holes
 
-clear all;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

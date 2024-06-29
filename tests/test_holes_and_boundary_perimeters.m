@@ -1,8 +1,8 @@
 % test boundary_and_holes_perimeters
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

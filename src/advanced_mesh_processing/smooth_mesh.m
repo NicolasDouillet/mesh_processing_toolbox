@@ -45,11 +45,11 @@ V_out = V_in;
 
 if ngb_degre < 2
     
-    neighbor_list = query_every_vertices_neighbor_indices(T,ngb_degre);
+    neighbor_list = find_every_vertices_neighbor_indices(T,ngb_degre);
     
 else % if ngb_degre > 1
    
-    neighbor_list = query_every_vertices_neighbor_indices(T,ngb_degre,size(V_in,1));
+    neighbor_list = find_every_vertices_neighbor_indices(T,ngb_degre,size(V_in,1));
     
 end
 

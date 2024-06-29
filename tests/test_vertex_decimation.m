@@ -1,8 +1,8 @@
 % test vertex_decimation
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

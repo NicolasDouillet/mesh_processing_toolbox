@@ -42,7 +42,7 @@ T_out = T_in;
 while ~isempty(vtx_idx2suppr)
     
     vtx_idx = vtx_idx2suppr(1);
-    vtx_ngb_idx = query_one_vertex_neighbor_indices(T_out,vtx_idx);
+    vtx_ngb_idx = find_one_vertex_neighbor_indices(T_out,vtx_idx);
     
     % Find one unique nearest vertex index       
     dst_vect = sqrt(sum((V_out(vtx_ngb_idx,:)-repmat(V_out(vtx_idx,:),[numel(vtx_ngb_idx),1])).^2,2));

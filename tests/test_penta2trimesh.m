@@ -1,9 +1,8 @@
 % Test penta2trimesh
 
+clc;
 
-clear all, close all, clc;
-
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

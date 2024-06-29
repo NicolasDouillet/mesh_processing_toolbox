@@ -1,27 +1,28 @@
 % test isinsideset
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 
 % Closed watertight 2D-manifold triangulated surfaces only
 filenames = {'sinusoidal_dodecahedron_MR';...
-             'concave_Reuleaux_tetrahedron';...
+             'concave_Reuleaux_tetrahedron';...            
              'kitten';...
              'Armadillo_10k';...                                                            
              'vase'
              };
 
-id = 1; % 1, 2, 3, 4, 5      
+id = 3; % 1, 2, 3, 4, 5      
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 
 
-% When necessary; see and download mesh processing toolbox
-% https://fr.mathworks.com/matlabcentral/fileexchange/77004-mesh-processing-toolbox?s_tid=prof_contriblnk
-%
+% Pre-processing if necessary...
+% [cc_nb,components] = segment_connected_components(T);
+% pct2rm = 2;
+% [T,V] = remove_small_components(components,pct2rm,V,true);
 % [V,T] = remove_duplicated_vertices(V,T); 
 % T     = remove_duplicated_triangles(T);
 % [V,T] = remove_non_manifold_vertices(V,T);
@@ -52,7 +53,7 @@ end
 
 % % Setting test points
 %
-% % I Regularly sampled grid test    
+% I Regularly sampled grid test    
 % nb_samples = 11;
 % [A,B,C] = meshgrid(linspace(min(V(:,1)),max(V(:,1)),nb_samples),...
 %                    linspace(min(V(:,2)),max(V(:,2)),nb_samples),...
@@ -92,13 +93,13 @@ h = figure;
 set(h,'Position',get(0,'ScreenSize'));
 trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on;
 
-% % Inside and outside points together
-% ColorSpec = cell2mat(cellfun(@(c) cat(2,~c,c,0),num2cell(isin,2),'un',0));
-% cellfun(@(r1,r2) plot3(r1(1,1),r1(1,2),r1(1,3),'+','Color',r2,'MarkerSize',4,'LineWidth',4),num2cell(P,2),num2cell(ColorSpec,2),'un',0);
+% Inside and outside points together
+ColorSpec = cell2mat(cellfun(@(c) cat(2,~c,c,0),num2cell(isin,2),'un',0));
+cellfun(@(r1,r2) plot3(r1(1,1),r1(1,2),r1(1,3),'+','Color',r2,'MarkerSize',4,'LineWidth',4),num2cell(P,2),num2cell(ColorSpec,2),'un',0);
 
-% Inside points only
-ColorSpec = cell2mat(cellfun(@(c) c,num2cell(isin > 0 ,2),'un',0));
-cellfun(@(r) plot3(r(1,1),r(1,2),r(1,3),'+','Color',[0 1 0],'MarkerSize',4,'LineWidth',4),num2cell(P(isin,:),2),'un',0);
+% % Inside points only
+% ColorSpec = cell2mat(cellfun(@(c) c,num2cell(isin > 0 ,2),'un',0));
+% cellfun(@(r) plot3(r(1,1),r(1,2),r(1,3),'+','Color',[0 1 0],'MarkerSize',4,'LineWidth',4),num2cell(P(isin,:),2),'un',0);
 
 % % Outside points only
 % ColorSpec = cell2mat(cellfun(@(c) c,num2cell(isin < 1 ,2),'un',0));
@@ -114,4 +115,4 @@ ax.Clipping = 'off';
 axis equal, axis tight;
 shading flat;
 camlight left
-alpha(1);
+alpha(0.5);

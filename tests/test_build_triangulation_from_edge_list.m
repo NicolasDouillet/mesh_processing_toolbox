@@ -1,9 +1,10 @@
 % test build_triangulation_from_edge_list
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
-addpath('../data/');
+
+addpath(genpath('../src'));
+addpath('../data');
 
 
 filenames = {'tetrahedron';...
@@ -23,7 +24,9 @@ filenames = {'tetrahedron';...
              'Armadillo_10k';...             
              };
 
-filename = strcat(cell2mat(filenames(8,1)),'.mat');         
+         
+id = 8;
+filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 
 % Randomly mess up the edge set
@@ -34,6 +37,6 @@ E = fliplr(E);
 
 clear T;
 
-% Build the mesh
+% Rebuild the mesh
 T = build_triangulation_from_edge_list(E);
 plot_mesh(V,T);

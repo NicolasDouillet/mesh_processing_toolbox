@@ -1,6 +1,5 @@
 function T_out = remove_non_manifold_triangles(T_in)
-%% remove_non_manifold_triangles : function to remove
-% non manifold triangles from the mesh.
+%% remove_non_manifold_triangles : function to remove non manifold triangles from the mesh.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 %

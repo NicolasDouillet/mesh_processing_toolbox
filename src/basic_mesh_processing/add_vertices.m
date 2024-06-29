@@ -29,7 +29,7 @@ function [V_out, new_id] = add_vertices(V_set, V_in)
 
 %% Body
 % tic;
-epsilon = 1e3*eps;
+epsilon = eps;
 
 if isreal(V_set)        
     

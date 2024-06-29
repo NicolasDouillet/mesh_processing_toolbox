@@ -1,16 +1,16 @@
 % Test slice_mesh
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
-addpath('../data/');
+addpath(genpath('../src'));
+addpath('../data');
 
 
-load('Gargoyle_5k.mat');
-thres = 50;
-n = [0 0 1];
-P = [0 0 thres];
-slices_nb_max_contours = 4;
+% load('Gargoyle_5k.mat');
+% thres = 50;
+% n = [0 0 1];
+% P = [0 0 thres];
+% slices_nb_max_contours = 4;
 
 % load('kitten.mat');
 % thres = -0.13;
@@ -30,11 +30,11 @@ slices_nb_max_contours = 4;
 % P = [0 0 thres];
 % slices_nb_max_contours = 6;
 
-% load('Cthulhu_skull.mat');
-% thres = 25;
-% n = [0 0 1];
-% P = [0 0 thres];
-% slices_nb_max_contours = 12;
+load('Cthulhu_skull.mat');
+thres = 25;
+n = [0 0 1];
+P = [0 0 thres];
+slices_nb_max_contours = 12;
 
 slc_step = 3;
 raw_edges_list = query_edges_list(T,'sorted');

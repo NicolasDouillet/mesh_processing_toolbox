@@ -1,8 +1,8 @@
 % test fill_mesh_holes
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

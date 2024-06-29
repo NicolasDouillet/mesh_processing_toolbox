@@ -1,9 +1,9 @@
 % test mesh_volume
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
-addpath('../data/');
+addpath(genpath('../src'));
+addpath('../data');
 
 
 % Closed surfaces only

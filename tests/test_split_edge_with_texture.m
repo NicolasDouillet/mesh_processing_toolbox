@@ -1,10 +1,10 @@
 % test split_edge_with_texture
 
-clear all, close all, clc;
+clc;
 
+addpath(genpath('../src'));
+addpath('../data');
 
-addpath('../src');
-addpath('../data/');
 
 load('mesh_piece_with_texture.mat');
 

@@ -1,13 +1,13 @@
 % test remove_non_manifold_triangles
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 
-load('filled_cube.mat'); % 8 triangles removed
-% load('half_filled_octahedron.mat'); % half octahedron remains (Y < 0 part)
+% load('filled_cube.mat');          % 8 triangles removed
+load('half_filled_octahedron.mat'); % half octahedron remains (Y < 0 part)
 
 plot_mesh(V,T);
 alpha(0.5);

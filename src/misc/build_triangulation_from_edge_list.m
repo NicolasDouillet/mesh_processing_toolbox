@@ -1,6 +1,5 @@
 function T = build_triangulation_from_edge_list(E, mode)
-%% build_triangulation_from_edge_list : function to build the
-% triangulation T from the edge list E. 
+%% build_triangulation_from_edge_list : function to build the triangulation T from the edge list E. 
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
@@ -26,7 +25,7 @@ function T = build_triangulation_from_edge_list(E, mode)
 %% Body
 % tic;
 if nargin > 1 && strcmpi(mode,'sorted')
-    
+        
     C = mat2cell(E,repelem(3,floor(size(E,1)/3)),2);
     R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % replicated
     U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % unique
@@ -41,11 +40,11 @@ elseif nargin < 2 || strcmpi(mode,'raw')
     for i = vtx_idx_list
         
         % Find every edges linked to each vertex
-        i_lk_vtx = get_vertex_linked_vertices(E,i);
+        i_lk_vtx = find_one_vertex_neighbor_indices(E,i);
         
         for j = i_lk_vtx
             
-            j_lk_vtx = get_vertex_linked_vertices(E,j);
+            j_lk_vtx = find_one_vertex_neighbor_indices(E,j);
             third_vtx = intersect(i_lk_vtx,j_lk_vtx);
             
             if ~isempty(third_vtx)
@@ -66,15 +65,3 @@ end
 
 
 end % build_triangulation_from_edge_list
-
-
-%% get_vertex_linked_vertices subfunction
-function vtx_idx_list = get_vertex_linked_vertices(E, vtx_idx)
-%
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
-
-
-vtx_idx_list = setdiff(E(any(E==vtx_idx,2),:),vtx_idx)';
-
-
-end % get_vertex_linked_vertices

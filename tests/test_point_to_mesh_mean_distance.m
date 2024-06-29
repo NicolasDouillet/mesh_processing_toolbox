@@ -1,8 +1,8 @@
 % test point_to_mesh_mean_distance
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

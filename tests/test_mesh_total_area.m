@@ -1,8 +1,8 @@
 % test mesh_total_area
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

@@ -1,9 +1,10 @@
 % test min_max_face_area
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
-addpath('../data/');
+addpath(genpath('../src'));
+addpath('../data');
+
 
 filenames = {'tetrahedron';... % min = 2/sqrt(3);       max = 2/sqrt(3)       -> ok
              'cube';...        % min = 2/3;             max = 2/3             -> ok

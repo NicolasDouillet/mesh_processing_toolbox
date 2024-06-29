@@ -1,9 +1,10 @@
 % test flip_edge
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
-addpath('../data/');
+addpath(genpath('../src'));
+addpath('../data');
+
 
 I = [1 0 0];
 J = [0 1 0];

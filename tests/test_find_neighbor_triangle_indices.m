@@ -1,8 +1,8 @@
 % Test find_neighbor_triangle_indices
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

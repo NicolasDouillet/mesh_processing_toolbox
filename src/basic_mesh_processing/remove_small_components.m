@@ -59,7 +59,7 @@ else
     
 end
 
-fprintf('%d component(s) smaller than pct2rm percent of the total removed in %d seconds.\n',nb_rm_comp,toc);
+fprintf('%d component(s) smaller than %d percent of the total removed in %d seconds.\n',nb_rm_comp,pct2rm,toc);
 
 
 end % remove_small_components

@@ -30,6 +30,7 @@ function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in, tol)
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
 
+
 %% Body
 % tic;
 [V_out,~,n] = uniquetol(V_in,tol,'ByRows',true);

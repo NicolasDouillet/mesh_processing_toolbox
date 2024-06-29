@@ -1,8 +1,8 @@
 % test oversample_mesh
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 
@@ -13,20 +13,24 @@ filenames = {'tetrahedron';...
              'dodecahedron';...
              'dodecahedron2';...
              'disk';...
+             'sinusoidal_dodecahedron_MR';...
              'torus_light';...                     
              'meshed_mtlb_logo';...
              'kitten';...
              'Gargoyle_3k';...                        
              };
 
-id = 4;         
+         
+id = 8;         
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
+plot_mesh(V,T);
 
+% Oversample the whole mesh
 [V,T] = oversample_mesh(V,T); % 'default' / midedge or 'centre'
 plot_mesh(V,T);
 
-% Triangle subset only
-load(filename);
-[V,T] = oversample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
-plot_mesh(V,T);
+% % Oversample one triangle subset only; method = 'centre'
+% load(filename);
+% [V,T] = oversample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
+% plot_mesh(V,T);

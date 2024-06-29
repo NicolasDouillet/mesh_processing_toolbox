@@ -1,8 +1,8 @@
 % test smooth_mesh
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

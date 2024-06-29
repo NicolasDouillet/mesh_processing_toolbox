@@ -1,8 +1,8 @@
 % test point_to_mesh_min_distance
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

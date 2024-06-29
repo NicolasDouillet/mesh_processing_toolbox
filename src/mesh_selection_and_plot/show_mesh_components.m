@@ -14,7 +14,6 @@ function [] = show_mesh_components(V, C)
 % - C : cell array of triangle sets (positive integer matrices double), the component array.
 
 
-
 %% Body
 h = figure;
 % set(h,'Position',get(0,'ScreenSize'));

@@ -1,8 +1,8 @@
 % test mean_edge_length
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
              

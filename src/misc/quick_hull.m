@@ -27,7 +27,7 @@ function [V_out, T] = quick_hull(V_in)
 tic
 assert(size(V_in,1) > 3,'Error : vertex set V_in must contain at least four non coplanar vertices to be 3D.');
 
-epsilon = 1e8*eps; % floating point tolerance error
+epsilon = eps; % floating point tolerance error
 nb_vtx = size(V_in,1);
 
 f_Xmin = find(V_in(:,1) == min(V_in(:,1)));

@@ -38,11 +38,13 @@ For commun usages, this value is in the range |[1 ; 4]|. Tune it relatively to 
 
 %% TESTS
 
+Run the test files to discover all the possibilities of this toolbox.
 Use .mat data files provided in /data for test and example files.
 Most of the functions and every important ones have been tested in a dedicated file named : test_my_function.m.
 Note that no mesh reader or writer is provided in this toolbox since there already exist enough satisfying ones coded in Matlab.
 Look for : read_ply.m, write_ply.m, read_off.m, write_off.m, plyread.m, plywrite.m
 Then to create your own .mat file for vertex set V and triangle set T, just use the command save('path_to_my_file/my_file.mat','V','T');
+To use the sources, mind to add its path to your paths, just like in the header of any test file : addpath(genpath('my_path_to_the_sources'));
 
 
 %% COPYRIGHT & SUPPORT
@@ -88,10 +90,14 @@ However, the second algorithm for the convex hull, quickhull, algorithm performs
 
 The function dual_of_trimesh mostly works on quasi planar triangular meshes.
 
+isinsideset function is more like a prototype, and mostly works on homogeneous meshes -in terms of triangles size-, and may fail on too much heterogeneous meshes.
+
+Some of these limitations, but also some of the output mesh properties are sometimes recalled in the function help / header.
+
 
 %% MISC INFORMATION
 
-Most of the time, I did my best to make function names pretty explicit in english.
+Most of the time, I did my best to make function names pretty explicit in english but it is not systematic (convex hull functions are exceptions).
 
 By default, vertex and face normals are normalized at the same time they are computed.
 
@@ -115,4 +121,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 25 / 06 /2024.
+Last update : 29 / 06 /2024.

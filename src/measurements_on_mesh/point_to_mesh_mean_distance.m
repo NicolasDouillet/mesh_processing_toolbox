@@ -22,7 +22,7 @@ dst_vect = zeros(1,size(T,1));
 for k = 1:size(T,1)
     
     
-    dst_vect(k) = point_to_plane_distance(M,cross(V(T(k,2),:)-V(T(k,1),:),V(T(k,3),:)-V(T(k,1),:)),V(T(k,1),:))
+    dst_vect(k) = point_to_plane_distance(M,cross(V(T(k,2),:)-V(T(k,1),:),V(T(k,3),:)-V(T(k,1),:)),V(T(k,1),:));
 
 end
 

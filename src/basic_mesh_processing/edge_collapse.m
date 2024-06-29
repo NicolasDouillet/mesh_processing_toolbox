@@ -33,6 +33,7 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
 
+
 %% Body
 edg_list = unique(sort(edg_list,2),'rows');
 edg_cat_list = unique(reshape(edg_list.',1,[]));

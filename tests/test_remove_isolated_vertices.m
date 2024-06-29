@@ -1,8 +1,8 @@
 % test remove_isolated_vertices
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 

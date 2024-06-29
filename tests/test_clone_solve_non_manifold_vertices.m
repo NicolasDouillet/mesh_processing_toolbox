@@ -1,8 +1,8 @@
 % test clone_solve_non_manifold_vertices
 
-clear all, close all, clc;
+clc;
 
-addpath('../src');
+addpath(genpath('../src'));
 addpath('../data');
 
 
