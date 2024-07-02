@@ -33,17 +33,19 @@ L = cat(2,T,T(:,1)); % loop
 R = repelem(L,1,[1 2 2 1]); % replicated
 face_nb_vtx = size(T,2);
 
+
 edg_list = cell2mat(cellfun(@(x) reshape(x,[2,face_nb_vtx])',num2cell(R,2),'un',0));
+
 
 if nargin  > 1 && strcmpi(mode,'sorted')
     
-    edg_list = sort(edg_list,2);
+    edg_list = unique(sort(edg_list,2),'rows');
     
-    % elseif nargin  < 2 || strcmpi(mode,'raw')
+% elseif nargin  < 2 || strcmpi(mode,'raw')
     
     % do nothing
     
-    % else
+% else
     
     % do nothing
     

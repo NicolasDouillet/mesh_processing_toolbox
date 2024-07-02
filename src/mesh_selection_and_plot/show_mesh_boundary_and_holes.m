@@ -20,20 +20,22 @@ function [] = show_mesh_boundary_and_holes(V, T)
 
 
 %% Body
-raw_edges_list = query_edges_list(T);
-[~,~,iu] = unique(sort(raw_edges_list,2),'rows'); % unique(raw_edges_list,'rows');
-
-% Unique edges only, even in mirror
-[i3,~,i4] = histcounts(iu,unique(iu));
-lone_edges_idx_vect = i3(i4) == 1;
-lone_edges_list = raw_edges_list(lone_edges_idx_vect,:);
+boundaries = detect_mesh_boundary_and_holes(T);
 
 plot_mesh(V,T);
+shading interp;
+camlight left;
 
-cellfun(@(r) line([V(r(1),1) V(r(2),1)],...
-                  [V(r(1),2) V(r(2),2)],...
-                  [V(r(1),3) V(r(2),3)],'Color',[1 0 0],'Linewidth',2),...
-                  num2cell(lone_edges_list,2),'un',0);
+colorstring = 'wrymgbc';
+             
+              
+for n = 1:size(boundaries,1)
+    
+    B = cell2mat(boundaries(n,1));    
+    line([V(B,1) V(circshift(B,1),1)],[V(B,2) V(circshift(B,1),2)],[V(B,3) V(circshift(B,1),3)],...
+         'Color',colorstring(1,1+mod(n,numel(colorstring))),'LineWidth',2); hold on;            
+    
+end              
 
 
 end % show_mesh_boundary_and_holes

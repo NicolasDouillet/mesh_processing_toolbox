@@ -28,12 +28,12 @@ tic;
 
 % Build  lists
 raw_edges_list = query_edges_list(T);
-[~,~,iu] = unique(sort(raw_edges_list,2),'rows'); % unique(raw_edges_list,'rows');
-
-% Unique edges only (even in mirror)
-[i3,~,i4] = histcounts(iu,unique(iu));
-lone_edges_idx_vect = i3(i4) == 1;
-lone_edges_list = raw_edges_list(lone_edges_idx_vect,:);
+sedges_list = sort(raw_edges_list,2);
+[uedg_list,~,edg_idx] = unique(sort(sedges_list,2),'rows');
+[gc,gr] = groupcounts(edg_idx);
+uedg_idx = gr(gc == 1);
+uedg = uedg_list(uedg_idx,:);
+lone_edges_list = raw_edges_list(ismember(sedges_list,uedg,'rows'),:);
 boundaries = {};
 
 while ~isempty(lone_edges_list)
