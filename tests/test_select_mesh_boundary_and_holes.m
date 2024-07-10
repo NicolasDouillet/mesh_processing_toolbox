@@ -10,6 +10,6 @@ addpath('../data');
 load('kitten_components.mat');
 % load('meshed_mtlb_logo.mat');
 
-nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
-[V,T] = clone_solve_non_manifold_vertices(V,T,nmnfld_vtx_idx);
+nmnfld_vtx_id = select_non_manifold_vertices(V,T,false);
+[V,T] = clone_solve_non_manifold_vertices(V,T,nmnfld_vtx_id);
 boundary = select_mesh_boundary_and_holes(V,T);

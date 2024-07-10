@@ -1,4 +1,4 @@
-function self_inter_tgl_idx_out = collect_intersecting_triangle_indices(V, T, i1, i2, self_inter_tgl_idx_in)
+function self_inter_tgl_id_out = collect_intersecting_triangle_indices(V, T, i1, i2, self_inter_tgl_id_in)
 %% collect_intersecting_triangle_indices : function to collect intersecting triangle indices.
 % 
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
@@ -23,20 +23,20 @@ function self_inter_tgl_idx_out = collect_intersecting_triangle_indices(V, T, i1
 %
 % - i2 : positive integer scalar double, index of the second triangle.
 %
-% - self_inter_tgl_idx_in : positive integer row vector double, input list
+% - self_inter_tgl_id_in : positive integer row vector double, input list
 %                           of self intersecting triangle indices.
 %
 %
 % Output arguments
 %
-% - self_inter_tgl_idx_out : positive integer row vector double, output list
+% - self_inter_tgl_id_out : positive integer row vector double, output list
 %                            of self intersecting triangle indices. If
 %                            triangles of indices i1 and i2 intersect, then
-%                            self_inter_tgl_idx_out = cat(2,self_inter_tgl_idx_in,[i1,i2]).
+%                            self_inter_tgl_id_out = cat(2,self_inter_tgl_id_in,[i1,i2]).
 
 
 %% Body
-self_inter_tgl_idx_out = self_inter_tgl_idx_in;
+self_inter_tgl_id_out = self_inter_tgl_id_in;
 
 T1 = T(i1,:);
 T2 = T(i2,:);
@@ -64,7 +64,7 @@ for k = 1:size(E1,1)
         
         if (rc1 == 1 || rc1 == 2) && isin1 % there exists at least one intersection point in T2
             
-            self_inter_tgl_idx_out = cat(2,self_inter_tgl_idx_out,[i1,i2]);
+            self_inter_tgl_id_out = cat(2,self_inter_tgl_id_out,[i1,i2]);
             disp('Pair triangle intersection detected.');
             break;
             
@@ -90,7 +90,7 @@ for k = 1:size(E2,1)
         
         if (rc2 == 1 || rc2 == 2) && isin2 % there exists at least one intersection point in T1
             
-            self_inter_tgl_idx_out = cat(2,self_inter_tgl_idx_out,[i1,i2]);
+            self_inter_tgl_id_out = cat(2,self_inter_tgl_id_out,[i1,i2]);
             disp('Pair triangle intersection detected.');
             break;
             

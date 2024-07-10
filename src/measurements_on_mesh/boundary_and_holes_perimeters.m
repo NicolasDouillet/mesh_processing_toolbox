@@ -22,7 +22,7 @@ function bound_lengths = boundary_and_holes_perimeters(V, boundary)
 
 %% Body
 tic;
-bound_lengths = cellfun(@(r) sum(sqrt(sum((V(r,:)-V(circshift(r,1,2),:)).^2,2)),1),boundary);
+bound_lengths = cellfun(@(r) sum(vecnorm((V(r,:)-V(circshift(r,1,2),:))',2)),boundary);
 fprintf('%d perimeters computed in %d seconds.\n',size(boundary,1),toc);
 
 

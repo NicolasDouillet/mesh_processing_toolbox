@@ -1,4 +1,4 @@
-function nmnfld_vtx_idx = select_non_manifold_vertices(V, T, option_display)
+function nmnfld_vtx_id = select_non_manifold_vertices(V, T, option_display)
 %% select_non_manifold_vertices : function to display non manifold vertices on the mesh.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
@@ -19,7 +19,7 @@ function nmnfld_vtx_idx = select_non_manifold_vertices(V, T, option_display)
 %
 % Output argument
 %
-% - nmnfld_vtx_idx : positive integer row vector, the index list of non manifold vertices.
+% - nmnfld_vtx_id : positive integer row vector, the index list of non manifold vertices.
 
 
 %% Body
@@ -29,17 +29,17 @@ if nargin < 3
     
 end
 
-vtx_idx = (1:size(V,1))';
-edg_lists = find_edges_from_vertex_list(T,vtx_idx);
+vtx_id = (1:size(V,1))';
+edg_lists = find_edges_from_vertex_list(T,vtx_id);
 vtx_ngb_edg_nb = cellfun(@(c) size(c,1),edg_lists);
-tgl_idx_list = find_triangle_sets_from_vertex_list(T,vtx_idx);
-vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_idx_list);
-nmnfld_vtx_idx = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
+tgl_id_list = find_triangle_sets_from_vertex_list(T,vtx_id);
+vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_id_list);
+nmnfld_vtx_id = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
 
 if option_display
     
     plot_mesh(V,T);
-    plot3(V(nmnfld_vtx_idx,1),V(nmnfld_vtx_idx,2),V(nmnfld_vtx_idx,3),'ro','MarkerSize',8,'MarkerFaceColor',[1 0 0]), hold on;
+    plot3(V(nmnfld_vtx_id,1),V(nmnfld_vtx_id,2),V(nmnfld_vtx_id,3),'ro','MarkerSize',8,'MarkerFaceColor',[1 0 0]), hold on;
     
 end
 

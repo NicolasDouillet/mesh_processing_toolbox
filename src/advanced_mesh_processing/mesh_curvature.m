@@ -51,20 +51,20 @@ end
 
 
 %% Body
-cell_vtx_idx = num2cell((1:size(V,1))',2);
-vtx_ngb_idx_list = find_every_vertices_neighbor_indices(T,ngb_degre,size(V,1));
-vect2ngb_cell = cellfun(@(c1,c2) V(c1,:)-repmat(V(c2,:),[numel(c1),1]),vtx_ngb_idx_list,cell_vtx_idx,'un',0);
+cell_vtx_id = num2cell((1:size(V,1))',2);
+vtx_ngb_id_list = find_every_vertices_neighbor_indices(T,ngb_degre,size(V,1));
+vect2ngb_cell = cellfun(@(c1,c2) V(c1,:)-repmat(V(c2,:),[numel(c1),1]),vtx_ngb_id_list,cell_vtx_id,'un',0);
 
 
 if strcmpi(curv_type,'mean')
     
 curvature = cell2mat(cellfun(@(c1,c2) mean(abs(dot(c1,repmat(N(c2,:),[size(c1,1),1]),2)),1),...
-                     vect2ngb_cell,cell_vtx_idx,'un',0));
+                     vect2ngb_cell,cell_vtx_id,'un',0));
                  
 elseif strcmpi(curv_type,'max')
     
     curvature = cell2mat(cellfun(@(c1,c2) max(abs(dot(c1,repmat(N(c2,:),[size(c1,1),1]),2))),...
-                         vect2ngb_cell,cell_vtx_idx,'un',0));
+                         vect2ngb_cell,cell_vtx_id,'un',0));
     
 end
 

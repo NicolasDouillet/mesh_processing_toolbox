@@ -1,5 +1,5 @@
 function N = vertex_normals(V, T, ngb_degre, mode)
-%% vertex_normals : function to compute vertex normals.
+% %vertex_normals : function to compute vertex normals.
 %
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
@@ -27,7 +27,7 @@ function N = vertex_normals(V, T, ngb_degre, mode)
 %       [ |  |  |]
 
 
-%% Input parsing
+% Input parsing
 if nargin < 4
    
     mode = 'norm';
@@ -43,31 +43,31 @@ end
 
 %% Body
 % tic;
-vtx_idx = (1:size(V,1))';
-tgl_idx_list = find_triangle_sets_from_vertex_list(T,vtx_idx);
+vtx_id = (1:size(V,1))';
+tgl_id_list = find_triangle_sets_from_vertex_list(T,vtx_id);
 
 if ngb_degre > 1
     
     for n = 1:ngb_degre-1
         
-        % New ngb triangle unique union list with the current tgl_idx_list
-        tgl_idx_list = cellfun(@(c) unique(union(c,cell2mat(find_neighbor_triangle_indices(T,c))')),tgl_idx_list,'un',0);                
+        % New ngb triangle unique union list with the current tgl_id_list
+        tgl_id_list = cellfun(@(c) unique(union(c,cell2mat(find_neighbor_triangle_indices(T,c))')),tgl_id_list,'un',0);                
         
     end
     
-    vtx_ngb_face_normals = cellfun(@(c) face_normals(V,T(c,:),'norm'),tgl_idx_list,'un',0);
+    vtx_ngb_face_normals = cellfun(@(c) face_normals(V,T(c,:),'norm'),tgl_id_list,'un',0);
     N = cell2mat(cellfun(@(c) mean(c,1),vtx_ngb_face_normals,'un',0));
     
 else % if ngb_degre < 2        
                                                        
-    vtx_ngb_face_normals = cellfun(@(c) face_normals(V,T(c,:),'norm'),tgl_idx_list,'un',0);                   
+    vtx_ngb_face_normals = cellfun(@(c) face_normals(V,T(c,:),'norm'),tgl_id_list,'un',0);                   
     N = cell2mat(cellfun(@(c1) mean(c1,1),vtx_ngb_face_normals,'un',0));                                                           
     
 end                
 
 if strcmpi(mode,'norm')
     
-    N = N./sqrt(sum(N.^2,2));    
+    N = N./vecnorm(N',2)';    
 
 end
 

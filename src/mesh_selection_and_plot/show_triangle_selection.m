@@ -33,24 +33,24 @@ if nargin > 2
         
         if strcmpi(mode,'indices')
             
-            subset_idx = T_subset;
+            subset_id = T_subset;
             
         elseif strcmpi(mode,'explicit')
             
-            subset_idx = find(ismember(T,T_subset,'rows'));
+            subset_id = find(all(bsxfun(@eq,T,T_subset),2));
                         
         end
         
     else
         
         % mode = 'indices'; % default behaviour
-        subset_idx = T_subset;
+        subset_id = T_subset;
         
     end
     
-    if subset_idx > 0 && max(subset_idx) < 1+size(T,1)
+    if subset_id > 0 && max(subset_id) < 1+size(T,1)
         
-        T_subset = T(subset_idx,:);
+        T_subset = T(subset_id,:);
     
     else
        

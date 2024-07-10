@@ -23,10 +23,10 @@ filenames = {'tetrahedron';...
              'Armadillo_10k'};
 
          
-filename = strcat(cell2mat(filenames(8,1)),'.mat');         
+fid = 12;         
+filename = strcat(cell2mat(filenames(fid,1)),'.mat');         
 load(filename);
 
 plot_mesh(V,T);
-
 [V_dual,T_dual] = dual_of_trimesh(V,T);
 plot_mesh(V_dual,T_dual);       

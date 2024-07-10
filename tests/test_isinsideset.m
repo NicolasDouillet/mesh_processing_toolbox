@@ -38,8 +38,8 @@ nb_vtx = size(V,1);
 ni = zeros(nb_vtx,3);
 
 for i = 1:nb_vtx    
-    tgl_idx_list = find(sum(ismember(T,i),2));
-    vtx_ngb_face_normals = face_normals(V,T(tgl_idx_list,:));
+    tgl_id_list = find(sum(ismember(T,i),2));
+    vtx_ngb_face_normals = face_normals(V,T(tgl_id_list,:));
     ni(i,:) = mean(vtx_ngb_face_normals,1);        
 end
 

@@ -34,7 +34,6 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % - isin : logical vector, the resulting boolean vector.
 
 
-
 %% Input parsing
 assert(nargin > 2,'Not enought input arguments.');
 assert(nargin < 6,'Too many input arguments.');
@@ -63,7 +62,7 @@ elseif (max_edglength/min_edglength) > 8
     
     while max_edglength > 2*min_edglength
         
-            edglength = sqrt(sum((V(E(:,2),:)- V(E(:,1),:)).^2,2));
+            edglength = vecnorm((V(E(:,2),:)-V(E(:,1),:))',2)';
             edgidx2split = find(edglength > 2*min_edglength);
         
             for p = 1:numel(edgidx2split)
@@ -100,7 +99,7 @@ if nargin < 5
         
         % Compute face normals
         N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,3),:)-V(T(:,1),:),2);
-        N = N./sqrt(sum(N.^2,2));
+        N = N./vecnorm(N',2)';
                 
         G = mean(V,1);
         orientation = sign(dot(N,Gi-G,1));
@@ -121,13 +120,13 @@ isin = false(size(P,1),1); % out by default
 for k = 1:size(P,1)
     
     % Query closest and furthest faces
-    D = sqrt(sum((Gi-P(k,:)).^2,2));
-    [~,nrst_face_idx] = min(D);
-    [~,frst_face_idx] = max(D);
+    D = vecnorm((Gi-P(k,:))',2)';
+    [~,nrst_face_id] = min(D);
+    [~,frst_face_id] = max(D);
     
     % Compute dot product sign with face normal vectors and conclude
-    isin(k) = dot(N(nrst_face_idx,:),P(k,:)-Gi(nrst_face_idx,:),2) < -epsilon && ... % whereas positive when outside
-              dot(N(frst_face_idx,:),P(k,:)-Gi(frst_face_idx,:),2) < -epsilon; 
+    isin(k) = dot(N(nrst_face_id,:),P(k,:)-Gi(nrst_face_id,:),2) < -epsilon && ... % whereas positive when outside
+              dot(N(frst_face_id,:),P(k,:)-Gi(frst_face_id,:),2) < -epsilon; 
                  
 end
 

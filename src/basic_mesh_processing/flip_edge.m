@@ -23,14 +23,14 @@ function T_out = flip_edge(T_in, edge2split)
 
 %% Body
 T_out = T_in;
-tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split));
-size(tgl_idx_list)
+tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split));
+size(tgl_id_list)
 
 
-if ~isempty(tgl_idx_list) && numel(tgl_idx_list) > 1
+if ~isempty(tgl_id_list) && numel(tgl_id_list) > 1
     
-    tglidx1 = tgl_idx_list(1);    
-    tglidx2 = tgl_idx_list(2);
+    tglidx1 = tgl_id_list(1);    
+    tglidx2 = tgl_id_list(2);
     tgl1 = T_in(tglidx1,:);    
     tgl2 = T_in(tglidx2,:);
     
@@ -74,7 +74,7 @@ if ~isempty(tgl_idx_list) && numel(tgl_idx_list) > 1
     T_out = add_triangles(new_tgl2,T_out);
     T_out = remove_triangles(T_out,[tglidx1,tglidx2]);
     
-else % if isempty(tgl_idx_list) || numel(tgl_idx_list) < 2
+else % if isempty(tgl_id_list) || numel(tgl_id_list) < 2
     
     warning(['Edge [',num2str(edge2split),'] is not shared between two triangles and won''t be flipped.']);
     

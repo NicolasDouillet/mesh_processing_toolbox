@@ -6,7 +6,7 @@
 
 %% Example #1 : vertex normals
 addpath('data/');
-addpath(genpath('../src/'));
+addpath(genpath('src/'));
 load('icosahedron.mat');
 
 ngb_degre = 1;
@@ -14,7 +14,7 @@ select_vertex_normals(V,T,ngb_degre);
 
 %% Example #2 : non manifold triangles
 load('kitten_nmnfld.mat');
-nmnfld_tgl_idx_list = select_non_manifold_triangles(V,T);
+nmnfld_tgl_id_list = select_non_manifold_triangles(V,T);
 view(180,0);
 
 %% Example #3 : connected components
@@ -25,8 +25,8 @@ view(180,0);
 
 %% Example #4 : boundary and holes selection
 load('kitten_holed.mat');
-nmnfld_vtx_idx = select_non_manifold_vertices(V,T,false);
-[V,T] = clone_solve_non_manifold_vertices(V,T,nmnfld_vtx_idx);
+nmnfld_vtx_id = select_non_manifold_vertices(V,T,false);
+[V,T] = clone_solve_non_manifold_vertices(V,T,nmnfld_vtx_id);
 % boundary = select_mesh_boundary_and_holes(V,T);
 % view(180,0);
 
@@ -124,11 +124,11 @@ plot_mesh(V_dual,T_dual);
 view(180,0);
 
 %% Example #12 : mesh slicing
-load('Cthulhu_skull.mat');
-thres = 25;
+load('Armadillo_20k.mat');
+thres = -11;
 n = [0 0 1];
 P = [0 0 thres];
-slices_nb_max_contours = 12;
+slices_nb_max_contours = 6;
 
 slc_step = 3;
 raw_edges_list = query_edges_list(T,'sorted');
@@ -138,4 +138,4 @@ plot_mesh(V,T), shading interp, camlight left;
 draw_slice_contours({srt_itx_vtx_lsts});
 patch([max(V(:,1)) min(V(:,1)) min(V(:,1)) max(V(:,1))], [max(V(:,2)) max(V(:,2)) min(V(:,2)) min(V(:,2))], thres*ones(1,4), [1 1 1 1], 'FaceColor', [1 1 0]), hold on;
 alpha(0.5);
-view(27,15);
+view(142.5,30);

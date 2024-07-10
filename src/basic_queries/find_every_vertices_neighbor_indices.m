@@ -47,14 +47,14 @@ neighbor_list = accumarray([M(:,1);M(:,2)],[M(:,2);M(:,1)],[],@(x){unique(x)'});
 
 if ngb_degre > 1
     
-    vtx_idx = num2cell((1:nb_vtx)');
+    vtx_id = num2cell((1:nb_vtx)');
         
     for k = 2:ngb_degre
                 
         kth_degre_neighbor_list = cellfun(@(c) neighbor_list(c),neighbor_list,'un',0);
         kth_degre_neighbor_list = cellfun(@(c) c(:),kth_degre_neighbor_list,'un',0);
         kth_degre_neighbor_list = cellfun(@(c) c(:)',kth_degre_neighbor_list,'un',0);
-        neighbor_list = cellfun(@(c1,c2) setdiff(cell2mat(c1),c2),kth_degre_neighbor_list,vtx_idx,'un',0);               
+        neighbor_list = cellfun(@(c1,c2) setdiff(cell2mat(c1),c2),kth_degre_neighbor_list,vtx_id,'un',0);               
         
     end
     

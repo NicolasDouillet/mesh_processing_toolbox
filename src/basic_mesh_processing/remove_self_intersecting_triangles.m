@@ -29,17 +29,17 @@ tic;
 
 nb_tgl = size(T_in,1);
 C = combnk(1:nb_tgl,2); % every possible triangle pair indices
-self_inter_tgl_idx = [];
+self_inter_tgl_id = [];
 T_out = T_in;
 
 for i = 1:size(C,1)
    
-    self_inter_tgl_idx = collect_intersecting_triangle_indices(V,T_in,C(i,1),C(i,2),self_inter_tgl_idx);     
+    self_inter_tgl_id = collect_intersecting_triangle_indices(V,T_in,C(i,1),C(i,2),self_inter_tgl_id);     
     
 end
 
-self_inter_tgl_idx = unique(self_inter_tgl_idx);
-T_out(self_inter_tgl_idx,:) = [];
+self_inter_tgl_id = unique(self_inter_tgl_id);
+T_out(self_inter_tgl_id,:) = [];
 fprintf('%d self intersecting triangles removed in %d seconds.\n',size(T_in,1)-size(T_out,1),toc);
 
 

@@ -41,7 +41,7 @@ N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,end),:)-V(T(:,1),:),2);
 
 if strcmpi(mode,'norm')
     
-    N = N./sqrt(sum(N.^2,2));
+    N = N./vecnorm(N',2)';
     
     % elseif strcmpi(mode,'raw')
     

@@ -34,18 +34,18 @@ function [V_out, T_out] = remove_non_manifold_vertices(V_in, T_in)
 
 %% Body
 tic;
-vtx_idx = (1:size(V_in,1))';
-edg_lists = find_edges_from_vertex_list(T_in,vtx_idx);
+vtx_id = (1:size(V_in,1))';
+edg_lists = find_edges_from_vertex_list(T_in,vtx_id);
 
 % Nb linked edge per vertex
 vtx_ngb_edg_nb = cellfun(@(c) size(c,1),edg_lists);
 
 % Nb linked triangles per vertex
-tgl_idx_list = find_triangle_sets_from_vertex_list(T_in,vtx_idx);
-vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_idx_list);
+tgl_id_list = find_triangle_sets_from_vertex_list(T_in,vtx_id);
+vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_id_list);
 
-nmnfld_vtx_idx = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
-[V_out,T_out] = remove_vertices(nmnfld_vtx_idx,V_in,T_in,'indices');
+nmnfld_vtx_id = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
+[V_out,T_out] = remove_vertices(nmnfld_vtx_id,V_in,T_in,'indices');
 
 fprintf('%d non manifold vertices removed in %d seconds.\n',size(V_in,1)-size(V_out,1),toc);
 

@@ -85,7 +85,7 @@ Curvature computation algorithm is a homemade temporary version.
 It is mostly efficient on regular meshes (where all faces have more or less the same size, and all the vertices have the same valence).
 
 The convex hull / Gift wrapping / Jarvis algorithm is mostly here for the demo and pedagogic purposes.
-It is indeed slower than Matlab (R) compiled binaries used for the convex hull (convhull). It may also contain some self intersecting triangles, and output triangulation is not coherently oriented.
+It is indeed slower than Matlab (R) compiled binaries used for the convex hull (convhull). It may also contain some self intersecting triangles.
 However, the second algorithm for the convex hull, quickhull, algorithm performs well. 
 
 The function dual_of_trimesh mostly works on quasi planar triangular meshes.

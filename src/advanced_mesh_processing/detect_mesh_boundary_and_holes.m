@@ -29,31 +29,31 @@ tic;
 % Build  lists
 raw_edges_list = query_edges_list(T);
 sedges_list = sort(raw_edges_list,2);
-[uedg_list,~,edg_idx] = unique(sort(sedges_list,2),'rows');
-[gc,gr] = groupcounts(edg_idx);
-uedg_idx = gr(gc == 1);
-uedg = uedg_list(uedg_idx,:);
+[uedg_list,~,edg_id] = unique(sort(sedges_list,2),'rows');
+[gc,gr] = groupcounts(edg_id);
+uedg_id = gr(gc == 1);
+uedg = uedg_list(uedg_id,:);
 lone_edges_list = raw_edges_list(ismember(sedges_list,uedg,'rows'),:);
 boundaries = {};
 
 while ~isempty(lone_edges_list)
     
-    first_vtx_idx = lone_edges_list(1,1);
-    nxt_vtx_idx   = lone_edges_list(1,2);
-    boundary = [first_vtx_idx,nxt_vtx_idx] ;
+    first_vtx_id = lone_edges_list(1,1);
+    nxt_vtx_id   = lone_edges_list(1,2);
+    boundary = [first_vtx_id,nxt_vtx_id] ;
     lone_edges_list = lone_edges_list(2:end,:);
     
     % Nb holes / boundary times
-    while nxt_vtx_idx ~= first_vtx_idx % && ~isempty(nxt_vtx_idx)
+    while nxt_vtx_id ~= first_vtx_id % && ~isempty(nxt_vtx_id)
                        
-        i = find(any(lone_edges_list == nxt_vtx_idx,2));
+        i = find(any(lone_edges_list == nxt_vtx_id,2));
         nxt_edge = lone_edges_list(i,:);
         
-        nxt_vtx_idx = setdiff(nxt_edge,nxt_vtx_idx); % must be the unique shared vertex beteween these two edges        
+        nxt_vtx_id = setdiff(nxt_edge,nxt_vtx_id); % must be the unique shared vertex beteween these two edges        
         
         % Fill boundary
-        if ~isempty(nxt_vtx_idx)
-            boundary = cat(2,boundary, nxt_vtx_idx);
+        if ~isempty(nxt_vtx_id)
+            boundary = cat(2,boundary, nxt_vtx_id);
         end
         
         % Update / dequeue lone_edges_list        
@@ -77,8 +77,8 @@ for n = 1:size(boundaries,1)
     
 end
 
-[~,srt_idx] = sort(bound_nb_vtx,'descend'); % ~ : srt_bound_nb_vtx
-boundaries = boundaries(srt_idx,:);
+[~,srt_id] = sort(bound_nb_vtx,'descend'); % ~ : srt_bound_nb_vtx
+boundaries = boundaries(srt_id,:);
 nb_holes = size(boundaries,1);
 
 fprintf('%d boundaries detected in %d seconds.\n',nb_holes,toc);

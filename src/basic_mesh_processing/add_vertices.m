@@ -33,8 +33,8 @@ epsilon = eps;
 
 if isreal(V_set)        
     
-    dpl_vtx_idx = ismembertol(V_set,V_in,epsilon,'ByRows',true);
-    V_set = V_set(~dpl_vtx_idx,:); % suppress duplicated vertices    
+    dpl_vtx_id = ismembertol(V_set,V_in,epsilon,'ByRows',true);
+    V_set = V_set(~dpl_vtx_id,:); % suppress duplicated vertices    
     
     if ~isempty(V_set)
                         

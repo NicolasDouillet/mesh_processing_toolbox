@@ -44,9 +44,9 @@ if nargin < 3
 end
 
 ngb_T = find_neighbor_triangle_indices(T_in); % 'all' % cell array ; global version
-isl_tgl_idx = cellfun(@(c) isempty(c),ngb_T);
+isl_tgl_id = cellfun(@(c) isempty(c),ngb_T);
 T_out = T_in;
-T_out(isl_tgl_idx,:) = [];
+T_out(isl_tgl_id,:) = [];
 
 if rm_isl_vtx
    

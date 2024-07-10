@@ -31,8 +31,8 @@ load(filename);
 
 % Randomly mess up the edge set
 E = query_edges_list(T);
-new_idx = randperm(size(E,1));
-E = E(new_idx,:);
+new_id = randperm(size(E,1));
+E = E(new_id,:);
 E = fliplr(E);
 
 clear T;

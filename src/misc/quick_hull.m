@@ -44,47 +44,47 @@ f_Zmax = find(V_in(:,3) == max(V_in(:,3)));
 f_Zmax = f_Zmax(1,1);
 
 bounding_box = [f_Xmin f_Xmax f_Ymin f_Ymax f_Zmin f_Zmax];
-hull_vtx_idx = unique(bounding_box);
+hull_vtx_id = unique(bounding_box);
 
-if numel(hull_vtx_idx) >= 4
+if numel(hull_vtx_id) >= 4
    
-    hull_vtx_idx = hull_vtx_idx(1,1:4);
+    hull_vtx_id = hull_vtx_id(1,1:4);
     T = combnk(1:4,3);
         
-elseif numel(hull_vtx_idx) == 3
+elseif numel(hull_vtx_id) == 3
     
     T = 1:3; 
     
-else % if numel(hull_vtx_idx) < 3
+else % if numel(hull_vtx_id) < 3
     
     error('Colinear input point set.');
     
 end
 
-N = face_normals(V_in(hull_vtx_idx,:),T,'norm');
+N = face_normals(V_in(hull_vtx_id,:),T,'norm');
     
 % Avoid initial flat tetrahedron cases (octahedron example)
 while isequal(N,repmat(N(1,:),[size(N,1),1]))
     
-    hull_vtx_idx = [];
+    hull_vtx_id = [];
     
-    while numel(hull_vtx_idx) < 4
+    while numel(hull_vtx_id) < 4
         
         bounding_box = randi(nb_vtx,1,4);
-        hull_vtx_idx = unique(bounding_box);        
+        hull_vtx_id = unique(bounding_box);        
         
     end
         
-    N = face_normals(V_in(hull_vtx_idx,:),T,'norm');
+    N = face_normals(V_in(hull_vtx_id,:),T,'norm');
     
 end
 
 nb_t = 4;
-hull_vtx_idx = hull_vtx_idx(1:nb_t);
+hull_vtx_id = hull_vtx_id(1:nb_t);
 
 
-T = nchoosek(hull_vtx_idx,3);
-G = mean(V_in(hull_vtx_idx,:),1);
+T = nchoosek(hull_vtx_id,3);
+G = mean(V_in(hull_vtx_id,:),1);
 N = face_normals(V_in,T,'norm');
 
 % Orient normals outward
@@ -102,14 +102,14 @@ nb_new_tgl = true;
 
 while nb_new_tgl
     
-    curr_tgl_idx = 1;
+    curr_tgl_id = 1;
     nb_new_tgl = 0;
     
-    while curr_tgl_idx < 1 + size(T,1)
+    while curr_tgl_id < 1 + size(T,1)
                 
-        [T,N,new_vtx_idx] = grow_tetrahedron(V_out,T,N,curr_tgl_idx,epsilon);
+        [T,N,new_vtx_id] = grow_tetrahedron(V_out,T,N,curr_tgl_id,epsilon);
         
-        if new_vtx_idx % effective grow with new triangles
+        if new_vtx_id % effective grow with new triangles
                               
             nb_new_tgl = nb_new_tgl + 2;
             edg_list = query_edges_list(T,'sorted');
@@ -117,12 +117,12 @@ while nb_new_tgl
             
             while i < 1 + size(edg_list,1)
                 
-                tgl_pair_idx = cell2mat(find_triangle_indices_from_edges_list(T,edg_list(i,:)));                
-                isconcave = detect_concavity(V_out,T,N,tgl_pair_idx,epsilon);
+                tgl_pair_id = cell2mat(find_triangle_indices_from_edges_list(T,edg_list(i,:)));                
+                isconcave = detect_concavity(V_out,T,N,tgl_pair_id,epsilon);
                 
                 if isconcave
                     
-                    [T,N,edg_list] = flip_two_ngb_triangles(tgl_pair_idx,T,V_out,N,edg_list);
+                    [T,N,edg_list] = flip_two_ngb_triangles(tgl_pair_id,T,V_out,N,edg_list);
                     
                 else
                     
@@ -133,11 +133,11 @@ while nb_new_tgl
             end
             
             [V_out,T] = remove_inside_pts(V_out,T,epsilon);            
-            curr_tgl_idx = curr_tgl_idx - 1;
+            curr_tgl_id = curr_tgl_id - 1;
                         
         end
         
-        curr_tgl_idx = curr_tgl_idx + 1;
+        curr_tgl_id = curr_tgl_id + 1;
         
     end       
     
@@ -153,17 +153,17 @@ end % quick_hull
 
 
 %% grow_tetrahedron subfunction
-function [T, N, new_vtx_idx] = grow_tetrahedron(V, T, N, tgl_idx, epsilon)
+function [T, N, new_vtx_id] = grow_tetrahedron(V, T, N, tgl_id, epsilon)
 % grow_tetrahedron : function to find one
 % new vertex belonging to the convex hull
 % for one given triangle, to create the three
 % newborn triangles and erase the previous one.
 
 
-new_vtx_idx = [];
+new_vtx_id = [];
 nb_vtx = size(V,1);
 
-d = dot(repmat(N(tgl_idx,:),[nb_vtx,1]),V,2);
+d = dot(repmat(N(tgl_id,:),[nb_vtx,1]),V,2);
 
 if find(abs(d) > epsilon)
     
@@ -173,9 +173,9 @@ if find(abs(d) > epsilon)
         
         f = f(1,1);
         
-        new_tgl1 = cat(2,T(tgl_idx,1:2),f);
-        new_tgl2 = cat(2,T(tgl_idx,2:3),f);
-        new_tgl3 = cat(2,T(tgl_idx,3),T(tgl_idx,1),f);
+        new_tgl1 = cat(2,T(tgl_id,1:2),f);
+        new_tgl2 = cat(2,T(tgl_id,2:3),f);
+        new_tgl3 = cat(2,T(tgl_id,3),T(tgl_id,1),f);
                 
         % Add 3 new triangles and face normals
         T = cat(1,T,new_tgl1,new_tgl2,new_tgl3);
@@ -183,9 +183,9 @@ if find(abs(d) > epsilon)
         N = cat(1,N,new_face_normals);           
         
         % Remove one triangle and its normal
-        T(tgl_idx,:) = [];        
-        N(tgl_idx,:) = [];
-        new_vtx_idx = f;
+        T(tgl_id,:) = [];        
+        N(tgl_id,:) = [];
+        new_vtx_id = f;
         
     end
     
@@ -196,13 +196,13 @@ end % grow_tetrahedron
 
 
 %% detect_concavity subfunction
-function isconcave = detect_concavity(V, T, N, tgl_pair_idx, epsilon)
+function isconcave = detect_concavity(V, T, N, tgl_pair_id, epsilon)
 % detect_concavity : function to detect
 % concave triangle pair configurations.
 
 
-i1 = tgl_pair_idx(1);
-i2 = tgl_pair_idx(2);
+i1 = tgl_pair_id(1);
+i2 = tgl_pair_id(2);
 
 T1 = T(i1,:);
 T2 = T(i2,:);
@@ -223,37 +223,37 @@ end % detect_concavity
 
 
 %% flip_two_ngb_triangles subfunction
-function [T, N, edg_list] = flip_two_ngb_triangles(tgl_pair_idx, T, V, N, edg_list)
+function [T, N, edg_list] = flip_two_ngb_triangles(tgl_pair_id, T, V, N, edg_list)
 % flip_two_ngb_triangles : function to flip
 % two triangles sharing one common edge.
 
 
-T1 = T(tgl_pair_idx(1),:);
-T2 = T(tgl_pair_idx(2),:);
+T1 = T(tgl_pair_id(1),:);
+T2 = T(tgl_pair_id(2),:);
 
 cmn_edg = intersect(T1,T2);                  % = new opposit vertices
 new_cmn_edg = setdiff(union(T1,T2),cmn_edg); % = current opposit vertices
 
 
-start_idx1 = find(ismember(T1,new_cmn_edg(1)),1,'first');
+start_id1 = find(ismember(T1,new_cmn_edg(1)),1,'first');
 T1c = circshift(T1,-1);
 
-if ~isempty(start_idx1)
-    Ta = cat(2,new_cmn_edg(1),T1c(start_idx1),new_cmn_edg(2));
+if ~isempty(start_id1)
+    Ta = cat(2,new_cmn_edg(1),T1c(start_id1),new_cmn_edg(2));
 else
-    start_idx1 = find(ismember(T1,new_cmn_edg(2)),1,'first');
-    Ta = cat(2,new_cmn_edg(2),T1c(start_idx1),new_cmn_edg(1));
+    start_id1 = find(ismember(T1,new_cmn_edg(2)),1,'first');
+    Ta = cat(2,new_cmn_edg(2),T1c(start_id1),new_cmn_edg(1));
 end
 
 
-start_idx2 = find(ismember(T2,new_cmn_edg(2)),1,'first');
+start_id2 = find(ismember(T2,new_cmn_edg(2)),1,'first');
 T2c = circshift(T2,-1);
 
-if ~isempty(start_idx2)
-    Tb = cat(2,new_cmn_edg(2),T2c(start_idx2),new_cmn_edg(1));
+if ~isempty(start_id2)
+    Tb = cat(2,new_cmn_edg(2),T2c(start_id2),new_cmn_edg(1));
 else
-    start_idx2 = find(ismember(T2,new_cmn_edg(1)),1,'first');
-    Tb = cat(2,new_cmn_edg(1),T2c(start_idx2),new_cmn_edg(2));
+    start_id2 = find(ismember(T2,new_cmn_edg(1)),1,'first');
+    Tb = cat(2,new_cmn_edg(1),T2c(start_id2),new_cmn_edg(2));
 end
 
 % Add 2 triangles and their face normals
@@ -261,10 +261,10 @@ T = add_triangles(Ta,T);
 T = add_triangles(Tb,T);
 
 % Remove 2 triangles and their face normals
-T(tgl_pair_idx,:) = [];
+T(tgl_pair_id,:) = [];
 new_face_normals = face_normals(V,T(end-1:end,:),'norm');
 N = cat(1,N,new_face_normals);
-N(tgl_pair_idx,:) = [];
+N(tgl_pair_id,:) = [];
 edg_list = cat(1,edg_list,sort(new_cmn_edg));
 edg_list(all(bsxfun(@eq,edg_list,sort(cmn_edg)),2),:) = [];
 
@@ -278,11 +278,11 @@ function [V_out, T] = remove_inside_pts(V_in, T, epsilon)
 % during its computational iterations to save cpu time.
 
 
-in_vtx_set_idx = find(isin3Dconvexset(V_in,T,V_in,epsilon));
+in_vtx_set_id = find(isin3Dconvexset(V_in,T,V_in,epsilon));
 
-if ~isempty(in_vtx_set_idx)
+if ~isempty(in_vtx_set_id)
     
-    [V_out,T] = remove_vertices(in_vtx_set_idx,V_in,T,'indices');
+    [V_out,T] = remove_vertices(in_vtx_set_id,V_in,T,'indices');
     
 else
     

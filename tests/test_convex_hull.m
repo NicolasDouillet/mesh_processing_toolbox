@@ -30,9 +30,9 @@ V = cat(2,X,Y,Z);
 % load(filename);
 
 
-T_cv = convhull(V(:,1),V(:,2),V(:,3)); % Matlab (R) embeded function
-T_mcv = convex_hull(V);                % my Jarvis / gift wrapping algorithm
-[V_out,T_qcv] = quick_hull(V);         % my quickhull algorithm
+T_cv          = convhull(V);    % Matlab (R) embeded function
+T_mcv         = convex_hull(V); % my Jarvis / gift wrapping algorithm
+[V_out,T_qcv] = quick_hull(V);  % my quickhull algorithm
 
 
 if isequal(sortrows(sort(T_mcv,2)),sortrows(sort(T_cv,2))) % no test with T_qcv since V_out and then triangulations are different
@@ -46,11 +46,11 @@ else
 end
 
 
-plot_mesh(V,T_cv);
+select_face_normals(V,T_cv);
 axis equal;
 
-plot_mesh(V,T_mcv);
+select_face_normals(V,T_mcv);
 axis equal;
 
-plot_mesh(V_out,T_qcv);
+select_face_normals(V_out,T_qcv);
 axis equal;

@@ -30,8 +30,8 @@ function [V_out, T_out] = remove_isolated_vertices(V_in, T_in) % not listed in t
 
 
 %% Body
-isl_vtx_idx = setdiff(1:size(V_in,1),unique(T_in(:)));
-[V_out,T_out] = remove_vertices(isl_vtx_idx,V_in,T_in);
+isl_vtx_id = setdiff(1:size(V_in,1),unique(T_in(:)));
+[V_out,T_out] = remove_vertices(isl_vtx_id,V_in,T_in);
 
 
 end % remove_isolated_vertices

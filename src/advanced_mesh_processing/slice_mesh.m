@@ -35,7 +35,7 @@ function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_n
 
 
 %% Body
-Perim = @(P)sum(sqrt(sum(diff(P(:,:),1).^2,2)),1);
+Perim = @(P)sum(vecnorm(diff(P(:,:),1)',2));
 
 
 % I Find and sort triangles
@@ -86,7 +86,7 @@ end
 if ~isempty(itx_edg_lst)
         
     % Find every corresponding unique triangles
-    tgl_idx_list = find_triangle_indices_from_edges_list(T,itx_edg_lst);
+    tgl_id_list = find_triangle_indices_from_edges_list(T,itx_edg_lst);
     
     % 1.2 Sort / connect edges ; to get new intersection vertices well sorted too
     srt_itx_edg_lsts = {};
@@ -102,27 +102,27 @@ if ~isempty(itx_edg_lst)
         % Detect edges belonging to boundary of the mesh
         if ~isempty(srt_itx_edg_lsts)
             
-            first_row_idx = find(~ismember(itx_edg_lst,cell2mat(srt_itx_edg_lsts),'rows'),1,'first');
+            first_row_id = find(~ismember(itx_edg_lst,cell2mat(srt_itx_edg_lsts),'rows'),1,'first');
             
         else
             
-            first_row_idx = 1;
+            first_row_id = 1;
             
         end
         
-        if first_row_idx
+        if first_row_id
             
-            first_cdt_row_idc = cell2mat(tgl_idx_list(first_row_idx,1));
+            first_cdt_row_idc = cell2mat(tgl_id_list(first_row_id,1));
             
         else
             
-            first_row_idx = first_row_idx + 1;
+            first_row_id = first_row_id + 1;
             
         end
         
-        first_tgl_idx = first_cdt_row_idc(1,1);
-        first_tgl = sort(nchoosek(T(first_tgl_idx,:),2),2);
-        first_edge = itx_edg_lst(first_row_idx,:);
+        first_tgl_id = first_cdt_row_idc(1,1);
+        first_tgl = sort(nchoosek(T(first_tgl_id,:),2),2);
+        first_edge = itx_edg_lst(first_row_id,:);
              
         % List update : always cat first edge
         if ~isempty(first_edge) & ~ismember(first_edge,srt_itx_edg_lst,'rows')
@@ -132,8 +132,8 @@ if ~isempty(itx_edg_lst)
         end
         
         [~,curr_edge_pos] = ismember(first_edge,first_tgl,'rows');
-        curr_row_idx = find_nxt_edg_idx(itx_edg_lst,first_tgl,curr_edge_pos);                
-        curr_edge = itx_edg_lst(curr_row_idx,:);
+        curr_row_id = find_nxt_edg_id(itx_edg_lst,first_tgl,curr_edge_pos);                
+        curr_edge = itx_edg_lst(curr_row_id,:);
               
         % Update list
         if ~isempty(curr_edge) & ~ismember(curr_edge,srt_itx_edg_lst,'rows')
@@ -142,12 +142,12 @@ if ~isempty(itx_edg_lst)
             
         end
         
-        curr_cdt_row_idc = cell2mat(tgl_idx_list(curr_row_idx,1));
-        curr_tgl_idx = setdiff(curr_cdt_row_idc,first_tgl_idx);
+        curr_cdt_row_idc = cell2mat(tgl_id_list(curr_row_id,1));
+        curr_tgl_id = setdiff(curr_cdt_row_idc,first_tgl_id);
         
-        if isequal(size(T(curr_tgl_idx,:)),[1,3])
+        if isequal(size(T(curr_tgl_id,:)),[1,3])
             
-            curr_tgl = sort(nchoosek(T(curr_tgl_idx,:),2),2);
+            curr_tgl = sort(nchoosek(T(curr_tgl_id,:),2),2);
             
         else
             
@@ -155,21 +155,21 @@ if ~isempty(itx_edg_lst)
             
         end
         
-        prev_row_idx = -Inf;
-        curr_row_idx_list = curr_row_idx;
+        prev_row_id = -Inf;
+        curr_row_id_list = curr_row_id;
         
         stop_flag = false;
-        go_on2 = curr_row_idx & ~stop_flag; % second nested while loop continuing conditions
+        go_on2 = curr_row_id & ~stop_flag; % second nested while loop continuing conditions
         
         while go_on2
                         
             % Position of the edge in its triangle : 1, 2, or 3
             [~,curr_edge_pos] = ismember(curr_edge,curr_tgl,'rows');
-            nxt_row_idx = find_nxt_edg_idx(itx_edg_lst,curr_tgl,curr_edge_pos);
+            nxt_row_id = find_nxt_edg_id(itx_edg_lst,curr_tgl,curr_edge_pos);
             
-            if nxt_row_idx & ~stop_flag
+            if nxt_row_id & ~stop_flag
                 
-                nxt_edge = itx_edg_lst(nxt_row_idx,:);
+                nxt_edge = itx_edg_lst(nxt_row_id,:);
                        
                 % Update list
                 if ~isempty(nxt_edge)
@@ -178,24 +178,24 @@ if ~isempty(itx_edg_lst)
                     
                 end
                 
-                nxt_cdt_row_idc = cell2mat(tgl_idx_list(nxt_row_idx,1));
-                nxt_tgl_idx = setdiff(nxt_cdt_row_idc,curr_tgl_idx);
+                nxt_cdt_row_idc = cell2mat(tgl_id_list(nxt_row_id,1));
+                nxt_tgl_id = setdiff(nxt_cdt_row_idc,curr_tgl_id);
                 
-                if nxt_tgl_idx & isvector(T(nxt_tgl_idx,:)) & ~stop_flag
+                if nxt_tgl_id & isvector(T(nxt_tgl_id,:)) & ~stop_flag
                     
-                    nxt_tgl = sort(nchoosek(T(nxt_tgl_idx,:),2),2); % different from immediate previous one
+                    nxt_tgl = sort(nchoosek(T(nxt_tgl_id,:),2),2); % different from immediate previous one
                     
                     % Update variables
-                    prev_row_idx = curr_row_idx;
-                    curr_row_idx = nxt_row_idx;
-                    curr_row_idx_list = cat(2,curr_row_idx_list,curr_row_idx);
-                    curr_tgl_idx = nxt_tgl_idx;
+                    prev_row_id = curr_row_id;
+                    curr_row_id = nxt_row_id;
+                    curr_row_id_list = cat(2,curr_row_id_list,curr_row_id);
+                    curr_tgl_id = nxt_tgl_id;
                     curr_tgl = nxt_tgl;
                     curr_edge = nxt_edge;
                     
                 else
                     
-                    nxt_row_idx = 0;
+                    nxt_row_id = 0;
                     stop_flag = true;
                     break;
                     
@@ -213,7 +213,7 @@ if ~isempty(itx_edg_lst)
                 
             end
             
-            go_on2 = (~stop_flag & curr_row_idx) & (curr_row_idx ~= prev_row_idx) & ~isequal(nxt_edge,first_edge);
+            go_on2 = (~stop_flag & curr_row_id) & (curr_row_id ~= prev_row_id) & ~isequal(nxt_edge,first_edge);
             
         end
         
@@ -320,13 +320,13 @@ if ~isempty(itx_edg_lst)
     
     if strcmpi(sort_direction,'horizontal') % Left - center - right perimeters sort
         
-        [~,srt_idx] = sort(CDG(:,2),'descend'); % -> from left to right
-        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_idx,:);
+        [~,srt_id] = sort(CDG(:,2),'descend'); % -> from left to right
+        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_id,:);
         
     elseif strcmpi(sort_direction,'vertical') % Up - down sort
         
-        [~,srt_idx] = sort(CDG(:,3),'descend'); % -> from top to bottom
-        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_idx,:);
+        [~,srt_id] = sort(CDG(:,3),'descend'); % -> from top to bottom
+        srt_itx_vtx_lsts = srt_itx_vtx_lsts(srt_id,:);
         
     else % if strcmpi(sort_direction,'none') or any other string
     
@@ -344,13 +344,13 @@ end
 end % slice_mesh
 
 
-%% find_edg_idx subfunction
-function nxt_row_idx = find_nxt_edg_idx(itx_edg_lst,curr_tgl,curr_edge_pos)
+%% find_edg_id subfunction
+function nxt_row_id = find_nxt_edg_id(itx_edg_lst,curr_tgl,curr_edge_pos)
 
 
-ngb_edg_idx = setdiff([1 2 3],curr_edge_pos);
-ngb_edg1 = curr_tgl(ngb_edg_idx(1),:);
-ngb_edg2 = curr_tgl(ngb_edg_idx(2),:);
+ngb_edg_id = setdiff([1 2 3],curr_edge_pos);
+ngb_edg1 = curr_tgl(ngb_edg_id(1),:);
+ngb_edg2 = curr_tgl(ngb_edg_id(2),:);
 
 [~,idx1] = ismember(itx_edg_lst,ngb_edg1,'rows');
 
@@ -367,17 +367,17 @@ idx2 = idx2(sidx2);
 
 if idx1
     
-    nxt_row_idx = idx1;
+    nxt_row_id = idx1;
     
 elseif idx2
     
-    nxt_row_idx = idx2;
+    nxt_row_id = idx2;
     
 else
     
-    nxt_row_idx = 0;
+    nxt_row_id = 0;
     
 end
 
 
-end % find_nxt_edg_idx
+end % find_nxt_edg_id

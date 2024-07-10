@@ -1,4 +1,4 @@
-function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_idx_list)
+function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_id_list)
 %% triangle_collapse : function to collapse one ore more triangle(s).
 % Triangle set needs to be 2D-manifold for triangle_collapse to work
 % and triangle indices must be correspond to valid existing triangles.
@@ -19,7 +19,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_idx_list)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %     
-% - tgl_idx_list, positive integer matrix double, the triangle set indices to collapse, size(tgl_idx_list) = [1,nb_triangles]. 
+% - tgl_id_list, positive integer matrix double, the triangle set indices to collapse, size(tgl_id_list) = [1,nb_triangles]. 
 %
 %
 % Output arguments
@@ -34,12 +34,12 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_idx_list)
 
 
 %% Body
-edg_list = query_edges_list(T_in(tgl_idx_list,:));
+edg_list = query_edges_list(T_in(tgl_id_list,:));
 
 % 2 out of 3 edges are actually sufficient
-edg_idx = 1:size(edg_list,1);
-edg_idx2suppr = mod(edg_idx,3) == 0;
-edg_list(edg_idx2suppr,:) = [];
+edg_id = 1:size(edg_list,1);
+edg_id2suppr = mod(edg_id,3) == 0;
+edg_list(edg_id2suppr,:) = [];
 
 [V_out,T_out] = edge_collapse(V_in,T_in,edg_list);
 

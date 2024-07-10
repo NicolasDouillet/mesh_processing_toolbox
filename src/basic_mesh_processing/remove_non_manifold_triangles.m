@@ -28,11 +28,11 @@ function T_out = remove_non_manifold_triangles(T_in)
 tic;
 T_out = T_in;
 edg_list = query_edges_list(T_in,'raw');
-tgl_idx_list = find_triangle_indices_from_edges_list(T_in,edg_list);
-nmnfld_tgl_idx_list = cellfun(@(r) r(numel(r) > 2,:),tgl_idx_list,'un',0);
-nmnfld_tgl_idx_list = nmnfld_tgl_idx_list(~cellfun('isempty',nmnfld_tgl_idx_list));
-nmnfld_tgl_idx_list = unique([nmnfld_tgl_idx_list{:}]);
-T_out(nmnfld_tgl_idx_list,:) = [];
+tgl_id_list = find_triangle_indices_from_edges_list(T_in,edg_list);
+nmnfld_tgl_id_list = cellfun(@(r) r(numel(r) > 2,:),tgl_id_list,'un',0);
+nmnfld_tgl_id_list = nmnfld_tgl_id_list(~cellfun('isempty',nmnfld_tgl_id_list));
+nmnfld_tgl_id_list = unique([nmnfld_tgl_id_list{:}]);
+T_out(nmnfld_tgl_id_list,:) = [];
 fprintf('%d non manifold triangle(s) removed in %d seconds.\n',size(T_in,1)-size(T_out,1),toc);
 
 

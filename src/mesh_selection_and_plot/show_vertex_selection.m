@@ -1,4 +1,4 @@
-function [] = show_vertex_selection(V, T, V_subset_idx)
+function [] = show_vertex_selection(V, T, V_subset_id)
 %% show_vertex_selection : function to highlight a
 % selection of vertices on the mesh.
 %
@@ -21,13 +21,13 @@ function [] = show_vertex_selection(V, T, V_subset_idx)
 %% Body
 if nargin > 2        
     
-    if V_subset_idx > 0 && max(V_subset_idx) < 1+size(V,1)
+    if V_subset_id > 0 && max(V_subset_id) < 1+size(V,1)
         
-        V_subset = V(V_subset_idx,:);
+        V_subset = V(V_subset_id,:);
     
     else
        
-        error('One or more indices submitted  in V_subset_idx are out of the range |[1; %d]|.',size(V,1));
+        error('One or more indices submitted  in V_subset_id are out of the range |[1; %d]|.',size(V,1));
         
     end
     

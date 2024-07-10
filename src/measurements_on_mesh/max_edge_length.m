@@ -23,7 +23,7 @@ function mael = max_edge_length(V, T)
 %% Body
 E = query_edges_list(T);
 E = unique(sort(E,2),'rows');
-mael = max(sqrt(sum((V(E(:,2),:)- V(E(:,1),:)).^2,2)));
+mael = max(vecnorm((V(E(:,2),:)-V(E(:,1),:))',2));
 
 
 end % max_edge_length

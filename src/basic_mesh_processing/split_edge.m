@@ -49,15 +49,15 @@ new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:));
 [V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
 
 % Find triangles and edge opposite vertices
-tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split(1,:)));
+tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split(1,:)));
 
 % Retrieve originally oriented edge in triangles
-orientedg = zeros(numel(tgl_idx_list),2);
-op_vtx    = zeros(1,numel(tgl_idx_list)); % opposite vertex
+orientedg = zeros(numel(tgl_id_list),2);
+op_vtx    = zeros(1,numel(tgl_id_list)); % opposite vertex
 
-for t = 1:numel(tgl_idx_list)
+for t = 1:numel(tgl_id_list)
     
-    tgl = T_out(tgl_idx_list(t),:);
+    tgl = T_out(tgl_id_list(t),:);
     edgpos = bitor(tgl == edge2split(1,1),tgl == edge2split(1,2));
     
     if isequal(edgpos,logical([1 0 1]))
@@ -87,7 +87,7 @@ for p = 1:numel(op_vtx)
 end
 
 % Remove old splited triangles
-T_out  = remove_triangles(T_out,tgl_idx_list,'indices');
+T_out  = remove_triangles(T_out,tgl_id_list,'indices');
 
 
 end % split_edge

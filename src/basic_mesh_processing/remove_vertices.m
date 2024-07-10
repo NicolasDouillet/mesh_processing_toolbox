@@ -57,26 +57,26 @@ T_out = T_in;
 
 if strcmpi(mode,'indices') && ismember(1,size(V_set)) || nargin < 4
        
-    vtx_idx_2_rm = V_set;                   
+    vtx_id_2_rm = V_set;                   
     
 elseif strcmpi(mode,'explicit') && size(V_set,2) == 3
        
-    vtx_idx_2_rm = ismember(V_in,V_set,'rows');
+    vtx_id_2_rm = ismember(V_in,V_set,'rows');
     
 end
 
 % I Suppress vertices & triangles
-V_out(vtx_idx_2_rm,:) = [];
-tgl_idx_2_rm = find_triangles_from_vertex_list(T_in,vtx_idx_2_rm);
-T_out(tgl_idx_2_rm,:) = [];
+V_out(vtx_id_2_rm,:) = [];
+tgl_id_2_rm = find_triangles_from_vertex_list(T_in,vtx_id_2_rm);
+T_out(tgl_id_2_rm,:) = [];
 
 % II Reindex triangulation
-keep_idx = setdiff(1:size(V_in,1),vtx_idx_2_rm); % what V_out indices are relatively to V_in ones
-M = containers.Map(keep_idx,1:size(V_out,1));
-T_suppr_idx = isKey(M,num2cell(T_out));
-T_out(T_suppr_idx) = cell2mat(values(M,num2cell(T_out(T_suppr_idx))));
+keep_id = setdiff(1:size(V_in,1),vtx_id_2_rm); % what V_out indices are relatively to V_in ones
+M = containers.Map(keep_id,1:size(V_out,1));
+T_suppr_id = isKey(M,num2cell(T_out));
+T_out(T_suppr_id) = cell2mat(values(M,num2cell(T_out(T_suppr_id))));
 
-% fprintf('%d vertices removed in %d seconds.\n',nnz(vtx_idx_2_rm),toc);
+% fprintf('%d vertices removed in %d seconds.\n',nnz(vtx_id_2_rm),toc);
 
 
 end % remove_vertices

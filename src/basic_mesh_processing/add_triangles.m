@@ -33,12 +33,12 @@ function T_out = add_triangles(T_set, T_in)
 if T_set > 0 & isreal(T_set) & rem(T_set,1) == 0 & floor(T_set) == T_set
     
     % Check if some triangles of T_set already part of T_in
-    dpl_tgl_idx = ismember(sort(T_set,2),sort(T_in,2),'rows');               
+    dpl_tgl_id = ismember(sort(T_set,2),sort(T_in,2),'rows');               
                         
-    if nnz(dpl_tgl_idx)                
+    if nnz(dpl_tgl_id)                
         
         % Suppress duplicated triangles
-        T_set = T_set(~dpl_tgl_idx,:);             
+        T_set = T_set(~dpl_tgl_id,:);             
         % warning('One or more triangle from this set already exist in the current triangulation. Duplicated triangles have been ignored.\n');
         
     end

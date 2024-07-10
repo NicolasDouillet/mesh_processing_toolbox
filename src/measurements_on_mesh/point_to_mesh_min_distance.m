@@ -42,7 +42,7 @@ dst_vect = [d2H{isin,:}];
 
 % Step III : Keep the minimum only
 min_dst = min(dst_vect);
-min_dst_2_pt_set = min(sqrt(sum((repmat(P,[size(V,1),1])-V).^2,2)));
+min_dst_2_pt_set = min(vecnorm((repmat(P,[size(V,1),1])-V)',2));
 
 
 if ~isempty(min_dst)
@@ -75,7 +75,7 @@ function isin = is_point_inside_triangle(C, P)
 comb = num2cell([1 2; 2 3; 3 1],2); % for triangles only
 V = C - repmat(P,[size(C,1),1]);
 
-outward_centre_angles = cellfun(@(r) atan2d(sqrt(sum(cross(V(r(1,1),:),V(r(1,2),:),2).^2,2)),dot(V(r(1,1),:),V(r(1,2),:),2)),comb);
+outward_centre_angles = cellfun(@(r) atan2d(vecnorm(cross(V(r(1,1),:),V(r(1,2),:),2)',2)',dot(V(r(1,1),:),V(r(1,2),:),2)),comb);
 angle_sum = sum(outward_centre_angles);
 
 isin = round(angle_sum) == 360;

@@ -63,8 +63,8 @@ for k = 1:nb_it
     
     % Unique edges only, even in mirror
     [i3,~,i4] = histcounts(iu,unique(iu));
-    lone_edges_idx_vect = i3(i4) == 1;
-    lone_edges_list = raw_edges_list(lone_edges_idx_vect,:);
+    lone_edges_id_vect = i3(i4) == 1;
+    lone_edges_list = raw_edges_list(lone_edges_id_vect,:);
     
     if strcmpi(mode,'smooth')
         
@@ -73,8 +73,8 @@ for k = 1:nb_it
         
     elseif strcmpi(mode,'saw')
         
-        tgl_idx_list = cell2mat(find_triangle_indices_from_edges_list(T_out,lone_edges_list));
-        T_out = remove_triangles(T_out,tgl_idx_list,'indices');
+        tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_out,lone_edges_list));
+        T_out = remove_triangles(T_out,tgl_id_list,'indices');
         
     end
     

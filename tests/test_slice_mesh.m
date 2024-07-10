@@ -24,17 +24,18 @@ addpath('../data');
 % P = [0 0 thres];
 % slices_nb_max_contours = 4;
 
-% load('Armadillo_20k.mat');
-% thres = -11;
-% n = [0 0 1];
-% P = [0 0 thres];
-% slices_nb_max_contours = 6;
-
-load('Cthulhu_skull.mat');
-thres = 25;
+load('Armadillo_20k.mat');
+thres = -11;
 n = [0 0 1];
 P = [0 0 thres];
-slices_nb_max_contours = 12;
+slices_nb_max_contours = 6;
+
+% load('Cthulhu_skull.mat');
+% thres = 25;
+% n = [0 0 1];
+% P = [0 0 thres];
+% slices_nb_max_contours = 12;
+% view(27,15);
 
 slc_step = 3;
 raw_edges_list = query_edges_list(T,'sorted');

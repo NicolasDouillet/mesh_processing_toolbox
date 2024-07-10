@@ -42,14 +42,14 @@ cross_prod = @(mat_boundary_backward,mat_boundary,mat_boundary_forward) cross(V(
 dot_prod   = @(mat_boundary_backward,mat_boundary,mat_boundary_forward)   dot(V(mat_boundary_forward,:)-V(mat_boundary,:),V(mat_boundary_backward,:)-V(mat_boundary,:),2);
 
 sgn = @(bov,cross_prod) sign(dot(cross_prod,repmat(bov,[size(cross_prod,1),1]),2));
-edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*sqrt(sum(cross_prod.^2,2)),dot_prod);
+edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*vecnorm(cross_prod',2)',dot_prod);
 
 % Curvature continuity condition
-ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*sqrt(sum(cross(vertex_normals,cross_prod).^2,2)),dot(vertex_normals,cross_prod,2));
+ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*vecnorm(cross(vertex_normals,cross_prod)',2)',dot(vertex_normals,cross_prod,2));
 
 % Select hole index from which every hole perimeters are below max_perim_sz
 cellsz = cell2mat(cellfun(@numel,boundaries,'un',0));
-holes_begin_idx = find(cellsz <= max_perim_sz);
+holes_begin_id = find(cellsz <= max_perim_sz);
 
 nb_holes = size(boundaries,1);
 T_out = T_in;
@@ -57,7 +57,7 @@ nb_added_tgl = 0;
 N = vertex_normals(V,T_out,1,'norm');
 
 
-for h = holes_begin_idx:nb_holes % loop on every holes
+for h = holes_begin_id:nb_holes % loop on every holes
         
     mat_boundary = cell2mat(boundaries(h,:));   
     bound_nb_vtx = numel(mat_boundary);
@@ -97,25 +97,25 @@ for h = holes_begin_idx:nb_holes % loop on every holes
             
             if ~isempty(min_pos)
 
-                min_angle_idx = find(criterion == min_pos(1,1));
+                min_angle_id = find(criterion == min_pos(1,1));
                 
             else 
                 
-                min_angle_idx = 1; % special possible case of the last triangle; index of min doesn't matter
+                min_angle_id = 1; % special possible case of the last triangle; index of min doesn't matter
             
             end                        
                                                          
-            if min_angle_idx; min_angle_idx = min_angle_idx(1,1); end                                    
+            if min_angle_id; min_angle_id = min_angle_id(1,1); end                                    
             
-            new_triangle = [mat_boundary_forward(min_angle_idx), mat_boundary(min_angle_idx), mat_boundary_backward(min_angle_idx)];                                                
+            new_triangle = [mat_boundary_forward(min_angle_id), mat_boundary(min_angle_id), mat_boundary_backward(min_angle_id)];                                                
             T_out = add_triangles(new_triangle,T_out);
             
             % Update 2 vertex normals
-            N(mat_boundary_backward(min_angle_idx),:) = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_idx)),:)),1);
-            N(mat_boundary_forward(min_angle_idx),:)  = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_forward(min_angle_idx)),:)),1);   
+            N(mat_boundary_backward(min_angle_id),:) = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_backward(min_angle_id)),:)),1);
+            N(mat_boundary_forward(min_angle_id),:)  = mean(face_normals(V,T_out(find_triangles_from_vertex_list(T_out,mat_boundary_forward(min_angle_id)),:)),1);   
             
             nb_added_tgl = nb_added_tgl + 1;
-            mat_boundary(min_angle_idx) = [];
+            mat_boundary(min_angle_id) = [];
             bound_nb_vtx = numel(mat_boundary);
             
         end

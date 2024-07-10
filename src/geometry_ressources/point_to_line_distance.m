@@ -56,7 +56,7 @@ H(:,2) = y_H;
 H(:,3) = z_H;
 
 % Distance
-d2H = sqrt(sum((P-H).^2,2));
+d2H = vecnorm((P-H)',2)';
 H = H(:,1:dimension);
 
 

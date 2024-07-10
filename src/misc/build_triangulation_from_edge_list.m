@@ -34,10 +34,10 @@ if nargin > 1 && strcmpi(mode,'sorted')
 elseif nargin < 2 || strcmpi(mode,'raw')
     
     E = unique(sort(E,2),'rows');
-    vtx_idx_list = sort(unique(E(:)'));
+    vtx_id_list = sort(unique(E(:)'));
     T = zeros(0,3);
     
-    for i = vtx_idx_list
+    for i = vtx_id_list
         
         % Find every edges linked to each vertex
         i_lk_vtx = find_one_vertex_neighbor_indices(E,i);

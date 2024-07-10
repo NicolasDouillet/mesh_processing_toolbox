@@ -36,7 +36,7 @@ z_H = M(:,3) + t_H*n(3);
 
 % Orthogonal projected point
 H = cat(2,x_H,y_H,z_H);
-d2H = sqrt(sum((M-H).^2,2));
+d2H = vecnorm((M-H)',2)';
 
 
 end % point_to_plane_distance

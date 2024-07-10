@@ -39,25 +39,25 @@ component = [];
 cc_nb = 0; % hypothesis : T non empty
 
 ngb_T = find_neighbor_triangle_indices(T); % 'all'
-stored_tgl_idx = 1; % Default seed triangle is #1
+stored_tgl_id = 1; % Default seed triangle is #1
 t = 1; % nb processed / stored triangles
-curr_tgl_idx = stored_tgl_idx(t);
+curr_tgl_id = stored_tgl_id(t);
 
 
 if strcmpi(mode,'explicit')
     
-    component = cat(1,component,T(curr_tgl_idx,:));
+    component = cat(1,component,T(curr_tgl_id,:));
     
-    while numel(stored_tgl_idx) < size(T,1) % some unstored triangles remain
+    while numel(stored_tgl_id) < size(T,1) % some unstored triangles remain
         
         % One same component
-        while t < numel(stored_tgl_idx) + 1 % ~isempty(idx_ngb_tgl_2_store)
+        while t < numel(stored_tgl_id) + 1 % ~isempty(idx_ngb_tgl_2_store)
             
-            curr_tgl_idx = stored_tgl_idx(t);
-            ngb_tgl_idx = cell2mat(ngb_T(curr_tgl_idx,1))';
-            idx_ngb_tgl_2_store = setdiff(ngb_tgl_idx,stored_tgl_idx);
+            curr_tgl_id = stored_tgl_id(t);
+            ngb_tgl_id = cell2mat(ngb_T(curr_tgl_id,1))';
+            idx_ngb_tgl_2_store = setdiff(ngb_tgl_id,stored_tgl_id);
             component = cat(1,component,T(idx_ngb_tgl_2_store,:));
-            stored_tgl_idx = cat(2,stored_tgl_idx,idx_ngb_tgl_2_store);
+            stored_tgl_id = cat(2,stored_tgl_id,idx_ngb_tgl_2_store);
             t = t + 1;
             
         end
@@ -69,17 +69,17 @@ if strcmpi(mode,'explicit')
         cc_nb = cc_nb + 1;
         
         % New triangle seed : the first which is not in the list
-        unstored_tgl_idx = setdiff(1:size(T,1),stored_tgl_idx);
+        unstored_tgl_id = setdiff(1:size(T,1),stored_tgl_id);
         
-        if ~isempty(unstored_tgl_idx) % some unstored triangles remain
+        if ~isempty(unstored_tgl_id) % some unstored triangles remain
             
-            curr_tgl_idx = unstored_tgl_idx(1,1); % default seed triangle is 1st of the list
-            component = cat(1,component,T(curr_tgl_idx,:));
-            stored_tgl_idx = cat(2,stored_tgl_idx,curr_tgl_idx);
+            curr_tgl_id = unstored_tgl_id(1,1); % default seed triangle is 1st of the list
+            component = cat(1,component,T(curr_tgl_id,:));
+            stored_tgl_id = cat(2,stored_tgl_id,curr_tgl_id);
             
         end
         
-        if numel(stored_tgl_idx) == size(T,1) % store last triangle
+        if numel(stored_tgl_id) == size(T,1) % store last triangle
         
             if ~isempty(component)
                 
@@ -94,18 +94,18 @@ if strcmpi(mode,'explicit')
     
 elseif strcmpi(mode,'indices')
     
-    component = cat(2,component,curr_tgl_idx);
+    component = cat(2,component,curr_tgl_id);
     
-    while numel(stored_tgl_idx) < size(T,1) % some unstored triangles remain
+    while numel(stored_tgl_id) < size(T,1) % some unstored triangles remain
         
         % One same component
-        while t < numel(stored_tgl_idx) + 1 % ~isempty(idx_ngb_tgl_2_store)
+        while t < numel(stored_tgl_id) + 1 % ~isempty(idx_ngb_tgl_2_store)
             
-            curr_tgl_idx = stored_tgl_idx(t);
-            ngb_tgl_idx = cell2mat(ngb_T(curr_tgl_idx,1))';
-            idx_ngb_tgl_2_store = setdiff(ngb_tgl_idx,stored_tgl_idx);
+            curr_tgl_id = stored_tgl_id(t);
+            ngb_tgl_id = cell2mat(ngb_T(curr_tgl_id,1))';
+            idx_ngb_tgl_2_store = setdiff(ngb_tgl_id,stored_tgl_id);
             component = cat(2,component,idx_ngb_tgl_2_store);
-            stored_tgl_idx = cat(2,stored_tgl_idx,idx_ngb_tgl_2_store);
+            stored_tgl_id = cat(2,stored_tgl_id,idx_ngb_tgl_2_store);
             t = t + 1;
             
         end
@@ -117,17 +117,17 @@ elseif strcmpi(mode,'indices')
         cc_nb = cc_nb + 1;
                 
         % New triangle seed : the first which is not in the list
-        unstored_tgl_idx = setdiff(1:size(T,1),stored_tgl_idx);
+        unstored_tgl_id = setdiff(1:size(T,1),stored_tgl_id);
         
-        if ~isempty(unstored_tgl_idx) % some unstored triangles remain
+        if ~isempty(unstored_tgl_id) % some unstored triangles remain
             
-            curr_tgl_idx = unstored_tgl_idx(1,1); % default seed triangle is 1st of the list
-            component = cat(2,component,curr_tgl_idx);
-            stored_tgl_idx = cat(2,stored_tgl_idx,curr_tgl_idx);
+            curr_tgl_id = unstored_tgl_id(1,1); % default seed triangle is 1st of the list
+            component = cat(2,component,curr_tgl_id);
+            stored_tgl_id = cat(2,stored_tgl_id,curr_tgl_id);
             
         end
         
-        if numel(stored_tgl_idx) == size(T,1) % store last triangle
+        if numel(stored_tgl_id) == size(T,1) % store last triangle
         
             if ~isempty(component)
                 
