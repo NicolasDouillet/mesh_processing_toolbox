@@ -2,7 +2,7 @@ function area = face_selection_area(V, T_set)
 %% face_selection_area : function to compute
 % the area of a face selection.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -24,7 +24,7 @@ function area = face_selection_area(V, T_set)
 %% Body
 tic;
 
-tgl_area = cellfun(@(r1,r2,r3) vecnorm(r1',2)'*point_to_line_distance(r2,r1,r3),...
+tgl_area = cellfun(@(r1,r2,r3) sqrt(sum(r1.^2,2))*point_to_line_distance(r2,r1,r3),...
                    num2cell(V(T_set(:,2),:)-V(T_set(:,1),:),2),num2cell(V(T_set(:,3),:),2),...
                    num2cell(V(T_set(:,1),:),2),'un',0);
 

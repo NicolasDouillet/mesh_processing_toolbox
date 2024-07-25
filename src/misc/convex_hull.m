@@ -2,7 +2,7 @@ function T = convex_hull(V)
 %% convex_hull : function to compute the 3D convex hull of a given
 % point cloud with the Jarvis / gift wrapping algorithm.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 %       [| | |]
@@ -21,7 +21,8 @@ function T = convex_hull(V)
 tic
 assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
-epsilon = eps;
+coeff = 1;
+epsilon = coeff*eps; % floating point tolerance error
 nb_vtx = size(V,1); % nb vertices
 
 % 1st vertex : the one minimum z
@@ -111,7 +112,7 @@ tgl_normals = cross(V(tglist(:,3),:)-V(tglist(:,1),:),V(tglist(:,2),:)-V(tglist(
 for i = 1:numel(vtx_id2test)
     
     cnd_vtx_vect = V(vtx_id2test,:) - repmat(G(i,:),[nb_vtx-2,1]); 
-    cnd_vtx_vect = cnd_vtx_vect ./ vecnorm(cnd_vtx_vect',2)';
+    cnd_vtx_vect = cnd_vtx_vect ./ sqrt(sum(cnd_vtx_vect.^2,2));
     
     dot_prod = dot(cnd_vtx_vect,tgl_normals,2);
     dot_prod(abs(dot_prod) < epsilon) = 0;

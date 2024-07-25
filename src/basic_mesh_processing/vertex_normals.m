@@ -67,7 +67,7 @@ end
 
 if strcmpi(mode,'norm')
     
-    N = N./vecnorm(N',2)';    
+    N = N./sqrt(sum(N.^2,2));    
 
 end
 

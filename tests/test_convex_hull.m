@@ -2,7 +2,6 @@
 
 clc;
 
-% addpath();
 addpath(genpath('../src'));
 addpath('../data');
 
@@ -25,7 +24,7 @@ V = cat(2,X,Y,Z);
 %              'torus_light';...
 %              };
 % 
-% id = 2; % 1, 2, 3, 4     
+% id = 2; % 1, 2, 3
 % filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 % load(filename);
 

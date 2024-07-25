@@ -1,7 +1,7 @@
 function [V_out, T_out] = select_mesh_substripe(V_in, T_in, n, axis_thres, one_sided_bound_val)
 %% select_mesh_substripe : function to select a mesh sub stripe.
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2024.
 %
 %
 % Input arguments
@@ -35,7 +35,7 @@ function [V_out, T_out] = select_mesh_substripe(V_in, T_in, n, axis_thres, one_s
 %% Body
 I = n.*axis_thres;
 [~,H_in] = point_to_plane_distance(V_in,n,I);
-dst = vecnorm((V_in-H_in)',2)';
+dst = sqrt(sum((V_in-H_in).^2,2));
 f = find(dst < one_sided_bound_val);
 V_out = V_in(f,:);
 M = containers.Map(f,(1:size(f,1))');

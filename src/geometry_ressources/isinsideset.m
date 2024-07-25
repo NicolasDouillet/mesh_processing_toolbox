@@ -3,7 +3,7 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % one component given closed watertight 2D-manifold triangulated surface / set.
 % Boundary is excluded.
 %
-% Author and support nicolas.douillet (at) free.fr, 2023-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2023-2024.
 %
 % TODO : + option boundary included / excluded*
 %
@@ -62,7 +62,7 @@ elseif (max_edglength/min_edglength) > 8
     
     while max_edglength > 2*min_edglength
         
-            edglength = vecnorm((V(E(:,2),:)-V(E(:,1),:))',2)';
+            edglength = sqrt(sum((V(E(:,2),:)-V(E(:,1),:)).^2,2));
             edgidx2split = find(edglength > 2*min_edglength);
         
             for p = 1:numel(edgidx2split)
@@ -99,7 +99,7 @@ if nargin < 5
         
         % Compute face normals
         N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,3),:)-V(T(:,1),:),2);
-        N = N./vecnorm(N',2)';
+        N = N./sqrt(sum(N.^2,2));
                 
         G = mean(V,1);
         orientation = sign(dot(N,Gi-G,1));
@@ -120,7 +120,7 @@ isin = false(size(P,1),1); % out by default
 for k = 1:size(P,1)
     
     % Query closest and furthest faces
-    D = vecnorm((Gi-P(k,:))',2)';
+    D = sqrt(sum((Gi-P(k,:)).^2,2));
     [~,nrst_face_id] = min(D);
     [~,frst_face_id] = max(D);
     

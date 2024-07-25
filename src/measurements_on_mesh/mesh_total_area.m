@@ -1,7 +1,7 @@
 function mesh_area = mesh_total_area(V, T)
 %% mesh_total_area : function to compute the area of the whole mesh, in area unit.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -23,7 +23,7 @@ function mesh_area = mesh_total_area(V, T)
 %% Body
 tic;
 
-tgl_area = cellfun(@(r1,r2,r3) vecnorm(r1',2)'*point_to_line_distance(r2,r1,r3),...
+tgl_area = cellfun(@(r1,r2,r3) sqrt(sum(r1.^2,2))*point_to_line_distance(r2,r1,r3),...
                    num2cell(V(T(:,2),:)-V(T(:,1),:),2),num2cell(V(T(:,3),:),2),...
                    num2cell(V(T(:,1),:),2),'un',0);
                         

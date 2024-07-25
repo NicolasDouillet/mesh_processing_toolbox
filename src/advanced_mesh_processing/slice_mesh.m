@@ -1,7 +1,7 @@
 function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_nb_max_contours, sort_direction, slc_step)
 %% slice_mesh : function to slice one given triangular mesh.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2023-2024.
 %
 %
 % Input arguments
@@ -35,7 +35,7 @@ function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_n
 
 
 %% Body
-Perim = @(P)sum(vecnorm(diff(P(:,:),1)',2));
+Perim = @(P)sum(sqrt(sum(diff(P(:,:),1).^2,2)),1);
 
 
 % I Find and sort triangles

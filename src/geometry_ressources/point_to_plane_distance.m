@@ -3,7 +3,7 @@ function [d2H, H] = point_to_plane_distance(M, n, I)
 % the 3D point M and the plane (I,n). Also provides the coordinates
 % of H, the projection of M on (I,n), and also works for a list of points.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -36,7 +36,7 @@ z_H = M(:,3) + t_H*n(3);
 
 % Orthogonal projected point
 H = cat(2,x_H,y_H,z_H);
-d2H = vecnorm((M-H)',2)';
+d2H = sqrt(sum((M-H).^2,2));
 
 
 end % point_to_plane_distance

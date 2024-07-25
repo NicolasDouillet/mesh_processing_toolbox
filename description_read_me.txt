@@ -2,6 +2,9 @@ Please first check the doc tab on the right to get some relevant and use example
 
 Please don'tforget ta rate if this code helped you. Thanks ! ;-)
 
+Feel free to check and download the mesh generation toolbox ( https://fr.mathworks.com/matlabcentral/fileexchange/85173-mesh-generation-toolbox?s_tid=prof_contriblnk ) for many further meshing relative functions.
+
+
 
 %% DESCRIPTION
 
@@ -61,7 +64,7 @@ SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED.
 
 Modification of any kind are done under your own, only, and unique responsability.
 
-Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicotangente (at) free.fr
+Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) gmail.com
 
 
 %% KNOWN LIMITATIONS
@@ -121,4 +124,4 @@ Since I am not native english speaker, please forgive my langage approximations.
 Matlab release version used for development and tests : R2019b.
 
 
-Last update : 29 / 06 /2024.
+Last update : 20 / 07 /2024.

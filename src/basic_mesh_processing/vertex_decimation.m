@@ -3,7 +3,7 @@ function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_id2suppr)
 % Working principle : in the triangulation the vertex
 % to decimate is replaced by its nearest neighbor.
 %
-% Author : nicolas.douillet (at) free.fr, 2021-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2021-2024.
 %
 %
 % Input arguments
@@ -45,7 +45,7 @@ while ~isempty(vtx_id2suppr)
     vtx_ngb_id = find_one_vertex_neighbor_indices(T_out,vtx_id);
     
     % Find one unique nearest vertex index       
-    dst_vect = vecnorm((V_out(vtx_ngb_id,:)-repmat(V_out(vtx_id,:),[numel(vtx_ngb_id),1]))',2)';
+    dst_vect = sqrt(sum((V_out(vtx_ngb_id,:)-repmat(V_out(vtx_id,:),[numel(vtx_ngb_id),1])).^2,2));
     nrst_vtx_id = vtx_ngb_id(1,find(dst_vect == min(dst_vect),1));
     
     % Find and suppress the triangle couple the edge belong to

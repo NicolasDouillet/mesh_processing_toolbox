@@ -4,7 +4,7 @@ function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -42,10 +42,10 @@ cross_prod = @(mat_boundary_backward,mat_boundary,mat_boundary_forward) cross(V(
 dot_prod   = @(mat_boundary_backward,mat_boundary,mat_boundary_forward)   dot(V(mat_boundary_forward,:)-V(mat_boundary,:),V(mat_boundary_backward,:)-V(mat_boundary,:),2);
 
 sgn = @(bov,cross_prod) sign(dot(cross_prod,repmat(bov,[size(cross_prod,1),1]),2));
-edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*vecnorm(cross_prod',2)',dot_prod);
+edg_angle = @(sgn,cross_prod,dot_prod) atan2(sgn.*sqrt(sum(cross_prod.^2,2)),dot_prod);
 
 % Curvature continuity condition
-ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*vecnorm(cross(vertex_normals,cross_prod)',2)',dot(vertex_normals,cross_prod,2));
+ccc = @(sgn,vertex_normals,cross_prod) atan2(sgn.*sqrt(sum(cross(vertex_normals,cross_prod).^2,2)),dot(vertex_normals,cross_prod,2));
 
 % Select hole index from which every hole perimeters are below max_perim_sz
 cellsz = cell2mat(cellfun(@numel,boundaries,'un',0));

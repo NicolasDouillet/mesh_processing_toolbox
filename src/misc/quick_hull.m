@@ -2,7 +2,7 @@ function [V_out, T] = quick_hull(V_in)
 %% quick_hull : function to compute the 3D convex hull of
 % a given point cloud with the divide & conquer algorithm.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input argument
@@ -27,7 +27,8 @@ function [V_out, T] = quick_hull(V_in)
 tic
 assert(size(V_in,1) > 3,'Error : vertex set V_in must contain at least four non coplanar vertices to be 3D.');
 
-epsilon = eps; % floating point tolerance error
+coeff = 1;
+epsilon = coeff*eps; % floating point tolerance error
 nb_vtx = size(V_in,1);
 
 f_Xmin = find(V_in(:,1) == min(V_in(:,1)));

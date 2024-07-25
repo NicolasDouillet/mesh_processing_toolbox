@@ -1,7 +1,7 @@
 function N = face_normals(V, T, mode)
 %% face_normals : function to compute faces (triangles) normals.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -41,7 +41,7 @@ N = cross(V(T(:,2),:)-V(T(:,1),:),V(T(:,end),:)-V(T(:,1),:),2);
 
 if strcmpi(mode,'norm')
     
-    N = N./vecnorm(N',2)';
+    N = N./sqrt(sum(N.^2,2));
     
     % elseif strcmpi(mode,'raw')
     

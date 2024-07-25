@@ -2,11 +2,11 @@ function isin = isPointin3Dtriangle(A, B, C, P) % row vectors 1 x 3 % is3DPointo
 %% isPointin3Dtriangle : function to check if a point P of the 3D space is
 % included in a given ABC triangle, including its boundary.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2023-2024.
 
 
 %% Body
-epsilon = eps;
+epsilon = 1e3*eps;
 
 % Unitary line director vectors
 uAB = B-A;
@@ -32,22 +32,22 @@ nABC = nABC / norm(nABC);
 d = -nABC(1)*A(1) - nABC(2)*A(2) - nABC(3)*A(3);
 
 % First logical condition
-c1 = abs(nABC(1)*P(1) + nABC(2)*P(2) + nABC(3)*P(3) + d) < epsilon;
+c1 = abs(nABC(1)*P(:,1) + nABC(2)*P(:,2) + nABC(3)*P(:,3) + d) < epsilon;
 
 I_AB = 0.5*(A+B);
 I_BC = 0.5*(B+C);
 I_AC = 0.5*(A+C);
 
-sgn_dot_prod_A = dot(nA,A-P,2) > -epsilon;
-sgn_dot_prod_B = dot(nB,B-P,2) > -epsilon;
-sgn_dot_prod_C = dot(nC,C-P,2) > -epsilon;
+sgn_dot_prod_A = dot(repmat(nA,[size(P,1),1]),A-P,2) > -epsilon;
+sgn_dot_prod_B = dot(repmat(nB,[size(P,1),1]),B-P,2) > -epsilon;
+sgn_dot_prod_C = dot(repmat(nC,[size(P,1),1]),C-P,2) > -epsilon;
 
-sgn_dot_prod_AB = dot(mAB,I_AB-P,2) > -epsilon;
-sgn_dot_prod_AC = dot(mAC,I_AC-P,2) > -epsilon;
-sgn_dot_prod_BC = dot(mBC,I_BC-P,2) > -epsilon;
+sgn_dot_prod_AB = dot(repmat(mAB,[size(P,1),1]),I_AB-P,2) > -epsilon;
+sgn_dot_prod_AC = dot(repmat(mAC,[size(P,1),1]),I_AC-P,2) > -epsilon;
+sgn_dot_prod_BC = dot(repmat(mBC,[size(P,1),1]),I_BC-P,2) > -epsilon;
 
 % Second logical condition
-c2 = numel(find([sgn_dot_prod_A,sgn_dot_prod_B,sgn_dot_prod_C,sgn_dot_prod_AB,sgn_dot_prod_AC,sgn_dot_prod_BC])) > 5;
+c2 = sum(cat(2,sgn_dot_prod_A,sgn_dot_prod_B,sgn_dot_prod_C,sgn_dot_prod_AB,sgn_dot_prod_AC,sgn_dot_prod_BC),2) > 5;
 
 
 isin = c1 & c2;

@@ -2,7 +2,7 @@ function bound_lengths = boundary_and_holes_perimeters(V, boundary)
 %% boundary_and_holes_perimeters : function to compute perimeters
 % of holes and boundary of the mesh in length unit.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -22,7 +22,7 @@ function bound_lengths = boundary_and_holes_perimeters(V, boundary)
 
 %% Body
 tic;
-bound_lengths = cellfun(@(r) sum(vecnorm((V(r,:)-V(circshift(r,1,2),:))',2)),boundary);
+bound_lengths = cellfun(@(r) sum(sqrt(sum((V(r,:)-V(circshift(r,1,2),:)).^2,2))),boundary);
 fprintf('%d perimeters computed in %d seconds.\n',size(boundary,1),toc);
 
 

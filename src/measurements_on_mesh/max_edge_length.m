@@ -1,7 +1,7 @@
 function mael = max_edge_length(V, T)
 %% max_edge_length : function to compute the maximum length of the mesh edges.
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2024.
 %
 %
 % Input arguments
@@ -23,7 +23,7 @@ function mael = max_edge_length(V, T)
 %% Body
 E = query_edges_list(T);
 E = unique(sort(E,2),'rows');
-mael = max(vecnorm((V(E(:,2),:)-V(E(:,1),:))',2));
+mael = max(sqrt(sum((V(E(:,2),:)-V(E(:,1),:)).^2,2)));
 
 
 end % max_edge_length

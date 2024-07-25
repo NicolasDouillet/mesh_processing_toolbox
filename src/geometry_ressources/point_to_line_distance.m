@@ -3,7 +3,7 @@ function [d2H, H] = point_to_line_distance(P, u, I0)
 % between the 3D point P and the line (I0,u) in the 3D space,
 % and the coordinates of its projection, H.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
 %
 %
 % Input arguments
@@ -56,7 +56,7 @@ H(:,2) = y_H;
 H(:,3) = z_H;
 
 % Distance
-d2H = vecnorm((P-H)',2)';
+d2H = sqrt(sum((P-H).^2,2));
 H = H(:,1:dimension);
 
 
