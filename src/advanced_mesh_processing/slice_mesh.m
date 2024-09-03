@@ -1,7 +1,7 @@
 function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_nb_max_contours, sort_direction, slc_step)
 %% slice_mesh : function to slice one given triangular mesh.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2023-2024.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
 % Input arguments

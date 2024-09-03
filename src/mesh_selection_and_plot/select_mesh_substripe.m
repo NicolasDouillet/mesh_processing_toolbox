@@ -1,7 +1,7 @@
 function [V_out, T_out] = select_mesh_substripe(V_in, T_in, n, axis_thres, one_sided_bound_val)
 %% select_mesh_substripe : function to select a mesh sub stripe.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2024.
+% Author : nicolas.douillet (at) free.fr, 2024.
 %
 %
 % Input arguments

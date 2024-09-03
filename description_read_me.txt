@@ -64,8 +64,6 @@ SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED.
 
 Modification of any kind are done under your own, only, and unique responsability.
 
-Please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) gmail.com
-
 
 %% KNOWN LIMITATIONS
 
@@ -107,6 +105,7 @@ By default, vertex and face normals are normalized at the same time they are com
 Basic 3D mathematical computation algorithm (like point_to_plane_distance) are also independently available with their documentations in my file exchange contributions.
 
 I especially thank William V, Binbin Qi, for what they taught me while solving my cody problems.
+I also thank Stepan Kortus for time optimization of the over_sample algorithm 
 Matlab users, your advices and tips to improve and speed up my algorithms are welcome !
 
 If you can’t see the mesh while plotting it, try ‘shading flat’ (it may be shadowed by its numerous dark edges).
@@ -121,7 +120,9 @@ Gargoyle meshed models are provided courtesy of VCG-ISTI by the AIM@SHAPE-VISION
 Armadillo and bunny are simplified versions of the ones you can find on Stanford 3D scanning repository : https://graphics.stanford.edu/data/3Dscanrep/
 Since I am not native english speaker, please forgive my langage approximations.
 
+
 Matlab release version used for development and tests : R2019b.
 
+Contact : please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) free.fr
 
-Last update : 20 / 07 /2024.
+Last update : 03 / 09 /2024.

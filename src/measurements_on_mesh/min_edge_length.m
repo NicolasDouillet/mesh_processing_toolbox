@@ -1,7 +1,7 @@
 function miel = min_edge_length(V, T)
 %% min_edge_length : function to compute the minimum length of the mesh edges.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2024.
+% Author : nicolas.douillet (at) free.fr, 2024.
 %
 %
 % Input arguments

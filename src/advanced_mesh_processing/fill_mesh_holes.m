@@ -4,7 +4,7 @@ function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

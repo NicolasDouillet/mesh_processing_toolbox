@@ -4,7 +4,7 @@ function min_dst = point_to_mesh_min_distance(P, V, T)
 % In case the point doesn't orthogonally project on a face/triangle,
 % the minimum distance to the point set is taken.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

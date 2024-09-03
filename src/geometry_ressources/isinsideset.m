@@ -3,7 +3,7 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % one component given closed watertight 2D-manifold triangulated surface / set.
 % Boundary is excluded.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2023-2024.
+% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 % TODO : + option boundary included / excluded*
 %

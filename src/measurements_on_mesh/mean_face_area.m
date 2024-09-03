@@ -1,7 +1,7 @@
 function meanfa = mean_face_area(V, T)
 %% mean_face_area : function to compute the average area of the mesh faces, in square graphic unit.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2020-2024.
+% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments
