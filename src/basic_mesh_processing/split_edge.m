@@ -1,4 +1,4 @@
-function [V_out, T_out] = split_edge(V_in, T_in, edge2split)
+function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 %% split_edge : function to split one ore more edges of the mesh into two edges.
 % Process and take one edge at a time in input.
 % Beware of updating edge2split if you split edges in a loop,
@@ -24,6 +24,10 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split)
 % - edge2split = [e1 e2], positive integer matrix double, the set of the edges to split. size(edge2split) = [1, 2].
 %                [|   |]
 %
+% - mode, character string in the set {'default', 'DEFAULT', 'specific','SPECIFIC'}, the split mode.
+%
+% - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3].
+%
 %
 % Output arguments
 %
@@ -40,13 +44,45 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split)
 %           with nb_output_triangles = nb_input_triangles + 2.
 
 
+%% Input parsing
+if nargin < 4
+    
+    mode = 'default';
+    
+else % if nargin > 3
+    
+    if strcmpi(mode,'specific')
+        
+        if nargin < 5
+            
+            error('Not enough input arguments. Specific vertex is missing.');
+            
+        end
+        
+    elseif ~strcmpi(mode,'default')
+        
+        error('Unknown specified split mode.');
+        
+    end
+        
+end
+
+
 %% Body
 V_out = V_in;
 T_out = T_in;
 
 % Create and add new vertex
-new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:));
-[V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
+if strcmpi(mode,'default')
+    
+    new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:));
+    [V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
+    
+else % if strcmpi(mode,'specific')
+    
+    [V_out,new_vtx_id] = add_vertices(V_new,V_out);
+    
+end
 
 % Find triangles and edge opposite vertices
 tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split(1,:)));

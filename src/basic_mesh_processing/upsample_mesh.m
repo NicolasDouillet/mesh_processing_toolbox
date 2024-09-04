@@ -1,5 +1,5 @@
-function [V_out, T_out] = oversample_mesh(V_in, T_in, mode, tgl_id)
-%% oversample_mesh : function to oversample a mesh.
+function [V_out, T_out] = upsample_mesh(V_in, T_in, mode, tgl_id)
+%% upsample_mesh : function to upsample a mesh.
 %
 % Authors : nicolas.douillet (at) free.fr, 2023-2024.
 %           Stepan Kortus (cpu time optimization)
@@ -15,9 +15,9 @@ function [V_out, T_out] = oversample_mesh(V_in, T_in, mode, tgl_id)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
-% - tgl_id : row vector double of positive integers, the index vector of the triangles to oversample.
+% - tgl_id : row vector double of positive integers, the index vector of the triangles to upsample.
 %
-% - mode : charachter string in the set {'default','DEFAULT','midedge','MIDEDGE','centre','CENTRE'}, the oversampling mode.
+% - mode : charachter string in the set {'default','DEFAULT','midedge','MIDEDGE','centre','CENTRE'}, the upsampling mode.
 %
 %
 % Output arguments
@@ -112,4 +112,4 @@ tol = 1e3*eps;
 [V_out,T_out] = remove_duplicated_vertices(V_out,T_out,tol);
 
 
-end % oversample_mesh
+end % upsample_mesh

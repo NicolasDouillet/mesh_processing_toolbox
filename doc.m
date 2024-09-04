@@ -3,6 +3,10 @@
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 
 
+addpath('data/');
+addpath(genpath('src/'));
+
+
 %% Example #1 : connected components
 load('kitten_components.mat');
 [cc_nb,components] = segment_connected_components(T);
@@ -66,12 +70,12 @@ shading flat;
 camlight left;
 view(-90,0);
 
-%% Exammple #6 : mesh oversampling
+%% Exammple #6 : mesh upsampling
 load('sinusoidal_dodecahedron_MR.mat');
 plot_mesh(V,T);
 shading faceted;
 camlight left;
-[V,T] = oversample_mesh(V,T); % 'default' / midedge or 'centre'
+[V,T] = upsample_mesh(V,T); % 'default' / midedge or 'centre'
 plot_mesh(V,T);
 shading faceted;
 camlight left;

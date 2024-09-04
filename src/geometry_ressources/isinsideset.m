@@ -40,7 +40,7 @@ assert(nargin < 6,'Too many input arguments.');
 assert(isequal(size(V,2),size(P,2),3),'All the inputs must have the same number of colums.');
 
 
-% Mesh oversampling preprocessing step
+% Mesh upsampling preprocessing step
 min_edglength = min_edge_length(V,T);
 max_edglength = max_edge_length(V,T);
 
@@ -48,7 +48,7 @@ if (max_edglength/min_edglength > 2 && max_edglength/min_edglength <= 8)
     
     while max_edglength > 2*min_edglength              
         
-        [V,T] = oversample_mesh(V,T);
+        [V,T] = upsample_mesh(V,T);
         max_edglength = max_edge_length(V,T);
         
     end

@@ -1,4 +1,4 @@
-% test oversample_mesh
+% test upsample_mesh
 
 clc;
 
@@ -27,10 +27,10 @@ load(filename);
 plot_mesh(V,T);
 
 % Oversample the whole mesh
-[V,T] = oversample_mesh(V,T); % 'default' / midedge or 'centre'
+[V,T] = upsample_mesh(V,T); % 'default' / midedge or 'centre'
 plot_mesh(V,T);
 
-% % Oversample one triangle subset only; method = 'centre'
+% % Upsample one triangle subset only; method = 'centre'
 % load(filename);
-% [V,T] = oversample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
+% [V,T] = upsample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
 % plot_mesh(V,T);
