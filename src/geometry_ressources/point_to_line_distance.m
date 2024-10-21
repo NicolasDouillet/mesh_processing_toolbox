@@ -29,35 +29,26 @@ function [d2H, H] = point_to_line_distance(P, u, I0)
 
 
 %% Body
-nb_pts = size(P,1);
-dimension = size(P,2);    
+[nb_pts, nbdim] = size(P);
 
-% Zeros padding in 2D case
-if dimension < 3
-    P = cat(2,P,zeros(size(P,1),1));
-    u = cat(2,u,0);
-    I0 = cat(2,I0,0);    
+if nbdim == 2
+    
+    t_H = (u(1)*(P(:,1)-repmat(I0(1),[nb_pts,1])) + ...
+           u(2)*(P(:,2)-repmat(I0(2),[nb_pts,1]))) / ...
+           sum(u.^2);
+    
+elseif nbdim == 3
+    
+    t_H = (u(1)*(P(:,1)-repmat(I0(1),[nb_pts,1])) + ...
+           u(2)*(P(:,2)-repmat(I0(2),[nb_pts,1])) + ...
+           u(3)*(P(:,3)-repmat(I0(3),[nb_pts,1])) ) / ...
+           sum(u.^2);
+
 end
 
-% Computations
-t_H = (u(1)*(P(:,1)-repmat(I0(1),[nb_pts,1])) + ...
-       u(2)*(P(:,2)-repmat(I0(2),[nb_pts,1])) + ...
-       u(3)*(P(:,3)-repmat(I0(3),[nb_pts,1])) ) / ...
-       sum(u.^2); 
-
-x_H = I0(1) + t_H*u(1);
-y_H = I0(2) + t_H*u(2);
-z_H = I0(3) + t_H*u(3);
-
-% Orthogonal projected point
-H = zeros(size(P,1),dimension);
-H(:,1) = x_H;
-H(:,2) = y_H;
-H(:,3) = z_H;
-
 % Distance
+H = I0 + t_H*u;
 d2H = sqrt(sum((P-H).^2,2));
-H = H(:,1:dimension);
 
 
 end % point_to_line_distance
