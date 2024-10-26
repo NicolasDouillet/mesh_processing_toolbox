@@ -17,10 +17,17 @@ function T = convex_hull(V)
 %       [ |  |  |]
 
 
-%% Body
 tic
-assert(size(V,1) > 3,'Error : vertex set V must contain at least four non coplanar vertices to be 3D.');
 
+%% Input parsing
+if size(V,1) < 4    
+    
+    error('Vertex set V must contain at least four non coplanar vertices to be 3D.');   
+    
+end
+
+
+%% Body
 coeff = 1;
 epsilon = coeff*eps; % floating point tolerance error
 nb_vtx = size(V,1); % nb vertices

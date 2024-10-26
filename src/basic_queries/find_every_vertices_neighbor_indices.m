@@ -24,18 +24,18 @@ function neighbor_list = find_every_vertices_neighbor_indices(T, ngb_degre, nb_v
 
 % tic;
 
-
-%% Input parsing
-assert(nargin > 1,'Not enough input arguments.');
-assert(nargin < 4,'Too many input arguments.');
-    
+%% Input parsing    
 if nargin < 2
     
     ngb_degre = 1;
     
 else 
         
-    assert(isreal(ngb_degre) && ngb_degre > 0 && floor(ngb_degre) == ngb_degre,'ngb_degre must be a positive integer in the range |[1; 6]|.');
+    if ~isreal(ngb_degre) || ngb_degre < 0 || floor(ngb_degre) ~= ngb_degre
+        
+        error('ngb_degre must be a positive integer in the range |[1; 6]|.');               
+        
+    end
     
 end
 

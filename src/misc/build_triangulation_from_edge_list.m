@@ -52,8 +52,7 @@ elseif nargin < 2 || strcmpi(mode,'raw')
             third_vtx = intersect(i_lk_vtx,j_lk_vtx); 
             
             new_tgl_set = cat(2,repmat([i,j],[numel(third_vtx),1]),third_vtx');
-            T(n:n+size(new_tgl_set,1)-1,:) = new_tgl_set;
-            
+            T(n:n+size(new_tgl_set,1)-1,:) = new_tgl_set;            
             n = n + size(new_tgl_set,1);
             
         end

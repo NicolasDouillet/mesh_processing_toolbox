@@ -25,8 +25,6 @@ function [] = show_triangle_selection(V, T, T_subset, mode)
 
 
 %% Input parsing and body
-assert(nargin > 2,'Not enough input argument. show_triangle_selection takes at least 3 input arguments.')
-
 if nargin > 2
     
     if nargin > 3

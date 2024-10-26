@@ -35,9 +35,17 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 
 
 %% Input parsing
-assert(nargin > 2,'Not enought input arguments.');
-assert(nargin < 6,'Too many input arguments.');
-assert(isequal(size(V,2),size(P,2),3),'All the inputs must have the same number of colums.');
+if  nargin < 3    
+    error('Not enought input arguments.');    
+end
+
+if  nargin > 5    
+    error('Too many input arguments.');    
+end
+
+if ~isequal(size(V,2),size(P,2),3)    
+    error('All the inputs must have the same number of colums.');    
+end
 
 
 % Mesh upsampling preprocessing step

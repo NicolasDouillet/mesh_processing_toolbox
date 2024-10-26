@@ -23,10 +23,17 @@ function [V_out, T] = quick_hull(V_in)
 %       [ |  |  |]
 
 
-%% Body
 tic
-assert(size(V_in,1) > 3,'Error : vertex set V_in must contain at least four non coplanar vertices to be 3D.');
 
+%% Input parsing
+if size(V_in,1) < 4    
+    
+    error('Vertex set V_in must contain at least four non coplanar vertices to be 3D.');   
+    
+end
+
+
+%% Body
 coeff = 1;
 epsilon = coeff*eps; % floating point tolerance error
 nb_vtx = size(V_in,1);

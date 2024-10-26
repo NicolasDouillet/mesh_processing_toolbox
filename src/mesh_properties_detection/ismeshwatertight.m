@@ -24,9 +24,14 @@ function b = ismeshwatertight(V, T, surf_type)
 % - b : logical true/false | 1/0, the watertightness result.
 
 
-%% Body
+%% Input parsing & body
 tic;
-assert(nargin > 1,'Error, not enough input arguments.');
+
+if nargin < 2
+    
+    error('Not enough input arguments.');
+    
+end
 
 [~,T] = remove_isolated_triangles(V,T,true);
 boundary = detect_mesh_boundary_and_holes(T);

@@ -45,8 +45,11 @@ if nargin  < 4
     
 else
     
-    assert((strcmpi(mode,'indices') && ismember(1,size(V_set))) || (strcmpi(mode,'explicit') && size(V_set,2) == 3),...
-           'mode value must be either set to ''indices'' with V_set a one row/column indices vector or to ''explicit'' with size(V_set,2) = 3.');
+    if ~(strcmpi(mode,'indices') && ismember(1,size(V_set))) || ~(strcmpi(mode,'explicit') && size(V_set,2) == 3)
+           
+        error('mode value must be either set to ''indices'' with V_set a one row/column indices vector or to ''explicit'' with size(V_set,2) = 3.');
+       
+    end
     
 end
 
