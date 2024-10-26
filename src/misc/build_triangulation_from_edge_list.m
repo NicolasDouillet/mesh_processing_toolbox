@@ -27,15 +27,17 @@ function T = build_triangulation_from_edge_list(E, mode)
 if nargin > 1 && strcmpi(mode,'sorted')
         
     C = mat2cell(E,repelem(3,floor(size(E,1)/3)),2);
-    R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % replicated
-    U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % unique
+    R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % with potential replicated edges
+    U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % with unique edges only
     T = cell2mat(U);
     
 elseif nargin < 2 || strcmpi(mode,'raw')
     
     E = unique(sort(E,2),'rows');
     vtx_id_list = sort(unique(E(:)'));
-    T = zeros(0,3);
+	T = zeros(floor(floor(size(E,1)/3)),3); % maximum number of triangles        
+    
+    n = 1;
     
     for i = vtx_id_list
         
@@ -43,22 +45,24 @@ elseif nargin < 2 || strcmpi(mode,'raw')
         i_lk_vtx = find_one_vertex_neighbor_indices(E,i);
         
         for j = i_lk_vtx
-            
+                        
             j_lk_vtx = find_one_vertex_neighbor_indices(E,j);
-            third_vtx = intersect(i_lk_vtx,j_lk_vtx);
             
-            if ~isempty(third_vtx)
-                
-                % No need to sort new triangles here since add_triangle already check for duplicata
-                new_tgl_set = cat(2,repmat([i,j],[numel(third_vtx),1]),third_vtx');
-                T = add_triangles(new_tgl_set,T);
-                
-            end
+            % Find every third vertex connected to this edge
+            third_vtx = intersect(i_lk_vtx,j_lk_vtx); 
+            
+            new_tgl_set = cat(2,repmat([i,j],[numel(third_vtx),1]),third_vtx');
+            T(n:n+size(new_tgl_set,1)-1,:) = new_tgl_set;
+            
+            n = n + size(new_tgl_set,1);
             
         end
         
     end
-    
+	   
+    T(~any(T,2),:) = [];
+	T = remove_duplicated_triangles(T);            
+        
 end
 
 % fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',size(T,1),size(E,1),toc);
