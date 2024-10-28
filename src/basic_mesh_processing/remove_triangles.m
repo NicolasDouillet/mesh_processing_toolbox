@@ -17,7 +17,7 @@ function T_out = remove_triangles(T_in, T_set, mode)
 %           or integer vector of indices, size(T_set) = [1,nb_triangles]. NB : in the case size(T_set) = [1,3]
 %           the difference between the two possible options is only made thanks to the input argument mode value.
 %
-% - mode : character string in the set {'indices','explicit','INDICES','EXPLICIT'}. Case insensitive.
+% - mode : character string in the set {'index','explicit',INDEX,'EXPLICIT'}. Case insensitive.
 % 
 %
 % Output argument
@@ -35,7 +35,7 @@ function T_out = remove_triangles(T_in, T_set, mode)
 %% Input parsing
 if nargin < 3
 
-    mode = 'indices'; % default behaviour
+    mode = 'index'; % default behaviour
     
 end
 
@@ -43,7 +43,7 @@ end
 %% Body
 T_out = T_in;
 
-if strcmpi(mode,'indices') && ismember(1,size(T_set))
+if strcmpi(mode,'index') && ismember(1,size(T_set))
        
     T_out(T_set,:) = [];
     
@@ -53,7 +53,7 @@ elseif strcmpi(mode,'explicit') && size(T_set,2) == 3
     
 else
     
-    error('mode value must be either set to ''indices'' with T_set a one row/column vector or to ''explicit'' with size(T_set,2) = 3.');
+    error('mode value must be either set to ''index'' with T_set a one row/column vector or to ''explicit'' with size(T_set,2) = 3.');
     
 end
 

@@ -45,7 +45,7 @@ tgl_id_list = find_triangle_sets_from_vertex_list(T_in,vtx_id);
 vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_id_list);
 
 nmnfld_vtx_id = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
-[V_out,T_out] = remove_vertices(nmnfld_vtx_id,V_in,T_in,'indices');
+[V_out,T_out] = remove_vertices(nmnfld_vtx_id,V_in,T_in,'index');
 
 fprintf('%d non manifold vertices removed in %d seconds.\n',size(V_in,1)-size(V_out,1),toc);
 

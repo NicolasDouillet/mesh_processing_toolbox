@@ -34,7 +34,7 @@ function [V_out, T_out] = remove_unreferenced_vertices(V_in, T_in)
 %% Body
 % tic;
 unref_vtx_id = setdiff(1:size(V_in,1),unique(T_in(:)));
-[V_out,T_out] = remove_vertices(unref_vtx_id,V_in,T_in,'indices');
+[V_out,T_out] = remove_vertices(unref_vtx_id,V_in,T_in,'index');
 % fprintf('%d unreferenced vertices removed in %d seconds.\n',size(V_in,1)-size(V_out,1),toc);
 
 

@@ -11,9 +11,9 @@ function [cc_nb, components] = segment_connected_components(T, mode)
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_input_triangles,3].
 %       [|  |  | ]
 %
-% - mode : character string in the set {'explicit','indices','EXPLICIT','INDICES'}, the format of each cell
+% - mode : character string in the set {'explicit','index','EXPLICIT','INDEX'}, the format of each cell
 %          content of output cell array components. In case mode is set to 'explicit', triangles are refered
-%          as triplet lists of positive integer scalar double, whereas in case it is set to 'indices', they are
+%          as triplet lists of positive integer scalar double, whereas in case it is set to 'index', they are
 %          just identified with their indices (positive integer scalar double). Case insensitive.
 %
 %
@@ -92,7 +92,7 @@ if strcmpi(mode,'explicit')
         
     end
     
-elseif strcmpi(mode,'indices')
+elseif strcmpi(mode,'index')
     
     component = cat(2,component,curr_tgl_id);
     

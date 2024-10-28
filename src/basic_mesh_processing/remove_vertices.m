@@ -19,7 +19,7 @@ function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          |  |     |     |  ]
 %
-% - mode : character string in the set {'indices','explicit','INDICES','EXPLICIT'}. Explicit mode corresponds to the
+% - mode : character string in the set {'index','explicit',INDEX,'EXPLICIT'}. Explicit mode corresponds to the
 %          case where V_set is made of vertices [X Y Z] coordinates. Case insensitive.
 %
 %
@@ -41,13 +41,13 @@ function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 %% Input parsing
 if nargin  < 4
     
-    mode = 'indices';
+    mode = 'index';
     
 else
     
-    if ~(strcmpi(mode,'indices') && ismember(1,size(V_set))) && ~(strcmpi(mode,'explicit') && size(V_set,2) == 3)
+    if ~(strcmpi(mode,'index') && ismember(1,size(V_set))) && ~(strcmpi(mode,'explicit') && size(V_set,2) == 3)
            
-        error('mode value must be either set to ''indices'' with V_set a one row/column indices vector or to ''explicit'' with size(V_set,2) = 3.');
+        error('mode value must be either set to ''index'' with V_set a one row/column indices vector or to ''explicit'' with size(V_set,2) = 3.');
        
     end
     
@@ -58,7 +58,7 @@ end
 V_out = V_in;
 T_out = T_in;
 
-if strcmpi(mode,'indices') && ismember(1,size(V_set)) || nargin < 4
+if strcmpi(mode,'index') && ismember(1,size(V_set)) || nargin < 4
        
     vtx_id_2_rm = V_set;                   
     

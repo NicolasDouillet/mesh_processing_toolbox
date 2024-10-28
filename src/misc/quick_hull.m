@@ -290,7 +290,7 @@ in_vtx_set_id = find(isin3Dconvexset(V_in,T,V_in,epsilon));
 
 if ~isempty(in_vtx_set_id)
     
-    [V_out,T] = remove_vertices(in_vtx_set_id,V_in,T,'indices');
+    [V_out,T] = remove_vertices(in_vtx_set_id,V_in,T,'index');
     
 else
     

@@ -87,8 +87,8 @@ TF_out = add_triangles(new_tgl_txt_set1,TF_in);
 TF_out = add_triangles(new_tgl_txt_set2,TF_out);
 
 % Remove old triangles
-T_out  = remove_triangles(T_out,tgl_id_list,'indices');
-TF_out = remove_triangles(TF_out,tgl_txt_id_list,'indices');
+T_out  = remove_triangles(T_out,tgl_id_list,'index');
+TF_out = remove_triangles(TF_out,tgl_txt_id_list,'index');
 
 
 end % split_edge

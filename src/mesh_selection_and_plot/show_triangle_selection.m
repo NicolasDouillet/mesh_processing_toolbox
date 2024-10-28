@@ -19,7 +19,7 @@ function [] = show_triangle_selection(V, T, T_subset, mode)
 %              positive integer matrix double giving the explicit indices triplet list. In this latter case,
 %              mode must be set to 'explicit'.
 %
-% - mode : character string in the set : {'explicit',indices,'EXPLICIT','INDICES'}. Explicit mode
+% - mode : character string in the set : {'explicit',indices,'EXPLICIT',INDEX}. Explicit mode
 %          corresponds to the case where T_subset is made of triangle vertices [i1 i2 i3] indices.
 %          Case insensitive.
 
@@ -29,7 +29,7 @@ if nargin > 2
     
     if nargin > 3
         
-        if strcmpi(mode,'indices')
+        if strcmpi(mode,'index')
             
             subset_id = T_subset;
             
@@ -41,7 +41,7 @@ if nargin > 2
         
     else
         
-        % mode = 'indices'; % default behaviour
+        % mode = 'index'; % default behaviour
         subset_id = T_subset;
         
     end

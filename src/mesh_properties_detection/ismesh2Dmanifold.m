@@ -60,7 +60,7 @@ tgl_id_list = find_triangle_sets_from_vertex_list(T,vtx_id);
 vtx_ngb_tgl_nb = cellfun(@(c) numel(c),tgl_id_list);
 
 nmnfld_vtx_id = find(vtx_ngb_edg_nb > vtx_ngb_tgl_nb+1);
-[V_test,~] = remove_vertices(nmnfld_vtx_id,V,T,'indices');
+[V_test,~] = remove_vertices(nmnfld_vtx_id,V,T,'index');
 nmnfld_vtx_nb = size(V,1)-size(V_test,1);
 
 

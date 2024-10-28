@@ -123,7 +123,7 @@ for p = 1:numel(op_vtx)
 end
 
 % Remove old splited triangles
-T_out  = remove_triangles(T_out,tgl_id_list,'indices');
+T_out  = remove_triangles(T_out,tgl_id_list,'index');
 
 
 end % split_edge

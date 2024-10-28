@@ -126,4 +126,4 @@ Matlab release version used for development and tests : R2019b.
 
 Contact : please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) free.fr
 
-Last update : 03 / 09 /2024.
+Last update : 28 / 10 /2024.

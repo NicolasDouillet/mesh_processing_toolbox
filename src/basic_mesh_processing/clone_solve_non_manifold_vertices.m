@@ -44,7 +44,7 @@ for i = 1:numel(nmnfld_vtx_id)
     T_set = T_out(tgl_id_list,:);
     
     % Segment this triangles subset into components
-    [~,tgl_patches] = segment_connected_components(T_set,'indices'); 
+    [~,tgl_patches] = segment_connected_components(T_set,'index'); 
     
     % Reindex it according to the original whole triangle set
     tgl_patches = back_map_triangle_sets_indices(tgl_patches, tgl_id_list);
@@ -73,7 +73,7 @@ for i = 1:numel(nmnfld_vtx_id)
 end
 
 % Remove original now unreferenced -non manifold- vertices
-[V_out,T_out] = remove_vertices(nmnfld_vtx_id,V_out,T_out,'indices');
+[V_out,T_out] = remove_vertices(nmnfld_vtx_id,V_out,T_out,'index');
 
 fprintf('duplicate_nmnfld_vertices request executed in %d seconds. %d clone vertices added.\n',toc,size(V_out,1)-size(V_in,1));
 

@@ -69,12 +69,12 @@ for k = 1:nb_it
     if strcmpi(mode,'smooth')
         
         bound_vertices = unique(lone_edges_list(:))';
-        [V_out,T_out] = remove_vertices(bound_vertices,V_out,T_out,'indices');
+        [V_out,T_out] = remove_vertices(bound_vertices,V_out,T_out,'index');
         
     elseif strcmpi(mode,'saw')
         
         tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_out,lone_edges_list));
-        T_out = remove_triangles(T_out,tgl_id_list,'indices');
+        T_out = remove_triangles(T_out,tgl_id_list,'index');
         
     end
     
