@@ -26,7 +26,7 @@ filename = strcat(cell2mat(filenames(id,1)),'.mat');
 load(filename);
 plot_mesh(V,T);
 
-% Oversample the whole mesh
+% Upsample the whole mesh
 [V,T] = upsample_mesh(V,T); % 'default' / midedge or 'centre'
 plot_mesh(V,T);
 

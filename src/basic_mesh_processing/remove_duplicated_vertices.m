@@ -1,4 +1,4 @@
-function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in, tol)
+function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in, precision)
 %% remove_duplicated_vertices : function to remove duplicated
 % vertices from the point set.
 %
@@ -15,7 +15,7 @@ function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in, tol)
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
-% - tol : real scalar double. tol = f(eps), the tolerance to error.
+% - precision : real scalar double. precision = f(eps), the tolerance to error.
 %
 %
 % Output arguments
@@ -33,7 +33,7 @@ function [V_out, T_out] = remove_duplicated_vertices(V_in, T_in, tol)
 
 %% Body
 % tic;
-[V_out,~,n] = uniquetol(V_in,tol,'ByRows',true);
+[V_out,~,n] = uniquetol(V_in,precision,'ByRows',true);
 T_out = n(T_in);
 % fprintf('%d duplicated vertices removed in %d seconds.\n',size(V_in,1)-size(V_out,1),toc);
 
