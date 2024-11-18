@@ -35,5 +35,5 @@ clear V, clear T;
 
 precision = 1e9*eps;
 [TX,VX] = logical_XOR(T1,T2,V1,V2,precision);
-plot_mesh(VX,TX);
-alpha(0.5);
+plot_mesh(V1,TX);
+% alpha(0.5);

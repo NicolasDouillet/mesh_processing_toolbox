@@ -1,10 +1,10 @@
 function [] = plot_mesh(V, T)
 %% plot_mesh : function to display the mesh in a Matlab (R) figure.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -57,6 +57,8 @@ axis equal;
 ax = gca;
 ax.Clipping = 'off';
 set(gca, 'Color', [0 0 0], 'XColor', [1 1 1], 'YColor', [1 1 1], 'ZColor', [1 1 1]);
+shading interp;
+camlight left;
 
 % fprintf('Mesh with %d vertices and %d triangles displayed in %d seconds.\n',numel(unique(T(:))),size(T,1),toc);
 

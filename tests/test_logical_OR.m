@@ -28,7 +28,7 @@ load(filename1);
 V1 = V;
 T1 = T;
 
-filename2 = strcat(cell2mat(filenames(10,1)),'.mat');         
+filename2 = strcat(cell2mat(filenames(9,1)),'.mat');         
 load(filename2);
 
 V2 = V; % +2 => point set translation for better visibility
