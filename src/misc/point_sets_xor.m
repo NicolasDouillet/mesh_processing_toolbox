@@ -1,11 +1,11 @@
 function [V, id1, id2] = point_sets_xor(V1, V2, precision)
-% point_sets_xor : function to compute and return the
+%% point_sets_xor : function to compute and return the
 % exclusive union between the two point sets V1 and V2.
 %
 %%% Author : nicolas.douillet (at) free.fr, 2024.
 
 
-% Body
+%% Body
 if nargin  < 3
    
     precision = 1e3*eps; % default value

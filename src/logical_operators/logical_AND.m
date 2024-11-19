@@ -1,7 +1,7 @@
 function [T, V] = logical_AND(T1, T2, V1, V2, precision)
 %% logical_AND : function to perform the logical intersection of two meshes.
 % Hypothesis on point sets and meshes : free from duplicated data (vertices or
-% triangles)
+% triangles). Ignore face / triangle orientation.
 %
 %%% Author : nicolas.douillet (at) free.fr, 2024.
 %

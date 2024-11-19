@@ -1,5 +1,6 @@
 function [T, V] = logical_OR(T1, T2, V1, V2, precision)
 %% logical_OR : function to perform the logical union of two meshes.
+% Ignore face / triangle orientation.
 %
 %%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %

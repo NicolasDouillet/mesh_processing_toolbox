@@ -7,10 +7,10 @@ addpath('../data');
 
 
 filenames = {'cube';...
-             'cross_filled_cube';...       % precision = 1e3*eps ok
+             'cross_filled_cube';...       
              
              'octahedron';...
-             'cross_filled_octahedron';... % precision = 1e3*eps ok
+             'cross_filled_octahedron';... 
              
              'kitten';...
              'kitten_holed';...
@@ -19,7 +19,7 @@ filenames = {'cube';...
              };
              
          
-filename1 = strcat(cell2mat(filenames(5,1)),'.mat');         
+filename1 = strcat(cell2mat(filenames(6,1)),'.mat');         
 load(filename1);
 
 V1 = V;
@@ -34,6 +34,5 @@ T2 = T;
 clear V, clear T;
 
 precision = 1e9*eps;
-[TX,VX] = logical_XOR(T1,T2,V1,V2,precision);
-plot_mesh(V1,TX);
-% alpha(0.5);
+[T,V] = logical_XOR(T1,T2,V1,V2,precision);
+plot_mesh(V,T);

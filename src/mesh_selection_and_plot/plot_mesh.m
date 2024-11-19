@@ -26,7 +26,7 @@ if strcmp(class(T),'double')
     
     if size(T,2) == 3
         
-        trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on; % ,'FaceColor',[0 1 1]
+        trisurf(T,V(:,1),V(:,2),V(:,3)), hold on; % ,'FaceColor',[0 1 1]
         colormap([0 1 1]);
         
     elseif size(T,2) > 3                
@@ -49,7 +49,6 @@ elseif strcmp(class(T),'cell')
     end
     
 end
-
 
 
 xlabel('X'), ylabel('Y'), zlabel('Z');
