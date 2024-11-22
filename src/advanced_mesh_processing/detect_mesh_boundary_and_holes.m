@@ -1,24 +1,22 @@
 function boundaries = detect_mesh_boundary_and_holes(T)
-%% detect_mesh_boundary_and_holes : function to detect vertices which are part of
-% the mesh boundary and list their indices in boundary vectors.
-%
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
-%                                         
-% From the vertex and triangle lists, this function computes
-% the mesh boundary when there are some (opened surface
-% or presence of holes in the mesh).
-%
+%% detect_mesh_boundary_and_holes : function to detect vertices
+% which are part of the mesh boundary and list their indices in
+% boundary vectors. From the vertex and triangle lists, this
+% function computes the mesh boundary when there are some
+% (opened surface or presence of holes in the mesh).
 % Principle is based on detecting and sorting non shared edges.  
 %
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%                                         
 %
-% Input arguments
+%%% Input arguments
 %
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]
 %
 %
-% Output argument
+%%% Output argument
 %
 % - boundaries : cell array of positive integer row vectors double, size(boundaries) = [nb_holes,1].
 

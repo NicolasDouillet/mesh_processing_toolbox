@@ -1,20 +1,20 @@
-function T_out = flip_edge(T_in, edge2split)
-%% flip_edge : function to flip a given edge.
+function T_out = flip_edge(T_in, edge2flip)
+%% flip_edge : function to flip an edge (edge2flip) in the given triangulation (T_in).
 % Preserves face normals orientation.
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet (at) free.fr, 2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
-% - edge2split = [e1 e2], positive integer matrix double, the edge to split, size(edge2split) = [1,2].
+% - edge2flip = [e1 e2], positive integer matrix double, the edge to flip, size(edge2flip) = [1,2].
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
@@ -23,8 +23,7 @@ function T_out = flip_edge(T_in, edge2split)
 
 %% Body
 T_out = T_in;
-tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split));
-size(tgl_id_list)
+tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2flip));
 
 
 if ~isempty(tgl_id_list) && numel(tgl_id_list) > 1
@@ -34,10 +33,10 @@ if ~isempty(tgl_id_list) && numel(tgl_id_list) > 1
     tgl1 = T_in(tglidx1,:);    
     tgl2 = T_in(tglidx2,:);
     
-    % if ~isempty(edge2split) && numel(edge2split) == 2
+    % if ~isempty(edge2flip) && numel(edge2flip) == 2
     
-    edgpos1 = bitor(tgl1 == edge2split(1,1),tgl1 == edge2split(1,2));
-    edgpos2 = bitor(tgl2 == edge2split(1,1),tgl2 == edge2split(1,2));
+    edgpos1 = bitor(tgl1 == edge2flip(1,1),tgl1 == edge2flip(1,2));
+    edgpos2 = bitor(tgl2 == edge2flip(1,1),tgl2 == edge2flip(1,2));
     
     if isequal(edgpos1,logical([1 0 1]))
         
@@ -76,7 +75,7 @@ if ~isempty(tgl_id_list) && numel(tgl_id_list) > 1
     
 else % if isempty(tgl_id_list) || numel(tgl_id_list) < 2
     
-    warning(['Edge [',num2str(edge2split),'] is not shared between two triangles and won''t be flipped.']);
+    warning(['Edge [',num2str(edge2flip),'] is not shared between two triangles and won''t be flipped.']);
     
 end
 

@@ -2,7 +2,7 @@ function [] = draw_slice_contours(srt_itx_vtx_lsts)
 %% draw_slice_contours : function to draw the contour(s) of one mesh given
 % slice.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 
 
 %% Body

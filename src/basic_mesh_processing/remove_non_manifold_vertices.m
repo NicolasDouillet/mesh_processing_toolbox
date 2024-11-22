@@ -1,14 +1,13 @@
 function [V_out, T_out] = remove_non_manifold_vertices(V_in, T_in)
 %% remove_non_manifold_vertices : function to remove
-% non manifold vertices from the mesh.
+% non manifold vertices from the mesh (T_in).
+% Working principle & criterion : non manifold vertices
+% have at least two more linked edges than linked triangles.
 %
-% Working principle & criterion : non manifold vertices have at least
-% two more linked edges than linked triangles.
-%
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -19,7 +18,7 @@ function [V_out, T_out] = remove_non_manifold_vertices(V_in, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

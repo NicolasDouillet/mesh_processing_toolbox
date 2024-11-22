@@ -1,10 +1,10 @@
 function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_nb_max_contours, sort_direction, slc_step)
 %% slice_mesh : function to slice one given triangular mesh.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -27,7 +27,7 @@ function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_n
 % - slc_step : positive integer scalar double, the slicing step in graphic unit of the point set.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - srt_itx_vtx_lsts : cell array of integer vectors double, the sorted intersection vertex list.
 %                      size(srt_itx_vtx_lsts) = [nb_contours,1], where nb_contours is the number

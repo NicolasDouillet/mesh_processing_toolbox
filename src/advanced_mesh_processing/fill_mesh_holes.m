@@ -1,13 +1,12 @@
 function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
-%% fill_mesh_holes : function to fill the mesh holes.
-%
+%% fill_mesh_holes : function to fill the mesh (T) holes.
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -22,7 +21,7 @@ function T_out = fill_mesh_holes(V, T_in, boundaries, max_perim_sz)
 % - max_perim_sz : real scalar double, the maximum perimeter size admitted for the holes to fill.
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].

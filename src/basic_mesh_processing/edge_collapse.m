@@ -1,14 +1,14 @@
 function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
-%% edge_collapse : function to collapse one ore more edge(s).
-% Triangle set needs to be 2D-manifold for edge_collapse to work
-% and edge couple must be valid existing edges.
+%% edge_collapse : function to collapse edge(s) of edg_list.
+% Triangle set (T) needs to be 2D-manifold for edge_collapse
+% to work and edge couple must be valid existing edges.
 % Working principle : each edge to collapse is replaced by its middle
 % point.
 %
-% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -23,7 +23,7 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 %              [ | | ] 
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

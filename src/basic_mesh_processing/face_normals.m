@@ -1,10 +1,10 @@
 function N = face_normals(V, T, mode)
 %% face_normals : function to compute faces (triangles) normals.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -18,7 +18,7 @@ function N = face_normals(V, T, mode)
 %          wether to normalize or not the face normals. Case insensitive.
 %
 %
-% Output argument
+%%% Output argument
 %
 %       [ |  |  |]
 % - N : [Nx Ny Nz], real matrix double, the face normal vectors, size(N) = [nb_triangles,3].

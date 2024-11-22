@@ -1,12 +1,12 @@
 function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_id2suppr)
 %% vertex_decimation : function to decimate vertices.
 % Working principle : in the triangulation the vertex
-% to decimate is replaced by its nearest neighbor.
+% to decimate (vtx_id2suppr) is replaced by its nearest neighbor.
 %
-% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -19,7 +19,7 @@ function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_id2suppr)
 % - vtx_id2suppr, positive integer matrix double, the vertex set indices to decimate, size(vtx_id2suppr) = [1,nb_vertex]. 
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

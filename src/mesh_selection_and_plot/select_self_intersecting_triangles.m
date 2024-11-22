@@ -1,11 +1,11 @@
 function self_inter_tgl_id = select_self_intersecting_triangles(V, T)
 %% select_self_intersecting_triangles : function to display self intersecting
-% triangles on the mesh.
+% triangles on the mesh (T).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -16,7 +16,7 @@ function self_inter_tgl_id = select_self_intersecting_triangles(V, T)
 %       [ |  |  |]
 %
 %
-% Output argument
+%%% Output argument
 %
 % - self_inter_tgl_id : positive integer row vector double, the index vector of self intersecting triangles.
 

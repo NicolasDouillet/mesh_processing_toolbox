@@ -1,11 +1,11 @@
 function [] = show_triangle_selection(V, T, T_subset, mode)
 %% show_triangle_selection : function to highlight a
-% selection of triangles on the mesh.
+% selection (T_subset) of triangles on the mesh (T).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].

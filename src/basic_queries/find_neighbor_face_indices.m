@@ -2,10 +2,10 @@ function ngb_T = find_neighbor_face_indices(F, F_subset)
 %% find_neighbor_face_indices : function to compute the list of faces
 % which are neighbors (share one edge) to the faces in F_subset.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [ |  |  |]
 % - F = [i1 i2 i3], positive integer matrix double, the triangulation, size(F) = [nb_faces,3].
@@ -16,7 +16,7 @@ function ngb_T = find_neighbor_face_indices(F, F_subset)
 %              mode must be set to 'explicit'.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - ngb_F : positive integer matrix double, the neighbor face indices, size(ngb_F) = [nbg_nb,3],
 %           with nbg_nb the number of neighbors.

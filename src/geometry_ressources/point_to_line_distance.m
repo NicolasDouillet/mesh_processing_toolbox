@@ -3,10 +3,10 @@ function [d2H, H] = point_to_line_distance(P, u, I0)
 % between the 3D point P and the line (I0,u) in the 3D space,
 % and the coordinates of its projection, H.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [|  |  | ]
 % - P : [Px Py Pz], real matrix double, point or list of N points which
@@ -19,7 +19,7 @@ function [d2H, H] = point_to_line_distance(P, u, I0)
 % - I0 = [I0x I0y I0z], real row vector double, size(I0) = [1,3], a known point belonging to the line.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - d2H : real scalar double or vector double, the euclidian distance between P and the line (I0,u). size(d2H) = [N,1].      
 %              

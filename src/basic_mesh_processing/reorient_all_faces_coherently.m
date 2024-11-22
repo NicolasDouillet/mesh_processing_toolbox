@@ -1,12 +1,12 @@
 function T_out = reorient_all_faces_coherently(V, T_in)
 %% reorient_all_faces_coherently : function to flip
-% the orientation of certain triangles of the mesh
+% the orientation of certain triangles of the mesh (T_in)
 % in order to have a coherently oriented mesh as a result.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -17,7 +17,7 @@ function T_out = reorient_all_faces_coherently(V, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].

@@ -1,5 +1,5 @@
 function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
-%% select_submesh : function to extract a subselection from the initial mesh.
+%% select_submesh : function to extract a subselection from the initial mesh (T).
 %
 % General principle of the algorithm : extract vertices and associated triangles
 % of the mesh which are located on one side / half space of the plan defined by (n, I).
@@ -7,7 +7,7 @@ function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
 % Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %  
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -22,7 +22,7 @@ function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
 % - I : real row vector double, a point belonging to the cutting plan, size(I) = [1,3].
 %      
 %
-% Output arguments                                                       
+%%% Output arguments                                                       
 %                 
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3].

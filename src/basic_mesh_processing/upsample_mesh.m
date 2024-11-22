@@ -1,11 +1,12 @@
 function [V_out, T_out] = upsample_mesh(V_in, T_in, mode, tgl_id)
-%% upsample_mesh : function to upsample a mesh.
+%% upsample_mesh : function to upsample a gieven mesh (T_in).
+% Preserves face normals orientation.
 %
-% Authors : nicolas.douillet (at) free.fr, 2023-2024.
-%           Stepan Kortus (cpu time optimization)
+%%% Authors : nicolas.douillet (at) free.fr, 2023-2024.
+%             Stepan Kortus (cpu time optimization)
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -20,7 +21,7 @@ function [V_out, T_out] = upsample_mesh(V_in, T_in, mode, tgl_id)
 % - mode : charachter string in the set {'default','DEFAULT','midedge','MIDEDGE','centre','CENTRE'}, the upsampling mode.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3].
@@ -29,9 +30,6 @@ function [V_out, T_out] = upsample_mesh(V_in, T_in, mode, tgl_id)
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
 %           [  |      |      |   ]
-%
-%
-% Preserves face normals orientation
 
 
 nb_tgl = size(T_in,1);

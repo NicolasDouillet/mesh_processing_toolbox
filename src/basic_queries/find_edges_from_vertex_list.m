@@ -2,10 +2,10 @@ function edg_lists = find_edges_from_vertex_list(T, vtx_id)
 %% find_edges_from_vertex_list : function to compute the edges lists
 % in the triangulation T which contain the vertex indices of vtx_id.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
@@ -14,7 +14,7 @@ function edg_lists = find_edges_from_vertex_list(T, vtx_id)
 % - vtx_id : positive integer row vector double, the vertex indices list, vtx_id = (1:size(V,1)).
 %
 %
-% Output argument
+%%% Output argument
 %
 % - edg_lists : positive integer matrix double, the edge lists,
 %               size(edg_lists) =  [nb_edg,2], with nb_edg the number of edges.

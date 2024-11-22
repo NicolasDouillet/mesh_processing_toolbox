@@ -1,21 +1,21 @@
 function T_out = remove_non_manifold_triangles(T_in)
-%% remove_non_manifold_triangles : function to remove non manifold triangles from the mesh.
-%
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
-%
+%% remove_non_manifold_triangles : function to remove
+% non manifold triangles from the mesh (T_in).
 % Working principle & criterion : non manifold triangles are the
 % ones detected such that one of their edges at least is shared by
 % at least two other triangles.
 %
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
-% Input argument
+%
+%%% Input argument
 %
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3],

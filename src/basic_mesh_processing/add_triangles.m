@@ -1,12 +1,12 @@
 function T_out = add_triangles(T_set, T_in)
-%% add_triangles : function to add new triangles to the triangle set.
+%% add_triangles : function to add new triangles T_set to the triangle set T_in.
 % If one or more vertices are new, they must be added first in the vertex set
 % for the triangulation to be valid.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %           [|  |  | ]
 % - T_set = [i1 i2 i3], positive integer matrix double, the triangle set to add, size(T_set) = [nb_new_triangles,3].
@@ -17,7 +17,7 @@ function T_out = add_triangles(T_set, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3],

@@ -1,10 +1,10 @@
 function T = build_triangulation_from_edge_list(E, mode)
 %% build_triangulation_from_edge_list : function to build the triangulation T from the edge list E. 
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input argument
+%%% Input argument
 %
 %       [ | | ]
 %       [i1 i2]
@@ -15,7 +15,7 @@ function T = build_triangulation_from_edge_list(E, mode)
 % - mode : character string in the set {'sorted','raw'}, case insensitive.
 %
 %
-% Output argument
+%%% Output argument
 %
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the rebuilt triangulation, size(T) = [nb_triangles,3].

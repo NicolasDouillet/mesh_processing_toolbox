@@ -1,10 +1,10 @@
 function maxfa = max_face_area(V, T)
-%% max_face_area : function to compute the maximum area of the mesh faces, in square graphic unit.
+%% max_face_area : function to compute the maximum area of the mesh (T) faces, in square graphic unit.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -15,9 +15,9 @@ function maxfa = max_face_area(V, T)
 %       [ |  |  |]
 %
 %
-% Output arguments
+%%% Output arguments
 %
-% - maxfa, positive real scalar double, the maximum face area.
+% - maxfa : positive real scalar double, the maximum face area.
 
 
 %% Body

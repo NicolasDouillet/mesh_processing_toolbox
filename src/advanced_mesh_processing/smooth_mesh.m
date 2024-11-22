@@ -6,10 +6,10 @@ function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
 % the mean of its neighbors. The number of vertices stays the same.
 %
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], double matrix, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -24,7 +24,7 @@ function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
 % - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1.
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], double matrix, the output point set, size(V_out) = [nb_output_vertices,3].

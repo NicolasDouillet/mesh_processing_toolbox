@@ -2,10 +2,10 @@ function [cc_nb, components] = segment_connected_components(T, mode)
 %% segment_connected_components : function to compute the number cc_nb of connected
 % components and consequently segment the triangulation into cc_nb triangulation cells.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [|  |  | ]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_input_triangles,3].
@@ -17,7 +17,7 @@ function [cc_nb, components] = segment_connected_components(T, mode)
 %          just identified with their indices (positive integer scalar double). Case insensitive.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - cc_nb : positive integer scalar double, the number of connected components.
 %

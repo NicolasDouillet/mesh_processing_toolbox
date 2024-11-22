@@ -1,11 +1,11 @@
 function pt2mesh_mean_dst = point_to_mesh_mean_distance(M, V, T)
 %% pt2mesh_mean_dst : function to compute the mean distance of a given
-% M point  to the mesh.
+% M point to the mesh T.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_vertices,3].
@@ -14,6 +14,11 @@ function pt2mesh_mean_dst = point_to_mesh_mean_distance(M, V, T)
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the input triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]
+%
+%
+%%% Output argument
+%
+% - pt2mesh_mean_dst : real positive scalar double, the mean distance from the point to the mesh.
 
 
 %% Body

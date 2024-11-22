@@ -1,10 +1,10 @@
 function N = select_vertex_normals(V, T, ngb_degre, mode, option_display)
 %% select_vertex_normals : function to display the vertex normals on the mesh.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -23,7 +23,7 @@ function N = select_vertex_normals(V, T, ngb_degre, mode, option_display)
 % - option_display : logical *true/false | *1/0, enable/disable the diplay.
 %          
 %
-% Output argument
+%%% Output argument
 %
 %       [ |  |  |]
 % - N : [Nx Ny Nz], real matrix double, the vertex normalized normal vectors, size(N) = [nb_vertices,3].

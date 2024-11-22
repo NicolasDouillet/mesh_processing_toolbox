@@ -1,12 +1,12 @@
 function T_out = remove_self_intersecting_triangles(V, T_in)
 %% remove_self_intersecting_triangles : function to remove
-% self intersection triangles from the mesh.
-%
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
-%
+% self intersection triangles from the mesh (T_in).
 % Hypothesis : edge intersections, as well as T-vertices, counts as intersections.
 %
-% Input arguments
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%
+%
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -17,7 +17,7 @@ function T_out = remove_self_intersecting_triangles(V, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].

@@ -1,5 +1,5 @@
 function isconvex = issetconvex(V)
-% Function to determine if a given set of points V is convex or not.
+%% Function to determine if a given set of points V is convex or not.
 % The set is convex if each and every of its elements belong to the
 % convex hull. This means the set and its convex hull are
 % actually coincident. This also implies the set has no internal point
@@ -10,7 +10,7 @@ function isconvex = issetconvex(V)
 % Author : nicolas.douillet (at) free.fr, 2024.
 
 
-% Body
+%% Body
 precision = 1e4*eps;
 V = uniquetol(V,precision,'ByRows',true);
 T = convhull(V);

@@ -2,10 +2,10 @@ function tgl_id_list = find_triangles_from_vertex_list(T, vtx_id)
 %% find_triangles_from_vertex_list : function to compute the index
 % list of triangles containing the vertex indices of vtx_id.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [|  |  | ]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
@@ -14,7 +14,7 @@ function tgl_id_list = find_triangles_from_vertex_list(T, vtx_id)
 % - vtx_id : positive integer row vector double, the vertex indices list.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - tgl_id_list : positive integer row vector double, the triangle indices list.
 

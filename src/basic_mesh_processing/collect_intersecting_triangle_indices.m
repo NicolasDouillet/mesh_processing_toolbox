@@ -1,15 +1,12 @@
 function self_inter_tgl_id_out = collect_intersecting_triangle_indices(V, T, i1, i2, self_inter_tgl_id_in)
 %% collect_intersecting_triangle_indices : function to collect intersecting triangle indices.
-% 
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
-%
 % Hypothesis : edges, except vertices, belong to the boundary.
+% Warning : not yet appropriated for large meshes. Too much CPU time consuming.
 %
-% Warninng : not yet appropriated for large meshes. Too much CPU time
-% consuming.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_vertices,3].
@@ -27,7 +24,7 @@ function self_inter_tgl_id_out = collect_intersecting_triangle_indices(V, T, i1,
 %                           of self intersecting triangle indices.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - self_inter_tgl_id_out : positive integer row vector double, output list
 %                            of self intersecting triangle indices. If

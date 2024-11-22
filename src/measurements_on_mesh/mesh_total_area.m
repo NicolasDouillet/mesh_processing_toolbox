@@ -1,10 +1,10 @@
 function mesh_area = mesh_total_area(V, T)
-%% mesh_total_area : function to compute the area of the whole mesh, in area unit.
+%% mesh_total_area : function to compute the area of the whole mesh T, in area unit.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %        
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -15,9 +15,9 @@ function mesh_area = mesh_total_area(V, T)
 %       [ |  |  |]
 %
 %
-% Output argument
+%%% Output argument
 %
-% - mesh_area : real scalar double, the area of the mesh, in area unit.
+% - mesh_area : positive real scalar double, the area of the mesh, in area unit.
 
 
 %% Body

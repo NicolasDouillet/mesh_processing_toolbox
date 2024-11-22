@@ -4,10 +4,10 @@ function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundary
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -26,7 +26,7 @@ function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundary
 % - max_perim_sz : real scalar double, the maximum perimeter size admitted for the holes to fill.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].

@@ -4,10 +4,10 @@ function min_dst = point_to_mesh_min_distance(P, V, T)
 % In case the point doesn't orthogonally project on a face/triangle,
 % the minimum distance to the point set is taken.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 % - P = [Px Py Pz], real vector double, the 3D point, size(P) = [1,3].
 %        
@@ -20,9 +20,9 @@ function min_dst = point_to_mesh_min_distance(P, V, T)
 %       [ |  |  |]
 %
 %
-% Output argument
+%%% Output argument
 %
-% - min_dst : real scalar double, the minimum distance between P and the mesh. In case no triangle is found
+% - min_dst : positive real scalar double, the minimum distance between P and the mesh. In case no triangle is found
 %             to orthogonally projet P on, the minimum distance is taken between P and the point set V.
 
 

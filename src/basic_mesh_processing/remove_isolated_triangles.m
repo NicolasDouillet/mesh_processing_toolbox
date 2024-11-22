@@ -1,12 +1,12 @@
 function [V_out, T_out] = remove_isolated_triangles(V_in, T_in, rm_isl_vtx)
-%% remove_isolated_triangles : function to remove isolated triangles from the mesh
-% (triangles which don't share any edge with the other triangles of the
-% mesh (i.e : no neighbor triangle).
+%% remove_isolated_triangles : function to remove isolated triangles
+% from the mesh (T_in). These are triangles which don't share any edge
+% with the other triangles of the mesh (i.e : no neighbor triangle).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -19,7 +19,7 @@ function [V_out, T_out] = remove_isolated_triangles(V_in, T_in, rm_isl_vtx)
 % - rm_isl_vtx : logical true/false, remove or not the resulting isolated vertices.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

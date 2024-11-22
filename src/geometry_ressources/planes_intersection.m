@@ -2,9 +2,10 @@ function [I, u, rc] = planes_intersection(n1, M1, n2, M2)
 %% planes_intersection : function to compute the intersection
 % between P1(M1,n1) and P2(M2,n2) planes of the 3D space.
 %
-% Author : nicotangente (at) free.fr, 2019-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2019-2024.
 
-% Inputs arguments
+
+%%% Inputs arguments
 %
 % - M1 : real row or column vector double, a point belonging to P1. numel(M1) = 3.
 %
@@ -15,7 +16,7 @@ function [I, u, rc] = planes_intersection(n1, M1, n2, M2)
 % - n2 : real row or column vector double, one P2 normal vector. numel(n2) = 3.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - I : real vector double, one point belonging to the line intersection. size(I) = size(n1).
 %

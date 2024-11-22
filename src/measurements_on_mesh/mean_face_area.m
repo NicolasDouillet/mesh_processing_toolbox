@@ -1,10 +1,10 @@
 function meanfa = mean_face_area(V, T)
-%% mean_face_area : function to compute the average area of the mesh faces, in square graphic unit.
+%% mean_face_area : function to compute the average area of the mesh (T) faces, in square graphic unit.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -13,11 +13,11 @@ function meanfa = mean_face_area(V, T)
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]
-
 %
-% Output arguments
 %
-% - meanfa, positive real scalar double, the mean face area.
+%%% Output arguments
+%
+% - meanfa : positive real scalar double, the mean face area.
 
 
 %% Body

@@ -8,10 +8,10 @@ function V_out = smooth_mesh_boundary_and_holes(V_in, boundaries, nb_iterations,
 % and no connectivity change happen in the mesh.
 %
 %
-% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], double matrix, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -26,7 +26,7 @@ function V_out = smooth_mesh_boundary_and_holes(V_in, boundaries, nb_iterations,
 % - hole_ids : positive integer vector double, vector of the holes ids.
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], double matrix, the output point set, size(V_out) = [nb_output_vertices,3].

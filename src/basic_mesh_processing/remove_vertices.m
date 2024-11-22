@@ -1,10 +1,10 @@
 function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
-%% remove_vertices : function to remove vertices from the vertex set.
+%% remove_vertices : function to remove vertices from the vertex set (V_in).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %           [| | |]
 % - V_set = [X Y Z], real matrix double, the vertex set to remove, size(V_set) = [nb_new_vertices,3],
@@ -23,7 +23,7 @@ function [V_out, T_out] = remove_vertices(V_set, V_in, T_in, mode)
 %          case where V_set is made of vertices [X Y Z] coordinates. Case insensitive.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

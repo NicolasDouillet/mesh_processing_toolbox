@@ -1,11 +1,10 @@
 function area = face_selection_area(V, T_set)
-%% face_selection_area : function to compute
-% the area of a face selection.
+%% face_selection_area : function to compute the area of the faces selection T_set.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %        
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -16,9 +15,9 @@ function area = face_selection_area(V, T_set)
 %           [|  |  | ]           
 %
 %
-% Output argument
+%%% Output argument
 %
-% - area : real scalar double, the area of the face selection, in area unit.
+% - area : positive real scalar double, the area of the face selection, in area unit.
 
 
 %% Body

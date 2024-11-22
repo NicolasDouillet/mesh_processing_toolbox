@@ -1,7 +1,7 @@
 function [] = plot_point_set(V, marker, color, markersize)
-%% plot_point_set : function to plot the point set vertices in a Matlab (R) figure.
+%% plot_point_set : function to plot the point set (V) vertices in a Matlab (R) figure.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
 % Input arguments

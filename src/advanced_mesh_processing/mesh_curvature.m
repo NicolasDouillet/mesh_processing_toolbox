@@ -1,7 +1,7 @@
 function curvature = mesh_curvature(V, T, N, ngb_degre, curv_type)
 %% mesh_curvature : function to compute curvature on every vertex of the mesh.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
 % Info / about : homemade temporary version of a curvature computation algorithm.
@@ -9,7 +9,7 @@ function curvature = mesh_curvature(V, T, N, ngb_degre, curv_type)
 % all the same size, and vertices the same valence).
 % 
 %  
-% Input arguments                                                        
+%%% Input arguments                                                        
 %        
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -28,7 +28,7 @@ function curvature = mesh_curvature(V, T, N, ngb_degre, curv_type)
 % - curv_type : character string in the set : {'gaussian','normal','absolute','GAUSSIAN','NORMAL','ABSOLUTE'}
 %
 %
-% Output argument
+%%% Output argument
 %
 % - curvature : real column vector double, the vertex curvature map / field, size(C) = size(V). 
 

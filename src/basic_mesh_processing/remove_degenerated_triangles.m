@@ -2,10 +2,10 @@ function T_out = remove_degenerated_triangles(V_in, T_in)
 %% remove_degenerated_triangles : function to find then suppress
 % triangles containing aligned vertices.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -16,7 +16,7 @@ function T_out = remove_degenerated_triangles(V_in, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].

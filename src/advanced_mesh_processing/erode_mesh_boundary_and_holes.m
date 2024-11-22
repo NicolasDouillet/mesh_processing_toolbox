@@ -2,10 +2,10 @@ function [V_out, T_out] = erode_mesh_boundary_and_holes(V_in, T_in, nb_it, mode)
 %% erode_mesh_boundary_and_holes : function to erode
 % mesh boundary and holes by vertex and triangle removal.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -22,7 +22,7 @@ function [V_out, T_out] = erode_mesh_boundary_and_holes(V_in, T_in, nb_it, mode)
 %          edges and vertices. Aspect of the edges in 'saw' mode looks like /\/\/\, hence its name.          
 %          
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

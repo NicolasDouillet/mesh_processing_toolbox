@@ -1,11 +1,11 @@
 function [T_out, V_out] = remove_small_components(C, pct2rm ,V_in, rm_isl_vtx)
-%% remove_small_components : function to remove from the mesh components smaller
+%% remove_small_components : function to remove from the mesh (C) components smaller
 % (in relative number of triangles) than a certain percent of the total.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 % - C : cell array of interger matrices, the components of the input triangulation.
 %
@@ -17,7 +17,7 @@ function [T_out, V_out] = remove_small_components(C, pct2rm ,V_in, rm_isl_vtx)
 %          [ |    |    |  ]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

@@ -2,10 +2,10 @@ function [b, nmnfld_edg_id] = ismesh2Dmanifold(V, T)
 %% ismesh2Dmanifold : boolean state function to test
 % wether the mesh is 2D-manifold or not.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -16,7 +16,7 @@ function [b, nmnfld_edg_id] = ismesh2Dmanifold(V, T)
 %       [ |  |  |]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - b : logical true/false, the 2D-manifoldness result.
 %

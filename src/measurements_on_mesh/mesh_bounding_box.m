@@ -1,19 +1,19 @@
 function bbox = mesh_bounding_box(V)
 %% mesh_bounding_box : function to compute the bounding box of the mesh.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input argument
+%%% Input argument
 %        
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
 %       [| | |]
 %
-% Output argument
+%%% Output argument
 %
 % - bbox : real row vector double, the bounding box, size(bbox) = [1,6],
-%           bbox = [xmin xmax ymin ymax zmin zmax].
+%          bbox = [xmin xmax ymin ymax zmin zmax].
 
 
 %% Body

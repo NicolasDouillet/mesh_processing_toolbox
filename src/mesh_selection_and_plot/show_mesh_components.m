@@ -1,11 +1,11 @@
 function [] = show_mesh_components(V, C)
 %% show_mesh_components : function to color individually and specifically
-% each component of the mesh with a different color.
+% each component of the mesh (T) with a different color.
 %
-% Author : nicolas.douillet @free.fr (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet @free.fr (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].

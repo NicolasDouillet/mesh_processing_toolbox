@@ -1,11 +1,11 @@
 function T = splitrianglein3(T, tid, vid)
-%% splitrianglein3 : function to split one given triangle in three new
-% triangles given the triangle id, the new vertex id in the point set, the
-% triangulation, and the total number of vertices in the set including the
+%% splitrianglein3 : function to split one given triangle (tid) in three new
+% triangles given the triangle id, the new vertex (vid) id in the point set, the
+% triangulation (T), and the total number of vertices in the set including the
 % new one. The triangle is deleted after the split.
 %
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet (at) free.fr, 2024.
 
 
 %% Create new triangles

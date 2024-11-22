@@ -2,10 +2,10 @@ function [V_out, T_out] = remove_flat_triangles(V_in, T_in)
 %% remove_flat_triangles : function to find then suppress
 % triangles containing twice or more the same vertex.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -16,7 +16,7 @@ function [V_out, T_out] = remove_flat_triangles(V_in, T_in)
 %          [  |     |     |  ]
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3].

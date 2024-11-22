@@ -2,10 +2,10 @@ function [V_out, T_out] = clone_solve_non_manifold_vertices(V_in, T_in, nmnfld_v
 %% clone_solve_non_manifold_vertices : function to virtually solve
 % non manifold vertex issues by cloning them. May create flat triangles.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -18,7 +18,7 @@ function [V_out, T_out] = clone_solve_non_manifold_vertices(V_in, T_in, nmnfld_v
 % - nmnfld_vtx_id : positive integer row vector, the index list of non manifold vertices.
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

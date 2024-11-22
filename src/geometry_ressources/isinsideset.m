@@ -3,12 +3,12 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % one component given closed watertight 2D-manifold triangulated surface / set.
 % Boundary is excluded.
 %
-% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %
 % TODO : + option boundary included / excluded*
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -29,7 +29,7 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % - epsilon : scalar double, the tolerance on the error.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - isin : logical vector, the resulting boolean vector.
 

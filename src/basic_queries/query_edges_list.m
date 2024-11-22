@@ -2,10 +2,10 @@ function edg_list = query_edges_list(T, mode)
 %% query_edges_list : function to query the edges list
 % corresponding to the triangulation T.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [|  |  | ]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
@@ -16,7 +16,7 @@ function edg_list = query_edges_list(T, mode)
 %          order. Case insensitive.
 %
 %
-% Output argument
+%%% Output argument
 %
 %              [ | | ]
 %              [i1 i2]

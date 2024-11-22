@@ -2,10 +2,10 @@ function b = ismeshwatertight(V, T, surf_type)
 %% ismeshwatertight : Boolean state function to test
 % if the surface is watertight or not.
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -19,7 +19,7 @@ function b = ismeshwatertight(V, T, surf_type)
 %               the type of surface considered. Case insensitive.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - b : logical true/false | 1/0, the watertightness result.
 

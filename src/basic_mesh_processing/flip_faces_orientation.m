@@ -1,18 +1,18 @@
 function T_out = flip_faces_orientation(T_in)
 %% flip_faces_orientation : function to flip the
-% orientation of each triangle of the mesh.
+% orientation of each triangle of the mesh (T_in).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input argument
+%%% Input argument
 %
 %          [  |     |     |  ]
 % - T_in = [i1_in i2_in i3_in], positive integer matrix, the input triangulation, size(T_in) = [nb_input_triangles,3].
 %          [  |     |     |  ]
 %
 %
-% Output argument
+%%% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix, the output triangulation, size(T_out) = [nb_output_triangles,3],

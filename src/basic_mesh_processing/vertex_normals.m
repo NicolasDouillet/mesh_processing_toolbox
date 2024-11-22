@@ -1,10 +1,10 @@
 function N = vertex_normals(V, T, ngb_degre, mode)
-% %vertex_normals : function to compute vertex normals.
+% %vertex_normals : function to compute vertex normals (N).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -20,14 +20,14 @@ function N = vertex_normals(V, T, ngb_degre, mode)
 %          wether to normalize or not the vertex normals. Case insensitive.
 %          
 %
-% Output argument
+%%% Output argument
 %
 %       [ |  |  |]
 % - N : [Nx Ny Nz], real matrix double, the vertex normalized normal vectors, size(N) = [nb_vertices,3].
 %       [ |  |  |]
 
 
-% Input parsing
+%% Input parsing
 if nargin < 4
    
     mode = 'norm';

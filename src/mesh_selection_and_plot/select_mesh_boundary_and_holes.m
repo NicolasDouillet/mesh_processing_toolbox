@@ -1,15 +1,15 @@
 function boundaries = select_mesh_boundary_and_holes(V, T, hole_ids)
 %% select_mesh_boundary_and_holes : function to select and display
-% holes and boundary of the mesh.
+% holes and boundary (boundaries) of the mesh (T).
 %
-% About : holes and boundary are identified and segmented
+%%% About : holes and boundary are identified and segmented
 % (detect_mesh_boundary_and_holes), and their displays use different colors.
 %
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 % 
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -22,7 +22,7 @@ function boundaries = select_mesh_boundary_and_holes(V, T, hole_ids)
 % - hole_ids : positive integer vector double, vector of the holes ids.
 %
 %
-% Output argument
+%%% Output argument
 %
 % - boundaries : cell array of positive integer row vectors double, size(boundaries) = [nb_holes,1].
 

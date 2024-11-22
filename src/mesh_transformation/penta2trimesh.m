@@ -1,7 +1,7 @@
 function T = penta2trimesh(P)
 %% penta2trimesh : function to convert a pentagonal mesh into a triangular mesh.
 %
-% Assumption : % V1, V2, V3, V4, V5, and V6 vertices of each pentagon are assumed to be coplanar.
+% Assumption : % V1, V2, V3, V4, and V5 vertices of each pentagon are assumed to be coplanar.
 %
 %%% Author : nicolas.douillet (at) free.fr, 2023-2024.
 %

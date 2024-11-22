@@ -2,10 +2,10 @@ function [I, rc] = line_plane_intersection(u, N, n, M)
 %% line_plane_intersection : function to compute the intersection point
 % between the (N,u) line and the (M,n) plane of the 3D space.
 %
-% Author : nicolas.douillet free.fr, 2020-2024.
+%%% Author : nicolas.douillet free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 % - u : real row or column vector double. numel(u) = 3. A director vector of the parametric line.
 %
@@ -18,7 +18,7 @@ function [I, rc] = line_plane_intersection(u, N, n, M)
 % - verbose : either logical *true/false or integer *1/0. 
 %
 %
-% Output arguments
+%%% Output arguments
 %
 % - I = [xI yI zI], real row or column vector double, the intersection point.
 %

@@ -1,5 +1,5 @@
 function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
-%% split_edge : function to split one ore more edges of the mesh into two edges.
+%% split_edge : function to split edges of edge2split in the mesh (T_in) into two edges.
 % Process and take one edge at a time in input.
 % Beware of updating edge2split if you split edges in a loop,
 % since the triangulation and then the indices will change at
@@ -7,10 +7,10 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 % Preserves normals orientation.
 % For 2D manifold meshes only.
 %
-% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %          [ |    |    |  ]
 % - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
@@ -29,7 +29,7 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 % - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3].
 %
 %
-% Output arguments
+%%% Output arguments
 %
 %           [  |     |     |  ]
 % - V_out = [X_out Y_out Z_out], real matrix double, the output point set, size(V_out) = [nb_output_vertices,3],

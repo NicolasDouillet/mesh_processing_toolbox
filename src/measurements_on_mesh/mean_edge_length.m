@@ -1,10 +1,10 @@
 function mel = mean_edge_length(V, T)
-%% mean_edge_length : function to compute the average length of the mesh edges.
+%% mean_edge_length : function to compute the average length of the mesh (T) edges.
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet (at) free.fr, 2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -13,9 +13,9 @@ function mel = mean_edge_length(V, T)
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
 %       [ |  |  |]
-
 %
-% Output arguments
+%
+%%% Output arguments
 %
 % - mel, positive real scalar double, the mean edge length.
 

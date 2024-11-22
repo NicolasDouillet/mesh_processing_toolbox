@@ -1,11 +1,11 @@
 function nmnfld_tgl_id_list = select_non_manifold_triangles(V, T)
 %% select_non_manifold_triangles : function to select and display
-% non manifold triangles on the mesh.
+% non manifold triangles on the mesh (T).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
 %
 %
-% Input arguments
+%%% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
@@ -16,7 +16,7 @@ function nmnfld_tgl_id_list = select_non_manifold_triangles(V, T)
 %       [ |  |  |]
 %
 %
-% Output argument
+%%% Output argument
 %
 % - nmnfld_tgl_id_list : positive integer row vector, the index list of non manifold triangles. 
 
