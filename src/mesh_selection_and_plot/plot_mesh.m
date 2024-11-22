@@ -56,7 +56,6 @@ axis equal;
 ax = gca;
 ax.Clipping = 'off';
 set(gca, 'Color', [0 0 0], 'XColor', [1 1 1], 'YColor', [1 1 1], 'ZColor', [1 1 1]);
-shading interp;
 camlight left;
 
 % fprintf('Mesh with %d vertices and %d triangles displayed in %d seconds.\n',numel(unique(T(:))),size(T,1),toc);
