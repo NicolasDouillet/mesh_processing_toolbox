@@ -43,7 +43,7 @@ if nargin < 5
     
     if nargin < 4
         
-        ngb_degre = 2;
+        ngb_degre = 1;
         
     end
     
@@ -54,6 +54,10 @@ end
 cell_vtx_id = num2cell((1:size(V,1))',2);
 vtx_ngb_id_list = find_every_vertices_neighbor_indices(T,ngb_degre,size(V,1));
 vect2ngb_cell = cellfun(@(c1,c2) V(c1,:)-repmat(V(c2,:),[numel(c1),1]),vtx_ngb_id_list,cell_vtx_id,'un',0);
+vect2ngb_cell = cellfun(@(c) c./sqrt(sum(c.^2,2)),vect2ngb_cell,'un',0);
+
+
+N = N./ sqrt(sum(N.^2,2));
 
 
 if strcmpi(curv_type,'mean')

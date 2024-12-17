@@ -30,4 +30,4 @@ axis equal, axis tight;
 alpha(0.25);
 
 
-end % draw_bounding_box
+end % plot_bounding_box

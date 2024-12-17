@@ -19,14 +19,11 @@ function bbox = mesh_bounding_box(V)
 %% Body
 tic;
 
-xmin = min(V(:,1));
-xmax = max(V(:,1));
-ymin = min(V(:,2));
-ymax = max(V(:,2));
-zmin = min(V(:,3));
-zmax = max(V(:,3));
+x_bounds = bounds(V(:,1));
+y_bounds = bounds(V(:,2));
+z_bounds = bounds(V(:,3));
 
-bbox = [xmin xmax ymin ymax zmin zmax];
+bbox = [x_bounds(1) x_bounds(2) y_bounds(1) y_bounds(2) z_bounds(1) z_bounds(2)];
 fprintf('Mesh bounding box computed in %d seconds.\n',toc);
 
 
