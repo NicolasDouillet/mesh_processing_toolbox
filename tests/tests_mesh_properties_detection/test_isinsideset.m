@@ -14,7 +14,7 @@ filenames = {'sinusoidal_dodecahedron_MR';...
              'vase'
              };
 
-id = 3; % 1, 2, 3, 4, 5      
+id = 1; % 1, 2, 3, 4, 5      
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 

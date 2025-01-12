@@ -1,0 +1,17 @@
+# GLOBAL PARAMETERS
+#
+#
+# (1) epsilon, NUMERIC PRECISION (for geometric calculations; floating-point relative accuracy in double precision)
+#     default value = 2.2204e-16 / eps("double") / eps(1.0); other possible values : epsilon = k*eps with k positive real
+2.2204e-16
+#
+#
+# (2) call_mode, CALLING MODE (for vertices, triangles, and edges)
+#     default value = 'index'; other mode = 'explicit'
+index   
+# (3) sort_mode, SORTING MODE (for triangles and normals orientation)
+#     default value = 'raw'; other mode = 'sorted'
+raw   
+# (4) bound_mode, BOUNDARY MODE for boundaries detection and holes filling
+#     surface boundaries type; default value = 'closed'; other value = 'opened'
+closed

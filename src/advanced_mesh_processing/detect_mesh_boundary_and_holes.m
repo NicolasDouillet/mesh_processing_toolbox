@@ -6,13 +6,13 @@ function boundaries = detect_mesh_boundary_and_holes(T)
 % (opened surface or presence of holes in the mesh).
 % Principle is based on detecting and sorting non shared edges.  
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %                                         
 %
 %%% Input arguments
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation,size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 %
@@ -25,27 +25,27 @@ function boundaries = detect_mesh_boundary_and_holes(T)
 tic;
 
 % Build  lists
-raw_edges_list = query_edges_list(T);
-sedges_list = sort(raw_edges_list,2);
-[uedg_list,~,edg_id] = unique(sort(sedges_list,2),'rows');
+raw_edg_list = query_edg_list(T);
+sedg_list = sort(raw_edg_list,2);
+[uedg_list,~,edg_id] = unique(sort(sedg_list,2),'rows');
 [gc,gr] = groupcounts(edg_id);
 uedg_id = gr(gc == 1);
 uedg = uedg_list(uedg_id,:);
-lone_edges_list = raw_edges_list(ismember(sedges_list,uedg,'rows'),:);
+lone_edg_list = raw_edg_list(ismember(sedg_list,uedg,'rows'),:);
 boundaries = {};
 
-while ~isempty(lone_edges_list)
+while ~isempty(lone_edg_list)
     
-    first_vtx_id = lone_edges_list(1,1);
-    nxt_vtx_id   = lone_edges_list(1,2);
+    first_vtx_id = lone_edg_list(1,1);
+    nxt_vtx_id   = lone_edg_list(1,2);
     boundary = [first_vtx_id,nxt_vtx_id] ;
-    lone_edges_list = lone_edges_list(2:end,:);
+    lone_edg_list = lone_edg_list(2:end,:);
     
     % Nb holes / boundary times
     while nxt_vtx_id ~= first_vtx_id % && ~isempty(nxt_vtx_id)
                        
-        i = find(any(lone_edges_list == nxt_vtx_id,2));
-        nxt_edge = lone_edges_list(i,:);
+        i = find(any(lone_edg_list == nxt_vtx_id,2));
+        nxt_edge = lone_edg_list(i,:);
         
         nxt_vtx_id = setdiff(nxt_edge,nxt_vtx_id); % must be the unique shared vertex beteween these two edges        
         
@@ -54,8 +54,8 @@ while ~isempty(lone_edges_list)
             boundary = cat(2,boundary, nxt_vtx_id);
         end
         
-        % Update / dequeue lone_edges_list        
-        lone_edges_list(i,:) = [];
+        % Update / dequeue lone_edg_list        
+        lone_edg_list(i,:) = [];
         
     end
     

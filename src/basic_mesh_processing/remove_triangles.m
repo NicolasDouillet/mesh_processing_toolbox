@@ -1,23 +1,23 @@
 function T_out = remove_triangles(T_in, T_set, mode)
 %% remove_triangles : function to remove triangles (T_set) from the triangle set (T_in).
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %           [|  |  | ]
-% - T_set = [i1 i2 i3], positive integer matrix double, the triangle set, size(T_set) = [nb_triangles,3], 
+% - T_set = [i1 i2 i3], positive integer matrix double, the triangle set, size(T_set) = [nb_triangles,3].
 %           [|  |  | ]
 %
 %           or integer vector of indices, size(T_set) = [1,nb_triangles]. NB : in the case size(T_set) = [1,3]
-%           the difference between the two possible options is only made thanks to the input argument mode value.
+%           the difference between the two possible options is only made thanks to the input argument mode value. Mandatory.
 %
-% - mode : character string in the set {'index','explicit',INDEX,'EXPLICIT'}. Case insensitive.
+% - mode : character string in the set {'index','explicit',INDEX,'EXPLICIT'}. Case insensitive. Optional.
 % 
 %
 %%% Output argument

@@ -3,20 +3,20 @@ function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_id2suppr)
 % Working principle : in the triangulation the vertex
 % to decimate (vtx_id2suppr) is replaced by its nearest neighbor.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %     
-% - vtx_id2suppr, positive integer matrix double, the vertex set indices to decimate, size(vtx_id2suppr) = [1,nb_vertex]. 
+% - vtx_id2suppr, positive integer matrix double, the vertex set indices to decimate, size(vtx_id2suppr) = [1,nb_vertex]. Optional.
 %
 %
 %%% Output arguments

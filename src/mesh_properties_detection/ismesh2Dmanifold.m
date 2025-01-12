@@ -2,17 +2,17 @@ function [b, nmnfld_edg_id] = ismesh2Dmanifold(V, T)
 %% ismesh2Dmanifold : boolean state function to test
 % wether the mesh is 2D-manifold or not.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 %
@@ -32,8 +32,8 @@ b = true;
 nmnfld_edg_nb = 0;
 nmnfld_edg_id = [];
 
-edg_list = query_edges_list(T,'raw');
-tgl_id_list = find_triangle_indices_from_edges_list(T,edg_list);
+edg_list = query_edg_list(T,'raw');
+tgl_id_list = find_triangle_indices_from_edg_list(T,edg_list);
 
 for n = 1:size(tgl_id_list,1)
     

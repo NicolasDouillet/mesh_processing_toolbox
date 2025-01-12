@@ -3,7 +3,7 @@ function [T, V] = logical_AND(T1, T2, V1, V2, precision)
 % Hypothesis on point sets and meshes : free from duplicated data (vertices or
 % triangles). Ignore face / triangle orientation.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
 %
 %
 %%% Input arguments
@@ -25,7 +25,7 @@ function [T, V] = logical_AND(T1, T2, V1, V2, precision)
 %        [ |  |  |]
 %
 % - precision, real positive scalar double, the precision used to compare X,Y,Z coordinate values between the two point sets V1 and V2.
-%   Optional but mandatory if V2.
+%              Mandatory only if V2.
 %
 %
 %%% Output arguments

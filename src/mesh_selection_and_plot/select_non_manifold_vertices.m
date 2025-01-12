@@ -1,20 +1,20 @@
 function nmnfld_vtx_id = select_non_manifold_vertices(V, T, option_display)
 %% select_non_manifold_vertices : function to display non manifold vertices on the mesh (T).
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
-% - option_display : logical *true/false | *1/0, enable/disable the diplay.
+% - option_display : logical *true/false | *1/0, enable/disable the diplay. Optional.
 %
 %
 %%% Output argument

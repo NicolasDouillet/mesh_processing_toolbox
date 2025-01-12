@@ -6,20 +6,20 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_id_list)
 % isobarycentre, which is equivalent to consecutively collapse
 % two edges of this triangle.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %     
-% - tgl_id_list, positive integer matrix double, the triangle set indices to collapse, size(tgl_id_list) = [1,nb_triangles]. 
+% - tgl_id_list, positive integer matrix double, the triangle set indices to collapse, size(tgl_id_list) = [1,nb_triangles]. Optional.
 %
 %
 %%% Output arguments
@@ -34,7 +34,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_id_list)
 
 
 %% Body
-edg_list = query_edges_list(T_in(tgl_id_list,:));
+edg_list = query_edg_list(T_in(tgl_id_list,:));
 
 % 2 out of 3 edges are actually sufficient
 edg_id = 1:size(edg_list,1);

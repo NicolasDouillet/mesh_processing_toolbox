@@ -1,24 +1,24 @@
 function [V_out, T_out] = select_mesh_substripe(V_in, T_in, n, axis_thres, one_sided_bound_val)
 %% select_mesh_substripe : function to select a mesh sub stripe.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
-% - n = [nx ny nz], real row vector double, one plane normal vector, size(n) = [1,3].
+% - n = [nx ny nz], real row vector double, one plane normal vector, size(n) = [1,3]. Mandatory.
 %
-% - axis_thres : real row vector double, the axis threshold. size(axis_thres) = [1,3].
+% - axis_thres : real row vector double, the axis threshold. size(axis_thres) = [1,3]. Mandatory.
 %
-% - one_sided_bound_val : integer scalar double, the one side bound value.
+% - one_sided_bound_val : integer scalar double, the one side bound value. Mandatory.
 %
 %
 %%% Output arguments

@@ -2,11 +2,11 @@ function T = convex_hull(V)
 %% convex_hull : function to compute the 3D convex hull of a given
 % point cloud (V) with the Jarvis / gift wrapping algorithm.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %
@@ -41,8 +41,8 @@ d = dot(V-V(v1,:),repmat([0 0 1],[size(V,1),1]),2);
 v2 = setdiff(v2,v1); % remove dot prod with null vector
 
 curr_edge = [v1 v2]; % initial edge
-edge_list = curr_edge;
-proc_edge_list = zeros(0,2); % processed edge list
+edg_list = curr_edge;
+proc_edg_list = zeros(0,2); % processed edge list
 T = zeros(0,3);
 curr_edge_id = 1;
 
@@ -50,7 +50,7 @@ curr_edge_id = 1;
 while ~isempty(curr_edge)
     
     [new_tgl,nxt_vtx_id] = find_nxt_vertex(curr_edge,V,nb_vtx,epsilon); % next vertices
-    proc_edge_list = cat(1,proc_edge_list,curr_edge);
+    proc_edg_list = cat(1,proc_edg_list,curr_edge);
     curr_edge_id = curr_edge_id + 1;
     
     % Non already existing new triangles
@@ -66,16 +66,16 @@ while ~isempty(curr_edge)
         % Create and add the two new edges
         new_edg1 = cat(2,repmat(curr_edge(1),[numel(nxt_vtx_id),1]),nxt_vtx_id');
         new_edg2 = cat(2,repmat(curr_edge(2),[numel(nxt_vtx_id),1]),nxt_vtx_id');                
-        edge_list = cat(1,edge_list,new_edg1,new_edg2);
+        edg_list = cat(1,edg_list,new_edg1,new_edg2);
         
     end
         
     % Compute new edge index to process
-    if curr_edge_id < 1 + size(edge_list,1)
+    if curr_edge_id < 1 + size(edg_list,1)
         
-        nxt_edg = edge_list(curr_edge_id,:);
+        nxt_edg = edg_list(curr_edge_id,:);
         
-        if ~ismember(sort(nxt_edg,2),sort(proc_edge_list,2),'rows')
+        if ~ismember(sort(nxt_edg,2),sort(proc_edg_list,2),'rows')
             
             curr_edge = nxt_edg;
             

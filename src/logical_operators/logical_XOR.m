@@ -2,29 +2,28 @@ function [T, V] = logical_XOR(T1, T2, V1, V2, precision)
 %% logical_XOR : function to perform the logical exclusive union of two meshes.
 % Ignore face / triangle orientation.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2025.
 %
 %
 %%% Input arguments
 %        
 %        [ |   |   | ]
-% - T1 = [i11 i12 i13], positive integer matrix double, the first input triangulation, size(T1) = [nb_triangles_1,3].
+% - T1 = [i11 i12 i13], positive integer matrix double, the first input triangulation, size(T1) = [nb_triangles_1,3]. Mandatory.
 %        [ |   |   | ]
 %        
 %        [ |  |  |]
-% - V1 = [X1 Y1 Z1], real matrix double, the first input point set, size(V1) = [nb_vertices_1,3].
+% - V1 = [X1 Y1 Z1], real matrix double, the first input point set, size(V1) = [nb_vertices_1,3]. Mandatory argument.
 %        [ |  |  |]
 %
 %        [ |   |   | ]
-% - T2 = [i21 i22 i23], positive integer matrix double, the second input triangulation, size(T2) = [nb_triangles_2,3].
+% - T2 = [i21 i22 i23], positive integer matrix double, the second input triangulation, size(T2) = [nb_triangles_2,3]. Mandatory.
 %        [ |   |   | ]
 %
 %        [ |  |  |]
-% - V2 = [X2 Y2 Z2], real matrix double, the second input point set, size(V2) = [nb_vertices_2,3].
+% - V2 = [X2 Y2 Z2], real matrix double, the second input point set, size(V2) = [nb_vertices_2,3]. Optional.
 %        [ |  |  |]
 %
-% - precision, real positive scalar double, the precision used to compare X,Y,Z coordinate values between the two point sets V1 and V2.
-%   Optional but mandatory if V2.
+% - precision, real positive scalar double, the precision used to compare X,Y,Z coordinate values between the two point sets V1 and V2. Mandatory only if V2.
 %
 %
 %%% Output arguments

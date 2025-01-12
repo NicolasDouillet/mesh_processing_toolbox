@@ -1,7 +1,7 @@
 function [V_dual, T_dual] = dual_of_trimesh(V, T)
 %% dual_of_trimesh : function to compute the dual mesh of a given triangular mesh.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
 %
 %
 % Hypothesis : input mesh is a 2D manifold triangulation
@@ -10,11 +10,11 @@ function [V_dual, T_dual] = dual_of_trimesh(V, T)
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_input_vertices,3].
+% - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_input_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the input triangulation, size(T) = [nb_input_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the input triangulation, size(T) = [nb_input_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 %

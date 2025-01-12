@@ -3,13 +3,13 @@ function T = penta2trimesh(P)
 %
 % Assumption : % V1, V2, V3, V4, and V5 vertices of each pentagon are assumed to be coplanar.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
 %
 %
 %%% Input argument
 %
 %       [|  |  |  |  | ]
-% - P : [i1 i2 i3 i4 i5], positive integer matrix, the pentagons list, size(P) = [nb_pentagons,5]
+% - P : [i1 i2 i3 i4 i5], positive integer matrix, the pentagons list,size(P) = [nb_pentagons,5]. Mandatory.
 %       [|  |  |  |  [ ]
 %
 %

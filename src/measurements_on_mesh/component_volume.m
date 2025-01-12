@@ -3,16 +3,16 @@ function component_volume = component_volume(V, C)
 % Components must be 2D-manifold closed watertight surfaces,
 % and free of duplicated triangles.
 % 
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
-% - C : cell array of triangle sets (positive integer matrices), the components array.
+% - C : cell array of triangle sets (positive integer matrices), the components array. Mandatory.
 %
 %
 %%% Output argument

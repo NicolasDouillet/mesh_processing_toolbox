@@ -3,20 +3,20 @@ function [V_out, T_out] = remove_isolated_triangles(V_in, T_in, rm_isl_vtx)
 % from the mesh (T_in). These are triangles which don't share any edge
 % with the other triangles of the mesh (i.e : no neighbor triangle).
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
-% - rm_isl_vtx : logical true/false, remove or not the resulting isolated vertices.
+% - rm_isl_vtx : logical true/false, remove or not the resulting isolated vertices. Optional.
 %
 %
 %%% Output arguments

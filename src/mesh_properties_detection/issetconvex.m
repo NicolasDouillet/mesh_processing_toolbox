@@ -7,7 +7,17 @@ function isconvex = issetconvex(V)
 % Note : four or more Coplanar points in the set should be avoided since
 % the convex hull algorithm doesn't always include them.
 %
-% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
+
+%%% Input argument
+%
+%       [| | |]
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
+%       [| | |]
+%
+%%% Output argument
+%
+% - isconvex : logical true/false | 1/0, the convexness.
 
 
 %% Body

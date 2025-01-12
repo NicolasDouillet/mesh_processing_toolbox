@@ -3,30 +3,28 @@ function [isin, V, T] = isinsideset(V, T, P, N, epsilon)
 % one component given closed watertight 2D-manifold triangulated surface / set.
 % Boundary is excluded.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
-%
-% TODO : + option boundary included / excluded*
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 %       [|  |  | ]
-% - P = [Px Py Pz], real matrix double, the point set to test, size(P) = [nb_test_vertices,3].
+% - P = [Px Py Pz], real matrix double, the point set to test, size(P) = [nb_test_vertices,3]. Mandatory.
 %       [|  |  | ]
 %
 %       [|  |  | ]
-% - N = [Nx Ny Nz], real matrix double, the face normals, size(N) = [nb_triangles,3].
+% - N = [Nx Ny Nz], real matrix double, the face normals, size(N) = [nb_triangles,3]. Optional.
 %       [|  |  | ]
 %
-% - epsilon : scalar double, the tolerance on the error.
+% - epsilon : scalar double, the tolerance on the error. Optional.
 %
 %
 %%% Output argument
@@ -65,7 +63,7 @@ if (max_edglength/min_edglength > 2 && max_edglength/min_edglength <= 8)
 elseif (max_edglength/min_edglength) > 8
     
     % Find every triangles whom one edge is greater than the threshold
-    E = query_edges_list(T);
+    E = query_edg_list(T);
     E = unique(sort(E,2),'rows');
     
     while max_edglength > 2*min_edglength
@@ -80,7 +78,7 @@ elseif (max_edglength/min_edglength) > 8
             end
                 
         max_edglength = max_edge_length(V,T);
-        E = query_edges_list(T);
+        E = query_edg_list(T);
         E = unique(sort(E,2),'rows');
         
     end
@@ -95,7 +93,9 @@ Gi = zeros(size(T));
 
 % Compute face isobarycentres
 for  i = 1:size(T,1)
+    
     Gi(i,:) = mean(V(T(i,:),:),1);
+    
 end
 
 
@@ -127,7 +127,7 @@ isin = false(size(P,1),1); % out by default
 
 for k = 1:size(P,1)
     
-    % Query closest and furthest faces
+    % Query closest and furthest faces    
     D = sqrt(sum((Gi-P(k,:)).^2,2));
     [~,nrst_face_id] = min(D);
     [~,frst_face_id] = max(D);

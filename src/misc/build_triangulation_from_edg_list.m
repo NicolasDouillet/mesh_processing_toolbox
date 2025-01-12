@@ -1,18 +1,18 @@
-function T = build_triangulation_from_edge_list(E, mode)
-%% build_triangulation_from_edge_list : function to build the triangulation T from the edge list E. 
+function T = build_triangulation_from_edg_list(E, mode)
+%% build_triangulation_from_edg_list : function to build the triangulation T from the edge list E. 
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input argument
 %
 %       [ | | ]
 %       [i1 i2]
-% - E = [i2 i3], positive integer matrix double, the oriented edge list, size(E) = [nb_edges,2].
+% - E = [i2 i3], positive integer matrix double, the oriented edge list, size(E) = [nb_edges,2]. Mandatory.
 %       [i3 i1]
 %       [ | | ]
 %
-% - mode : character string in the set {'sorted','raw'}, case insensitive.
+% - mode : character string in the set {'sorted','raw'}, case insensitive. Optional.
 %
 %
 %%% Output argument
@@ -67,4 +67,4 @@ end
 % fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',size(T,1),size(E,1),toc);
 
 
-end % build_triangulation_from_edge_list
+end % build_triangulation_from_edg_list

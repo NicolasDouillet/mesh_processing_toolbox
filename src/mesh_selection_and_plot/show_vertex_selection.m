@@ -2,20 +2,20 @@ function [] = show_vertex_selection(V, T, V_subset_id)
 %% show_vertex_selection : function to highlight a
 % selection of vertices on the mesh.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], double matrix, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], double matrix, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
-% - V_subset : positive integer row vector, the index list of the selected triangles.
+% - V_subset_id : positive integer row vector, the index list of the selected triangles. Optional.
 
 
 %% Body

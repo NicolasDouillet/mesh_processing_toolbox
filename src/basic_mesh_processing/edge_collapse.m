@@ -5,21 +5,21 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 % Working principle : each edge to collapse is replaced by its middle
 % point.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %              [ | | ]
-% - edg_list = [v1 v2], positive integer matrix double, the edge set to collapse, size(edg_list) = [nb_edges,2].
+% - edg_list = [v1 v2], positive integer matrix double, the edge set to collapse, size(edg_list) = [nb_edges,2]. Mandatory.
 %              [ | | ] 
 %
 %

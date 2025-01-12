@@ -4,7 +4,7 @@ To use the sources, mind to add its path to your paths, just like in the header 
 
 Feel free to check and download the mesh generation toolbox ( https://fr.mathworks.com/matlabcentral/fileexchange/85173-mesh-generation-toolbox?s_tid=prof_contriblnk ) for many further meshing relative functions.
 
-Please don'tforget ta rate if this code helped you. Thanks ! ;-)
+PLEASE don'tforget ta RATE if this code helped you. Thanks ! ;-)
 
 
 %% DESCRIPTION
@@ -46,24 +46,17 @@ Run the test files to discover all the possibilities of this toolbox.
 Use .mat data files provided in /data for test and example files.
 Most of the functions and every important ones have been tested in a dedicated file named : test_my_function.m.
 Note that no mesh reader or writer is provided in this toolbox since there already exist enough satisfying ones coded in Matlab.
-Look for : read_ply.m, write_ply.m, read_off.m, write_off.m, plyread.m, plywrite.m
+Look for : read_ply.m, write_ply.m, read_off.m, write_off.m, plyread.m, plywrite.m, read_obj.m, write_obj.m
 Then to create your own .mat file for vertex set V and triangle set T, just use the command save('path_to_my_file/my_file.mat','V','T');
 To use the sources, mind to add its path to your paths, just like in the header of any test file : addpath(genpath('my_path_to_the_sources'));
+To use the globel default parameters (precision especially), first run reset_global_param(), then run param = get_global_param().
+The param structure you get has four fields, param.epsilon, param.call_mode, param.sort_mode, and param.bound_mode.
+These variables may then be used as input parameters for other functions. Like : precision = param.epsilon for instance.
 
 
-%% COPYRIGHT & SUPPORT
+%% COPYRIGHT, LICENSE AND TERMS OF USE
 
-All the code included in this toolbox is the result of my unique personal own work and effort on the period 2020-2023, and going on for upcoming updates.
-
-Each one of the algorithms / functions included have been independently tested, however I cannot provide any warrantee of any kind about them. Use them at your own risks.
-Downloading and using this toolbox or just part of it assume you to have read and accept all the condition in this current description. 
-
-This toolbox and its content is free of use and distribution with the following condition :
-this description_read_me file must be included as well as each function header must be preserved.
-
-SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED.
-
-Modification of any kind are done under your own, only, and unique responsability.
+Please read and refer to the attached file : Copyright_license_&_terms_of_use.txt
 
 
 %% KNOWN LIMITATIONS
@@ -82,9 +75,6 @@ fill_mesh_holes_and_boundary algorithm doesn't yet prevent from creating self in
 
 clone_solve_nmnfld_vertices may create flat triangle(s). I still have to figure out why and how to avoid it.
 However it is still possible to remove them a posteriori with the function remove_flat_triangles.
-
-Curvature computation algorithm is a homemade temporary version.
-It is mostly efficient on regular meshes (where all faces have more or less the same size, and all the vertices have the same valence).
 
 The convex hull / Gift wrapping / Jarvis algorithm is mostly here for the demo and pedagogic purposes.
 It is indeed slower than Matlab (R) compiled binaries used for the convex hull (convhull). It may also contain some self intersecting triangles.
@@ -107,6 +97,7 @@ Basic 3D mathematical computation algorithm (like point_to_plane_distance) are a
 
 I especially thank William V, Binbin Qi, for what they taught me while solving my cody problems.
 I also thank Stepan Kortus for time optimization of the upsample algorithm.
+
 Matlab users, your advices and tips to improve and speed up my algorithms are welcome !
 
 If you can’t see the mesh while plotting it, try ‘shading flat’ (it may be shadowed by its numerous dark edges).
@@ -124,6 +115,6 @@ Since I am not native english speaker, please forgive my langage approximations.
 
 Matlab release version used for development and tests : R2019b.
 
-Contact : please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet (at) free.fr
+Contact : please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet9 (at) gmail.com
 
-Last update : 28 / 10 /2024.
+Last update : 07/01/2025.

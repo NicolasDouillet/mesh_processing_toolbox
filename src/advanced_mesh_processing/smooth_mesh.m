@@ -6,22 +6,22 @@ function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
 % the mean of its neighbors. The number of vertices stays the same.
 %
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 % 
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], double matrix, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], double matrix, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
-% - nb_iterations : positive integer, the number of smoothing iterations to perform on the mesh.
+% - nb_iterations : positive integer, the number of smoothing iterations to perform on the mesh. Optional.
 %
-% - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1.
+% - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1. Optional.
 %
 %
 %%% Output argument
@@ -35,6 +35,12 @@ function V_out = smooth_mesh(V_in, T, nb_iterations, ngb_degre)
 tic;
 
 if nargin < 4
+    
+    if nargin  < 3
+        
+        nb_iterations = 1;
+        
+    end
     
    ngb_degre = 1;
     

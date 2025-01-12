@@ -1,17 +1,17 @@
 function area = face_selection_area(V, T_set)
 %% face_selection_area : function to compute the area of the faces selection T_set.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025
 %
 %
 %%% Input arguments
 %        
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %           [|  |  | ]
-% - T_set = [i1 i2 i3], positive integer matrix double, the triangle selection, size(T_set) = [nb_triangles,3], 
+% - T_set = [i1 i2 i3], positive integer matrix double, the triangle selection, size(T_set) = [nb_triangles,3]. Mandatory.
 %           [|  |  | ]           
 %
 %

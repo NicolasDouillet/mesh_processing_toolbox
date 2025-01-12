@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>doc</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2024-09-03"><meta name="DC.source" content="doc.m"><style type="text/css">
+      --><title>doc</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2025-01-12"><meta name="DC.source" content="doc.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,13 +66,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">mesh processing toolbox</a></li><li><a href="#2">Example #1 : connected components</a></li><li><a href="#3">Example #2 : boundary smoothing</a></li><li><a href="#4">Example #3 : hole filling</a></li><li><a href="#5">Example #4 : curvature</a></li><li><a href="#6">Example #5 : subselection</a></li><li><a href="#7">Exammple #6 : mesh upsampling</a></li><li><a href="#8">Example #7 : mesh slicing</a></li></ul></div><h2 id="1">mesh processing toolbox</h2><p>Author : nicolas.douillet (at) free.fr, 2020-2024.</p><pre class="codeinput">addpath(<span class="string">'data/'</span>);
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">mesh processing toolbox</a></li><li><a href="#2">Example #1 : connected components</a></li><li><a href="#3">Example #2 : boundary smoothing</a></li><li><a href="#4">Example #3 : hole filling</a></li><li><a href="#5">Example #4 : curvature</a></li><li><a href="#6">Example #5 : subselection</a></li><li><a href="#7">Exammple #6 : mesh upsampling</a></li><li><a href="#8">Example #7 : mesh slicing</a></li></ul></div><h2 id="1">mesh processing toolbox</h2><p>Author : nicolas.douillet9 (at) gmail.com, 2020-2025.</p><pre class="codeinput">addpath(<span class="string">'data/'</span>);
 addpath(genpath(<span class="string">'src/'</span>));
 </pre><h2 id="2">Example #1 : connected components</h2><pre class="codeinput">load(<span class="string">'kitten_components.mat'</span>);
 [cc_nb,components] = segment_connected_components(T);
 show_mesh_components(V,components);
 view(180,0);
-</pre><pre class="codeoutput">4 components found in 2.774376e+00 seconds.
+</pre><pre class="codeoutput">4 components found in 2.912714e+00 seconds.
 </pre><img vspace="5" hspace="5" src="doc_01.png" alt=""> <h2 id="3">Example #2 : boundary smoothing</h2><pre class="codeinput">show_mesh_boundary_and_holes(V,T);
 shading <span class="string">interp</span>;
 camlight <span class="string">left</span>;
@@ -91,10 +91,10 @@ camlight <span class="string">left</span>;
 alpha(0.5);
 view(180,0);
 axis <span class="string">off</span>;
-</pre><pre class="codeoutput">8 boundaries detected in 1.877969e-01 seconds.
-8 boundaries detected in 7.381480e-02 seconds.
-Mesh boundaries smoothed in 1.149240e-02 seconds.
-8 boundaries detected in 6.282720e-02 seconds.
+</pre><pre class="codeoutput">8 boundaries detected in 1.048801e-01 seconds.
+8 boundaries detected in 6.752710e-02 seconds.
+Mesh boundaries smoothed in 1.157760e-02 seconds.
+8 boundaries detected in 6.325780e-02 seconds.
 </pre><img vspace="5" hspace="5" src="doc_02.png" alt=""> <img vspace="5" hspace="5" src="doc_03.png" alt=""> <h2 id="4">Example #3 : hole filling</h2><pre class="codeinput">load(<span class="string">'kitten_holed.mat'</span>);
 [V,T] = remove_non_manifold_vertices(V,T);
 boundary = select_mesh_boundary_and_holes(V,T);
@@ -105,17 +105,19 @@ view(0,0);
 max_perim_sz = 200;
 T = fill_mesh_holes(V,T,boundary,max_perim_sz);
 plot_mesh(V,T);
+camlight <span class="string">left</span>;
 view(0,0);
-</pre><pre class="codeoutput">5 non manifold vertices removed in 9.205990e-01 seconds.
-5 boundaries detected in 6.250700e-02 seconds.
-5 hole(s) filled by adding 113 triangles in 4.896098e-01 seconds.
+</pre><pre class="codeoutput">5 non manifold vertices removed in 1.017926e+00 seconds.
+5 boundaries detected in 6.443180e-02 seconds.
+5 hole(s) filled by adding 113 triangles in 5.182383e-01 seconds.
 </pre><img vspace="5" hspace="5" src="doc_04.png" alt=""> <img vspace="5" hspace="5" src="doc_05.png" alt=""> <h2 id="5">Example #4 : curvature</h2><pre class="codeinput">load(<span class="string">'kitten.mat'</span>);
 ngb_degre = 2;
 N = vertex_normals(V,T,ngb_degre,<span class="string">'raw'</span>);
 curvature = mesh_curvature(V,T,N,ngb_degre,<span class="string">'mean'</span>);
 show_mesh_curvature(V,T,curvature);
+colormap(flipud(1-jet.^0.5));
 view(180,0);
-</pre><pre class="codeoutput">mean curvature computed in 6.499531e-01 seconds.
+</pre><pre class="codeoutput">mean curvature computed in 6.429970e-01 seconds.
 </pre><img vspace="5" hspace="5" src="doc_06.png" alt=""> <h2 id="6">Example #5 : subselection</h2><pre class="codeinput">load(<span class="string">'Gargoyle_3k.mat'</span>);
 plot_mesh(V,T);
 shading <span class="string">flat</span>;
@@ -130,7 +132,7 @@ plot_mesh(V_out,T_out);
 shading <span class="string">flat</span>;
 camlight <span class="string">left</span>;
 view(-90,0);
-</pre><pre class="codeoutput">submesh with 586 vertices and 3372 triangles selected in 4.100600e-02 seconds.
+</pre><pre class="codeoutput">submesh with 586 vertices and 3372 triangles selected in 2.846350e-02 seconds.
 </pre><img vspace="5" hspace="5" src="doc_07.png" alt=""> <img vspace="5" hspace="5" src="doc_08.png" alt=""> <h2 id="7">Exammple #6 : mesh upsampling</h2><pre class="codeinput">load(<span class="string">'sinusoidal_dodecahedron_MR.mat'</span>);
 plot_mesh(V,T);
 shading <span class="string">faceted</span>;
@@ -147,7 +149,7 @@ P = [0 0 thres];
 
 slices_nb_max_contours = 6;
 slc_step = 3;
-raw_edges_list = query_edges_list(T,<span class="string">'sorted'</span>);
+raw_edg_list = query_edg_list(T,<span class="string">'sorted'</span>);
 srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,slices_nb_max_contours,<span class="string">'vertical'</span>,slc_step);
 
 plot_mesh(V,T), shading <span class="string">interp</span>, camlight <span class="string">left</span>;
@@ -159,7 +161,7 @@ view(142.5,30);
 ##### SOURCE BEGIN #####
 %% mesh processing toolbox
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 
 
 addpath('data/');
@@ -203,6 +205,7 @@ view(0,0);
 max_perim_sz = 200;
 T = fill_mesh_holes(V,T,boundary,max_perim_sz);
 plot_mesh(V,T);
+camlight left;
 view(0,0);
 
 %% Example #4 : curvature
@@ -211,6 +214,7 @@ ngb_degre = 2;
 N = vertex_normals(V,T,ngb_degre,'raw');
 curvature = mesh_curvature(V,T,N,ngb_degre,'mean');
 show_mesh_curvature(V,T,curvature);
+colormap(flipud(1-jet.^0.5));
 view(180,0);
 
 %% Example #5 : subselection
@@ -248,7 +252,7 @@ P = [0 0 thres];
 
 slices_nb_max_contours = 6;
 slc_step = 3;
-raw_edges_list = query_edges_list(T,'sorted');
+raw_edg_list = query_edg_list(T,'sorted');
 srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,slices_nb_max_contours,'vertical',slc_step);
 
 plot_mesh(V,T), shading interp, camlight left;

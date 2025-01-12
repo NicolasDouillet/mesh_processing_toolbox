@@ -2,26 +2,26 @@ function [] = show_triangle_selection(V, T, T_subset, mode)
 %% show_triangle_selection : function to highlight a
 % selection (T_subset) of triangles on the mesh (T).
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 % - T_subset : either positive integer row vector double* (the indices of the triangles; default behaviour) or
 %              positive integer matrix double giving the explicit indices triplet list. In this latter case,
-%              mode must be set to 'explicit'.
+%              mode must be set to 'explicit'. Optional.
 %
 % - mode : character string in the set : {'explicit',indices,'EXPLICIT',INDEX}. Explicit mode
 %          corresponds to the case where T_subset is made of triangle vertices [i1 i2 i3] indices.
-%          Case insensitive.
+%          Case insensitive. Mandatory if T_subset.
 
 
 %% Input parsing and body

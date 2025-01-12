@@ -5,13 +5,13 @@ function T_out = remove_non_manifold_triangles(T_in)
 % ones detected such that one of their edges at least is shared by
 % at least two other triangles.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input argument
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %
@@ -27,8 +27,8 @@ function T_out = remove_non_manifold_triangles(T_in)
 %% Body
 tic;
 T_out = T_in;
-edg_list = query_edges_list(T_in,'raw');
-tgl_id_list = find_triangle_indices_from_edges_list(T_in,edg_list);
+edg_list = query_edg_list(T_in,'raw');
+tgl_id_list = find_triangle_indices_from_edg_list(T_in,edg_list);
 nmnfld_tgl_id_list = cellfun(@(r) r(numel(r) > 2,:),tgl_id_list,'un',0);
 nmnfld_tgl_id_list = nmnfld_tgl_id_list(~cellfun('isempty',nmnfld_tgl_id_list));
 nmnfld_tgl_id_list = unique([nmnfld_tgl_id_list{:}]);

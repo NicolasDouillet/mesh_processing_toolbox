@@ -2,22 +2,22 @@ function ngb_T = find_neighbor_triangle_indices(T, T_subset, mode)
 %% find_neighbor_triangle_indices : function to compute the list of triangles
 % which are neighbors (share one edge) to the triangles in T_subset.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 % - T_subset : either positive integer row vector double* (the indices of the triangles; default behaviour) or
 %              positive integer matrix double giving the explicit indices triplet list. In this latter case,
-%              mode must be set to 'explicit'.
+%              mode must be set to 'explicit'. Mandatory.
 %
 % - mode : character string in the set : {'explicit',indices,'EXPLICIT',INDEX}. Explicit mode
 %          corresponds to the case where T_subset is made of triangle vertices [i1 i2 i3] indices.
-%          Case insensitive.
+%          Case insensitive. Optional.
 %
 %
 %%% Output argument

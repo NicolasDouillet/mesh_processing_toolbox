@@ -2,7 +2,31 @@ function [V, id1, id2] = point_sets_xor(V1, V2, precision)
 %% point_sets_xor : function to compute and return the
 % exclusive union between the two point sets V1 and V2.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
+%
+%
+%%% Input arguments
+%
+%        [  |   |   |]
+% - V1 = [V1x V1y V1z], real row vector double, the first input point set. Size(V1) = [nb1_vertex,3]. Mandatory.
+%        [  |   |   |]
+%
+%        [  |   |   |]
+% - V2 = [V2x V2y V2z], real row vector double, the second input point set. Size(V2) = [nb2_vertex,3]. Mandatory.
+%        [  |   |   |]
+%
+% - precision : real scalar double, the geometric precision function of eps. Optional.
+%
+%
+%%% Output arguments
+%
+%       [ |  |  |]
+% - V = [Vx Vy Vz], real row vector double, the output / intersecting point set. Size(V) = [nb_vertex,3].
+%       [ |  |  |]
+%
+% - id1 : row vector of positive integers, the index vector such that V = V1(id1).
+%
+% - id2 : row vector of positive integers, the index vector such that V = V2(id2).
 
 
 %% Body

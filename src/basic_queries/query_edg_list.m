@@ -1,19 +1,19 @@
-function edg_list = query_edges_list(T, mode)
-%% query_edges_list : function to query the edges list
+function edg_list = query_edg_list(T, mode)
+%% query_edg_list : function to query the edges list
 % corresponding to the triangulation T.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [|  |  | ]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [|  |  | ]
 %
 % - mode : character string in the set {'sorted','raw','SORTED','RAW'}, the
 %          variable deciding wether to sort or not the edges in ascending
-%          order. Case insensitive.
+%          order. Case insensitive. Optional.
 %
 %
 %%% Output argument
@@ -51,7 +51,7 @@ if nargin  > 1 && strcmpi(mode,'sorted')
     
 end
 
-% fprintf('query_edges_list request executed in %d seconds.\n',toc);
+% fprintf('query_edg_list request executed in %d seconds.\n',toc);
 
 
-end % query_edges_list
+end % query_edg_list

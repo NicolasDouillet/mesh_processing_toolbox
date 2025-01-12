@@ -1,16 +1,16 @@
 function comp_area = component_area(V, C)
 %% component_area : function to compute the area of every component of the mesh C, in area unit.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %        
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
-% - C : cell array of triangle sets (positive integer matrices double), the components array.
+% - C : cell array of triangle sets (positive integer matrices double), the components array. Mandatory.
 %
 %
 %%% Output argument

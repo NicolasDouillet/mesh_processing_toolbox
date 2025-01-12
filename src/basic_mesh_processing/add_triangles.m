@@ -3,17 +3,17 @@ function T_out = add_triangles(T_set, T_in)
 % If one or more vertices are new, they must be added first in the vertex set
 % for the triangulation to be valid.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %           [|  |  | ]
-% - T_set = [i1 i2 i3], positive integer matrix double, the triangle set to add, size(T_set) = [nb_new_triangles,3].
+% - T_set = [i1 i2 i3], positive integer matrix double, the triangle set to add, size(T_set) = [nb_new_triangles,3]. Mandatory.
 %           [|  |  | ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %

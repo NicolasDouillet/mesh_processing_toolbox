@@ -1,4 +1,4 @@
-% test build_triangulation_from_edge_list
+% test build_triangulation_from_edg_list
 
 clc;
 
@@ -30,7 +30,7 @@ filename = strcat(cell2mat(filenames(id,1)),'.mat');
 load(filename);
 
 % Randomly mess up the edge set
-E = query_edges_list(T);
+E = query_edg_list(T);
 new_id = randperm(size(E,1));
 E = E(new_id,:);
 E = fliplr(E);
@@ -38,5 +38,5 @@ E = fliplr(E);
 clear T;
 
 % Rebuild the mesh
-T = build_triangulation_from_edge_list(E);
+T = build_triangulation_from_edg_list(E);
 plot_mesh(V,T);

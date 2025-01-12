@@ -2,16 +2,16 @@ function neighbor_list = find_every_vertices_neighbor_indices(T, ngb_degre, nb_v
 %% find_every_vertices_neighbor_indices : function to find the indices list
 % of neighbor vertices of every vertices the triangulation T refers to.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [|  |  | ]
-% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [|  |  | ]
 %
-% - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1.
+% - ngb_degre : positive integer scalar in the range |[1; 6]|, the neighbor degre. Default value is 1. Optional.
 %
 % - nb_vtx : positive integer, the number of vertices. Mandatory if more than one input argument.
 %

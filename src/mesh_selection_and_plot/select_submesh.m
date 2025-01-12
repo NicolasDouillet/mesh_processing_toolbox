@@ -4,22 +4,22 @@ function [V_out, T_out] = select_submesh(V_in, T_in, n, I)
 % General principle of the algorithm : extract vertices and associated triangles
 % of the mesh which are located on one side / half space of the plan defined by (n, I).
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %  
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %                                                                        
-% - n : real row vector double, a cutting plan normal vector, size(n) = [1,3].
+% - n : real row vector double, a cutting plan normal vector, size(n) = [1,3]. Mandatory.
 %  
-% - I : real row vector double, a point belonging to the cutting plan, size(I) = [1,3].
+% - I : real row vector double, a point belonging to the cutting plan, size(I) = [1,3]. Mandatory.
 %      
 %
 %%% Output arguments                                                       

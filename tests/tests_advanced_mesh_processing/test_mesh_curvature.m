@@ -21,7 +21,7 @@ filenames = {'Reuleaux_tetrahedron';...
              'Fermat_spiral'};
                  
     
-fid = 9;
+fid = 12;
 filename = strcat(cell2mat(filenames(fid,1)),'.mat');         
 load(filename);
 

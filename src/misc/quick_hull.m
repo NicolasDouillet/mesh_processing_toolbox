@@ -2,13 +2,13 @@ function [V_out, T] = quick_hull(V_in)
 %% quick_hull : function to compute the 3D convex hull of
 % a given point cloud with the divide & conquer algorithm.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input argument
 %
 %          [| | |]
-% - V_in = [X Y Z], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X Y Z], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [| | |]
 %
 %
@@ -120,12 +120,12 @@ while nb_new_tgl
         if new_vtx_id % effective grow with new triangles
                               
             nb_new_tgl = nb_new_tgl + 2;
-            edg_list = query_edges_list(T,'sorted');
+            edg_list = query_edg_list(T,'sorted');
             i = 1;
             
             while i < 1 + size(edg_list,1)
                 
-                tgl_pair_id = cell2mat(find_triangle_indices_from_edges_list(T,edg_list(i,:)));                
+                tgl_pair_id = cell2mat(find_triangle_indices_from_edg_list(T,edg_list(i,:)));                
                 isconcave = detect_concavity(V_out,T,N,tgl_pair_id,epsilon);
                 
                 if isconcave

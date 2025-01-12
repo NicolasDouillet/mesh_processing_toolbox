@@ -2,16 +2,16 @@ function T_out = flip_edge(T_in, edge2flip)
 %% flip_edge : function to flip an edge (edge2flip) in the given triangulation (T_in).
 % Preserves face normals orientation.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
 %
 %
 %%% Input arguments
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
-% - edge2flip = [e1 e2], positive integer matrix double, the edge to flip, size(edge2flip) = [1,2].
+% - edge2flip = [e1 e2], positive integer matrix double, the edge to flip, size(edge2flip) = [1,2]. Mandatory.
 %
 %
 %%% Output arguments
@@ -23,7 +23,7 @@ function T_out = flip_edge(T_in, edge2flip)
 
 %% Body
 T_out = T_in;
-tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2flip));
+tgl_id_list = cell2mat(find_triangle_indices_from_edg_list(T_in,edge2flip));
 
 
 if ~isempty(tgl_id_list) && numel(tgl_id_list) > 1

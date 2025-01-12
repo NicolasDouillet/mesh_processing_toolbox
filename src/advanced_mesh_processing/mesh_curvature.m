@@ -1,7 +1,7 @@
 function curvature = mesh_curvature(V, T, N, ngb_degre, curv_type)
 %% mesh_curvature : function to compute curvature on every vertex of the mesh.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 % 
 % Info / about : homemade temporary version of a curvature computation algorithm.
@@ -12,20 +12,20 @@ function curvature = mesh_curvature(V, T, N, ngb_degre, curv_type)
 %%% Input arguments                                                        
 %        
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
 %       [ |  |  |]
-% - N : [Nx Ny Nz], real matrix double, the vertex normalized normal vectors, size(N) = [nb_vertices,3].
+% - N : [Nx Ny Nz], real matrix double, the vertex normalized normal vectors, size(N) = [nb_vertices,3]. Mandatory.
 %       [ |  |  |]
 %
-% - ngb_degre : positive integer scalar double in the range |[1; 6]|, the neighbor degre. Default value is 1.
+% - ngb_degre : positive integer scalar double in the range |[1; 6]|, the neighbor degre. Default value is 1. Optional.
 %
-% - curv_type : character string in the set : {'gaussian','normal','absolute','GAUSSIAN','NORMAL','ABSOLUTE'}
+% - curv_type : character string in the set : {'gaussian','normal','absolute','GAUSSIAN','NORMAL','ABSOLUTE'}. Optional.
 %
 %
 %%% Output argument

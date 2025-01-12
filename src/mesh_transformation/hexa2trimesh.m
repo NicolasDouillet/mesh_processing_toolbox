@@ -1,15 +1,15 @@
-function T = hexa2trimesh(P)
+function T = hexa2trimesh(H)
 %% hexa2trimesh : function to convert a hexagonal mesh into a triangular mesh.
 %
 % Assumption : % V1, V2, V3, V4, V5, and V6 vertices of each hexagon are assumed to be coplanar.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
 %
 %
 %%% Input argument
 %
 %       [|  |  |  |  |  | ]
-% - H : [i1 i2 i3 i4 i5 i6], positive integer matrix, the hexagons list, size(P) = [nb_hexagons,6]
+% - H : [i1 i2 i3 i4 i5 i6], positive integer matrix, the hexagons list, size(H) = [nb_hexagons,6]
 %       [|  |  |  |  [  | ]
 %
 %
@@ -25,8 +25,8 @@ function T = hexa2trimesh(P)
 
 %% Body
 % tic;
-T = cat(1,P(:,1:3),P(:,3:5),P(:,[1 5 6]),cat(2,P(:,1:2:5)));
-% fprintf('%d hexagonal faces converted into %d triangular faces in %d seconds.\n',size(P,1),size(T,1),toc);
+T = cat(1,H(:,1:3),H(:,3:5),H(:,[1 5 6]),cat(2,H(:,1:2:5)));
+% fprintf('%d hexagonal faces converted into %d triangular faces in %d seconds.\n',size(H,1),size(T,1),toc);
 
 
 end % hexa2trimesh

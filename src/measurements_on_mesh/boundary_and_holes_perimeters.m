@@ -2,16 +2,16 @@ function bound_lengths = boundary_and_holes_perimeters(V, boundary)
 %% boundary_and_holes_perimeters : function to compute perimeters
 % of holes and boundary of the mesh in length unit.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
-% - boundary : cell array of positive integer row vectors, size(boundary) = [nb_holes,1].
+% - boundary : cell array of positive integer row vectors, size(boundary) = [nb_holes,1]. Mandatory.
 %
 %
 %%% Output argument

@@ -1,30 +1,30 @@
 function srt_itx_vtx_lsts = slice_mesh(V, T, n, P, substripe_selection, slices_nb_max_contours, sort_direction, slc_step)
 %% slice_mesh : function to slice one given triangular mesh.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [|  |  | ]
-% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [|  |  | ]
 %
-% - n = [nx ny nz], real row vector double, one plane normal vector, size(n) = [1,3].
+% - n = [nx ny nz], real row vector double, one plane normal vector, size(n) = [1,3]. Mandatory.
 %
-% - P = [Px Py Pz], real row vector double, one point belonging to the slicing plane, size(P) = [1,3].
+% - P = [Px Py Pz], real row vector double, one point belonging to the slicing plane, size(P) = [1,3]. Mandatory.
 %
-% - substripe_selection : either logical, *true/false or numeric *1/0, boolean to enable/diasable the substripe selection.
+% - substripe_selection : either logical, *true/false or numeric *1/0, boolean to enable/diasable the substripe selection. Optional.
 %
-% - slices_nb_max_contours : positive integer scalar double, 
+% - slices_nb_max_contours : positive integer scalar double. Mandatory.
 %
-% - sort_direction : character string in the set {'horizontal', 'vertical'}, case insensitive, the sorting direction of the slice contours.
+% - sort_direction : character string in the set {'horizontal', 'vertical'}, case insensitive, the sorting direction of the slice contourssort_direction
 %
-% - slc_step : positive integer scalar double, the slicing step in graphic unit of the point set.
+% - slc_step : positive integer scalar double, the slicing step in graphic unit of the point set. Mandatory if substripe_selection.
 %
 %
 %%% Output arguments
@@ -54,16 +54,16 @@ if substripe_selection
 end
 
 T = unique(sort(T,2,'ascend'),'rows');
-raw_edges_list = query_edges_list(T,'sorted');
-edges_list = unique(raw_edges_list,'rows');
-nb_edges = size(edges_list,1);
+raw_edg_list = query_edg_list(T,'sorted');
+edg_list = unique(raw_edg_list,'rows');
+nb_edges = size(edg_list,1);
 itx_edg_lst = []; % intersecting edges list
 
 
 for i = 1:nb_edges
     
-    V1 = V(edges_list(i,1),:);
-    V2 = V(edges_list(i,2),:);
+    V1 = V(edg_list(i,1),:);
+    V2 = V(edg_list(i,2),:);
     
     [~,H1] = point_to_plane_distance(V1,n,P);
     [~,H2] = point_to_plane_distance(V2,n,P);
@@ -76,7 +76,7 @@ for i = 1:nb_edges
     
     if (sign(s2) == -sign(s1)) | (s1 == 0 & s2 == 0)
         
-        itx_edg_lst = cat(1,itx_edg_lst,edges_list(i,:)); % edges are unique in this list
+        itx_edg_lst = cat(1,itx_edg_lst,edg_list(i,:)); % edges are unique in this list
                                                           % and all shared by -at least- two triangles            
     end
     
@@ -86,7 +86,7 @@ end
 if ~isempty(itx_edg_lst)
         
     % Find every corresponding unique triangles
-    tgl_id_list = find_triangle_indices_from_edges_list(T,itx_edg_lst);
+    tgl_id_list = find_triangle_indices_from_edg_list(T,itx_edg_lst);
     
     % 1.2 Sort / connect edges ; to get new intersection vertices well sorted too
     srt_itx_edg_lsts = {};

@@ -3,25 +3,25 @@ function self_inter_tgl_id_out = collect_intersecting_triangle_indices(V, T, i1,
 % Hypothesis : edges, except vertices, belong to the boundary.
 % Warning : not yet appropriated for large meshes. Too much CPU time consuming.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the input point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %       [ |  |  |]
-% - T = [i1 i2 i3], positive integer matrix double, the input triangulation, size(T) = [nb_triangles,3].
+% - T = [i1 i2 i3], positive integer matrix double, the input triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %       [ |  |  |]
 %
-% - i1 : positive integer scalar double, index of the first triangle.
+% - i1 : positive integer scalar double, index of the first triangle. Mandatory.
 %
-% - i2 : positive integer scalar double, index of the second triangle.
+% - i2 : positive integer scalar double, index of the second triangle. Mandatory.
 %
 % - self_inter_tgl_id_in : positive integer row vector double, input list
-%                           of self intersecting triangle indices.
+%                           of self intersecting triangle indices. Mandatory.
 %
 %
 %%% Output arguments
@@ -39,8 +39,8 @@ T1 = T(i1,:);
 T2 = T(i2,:);
 
 % Triangle edge sets
-E1 = query_edges_list(T1,'raw');
-E2 = query_edges_list(T2,'raw');
+E1 = query_edg_list(T1,'raw');
+E2 = query_edg_list(T2,'raw');
 
 % Triangles normal vector
 n1 = cross(V(T1(1,2),:)-V(T1(1,1),:),V(T1(1,3),:)-V(T1(1,1),:));

@@ -7,26 +7,26 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 % Preserves normals orientation.
 % For 2D manifold meshes only.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %                [|   |]      
-% - edge2split = [e1 e2], positive integer matrix double, the set of the edges to split. size(edge2split) = [1, 2].
+% - edge2split = [e1 e2], positive integer matrix double, the set of the edges to split. size(edge2split) = [1, 2]. Mandatory.
 %                [|   |]
 %
-% - mode, character string in the set {'default', 'DEFAULT', 'specific','SPECIFIC'}, the split mode.
+% - mode, character string in the set {'default', 'DEFAULT', 'specific','SPECIFIC'}, the split mode. Optional.
 %
-% - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3].
+% - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3]. Optional.
 %
 %
 %%% Output arguments
@@ -85,7 +85,7 @@ else % if strcmpi(mode,'specific')
 end
 
 % Find triangles and edge opposite vertices
-tgl_id_list = cell2mat(find_triangle_indices_from_edges_list(T_in,edge2split(1,:)));
+tgl_id_list = cell2mat(find_triangle_indices_from_edg_list(T_in,edge2split(1,:)));
 
 % Retrieve originally oriented edge in triangles
 orientedg = zeros(numel(tgl_id_list),2);

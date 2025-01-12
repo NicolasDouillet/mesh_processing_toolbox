@@ -3,17 +3,17 @@ function T_out = reorient_all_faces_coherently(V, T_in)
 % the orientation of certain triangles of the mesh (T_in)
 % in order to have a coherently oriented mesh as a result.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
 %       [| | |]
-% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3].
+% - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %          [  |     |     |  ]
-% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3].
+% - T_in = [i1_in i2_in i3_in], positive integer matrix double, the input triangulation, size(T_in) = [nb_input_triangles,3]. Mandatory.
 %          [  |     |     |  ]
 %
 %
@@ -49,8 +49,8 @@ if ismesh2Dmanifold(V,T_in)
             % Orient its neighbor triangles if they are not alreay oriented
             for i = ngb_triangles_2_orient
                 
-                E_curr = query_edges_list(curr_tgl);
-                Ei = query_edges_list(T_n(i,:));
+                E_curr = query_edg_list(curr_tgl);
+                Ei = query_edg_list(T_n(i,:));
                 
                 % hlf_cmn_edg = find(ismember(Ei,E_curr,'rows'), 1); % common half edge
                 hlf_cmn_edg = find(all(bsxfun(@eq,Ei,E_curr),2)); % common half edge 

@@ -2,19 +2,21 @@ function [T_out, V_out] = remove_small_components(C, pct2rm ,V_in, rm_isl_vtx)
 %% remove_small_components : function to remove from the mesh (C) components smaller
 % (in relative number of triangles) than a certain percent of the total.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
 %
-% - C : cell array of interger matrices, the components of the input triangulation.
+% - C : cell array of interger matrices, the components of the input triangulation. Mandatory.
 %
 % - pct2rm : positive integer scalar, the percentage under which a
-%            component is suppressed. pct2rm € [0; 100].
+%            component is suppressed. pct2rm € [0; 100]. Mandatory.
 %
 %          [ |    |    |  ]
-% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3].
+% - V_in = [X_in Y_in Z_in], real matrix double, the input point set, size(V_in) = [nb_input_vertices,3]. Mandatory.
 %          [ |    |    |  ]
+%
+% - rm_isl_vtx : either logical true*/false or integer 1*/0, the boolean to decide to remove or not the isolated vertices. Optional.
 %
 %
 %%% Output arguments

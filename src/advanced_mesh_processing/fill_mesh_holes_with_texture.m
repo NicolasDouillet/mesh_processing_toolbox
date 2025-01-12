@@ -4,7 +4,7 @@ function [T_out, TF_out] = fill_mesh_holes_with_texture(V, T_in, TF_in, boundary
 % Working principle : without vertex addition. If the surface is opened,
 % its boundary is considered as its largest hole.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
 %
 %
 %%% Input arguments

@@ -38,7 +38,7 @@ slices_nb_max_contours = 6;
 % view(27,15);
 
 slc_step = 3;
-raw_edges_list = query_edges_list(T,'sorted');
+raw_edg_list = query_edg_list(T,'sorted');
 srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,slices_nb_max_contours,'vertical',slc_step);
 
 plot_mesh(V,T), shading interp, camlight left;

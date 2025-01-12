@@ -8,7 +8,7 @@ function V_out = smooth_mesh_boundary_and_holes(V_in, boundaries, nb_iterations,
 % and no connectivity change happen in the mesh.
 %
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments

@@ -1,16 +1,16 @@
 function vtx_ngb_id = find_one_vertex_neighbor_indices(T, vtx_id)
 %% find_one_vertex_neighbor_indices : function to find one vertex neighbor indices.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2021-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
 %
 %%% Input arguments
 %
 %          [ |  |  |]
-% - T_in = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3].
+% - T_in = [i1 i2 i3], positive integer matrix double, the triangulation, size(T) = [nb_triangles,3]. Mandatory.
 %          [ |  |  |]
 %     
-% - vtx_id : positive integer scalar, the vertex index. 
+% - vtx_id : positive integer scalar, the vertex index. Mandatory.
 %
 %
 %%% Output arguments

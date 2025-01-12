@@ -1,0 +1,28 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%      MESH PROCESSING TOOLBOX	      %
+%				      %
+% COPYRIGHT, LICENSE AND TERMS OF USE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+All the code included in this toolbox is the result of my personal own work during the year 2024, and going on for upcoming version updates.
+
+
+This toolbox and its content is free of use and redistribution on all the following conditions that :
+
+- SELLING THIS WHOLE TOOLBOX OR EVEN PARTS OF IT IS STRICLY PROHIBITED; 
+
+- This license file must be included as well as each function header must be preserved without any modification;
+
+- Modifications of any kind are done under your own and unique responsability;
+
+- I do not provide any warrantee on the correctness of these algorithms and functions (even if they all have been have been independently tested);  
+
+- The point set test files 'Archi_spiral.mat', 'Fermat_spiral.mat', 'Log_spiral.mat', 'concave_Reuleaux_tetrahedron.mat', 'inverted_sinusoidal_icosahedron_MR.mat', 'ovoid.mat', 'sinico.mat', as well as the different versions of the sinusoidal_dodecahedron and the sinusoidal_icosahedron are my designes and creations. I allow their redistributions on the condition that their author (me) is mentioned for each use; 
+
+- Downloading and using this toolbox or just part of it assumes you to have read, accepted and agreed with all the previous conditions of this license, without any exception.
+
+
+Author : Nicolas Douillet
+Contact : nicolas.douillet9 (at) gmail.com
+License version : 01 / 07 / 2025.

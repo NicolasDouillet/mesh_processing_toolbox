@@ -1,6 +1,6 @@
 %% mesh processing toolbox
 %
-% Author : nicolas.douillet (at) free.fr, 2020-2024.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 
 
 addpath('data/');
@@ -44,6 +44,7 @@ view(0,0);
 max_perim_sz = 200;
 T = fill_mesh_holes(V,T,boundary,max_perim_sz);
 plot_mesh(V,T);
+camlight left;
 view(0,0);
 
 %% Example #4 : curvature
@@ -52,6 +53,7 @@ ngb_degre = 2;
 N = vertex_normals(V,T,ngb_degre,'raw');
 curvature = mesh_curvature(V,T,N,ngb_degre,'mean');
 show_mesh_curvature(V,T,curvature);
+colormap(flipud(1-jet.^0.5));
 view(180,0);
 
 %% Example #5 : subselection
@@ -89,7 +91,7 @@ P = [0 0 thres];
 
 slices_nb_max_contours = 6;
 slc_step = 3;
-raw_edges_list = query_edges_list(T,'sorted');
+raw_edg_list = query_edg_list(T,'sorted');
 srt_itx_vtx_lsts = slice_mesh(V,T,n,P,true,slices_nb_max_contours,'vertical',slc_step);
 
 plot_mesh(V,T), shading interp, camlight left;

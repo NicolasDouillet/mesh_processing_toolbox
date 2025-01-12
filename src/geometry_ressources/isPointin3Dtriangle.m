@@ -2,7 +2,23 @@ function isin = isPointin3Dtriangle(A, B, C, P) % row vectors 1 x 3 % is3DPointo
 %% isPointin3Dtriangle : function to check if a point P of the 3D space is
 % included in a given ABC triangle, including its boundary.
 %
-%%% Author : nicolas.douillet (at) free.fr, 2023-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2023-2025.
+%
+%
+%%% Input arguments
+%
+% - A = [Ax Ay Az], real row vector double, the triangle first point. size(A) = [1,3]. Mandatory.
+%
+% - B = [Bx By Bz], real row vector double, the triangle second point. size(B) = [1,3]. Mandatory. 
+%
+% - C = [Cx Cy Cz], real row vector double, the triangle third point. size(C) = [1,3]. Mandatory.
+%
+% - P = [Px Py Pz], real row vector double, the  point to test. size(P) = [1,3]. Mandatory. 
+%
+%
+%%% Output argument
+%
+% - isin : logical true/false | 1/0, the result.
 
 
 %% Body

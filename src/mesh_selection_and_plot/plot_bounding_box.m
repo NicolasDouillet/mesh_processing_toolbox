@@ -2,13 +2,13 @@ function [] = plot_bounding_box(bbox)
 %% plot_bounding_box : function to plot the bounding box of the mesh (T) in a Matlab (R) figure.
 % Use plot_mesh function to plot the mesh before. 
 %
-%%% Author : nicolas.douillet (at) free.fr, 2020-2024.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input argument
 %
 % - bbox : real row vector double, the bounding box, size(bbox) = [1,6],
-%          bbox = [xmin xmax ymin ymax zmin zmax].
+%          bbox = [xmin xmax ymin ymax zmin zmax]. Mandatory.
 
 
 %% Body
