@@ -25,11 +25,19 @@ function T = build_triangulation_from_edg_list(E, mode)
 %% Body
 % tic;
 if nargin > 1 && strcmpi(mode,'sorted')
+    
+    %     C = mat2cell(E,repelem(3,floor(size(E,1)/3)),2);
+    %     R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % with potential replicated edges
+    %     U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % with unique edges only
+    %     T = cell2mat(U);
+    
+    T = [];
+    
+    for i = 1:3:height(E)
         
-    C = mat2cell(E,repelem(3,floor(size(E,1)/3)),2);
-    R_list = cellfun(@(t) reshape(t',[1,6]),C,'un',0); % with potential replicated edges
-    U = cellfun(@(i) unique(i,'stable'),R_list,'un',0); % with unique edges only
-    T = cell2mat(U);
+        T = cat(1,T,cat(2,E(i, :),E(i+2,2)));
+        
+    end
     
 elseif nargin < 2 || strcmpi(mode,'raw')
     

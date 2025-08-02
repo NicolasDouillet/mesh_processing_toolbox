@@ -5,7 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-All the code included in this toolbox is the result of my personal own work during the year 2024, and going on for upcoming version updates.
+All the code included in this toolbox is the result of my personal own work during the years 2020-2025, and going on for further versions.
 
 
 This toolbox and its content is free of use and redistribution on all the following conditions that :
@@ -25,4 +25,4 @@ This toolbox and its content is free of use and redistribution on all the follow
 
 Author : Nicolas Douillet
 Contact : nicolas.douillet9 (at) gmail.com
-License version : 01 / 07 / 2025.
+License version : 08 / 02 / 2025.
