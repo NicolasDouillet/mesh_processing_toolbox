@@ -4,7 +4,7 @@ function T = build_triangulation_from_edg_list(E, mode)
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
-%%% Input argument
+%%% Input arguments
 %
 %       [ | | ]
 %       [i1 i2]

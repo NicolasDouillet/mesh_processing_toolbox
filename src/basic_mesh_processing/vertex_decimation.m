@@ -1,5 +1,6 @@
 function [V_out, T_out] = vertex_decimation(V_in, T_in, vtx_id2suppr)
 %% vertex_decimation : function to decimate vertices.
+%
 % Working principle : in the triangulation the vertex
 % to decimate (vtx_id2suppr) is replaced by its nearest neighbor.
 %

@@ -2,6 +2,7 @@ function [V_out, T_out] = edge_collapse(V_in, T_in, edg_list)
 %% edge_collapse : function to collapse edge(s) of edg_list.
 % Triangle set (T) needs to be 2D-manifold for edge_collapse
 % to work and edge couple must be valid existing edges.
+%
 % Working principle : each edge to collapse is replaced by its middle
 % point.
 %

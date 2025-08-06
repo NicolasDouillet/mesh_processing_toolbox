@@ -20,17 +20,15 @@ function edg_list = query_edg_list(T, mode)
 %
 %              [ | | ]
 %              [i1 i2]
-% - edg_list = [i2 i3], positive integer matrix double, the edges list, size(edg_list) =  [nb_edg,2]
+% - edg_list = [i2 i3], positive integer matrix double, the edge list, size(edg_list) =  [nb_edges,2].
 %              [i3 i1]
 %              [ | | ]
-%
-%              with nb_edg the number of edges.
 
 
 %% Body
 % tic;
 L = cat(2,T,T(:,1)); % loop
-R = repelem(L,1,[1 2 2 1]); % replicated
+R = repelem(L,1,[1 2*ones(1,size(L,2)-2) 1]); % replicated
 face_nb_vtx = size(T,2);
 
 

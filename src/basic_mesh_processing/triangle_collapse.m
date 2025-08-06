@@ -2,6 +2,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_id_list)
 %% triangle_collapse : function to collapse one ore more triangle(s).
 % Triangle set needs to be 2D-manifold for triangle_collapse to work
 % and triangle indices must be correspond to valid existing triangles.
+%
 % Working principle : each triangle to collapse is replaced by its
 % isobarycentre, which is equivalent to consecutively collapse
 % two edges of this triangle.
