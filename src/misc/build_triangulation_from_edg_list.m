@@ -72,7 +72,7 @@ elseif nargin < 2 || strcmpi(mode,'raw')
         
 end
 
-% fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',size(T,1),size(E,1),toc);
+% fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',height(T),size(E,1),toc);
 
 
 end % build_triangulation_from_edg_list

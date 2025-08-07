@@ -26,7 +26,7 @@ function T = quad2trimesh(Q)
 %% Body
 % tic;
 T = cat(1,Q(:,1:3),cat(2,Q(:,1),Q(:,3),Q(:,4)));
-% fprintf('%d quadrangular faces converted into %d triangular faces in %d seconds.\n',size(Q,1),size(T,1),toc);
+% fprintf('%d quadrangular faces converted into %d triangular faces in %d seconds.\n',size(Q,1),height(T),toc);
 
 
 end % quad2trimesh

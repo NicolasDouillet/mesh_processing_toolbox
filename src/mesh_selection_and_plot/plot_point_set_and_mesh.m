@@ -1,5 +1,5 @@
-function [] = plot_mesh(V, T)
-%% plot_mesh : function to display the mesh in a Matlab (R) figure.
+function [] = plot_point_set_and_mesh(V, T)
+%% plot_point_set_and_mesh : function to plot point set and mesh in a same figure.
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
@@ -16,24 +16,31 @@ function [] = plot_mesh(V, T)
 
 
 %% Body
+marker_color = [1 1 0];
+face_color   = [0 1 1];
+
 
 h = figure;
 % set(h,'Position',get(0,'ScreenSize'));
 set(gcf,'Color',[0 0 0]);
 
 
+% Point set
+plot3(V(:,1),V(:,2),V(:,3),strcat('r','+'),'MarkerSize',8,'MarkerEdgeColor',marker_color,'MarkerFaceColor',marker_color,'LineWidth',3), hold on;
+
+% Mesh
 if isa(T,'double')
     
     if width(T) == 3
         
-        trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on; % ,'FaceColor',[0 1 1]
-        colormap([0 1 1]);
+        trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on;
+        colormap(face_color);
         
     elseif width(T) > 3                
         
         for n = 1:height(T)
             
-            fill3(V(T(n,:),1),V(T(n,:),2),V(T(n,:),3),[0 1 1]), hold on;
+            fill3(V(T(n,:),1),V(T(n,:),2),V(T(n,:),3),face_color), hold on;
             
         end
         
@@ -44,22 +51,18 @@ elseif iscell(T)
     for n = 1:height(T)
         
         T_cell = cell2mat(T(n,1));
-        fill3(V(T_cell,1),V(T_cell,2),V(T_cell,3),[0 1 1]), hold on;
+        fill3(V(T_cell,1),V(T_cell,2),V(T_cell,3),face_color), hold on;
         
     end
     
 end
 
 
-
 xlabel('X'), ylabel('Y'), zlabel('Z');
 axis equal;
 ax = gca;
 ax.Clipping = 'off';
-
 set(gca, 'Color', [0 0 0], 'XColor', [1 1 1], 'YColor', [1 1 1], 'ZColor', [1 1 1]);
 
-% fprintf('Mesh with %d vertices and %d triangles displayed in %d seconds.\n',numel(unique(T(:))),height(T),toc);
 
-
-end % plot_mesh
+end % plot_point_set_and_mesh

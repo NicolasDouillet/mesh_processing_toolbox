@@ -26,7 +26,7 @@ function T = hexa2trimesh(H)
 %% Body
 % tic;
 T = cat(1,H(:,1:3),H(:,3:5),H(:,[1 5 6]),cat(2,H(:,1:2:5)));
-% fprintf('%d hexagonal faces converted into %d triangular faces in %d seconds.\n',size(H,1),size(T,1),toc);
+% fprintf('%d hexagonal faces converted into %d triangular faces in %d seconds.\n',size(H,1),height(T),toc);
 
 
 end % hexa2trimesh

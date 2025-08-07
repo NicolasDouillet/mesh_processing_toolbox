@@ -4,8 +4,15 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 % Beware of updating edge2split if you split edges in a loop,
 % since the triangulation and then the indices will change at
 % each new iteration.
-% Preserves normals orientation.
-% For 2D manifold meshes only.
+%
+% Requirements :
+%
+% - For 2D manifold meshes only.
+%
+% Properties :
+%
+% - Preserves normals orientation.
+%
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
 %
@@ -47,7 +54,7 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 %% Input parsing
 if nargin < 4
     
-    mode = 'default';
+    mode = 'default'; % edge middle point
     
 else % if nargin > 3
     
@@ -75,7 +82,7 @@ T_out = T_in;
 % Create and add new vertex
 if strcmpi(mode,'default')
     
-    new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:));
+    new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:)); % edge middle point
     [V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
     
 else % if strcmpi(mode,'specific')

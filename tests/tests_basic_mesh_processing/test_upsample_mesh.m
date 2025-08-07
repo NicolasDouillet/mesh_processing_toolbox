@@ -32,5 +32,5 @@ plot_mesh(V,T);
 
 % % Upsample one triangle subset only; method = 'centre'
 % load(filename);
-% [V,T] = upsample_mesh(V,T,'centre',1:floor(0.5*size(T,1))); % restricted to the first half of the triangle set
+% [V,T] = upsample_mesh(V,T,'centre',1:floor(0.5*height(T))); % restricted to the first half of the triangle set
 % plot_mesh(V,T);

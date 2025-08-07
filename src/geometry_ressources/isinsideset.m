@@ -92,7 +92,7 @@ end
 Gi = zeros(size(T));
 
 % Compute face isobarycentres
-for  i = 1:size(T,1)
+for  i = 1:height(T)
     
     Gi(i,:) = mean(V(T(i,:),:),1);
     
@@ -112,7 +112,7 @@ if nargin < 5
         G = mean(V,1);
         orientation = sign(dot(N,Gi-G,1));
         
-        if ~isequal(orientation,ones(size(T,1),1))
+        if ~isequal(orientation,ones(height(T),1))
             
             N = N.*orientation;
             

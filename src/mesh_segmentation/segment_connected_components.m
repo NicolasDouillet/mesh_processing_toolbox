@@ -49,7 +49,7 @@ if strcmpi(mode,'explicit')
     
     component = cat(1,component,T(curr_tgl_id,:));
     
-    while numel(stored_tgl_id) < size(T,1) % some unstored triangles remain
+    while numel(stored_tgl_id) < height(T) % some unstored triangles remain
         
         % One same component
         while t < numel(stored_tgl_id) + 1 % ~isempty(idx_ngb_tgl_2_store)
@@ -70,7 +70,7 @@ if strcmpi(mode,'explicit')
         cc_nb = cc_nb + 1;
         
         % New triangle seed : the first which is not in the list
-        unstored_tgl_id = setdiff(1:size(T,1),stored_tgl_id);
+        unstored_tgl_id = setdiff(1:height(T),stored_tgl_id);
         
         if ~isempty(unstored_tgl_id) % some unstored triangles remain
             
@@ -80,7 +80,7 @@ if strcmpi(mode,'explicit')
             
         end
         
-        if numel(stored_tgl_id) == size(T,1) % store last triangle
+        if numel(stored_tgl_id) == height(T) % store last triangle
         
             if ~isempty(component)
                 
@@ -97,7 +97,7 @@ elseif strcmpi(mode,'index')
     
     component = cat(2,component,curr_tgl_id);
     
-    while numel(stored_tgl_id) < size(T,1) % some unstored triangles remain
+    while numel(stored_tgl_id) < height(T) % some unstored triangles remain
         
         % One same component
         while t < numel(stored_tgl_id) + 1 % ~isempty(idx_ngb_tgl_2_store)
@@ -118,7 +118,7 @@ elseif strcmpi(mode,'index')
         cc_nb = cc_nb + 1;
                 
         % New triangle seed : the first which is not in the list
-        unstored_tgl_id = setdiff(1:size(T,1),stored_tgl_id);
+        unstored_tgl_id = setdiff(1:height(T),stored_tgl_id);
         
         if ~isempty(unstored_tgl_id) % some unstored triangles remain
             
@@ -128,7 +128,7 @@ elseif strcmpi(mode,'index')
             
         end
         
-        if numel(stored_tgl_id) == size(T,1) % store last triangle
+        if numel(stored_tgl_id) == height(T) % store last triangle
         
             if ~isempty(component)
                 

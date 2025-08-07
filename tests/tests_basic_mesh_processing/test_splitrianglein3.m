@@ -15,7 +15,6 @@ T = [1 2 3];
 select_face_normals(V,T);
 
 tid = 1;
-O = [0 0 0];
-[V, new_vid] = add_vertices(O,V);
-T = splitrianglein3(T,tid,new_vid);
+new_vid = 1 + size(V,1);
+[V,T] = splitrianglein3(V,T,tid,new_vid,'new',[0 0 0]);
 select_face_normals(V,T);

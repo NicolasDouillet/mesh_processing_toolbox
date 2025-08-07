@@ -26,7 +26,7 @@ tgl_area = cellfun(@(r1,r2,r3) sqrt(sum(r1.^2,2))*point_to_line_distance(r2,r1,r
                                num2cell(V(T(:,1),:),2),'un',0);
                                      
 mesh_area = 0.5*sum([tgl_area{:}]);
-meanfa = mesh_area / size(T,1);
+meanfa = mesh_area / height(T);
 
 
 end % mean_face_area
