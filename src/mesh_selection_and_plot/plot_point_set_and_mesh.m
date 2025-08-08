@@ -31,14 +31,14 @@ plot3(V(:,1),V(:,2),V(:,3),strcat('r','+'),'MarkerSize',8,'MarkerEdgeColor',mark
 % Mesh
 if isa(T,'double')
     
-    if width(T) == 3
+    if size(T,2) == 3
         
         trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on;
         colormap(face_color);
         
-    elseif width(T) > 3                
+    elseif size(T,2) > 3                
         
-        for n = 1:height(T)
+        for n = 1:size(T,1)
             
             fill3(V(T(n,:),1),V(T(n,:),2),V(T(n,:),3),face_color), hold on;
             
@@ -48,7 +48,7 @@ if isa(T,'double')
     
 elseif iscell(T)
     
-    for n = 1:height(T)
+    for n = 1:size(T,1)
         
         T_cell = cell2mat(T(n,1));
         fill3(V(T_cell,1),V(T_cell,2),V(T_cell,3),face_color), hold on;

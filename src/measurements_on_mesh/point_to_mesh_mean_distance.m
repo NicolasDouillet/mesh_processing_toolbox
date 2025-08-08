@@ -24,9 +24,9 @@ function pt2mesh_mean_dst = point_to_mesh_mean_distance(M, V, T)
 
 
 %% Body
-dst_vect = zeros(1,height(T)); 
+dst_vect = zeros(1,size(T,1)); 
 
-for k = 1:height(T)
+for k = 1:size(T,1)
     
     
     dst_vect(k) = point_to_plane_distance(M,cross(V(T(k,2),:)-V(T(k,1),:),V(T(k,3),:)-V(T(k,1),:)),V(T(k,1),:));

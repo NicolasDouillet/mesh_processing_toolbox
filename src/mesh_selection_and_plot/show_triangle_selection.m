@@ -46,7 +46,7 @@ if nargin > 2
         
     end
     
-    if subset_id > 0 && max(subset_id) < 1 + height(T)
+    if subset_id > 0 && max(subset_id) < 1 + size(T,1)
         
         T_subset = T(subset_id,:);
     

@@ -2,7 +2,7 @@ function T_out = flip_edge(T_in, edge2flip)
 %% flip_edge : function to flip an edge (edge2flip) in the given triangulation (T_in).
 % Preserves face normals orientation.
 %
-%%% Author : nicolas.douillet9 (at) gmail.com, 2024-2025.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments

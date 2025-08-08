@@ -26,7 +26,7 @@ function T = penta2trimesh(P)
 %% Body
 % tic;
 T = cat(1,P(:,1:3),P(:,3:5),P(:,1:2:5));
-% fprintf('%d pentagonal faces converted into %d triangular faces in %d seconds.\n',size(P,1),height(T),toc);
+% fprintf('%d pentagonal faces converted into %d triangular faces in %d seconds.\n',size(P,1),size(T,1),toc);
 
 
 end % penta2trimesh

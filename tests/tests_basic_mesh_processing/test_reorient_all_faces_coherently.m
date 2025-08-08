@@ -18,7 +18,7 @@ addpath('../../data');
 load('vase.mat');
 
 
-for i = 1:height(T)
+for i = 1:size(T,1)
    
     if mod(i,2) == 0
         

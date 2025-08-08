@@ -33,7 +33,7 @@ if nargin > 1 && strcmpi(mode,'sorted')
     
     T = [];
     
-    for i = 1:3:height(E)
+    for i = 1:3:size(E,1)
         
         T = cat(1,T,cat(2,E(i, :),E(i+2,2)));
         
@@ -72,7 +72,7 @@ elseif nargin < 2 || strcmpi(mode,'raw')
         
 end
 
-% fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',height(T),size(E,1),toc);
+% fprintf('%d triangles mesh rebuilt from %d edges in %d seconds.\n',size(T,1),size(E,1),toc);
 
 
 end % build_triangulation_from_edg_list

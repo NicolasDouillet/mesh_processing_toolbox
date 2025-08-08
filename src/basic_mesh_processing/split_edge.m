@@ -1,20 +1,13 @@
-function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
-%% split_edge : function to split edges of edge2split in the mesh (T_in) into two edges.
+function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, vid, V_new)
+%% split_edge : function to split one ore more edges of the mesh into two edges.
 % Process and take one edge at a time in input.
 % Beware of updating edge2split if you split edges in a loop,
 % since the triangulation and then the indices will change at
 % each new iteration.
+% Preserves normals orientation.
+% For 2D manifold meshes only.
 %
-% Requirements :
-%
-% - For 2D manifold meshes only.
-%
-% Properties :
-%
-% - Preserves normals orientation.
-%
-%
-%%% Author : nicolas.douillet9 (at) gmail.com, 2021-2025.
+%%% Author : nicolPreserves normals orientation.as.douillet9 (at) gmail.com, 2020-2025.
 %
 %
 %%% Input arguments
@@ -31,9 +24,11 @@ function [V_out, T_out] = split_edge(V_in, T_in, edge2split, mode, V_new)
 % - edge2split = [e1 e2], positive integer matrix double, the set of the edges to split. size(edge2split) = [1, 2]. Mandatory.
 %                [|   |]
 %
-% - mode, character string in the set {'default', 'DEFAULT', 'specific','SPECIFIC'}, the split mode. Optional.
+% - mode, character string in the set {'default', 'DEFAULT', 'inset', 'INSET', 'new','NEW'}, the split mode. Optional.
 %
-% - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3]. Optional.
+% - vid, positive integer scalar, the vertex id. 1 <= vid <= size(V_in,1) if the vertex is already part of the set. vid > 0 and will be set to 1 + size(V_in,1) otherwise (new). Optional.
+%
+% - V_new = [X_new Y_new Z_new], row vector double, the coordinates of the new specific vertex. size(V_new) = [1 3]. Mandatory only if edge2split.
 %
 %
 %%% Output arguments
@@ -58,11 +53,20 @@ if nargin < 4
     
 else % if nargin > 3
     
-    if strcmpi(mode,'specific')
-        
+    
+    if strcmpi(mode,'inset')
+    
         if nargin < 5
             
-            error('Not enough input arguments. Specific vertex is missing.');
+            error('Not enough input arguments. Inside set vertex id is missing.');
+            
+        end
+        
+    elseif strcmpi(mode,'new')
+        
+        if nargin < 6
+            
+            error('Not enough input arguments. New vertex coordiantes are missing.');
             
         end
         
@@ -85,11 +89,16 @@ if strcmpi(mode,'default')
     new_vtx_coord = 0.5 * (V_out(edge2split(1,1),:) + V_out(edge2split(1,2),:)); % edge middle point
     [V_out,new_vtx_id] = add_vertices(new_vtx_coord,V_out);
     
-else % if strcmpi(mode,'specific')
+elseif strcmpi(mode,'inset')
+    
+    new_vtx_id = vid;
+    
+elseif strcmpi(mode,'new')
     
     [V_out,new_vtx_id] = add_vertices(V_new,V_out);
     
 end
+
 
 % Find triangles and edge opposite vertices
 tgl_id_list = cell2mat(find_triangle_indices_from_edg_list(T_in,edge2split(1,:)));

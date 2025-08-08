@@ -1,4 +1,4 @@
-function [V_out, T_out] = splitrianglein3(V_in, T_in, tid, vid, mode, V_new)
+function [V_out, T_out] = splitrianglein3(V_in, T_in, tid, mode, vid, V_new)
 %% splitrianglein3 : function to split one given triangle in three new
 % triangles given the triangle id, the new vertex id in the point set, the
 % triangulation, and the total number of vertices in the set including the
@@ -20,11 +20,11 @@ function [V_out, T_out] = splitrianglein3(V_in, T_in, tid, vid, mode, V_new)
 %
 % - tid : integer scalar double, the index of the triangle to remove. 1 <= tid <= size(T_in,1). Mandatory.
 %
+% - mode : character string in the set : {*'default',*'DEFAULT','insert','INSERT','new','NEW'}, the option to set
+%          to 'new' in case of the addition of a new vertex. Case insensitive. Optional.
+%
 % - vid : integer scalar double, the index of the vertex to connect with. 1 <= vid <= size(V,1). Mandatory.
 %         where V is the vertex set.
-%
-% - mode : character string in the set : {*'default','new'*,'DEFAULT','NEW'}, the option to set
-%          to 'new' in case of the addition of a new vertex. Case insensitive. Optional.
 %          
 % - V_new = [Vx Vy Vz], real row vector double, the vertex to add. Size(V_new) = [1,3]. Optional.
 %
@@ -40,23 +40,70 @@ function [V_out, T_out] = splitrianglein3(V_in, T_in, tid, vid, mode, V_new)
 %           [  |      |      |   ]
 
 
-%% Body
-
-if nargin < 4 || strcmpi(mode,'defaut')
+%% Input parsing
+if nargin < 4
     
-    V_out = V_in;       
+    mode = 'default';           
     
-elseif nargin > 3 && strcmpi(mode,'new')
+elseif nargin > 3
     
-    V_out = cat(1,V_in,V_new);
-    vid = size(V_out,1); % overwrite given input vid whatever it was
+    if strcmpi(mode,'insert')            
+        
+        if nargin < 5
+            
+            error('Not enough input arguments. Inside set vertex id is missing.');
+            
+        end
+        
+    elseif strcmpi(mode,'new')
+        
+        if nargin < 6
+            
+            error('Not enough input arguments. New vertex coordiantes are missing.');
+            
+        end
+        
+    elseif strcmpi(mode,'default')                
+        
+    else
+        
+        error('Unknown specified split mode.');
+        
+    end           
             
 end
 
+
+%% Body
+V_out = V_in;
+T_out = T_in; 
+vk_id = [];
+
+if strcmpi(mode,'default')
+    
+    for k = tid
+        
+        new_vtc_coord = mean(V_out(T_out(k,:),:),1);
+        [V_out,vid] = add_vertices(new_vtc_coord,V_out);
+        vk_id = cat(1,vk_id,vid);
+        
+    end
+            
+elseif strcmpi(mode,'insert')
+    
+    vk_id = vid';
+    
+elseif strcmpi(mode,'new')
+    
+    [V_out,vid] = add_vertices(V_new,V_out);
+    vk_id = cat(1,vk_id,vid)';
+    
+end
+
 % Create new triangles
-new_tgl1 = cat(2,T_in(tid,1:2),vid);
-new_tgl2 = cat(2,T_in(tid,2:3),vid);
-new_tgl3 = cat(2,T_in(tid,3),T_in(tid,1),vid);
+new_tgl1 = cat(2,T_in(tid,1:2),vk_id);
+new_tgl2 = cat(2,T_in(tid,2:3),vk_id);
+new_tgl3 = cat(2,T_in(tid,3),T_in(tid,1),vk_id);
 
 % Update triangulation
 T_set = cat(1,new_tgl1,new_tgl2,new_tgl3);

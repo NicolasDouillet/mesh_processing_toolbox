@@ -111,7 +111,7 @@ while nb_new_tgl
     curr_tgl_id = 1;
     nb_new_tgl = 0;
     
-    while curr_tgl_id < 1 + height(T)
+    while curr_tgl_id < 1 + size(T,1)
                 
         [T,N,new_vtx_id] = grow_tetrahedron(V_out,T,N,curr_tgl_id,epsilon);
         
