@@ -176,7 +176,7 @@ if find(abs(d) > epsilon)
     
     f = find(d == max(d));    
     
-    if f & ~ismember(f,unique(T(:))) % prevent from creating non manifold stuffs
+    if f & ~ismember(f,unique(T(:))) % prevent from creating non manifold vertices
         
         f = f(1,1);
         
