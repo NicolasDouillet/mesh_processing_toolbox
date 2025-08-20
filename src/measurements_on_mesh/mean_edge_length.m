@@ -21,8 +21,7 @@ function mel = mean_edge_length(V, T)
 
 
 %% Body
-E = query_edg_list(T);
-E = unique(sort(E,2),'rows');
+E = query_edg_list(T,'sorted');
 mel = mean(sqrt(sum((V(E(:,2),:)-V(E(:,1),:)).^2,2)));
 
 

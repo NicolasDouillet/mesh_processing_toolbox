@@ -1,10 +1,10 @@
-function N = select_face_normals(V, T, mode, option_display)
-%% select_face_normals : function to display the face normals (N) on the mesh (T).
+function N = show_face_normals(V, T, mode, option_display)
+%% show_face_normals : function to display the face normals (N) on the mesh (T).
 %
-%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
-%%% Input arguments
+% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
@@ -20,7 +20,7 @@ function N = select_face_normals(V, T, mode, option_display)
 % - option_display : logical *true/false | *1/0, enable/disable the diplay. Optionnal.
 %
 %
-%%% Output argument
+% Output argument
 %
 %       [ |  |  |]
 % - N : [Nx Ny Nz], real matrix double, the face normal vectors, size(N) = [nb_triangles,3].
@@ -52,4 +52,4 @@ if option_display
 end
 
 
-end % select_face_normals
+end % show_face_normals

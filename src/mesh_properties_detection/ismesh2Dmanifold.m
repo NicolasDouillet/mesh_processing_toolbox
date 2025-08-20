@@ -32,7 +32,7 @@ b = true;
 nmnfld_edg_nb = 0;
 nmnfld_edg_id = [];
 
-edg_list = query_edg_list(T,'raw');
+edg_list = query_edg_list(T,'sorted');
 tgl_id_list = find_triangle_indices_from_edg_list(T,edg_list);
 
 for n = 1:size(tgl_id_list,1)

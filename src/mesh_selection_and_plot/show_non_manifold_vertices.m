@@ -1,5 +1,5 @@
-function nmnfld_vtx_id = select_non_manifold_vertices(V, T, option_display)
-%% select_non_manifold_vertices : function to display non manifold vertices on the mesh (T).
+function nmnfld_vtx_id = show_non_manifold_vertices(V, T, option_display)
+%% show_non_manifold_vertices : function to display non manifold vertices on the mesh (T).
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
@@ -44,4 +44,4 @@ if option_display
 end
 
 
-end % select_non_manifold_vertices
+end % show_non_manifold_vertices

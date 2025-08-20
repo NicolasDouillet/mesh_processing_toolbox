@@ -30,4 +30,4 @@ load(filename);
 % T = reorient_all_faces_coherently(V,T);
 % T = flip_faces_orientation(T);
 
-select_face_normals(V,T);
+show_face_normals(V,T);

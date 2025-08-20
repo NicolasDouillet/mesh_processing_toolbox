@@ -40,7 +40,7 @@ tic;
 [~,H_in] = point_to_plane_distance(V_in,n,I);
 
 % II Compute signed distances
-sgn = dot((V_in-H_in),repmat(n,[size(V_in,1),1]),2);
+sgn = sum((V_in-H_in).*n,2);
 f = find(sgn > 0);
 
 % III Select points

@@ -29,7 +29,7 @@ load(filename);
 % T     = remove_non_manifold_triangles(T);
 % T     = reorient_all_faces_coherently(V,T);
 % ni    = vertex_normals(V,T);
-% select_face_normals(V,T); % to check normals orientation
+% show_face_normals(V,T); % to check normals orientation
 
 
 % Vertex normals
@@ -44,7 +44,7 @@ for i = 1:nb_vtx
 end
 
 ni = ni./sqrt(sum(ni.^2,2));
-orientation = sign(dot(ni,V-repmat(G,[nb_vtx,1]),1)); % Coherently orient outward vertex normals
+orientation = sign(dot(ni,V-G,1)); % Coherently orient outward vertex normals
 
 if ~isequal(orientation,ones(nb_vtx,1))     
     ni = ni.*orientation;

@@ -30,7 +30,7 @@ filename = strcat(cell2mat(filenames(id,1)),'.mat');
 load(filename);
 
 % Randomly mess up the edge set
-E = query_edg_list(T);
+E = query_edg_list(T,'sorted');
 new_id = randperm(size(E,1));
 E = E(new_id,:);
 E = fliplr(E);

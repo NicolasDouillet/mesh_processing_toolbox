@@ -36,7 +36,7 @@ nb_vtx = size(V,1); % nb vertices
 [~,v1] = mink(V(:,3),1);
 
 % 2nd vertex : the one which build an edge with minimum (positive) dot product with k [0 0 1] vector
-d = dot(V-V(v1,:),repmat([0 0 1],[size(V,1),1]),2);
+d = sum((V-V(v1,:)).*[0 0 1],2);
 [~,v2] = mink(d,2);   
 v2 = setdiff(v2,v1); % remove dot prod with null vector
 

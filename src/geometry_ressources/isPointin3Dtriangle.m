@@ -54,13 +54,13 @@ I_AB = 0.5*(A+B);
 I_BC = 0.5*(B+C);
 I_AC = 0.5*(A+C);
 
-sgn_dot_prod_A = dot(repmat(nA,[size(P,1),1]),A-P,2) > -epsilon;
-sgn_dot_prod_B = dot(repmat(nB,[size(P,1),1]),B-P,2) > -epsilon;
-sgn_dot_prod_C = dot(repmat(nC,[size(P,1),1]),C-P,2) > -epsilon;
+sgn_dot_prod_A = sum(nA.*(A-P),2) > -epsilon;
+sgn_dot_prod_B = sum(nB.*(B-P),2) > -epsilon;
+sgn_dot_prod_C = sum(nC.*(C-P),2) > -epsilon;
 
-sgn_dot_prod_AB = dot(repmat(mAB,[size(P,1),1]),I_AB-P,2) > -epsilon;
-sgn_dot_prod_AC = dot(repmat(mAC,[size(P,1),1]),I_AC-P,2) > -epsilon;
-sgn_dot_prod_BC = dot(repmat(mBC,[size(P,1),1]),I_BC-P,2) > -epsilon;
+sgn_dot_prod_AB = sum(mAB.*(I_AB-P),2) > -epsilon;
+sgn_dot_prod_AC = sum(mAC.*(I_AC-P),2) > -epsilon;
+sgn_dot_prod_BC = sum(mBC.*(I_BC-P),2) > -epsilon;
 
 % Second logical condition
 c2 = sum(cat(2,sgn_dot_prod_A,sgn_dot_prod_B,sgn_dot_prod_C,sgn_dot_prod_AB,sgn_dot_prod_AC,sgn_dot_prod_BC),2) > 5;

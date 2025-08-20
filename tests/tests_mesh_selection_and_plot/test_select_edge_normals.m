@@ -19,5 +19,5 @@ load(filename);
 
 
 N = face_normals(V,T);
-E = query_edg_list(T);
-select_edge_normals(V,T,N,E);
+E = query_edg_list(T,'sorted');
+show_edge_normals(V,T,N,E);

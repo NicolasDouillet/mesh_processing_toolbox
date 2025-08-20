@@ -68,21 +68,25 @@ for k = 1:size(P,1)
    
     if isPinABC(k)
         
-        plot3(P(k,1),P(k,2),P(k,3),'.','Color',[0 1 0]), hold on;
+        plot3(P(k,1),P(k,2),P(k,3),'+','Color',[0 1 0],'MarkerSize',5,'LineWidth',2), hold on;
     
     elseif isPinABC(k) == false 
        
-        plot3(P(k,1),P(k,2),P(k,3),'.','Color',[1 0 0]), hold on;
+        plot3(P(k,1),P(k,2),P(k,3),'+','Color',[1 0 0],'MarkerSize',5,'LineWidth',2), hold on;
         
     end
     
 end
 
-line([1 0 0 1],[0 1 0 0],[0 0 1 0],'Color',[1 0 0],'LineWidth',2), hold on;
+line([1 0 0 1],[0 1 0 0],[0 0 1 0],'Color',[1 1 1],'LineWidth',2), hold on;
 
 
 xlabel('X');
 ylabel('Y');
 zlabel('Z');
-axis square, axis equal;
-grid on, box on;
+axis square, axis equal, axis off;
+
+set(gcf,'Color',[0 0 0]), set(gca,'Color',[0 0 0]);
+
+
+% grid on, box on;

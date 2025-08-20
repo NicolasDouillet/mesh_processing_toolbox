@@ -1,6 +1,7 @@
 Please first check the doc tab on the right to get some relevant and use examples of this toobox functions.
 
-To use the sources, mind to add its path to your paths, just like in the header of any test file : addpath(genpath('my_path_to_the_sources'));
+To use the sources and make it work, please mind to add its path to your paths, just like in the header of any test file.
+To do this, just execute addpath(genpath('my_path_to_the_sources')); command in Matlab console, where 'my_path_to_the_sources' is the path to mesh_processing_toolbox/src on your computer.
 
 Feel free to check and download the mesh generation toolbox ( https://fr.mathworks.com/matlabcentral/fileexchange/85173-mesh-generation-toolbox?s_tid=prof_contriblnk ) for many further meshing relative functions.
 
@@ -114,4 +115,4 @@ Matlab release version used for development and tests : R2019b.
 
 Contact : please report me any bug (with data set used and Matlab(R) code attached) or suggestion at nicolas.douillet9 (at) gmail.com
 
-Last update : 08 / 02 / 2025.
+Last update : 08 / 15 / 2025.

@@ -27,7 +27,7 @@ function T_out = remove_non_manifold_triangles(T_in)
 %% Body
 tic;
 T_out = T_in;
-edg_list = query_edg_list(T_in,'raw');
+edg_list = query_edg_list(T_in,'sorted');
 tgl_id_list = find_triangle_indices_from_edg_list(T_in,edg_list);
 nmnfld_tgl_id_list = cellfun(@(r) r(numel(r) > 2,:),tgl_id_list,'un',0);
 nmnfld_tgl_id_list = nmnfld_tgl_id_list(~cellfun('isempty',nmnfld_tgl_id_list));

@@ -63,8 +63,7 @@ if (max_edglength/min_edglength > 2 && max_edglength/min_edglength <= 8)
 elseif (max_edglength/min_edglength) > 8
     
     % Find every triangles whom one edge is greater than the threshold
-    E = query_edg_list(T);
-    E = unique(sort(E,2),'rows');
+    E = query_edg_list(T,'sorted');    
     
     while max_edglength > 2*min_edglength
         
@@ -78,8 +77,7 @@ elseif (max_edglength/min_edglength) > 8
             end
                 
         max_edglength = max_edge_length(V,T);
-        E = query_edg_list(T);
-        E = unique(sort(E,2),'rows');
+        E = query_edg_list(T,'sorted');
         
     end
         

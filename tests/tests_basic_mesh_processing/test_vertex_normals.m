@@ -26,4 +26,4 @@ load(filename);
 % T = flip_faces_orientation(T);
 
 ngb_degre = 1;
-select_vertex_normals(V,T,ngb_degre);
+show_vertex_normals(V,T,ngb_degre);

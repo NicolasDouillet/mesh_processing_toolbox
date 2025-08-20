@@ -1,5 +1,5 @@
-function self_inter_tgl_id = select_self_intersecting_triangles(V, T)
-%% select_self_intersecting_triangles : function to display self intersecting
+function self_inter_tgl_id = show_self_intersecting_triangles(V, T)
+%% show_self_intersecting_triangles : function to display self intersecting
 % triangles on the mesh (T).
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
@@ -38,4 +38,4 @@ shading faceted;
 trisurf(T(self_inter_tgl_id,:),V(:,1),V(:,2),V(:,3),'FaceColor',[1 0 0]), hold on;
 
 
-end % remove_self_intersecting_triangles
+end % show_self_intersecting_triangles

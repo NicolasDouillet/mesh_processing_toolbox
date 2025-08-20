@@ -35,7 +35,7 @@ function [V_out, T_out] = triangle_collapse(V_in, T_in, tgl_id_list)
 
 
 %% Body
-edg_list = query_edg_list(T_in(tgl_id_list,:));
+edg_list = query_edg_list(T_in(tgl_id_list,:),'sorted');
 
 % 2 out of 3 edges are actually sufficient
 edg_id = 1:size(edg_list,1);

@@ -62,12 +62,12 @@ N = N./ sqrt(sum(N.^2,2));
 
 if strcmpi(curv_type,'mean')
     
-curvature = cell2mat(cellfun(@(c1,c2) mean(abs(dot(c1,repmat(N(c2,:),[size(c1,1),1]),2)),1),...
+curvature = cell2mat(cellfun(@(c1,c2) mean(abs(sum(c1.*N(c2,:),2)),1),...
                      vect2ngb_cell,cell_vtx_id,'un',0));
                  
 elseif strcmpi(curv_type,'max')
     
-    curvature = cell2mat(cellfun(@(c1,c2) max(abs(dot(c1,repmat(N(c2,:),[size(c1,1),1]),2))),...
+    curvature = cell2mat(cellfun(@(c1,c2) max(abs(sum(c1.*N(c2,:),2)),2),...
                          vect2ngb_cell,cell_vtx_id,'un',0));
     
 end

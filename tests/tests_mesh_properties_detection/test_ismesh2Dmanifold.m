@@ -16,7 +16,7 @@ filenames = {'cube';...                     % 1 / true
              'singularity';...              % 0 / false            
              };
 
-id = 1;
+id = 2;
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 

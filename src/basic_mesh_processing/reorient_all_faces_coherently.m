@@ -3,10 +3,10 @@ function T_out = reorient_all_faces_coherently(V, T_in)
 % the orientation of certain triangles of the mesh (T_in)
 % in order to have a coherently oriented mesh as a result.
 %
-%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
+% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
 %
-%%% Input arguments
+% Input arguments
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
@@ -17,7 +17,7 @@ function T_out = reorient_all_faces_coherently(V, T_in)
 %          [  |     |     |  ]
 %
 %
-%%% Output argument
+% Output argument
 %
 %           [  |      |      |   ]
 % - T_out = [i1_out i2_out i3_out], positive integer matrix double, the output triangulation, size(T_out) = [nb_output_triangles,3].
@@ -44,18 +44,16 @@ if ismesh2Dmanifold(V,T_in)
         while numel(oriented_tgl_id) < size(T_n,1) % some not oriented triangles remain
             
             ngb_tgl_id = cell2mat(ngb_T(curr_tgl_id,1))';
-            ngb_triangles_2_orient = setdiff(ngb_tgl_id,oriented_tgl_id);
+            ngb_tgl_2_orient = setdiff(ngb_tgl_id,oriented_tgl_id);
             
             % Orient its neighbor triangles if they are not alreay oriented
-            for i = ngb_triangles_2_orient
+            for i = ngb_tgl_2_orient
                 
                 E_curr = query_edg_list(curr_tgl);
-                Ei = query_edg_list(T_n(i,:));
-                
-                % hlf_cmn_edg = find(ismember(Ei,E_curr,'rows'), 1); % common half edge
-                hlf_cmn_edg = find(all(bsxfun(@eq,Ei,E_curr),2)); % common half edge 
-                
-                if ~isempty(hlf_cmn_edg)
+                Ei     = query_edg_list(T_n(i,:));                
+                hlf_cmn_edg = find(ismember(Ei,E_curr,'rows'), 1); % common half edge                
+                                
+                if any(hlf_cmn_edg)
                     
                     T_n(i,:) = fliplr(T_n(i,:));
                     
@@ -63,7 +61,7 @@ if ismesh2Dmanifold(V,T_in)
                 
             end
             
-            oriented_tgl_id = cat(2,oriented_tgl_id,ngb_triangles_2_orient);
+            oriented_tgl_id = cat(2,oriented_tgl_id,ngb_tgl_2_orient);
             t = t + 1;
             curr_tgl_id = oriented_tgl_id(t);
             curr_tgl = T_n(curr_tgl_id,:);

@@ -45,11 +45,11 @@ else
 end
 
 
-select_face_normals(V,T_cv);
+show_face_normals(V,T_cv);
 axis equal;
 
-select_face_normals(V,T_mcv);
+show_face_normals(V,T_mcv);
 axis equal;
 
-select_face_normals(V_out,T_qcv);
+show_face_normals(V_out,T_qcv);
 axis equal;

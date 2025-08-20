@@ -1,5 +1,5 @@
-function nmnfld_tgl_id_list = select_non_manifold_triangles(V, T)
-%% select_non_manifold_triangles : function to select and display
+function nmnfld_tgl_id_list = show_non_manifold_triangles(V, T)
+%% show_non_manifold_triangles : function to show and display
 % non manifold triangles on the mesh (T).
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
@@ -22,7 +22,7 @@ function nmnfld_tgl_id_list = select_non_manifold_triangles(V, T)
 
 
 %% Body
-edg_list = query_edg_list(T,'raw');
+edg_list = query_edg_list(T,'sorted');
 tgl_id_list = find_triangle_indices_from_edg_list(T,edg_list);
 nmnfld_tgl_id_list = cellfun(@(r) r(numel(r) > 2,:),tgl_id_list,'un',0);
 nmnfld_tgl_id_list = nmnfld_tgl_id_list(~cellfun('isempty',nmnfld_tgl_id_list));
@@ -32,4 +32,4 @@ plot_mesh(V,T);
 trisurf(T(nmnfld_tgl_id_list,:),V(:,1),V(:,2),V(:,3),'FaceColor',[1 0 0]); hold on;
 
 
-end % select_non_manifold_edges
+end % show_non_manifold_triangles

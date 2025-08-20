@@ -27,4 +27,4 @@ load('octahedron.mat');
 [V,T] = split_edge(V,T,[1 2]);
 [V,T] = split_edge(V,T,[3 4]);
 [V,T] = split_edge(V,T,[1 5],'new',-1,[0.25 0 0.25]);
-select_face_normals(V,T);
+show_face_normals(V,T);

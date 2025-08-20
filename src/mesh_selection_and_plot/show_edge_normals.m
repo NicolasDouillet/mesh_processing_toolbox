@@ -1,5 +1,5 @@
-function N_e = select_edge_normals(V, T, N, E, mode, option_display)
-%% select_edge_normals : function to display the edge normals on the mesh.
+function N_e = show_edge_normals(V, T, N, E, mode, option_display)
+%% show_edge_normals : function to display the edge normals on the mesh.
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
@@ -62,4 +62,4 @@ if option_display
 end
 
 
-end % select_edge_normals
+end % show_edge_normals
