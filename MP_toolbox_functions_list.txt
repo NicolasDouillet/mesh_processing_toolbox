@@ -1,0 +1,160 @@
+List of the MP toolbox functions in /src ( 08 / 21 / 2025 )
+
+
+%% ADVANCED MESH PROCESSING %%
+
+- detect_mesh_boundary_and_holes
+- erode_mesh_boundary_and_holes
+- fill_mesh_holes
+- fill_mesh_holes_with_texture
+- mesh_curvature
+- slice_mesh
+- smooth_mesh
+- smooth_mesh_boundary_and_holes
+
+
+%% BASIC MESH PROCESSING %%
+
+- add_triangles
+- add_vertices
+- clone_solve_non_manifold_vertices
+- collect_intersecting_triangle_indices
+- edge_collapse
+- flip_edge
+- flip_faces_orientation
+- remove_degenerated_triangles
+- remove_duplicated_triangles
+- remove_duplicated_vertices
+- remove_flat_triangles
+- remove_isolated_triangles
+- remove_isolated_vertices
+- remove_non_manifold_triangles
+- remove_non_manifold_vertices
+- remove_self_intersecting_triangles
+- remove_small_components
+- remove_triangles
+- remove_unreferenced_vertices
+- remove_vertices
+- reorient_all_faces_coherently
+- split_edge
+- split_edge_with_texture
+- splitrianglein3
+- triangle_collapse
+- upsample_mesh
+- vertex_decimation
+
+
+%% BASIC QUERIES %%
+
+- find_edges_from_vertex_list
+- find_every_vertices_neighbor_indices
+- find_neighbor_face_indices
+- find_neighbor_triangle_indices
+- find_one_vertex_neighbor_indices
+- find_triangle_indices_from_edg_list
+- find_triangle_sets_from_vertex_list
+- find_triangles_from_vertex_list
+- query_edg_list
+
+
+%% GEOMETRY RESSOURCES %%
+
+- isin3Dconvexset
+- isinsideset
+- isPointin3Dtriangle
+- line_plane_intersection
+- planes_intersection
+- point_to_line_distance
+- point_to_plane_distance
+
+
+%% LOGICAL OPERATORS %%
+
+- logical_AND
+- logical_OR
+- logical_XOR
+
+
+%% MEASUREMENTS ON MESH %%
+
+- boundary_and_holes_perimeters
+- component_area
+- component_volume
+- dihedral_angle
+- face_angles
+- face_edges_lengths
+- face_selection_area
+- max_edge_length
+- max_face_area
+- mean_edge_length
+- mean_face_area
+- mesh_bounding_box
+- mesh_total_area
+- mesh_volume
+- min_edge_length
+- min_face_area
+- point_to_mesh_mean_distance
+- point_to_mesh_min_distance
+
+
+%% MESH PROPERTIES DETECTION %%
+
+- ismesh2Dmanifold
+- ismeshwatertight
+- issetconvex
+
+
+%% MESH SEGMENTATION %%
+
+- segment_connected_components
+
+
+%% MESH SELECTION AND PLOT %%
+
+- draw_slice_contours
+- plot_bounding_box
+- plot_mesh
+- plot_point_set
+- plot_point_set_and_mesh
+- select_mesh_boundary_and_holes
+- select_mesh_substripe
+- select_submesh
+- show_edge_normals
+- show_face_normals
+- show_mesh_boundary_and_holes
+- show_mesh_components
+- show_mesh_curvature
+- show_non_manifold_triangles
+- show_non_manifold_vertices
+- show_self_intersecting_triangles
+- show_triangle_selection
+- show_vertex_normals
+- show_vertex_selection
+
+
+%% MESH TRANSFORMATION %%
+
+- dual_of_trimesh
+- hexa2trimesh
+- penta2trimesh
+- quad2trimesh
+
+
+%% MISC %%
+
+- build_triangulation_from_edg_list
+- convex_hull
+- get_global_param
+- meshed_mtlb_logo
+- point_sets_intersection
+- point_sets_xor
+- quick_hull
+- reset_global_param
+- set_global_param
+
+
+%% NORMALS %%
+
+- edge_normals
+- face_normals
+- vertex_normas
