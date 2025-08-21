@@ -1,10 +1,15 @@
-function boundaries = detect_mesh_boundary_and_holes(T)
-%% detect_mesh_boundary_and_holes : function to detect vertices
+function boundaries = mesh_boundary_and_holes(T)
+%% mesh_boundary_and_holes : function to detect vertices
 % which are part of the mesh boundary and list their indices in
 % boundary vectors. From the vertex and triangle lists, this
 % function computes the mesh boundary when there are some
 % (opened surface or presence of holes in the mesh).
+% Boundaries are stored in the cell container boundaries and sorted by
+% descending order of the number of vertices they have. By topological
+% definition, the boundary is the first / largest one. All others are holes.
+%
 % Principle is based on detecting and sorting non shared edges.  
+%
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %                                         
@@ -82,4 +87,4 @@ nb_holes = size(boundaries,1);
 fprintf('%d boundaries detected in %d seconds.\n',nb_holes,toc);
 
 
-end % detect_mesh_boundary_and_holes
+end % mesh_boundary_and_holes

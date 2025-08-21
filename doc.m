@@ -21,7 +21,7 @@ alpha(0.5);
 view(180,0);
 axis off;
 
-boundary = detect_mesh_boundary_and_holes(T);
+boundary = mesh_boundary_and_holes(T);
 nb_iterations = 2;
 ngb_degre = 6;
 V_out = smooth_mesh_boundary_and_holes(V,boundary,nb_iterations,ngb_degre);

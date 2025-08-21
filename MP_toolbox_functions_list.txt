@@ -116,7 +116,6 @@ List of the MP toolbox functions in /src ( 08 / 21 / 2025 )
 - plot_mesh
 - plot_point_set
 - plot_point_set_and_mesh
-- select_mesh_boundary_and_holes
 - select_mesh_substripe
 - select_submesh
 - show_edge_normals

@@ -34,7 +34,7 @@ if nargin < 2
 end
 
 [~,T] = remove_isolated_triangles(V,T,true);
-boundary = detect_mesh_boundary_and_holes(T);
+boundary = mesh_boundary_and_holes(T);
 
 if strcmpi(surf_type,'closed')
     
