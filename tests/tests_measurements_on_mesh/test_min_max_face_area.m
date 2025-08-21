@@ -6,11 +6,11 @@ addpath(genpath('../../src'));
 addpath('../../data');
 
 
-filenames = {'tetrahedron';... % min = 2/sqrt(3);       max = 2/sqrt(3)       -> ok
-             'cube';...        % min = 2/3;             max = 2/3             -> ok
-             'octahedron';...  % min = sqrt(3)/2;       max = sqrt(3)/2       -> ok
-             'icosahedron';... % min = sqrt(3)/(2+phi); max = sqrt(3)/(2+phi) -> ok
-             'dodecahedron'    % min =                  max =                                                       
+filenames = {'tetrahedron';...                 % min = 2/sqrt(3);       max = 2/sqrt(3)       -> ok
+             'cube';...                        % min = 2/3;             max = 2/3             -> ok
+             'octahedron';...                  % min = sqrt(3)/2;       max = sqrt(3)/2       -> ok
+             'icosahedron';...                 % min = sqrt(3)/(2+phi); max = sqrt(3)/(2+phi) -> ok
+             'dodecahedron_trimesh_regular'    % min =                  max =                                                       
              };
 
 id = 4; % €|[ 1; 5 ]|

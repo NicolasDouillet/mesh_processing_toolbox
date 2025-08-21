@@ -11,8 +11,8 @@ filenames = {'tetrahedron';...                        % true  (1) expected
              'cube';...                               % true  (1) expected 
              'octahedron';...                         % true  (1) expected 
              'icosahedron';...                        % true  (1) expected                
-             'dodecahedron';...                       % true  (1) expected -> failure because of coplanar points
-             'dodecahedron2';...                      % true  (1) expected
+             'dodecahedron_trimesh_regular';...       % true  (1) expected -> failure because of coplanar points
+             'dodecahedron_trimesh_optim';...         % true  (1) expected
              'geoid_lvl_16';...                       % true  (1) expected
              'ovoid';...                              % true  (1) expected
              'Reuleaux_tetrahedron';                  % true  (1) expected
