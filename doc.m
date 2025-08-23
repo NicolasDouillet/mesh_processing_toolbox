@@ -13,39 +13,43 @@ load('kitten_components.mat');
 show_mesh_components(V,components);
 view(180,0);
 
+
 %% Example #2 : boundary smoothing
-show_mesh_boundary_and_holes(V,T);
+boundaries = mesh_boundary_and_holes(T);
+show_mesh_boundary_and_holes(V,T,boundaries);
 shading interp;
 camlight left;
 alpha(0.5);
 view(180,0);
 axis off;
 
-boundary = mesh_boundary_and_holes(T);
 nb_iterations = 2;
 ngb_degre = 6;
-V_out = smooth_mesh_boundary_and_holes(V,boundary,nb_iterations,ngb_degre);
+V_out = smooth_mesh_boundary_and_holes(V,boundaries,nb_iterations,ngb_degre);
 
-show_mesh_boundary_and_holes(V_out,T);
+show_mesh_boundary_and_holes(V_out,T,boundaries);
 shading interp;
 camlight left;
 alpha(0.5);
 view(180,0);
 axis off;
+
 
 %% Example #3 : hole filling
 load('kitten_holed.mat');
 [V,T] = remove_non_manifold_vertices(V,T);
-boundary = select_mesh_boundary_and_holes(V,T);
+boundaries = mesh_boundary_and_holes(T);
+show_mesh_boundary_and_holes(V,T,boundaries);
 shading flat;
 camlight left;
 view(0,0);
 
 max_perim_sz = 200;
-T = fill_mesh_holes(V,T,boundary,max_perim_sz);
+T = fill_mesh_holes(V,T,boundaries,max_perim_sz);
 plot_mesh(V,T);
 camlight left;
 view(0,0);
+
 
 %% Example #4 : curvature
 load('kitten.mat');
@@ -55,6 +59,7 @@ curvature = mesh_curvature(V,T,N,ngb_degre,'mean');
 show_mesh_curvature(V,T,curvature);
 colormap(flipud(1-jet.^0.5));
 view(180,0);
+
 
 %% Example #5 : subselection
 load('Gargoyle_3k.mat');
@@ -72,6 +77,7 @@ shading flat;
 camlight left;
 view(-90,0);
 
+
 %% Exammple #6 : mesh upsampling
 load('sinusoidal_dodecahedron_MR.mat');
 plot_mesh(V,T);
@@ -81,6 +87,7 @@ camlight left;
 plot_mesh(V,T);
 shading faceted;
 camlight left;
+
 
 %% Example #7 : mesh slicing
 load('Armadillo_20k.mat');

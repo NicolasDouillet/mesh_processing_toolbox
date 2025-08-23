@@ -19,18 +19,27 @@ Z = Z(i);
 V = cat(2,X,Y,Z);
 
 
-% filenames = {'sinusoidal_dodecahedron_MR';...
+% filenames = {'tetrahedron';...
+%              'cube';...             
+%              'octahedron';...
+%              'icosahedron';...   
+%              'dodecahedron_trimesh_optim';             
+%              'Reuleaux_tetrahedron_light';...
+%              'sinusoidal_dodecahedron_MR';...
 %              'concave_Reuleaux_tetrahedron';...
 %              'torus_light';...
 %              };
 % 
-% id = 2; % 1, 2, 3
+% id = 2;
 % filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 % load(filename);
 
 
+% [V,T] = remove_duplicated_vertices(V,T);
+
+
 T_cv          = convhull(V);    % Matlab (R) embeded function
-T_mcv         = convex_hull(V); % my Jarvis / gift wrapping algorithm
+T_mcv         = new_convex_hull2(V); % my Jarvis / gift wrapping algorithm
 [V_out,T_qcv] = quick_hull(V);  % my quickhull algorithm
 
 
