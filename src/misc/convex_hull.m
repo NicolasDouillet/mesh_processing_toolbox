@@ -34,7 +34,8 @@ v2 = find_2nd_vertex(v1,V);
 
 % 3rd vertex
 first_edge = [v1, v2];
-epsilon = eps;
+coeff = 1e9;
+epsilon = coeff*eps;
 [~,tgl1] = find_3rd_vertex(first_edge,V,epsilon);
 T = tgl1;
 edg_list = [T(1,1:2);T(1,2:3);T(1,[3 1])]; % nchoosek(tgl1,2);
@@ -45,12 +46,15 @@ curr_edge = edg_list(1,:);
 
 while ~isempty(edg_list)
         
+    
+    % Problème si pas de triangle trouvé pour un edge donné
+    % -> on tourne en boucle infinie sur cet edge
+    
+    % => Solution ?
+    
     prev_tgl = T(cell2mat(find_triangle_indices_from_edg_list(T,curr_edge)),:);   
-    opp_vtx_id = setdiff(prev_tgl,curr_edge);
-    [new_tgl,~] = find_nxt_vertex(curr_edge,V,opp_vtx_id);
-        
-    % + condition : aucun des nouveau edges de ce nouveau triangle n'a déjà été traité !!! 
-    % -> donc il faut choisir le bon new_tgl parmi une sélection à définir
+    opp_vtx_id = setdiff(prev_tgl,curr_edge);    
+    new_tgl = find_nxt_vertex(curr_edge,V,T,opp_vtx_id,epsilon);
     
     if ~isempty(new_tgl)
         
@@ -75,7 +79,7 @@ while ~isempty(edg_list)
         
     nxt_edge = [];
     
-    while ~isempty(edg_list) || isempty(nxt_edge)
+    while isempty(nxt_edge) % ~isempty(edg_list) || 
         
         if ~isempty(edg_list)
             
@@ -107,12 +111,25 @@ fprintf('Mesh convex hull computed in %ds.\n',toc);
 end % convex_hull
 
 
-% is_edge_already_processed subfunction -> testée ok
+% is_edge_already_processed subfunction
 function is_eap = is_edge_already_processed(T, edge)
 
-is_eap = numel(find(sum(bitor(T == edge(1),T == edge(2)),2) == 2)) > 1;
+
+is_eap = numel(find(sum(bitor(T == edge(1,1),T == edge(1,2)),2) == 2)) > 1;
+
 
 end
+
+
+% is_new_triangle_valid subfunction
+function is_ntv = is_new_triangle_valid(T, tgl)
+
+
+is_ntv = ~is_edge_already_processed(T,[tgl(1,2) tgl(1,3)]) &&...
+         ~is_edge_already_processed(T,[tgl(1,1) tgl(1,3)]);
+
+
+end % is_new_triangle_valid
 
 
 % find_2nd_vertex subfunction
@@ -189,7 +206,7 @@ end % find_3rd_vertex
 
 
 % find_nxt_vertex subfunction
-function [new_tgl,nxt_vtx_id] = find_nxt_vertex(curr_edge, V, opp_vtx_id)
+function [new_tgl, nxt_vtx_id] = find_nxt_vertex(curr_edge, V, T, opp_vtx_id, epsilon)
 % find_nxt_vertex : function to find the next vertices in the algorithm
 % given a current edge. These candidate new vertices are the ones which
 % build a triangle which has all the other vertices of the point set on one
@@ -204,18 +221,38 @@ vector2edge_prev = V(opp_vtx_id,:) - H_prev;
     
 [dist2edge_nxt,H_nxt] = point_to_line_distance(V(vid2test,:),u0,V(curr_edge(1),:));
 vector2edge_nxt = V(vid2test,:) - H_nxt;
-
-
-% opp_vtx_id
-% size(repmat(vector2edge_prev,[numel(vid),1]))
-% size(vector2edge_nxt)
-
 theta = atan2(sqrt(sum(cross(repmat(vector2edge_prev,[numel(vid2test),1]),vector2edge_nxt,2).^2,2)),vector2edge_nxt*vector2edge_prev');
 
-nxt_vtx_id = find(theta == max(theta)); % the largest angle
-nxt_vtx_id = vid2test(nxt_vtx_id(dist2edge_nxt(nxt_vtx_id) == max(dist2edge_nxt(nxt_vtx_id)))); % the furthest vertex
-nxt_vtx_id = nxt_vtx_id(1,1);
-new_tgl = cat(2,flip(curr_edge),nxt_vtx_id);
+nxt_vtx_id = find(abs(theta - max(theta)) < epsilon); % the largest angles
+% nxt_vtx_id = vid2test(nxt_vtx_id(dist2edge_nxt(nxt_vtx_id) == max(dist2edge_nxt(nxt_vtx_id)))); % filter : furthest vertex
+% nxt_vtx_id = nxt_vtx_id(1,1);
+
+nxt_vtx_id = vid2test(nxt_vtx_id);
+new_tgl = cat(2,repmat(flip(curr_edge),[numel(nxt_vtx_id),1]),nxt_vtx_id');  
+is_ntv = false(numel(nxt_vtx_id),1);
+
+for k = 1:size(new_tgl,1)
+   
+    is_ntv(k,1) = is_new_triangle_valid(T,new_tgl(k,:));                       
+    
+end
+
+% % If no triangle is found
+% if isequal(is_ntv,false(numel(nxt_vtx_id),1))
+%         
+%     % new_tgl
+%     T(cell2mat(find_triangle_indices_from_edg_list(T,new_tgl(1,2:3))),:) = [];
+%     new_tgl = new_tgl(1,:);
+%     
+% else
+    
+    new_tgl = new_tgl(is_ntv,:);
+    new_tgl = new_tgl(1,:);
+    
+% end
+
+
+% new_tgl = cat(2,flip(curr_edge),nxt_vtx_id)
 
 
 end % find_new_vertex
