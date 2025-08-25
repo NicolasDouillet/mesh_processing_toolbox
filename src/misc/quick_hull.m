@@ -139,11 +139,7 @@ while nb_new_tgl
             end
             
             [V_out,T] = remove_inside_pts(V_out,T,epsilon);
-            curr_tgl_id = curr_tgl_id - 1;
-            
-        else
-            
-            nb_new_tgl = 0;
+            curr_tgl_id = curr_tgl_id - 1;                        
             
         end
         
@@ -155,7 +151,6 @@ end
 
 % To retrieve the original point set
 V_out = cat(1,V_out,setdiff(V_in,V_out,'rows'));
-
 
 
 end % quick_hull
