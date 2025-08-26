@@ -14,7 +14,7 @@ filenames = {'sinusoidal_dodecahedron_MR';...
              'vase'
              };
 
-id = 1; % 1, 2, 3, 4, 5      
+id = 3; % 1, 2, 3, 4, 5      
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 
@@ -80,7 +80,7 @@ tic
 toc
 
 disp('Total number of points :');
-size(V,1)
+size(P,1)
 
 disp('Number of inside points :');
 nnz(isin)
@@ -95,7 +95,7 @@ trisurf(T,V(:,1),V(:,2),V(:,3)), shading faceted, hold on;
 
 % Inside and outside points together
 ColorSpec = cell2mat(cellfun(@(c) cat(2,~c,c,0),num2cell(isin,2),'un',0));
-cellfun(@(r1,r2) plot3(r1(1,1),r1(1,2),r1(1,3),'+','Color',r2,'MarkerSize',4,'LineWidth',4),num2cell(P,2),num2cell(ColorSpec,2),'un',0);
+cellfun(@(r1,r2) plot3(r1(1,1),r1(1,2),r1(1,3),'+','Color',r2,'MarkerSize',2,'LineWidth',2),num2cell(P,2),num2cell(ColorSpec,2),'un',0);
 
 % % Inside points only
 % ColorSpec = cell2mat(cellfun(@(c) c,num2cell(isin > 0 ,2),'un',0));
@@ -116,3 +116,4 @@ axis equal, axis tight;
 shading flat;
 camlight left
 alpha(0.5);
+view(-142,20);
