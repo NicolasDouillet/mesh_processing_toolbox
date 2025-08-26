@@ -11,7 +11,7 @@ filenames = {'tetrahedron';...                  % S = 8/sqrt(3)                 
              'octahedron';...                   % S = 4*sqrt(3)                              -> ok
              'icosahedron';...                  % S = 20*sqrt(3)/(2+phi)                     -> ok
              'dodecahedron_trimesh_regular';... % S = (16/(1+sqrt(5))^2)*sqrt(25+10*sqrt(5)) -> ok
-             'geoid_lvl_16';...                 % S = 12.5664 ~ 4*pi                         -> ok
+             'geoid_lvl_16';...                 % S = 12.5513 ~ 4*pi                         -> ok
              'meshed_mtlb_logo';...
              'kitten';...                       % S = 16898 ~ 1.689798                       -> ok
              'Gargoyle_3k';...
@@ -19,7 +19,7 @@ filenames = {'tetrahedron';...                  % S = 8/sqrt(3)                 
              'Armadillo_10k'};
 
 
-id = 5;         
+id = 6;         
 filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 load(filename);
 

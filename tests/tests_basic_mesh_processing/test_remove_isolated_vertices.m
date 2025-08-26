@@ -6,7 +6,7 @@ addpath(genpath('../../src'));
 addpath('../../data');
 
 
-load('geoid_lvl_16.mat');
+load('geoid_lvl4.mat');
 N = randi(9) % maximum number of isolated vertices
 V = cat(1,V,rand(N,3));
 

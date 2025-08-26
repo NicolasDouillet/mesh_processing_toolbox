@@ -1,5 +1,5 @@
 function [V_out, T] = quick_hull(V_in)
-% quick_hull : function to compute the 3D convex hull of
+%% quick_hull : function to compute the 3D convex hull of
 % a given point cloud with the divide & conquer algorithm.
 %
 %%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
@@ -23,7 +23,7 @@ function [V_out, T] = quick_hull(V_in)
 %       [ |  |  |]
 
 
-% Input parsing
+%% Input parsing
 if size(V_in,1) < 4    
     
     error('Vertex set V_in must contain at least four non coplanar vertices to be 3D.');   
@@ -31,7 +31,7 @@ if size(V_in,1) < 4
 end
 
 
-% Body
+%% Body
 coeff = 1;
 epsilon = coeff*eps; % floating point tolerance error
 nb_vtx = size(V_in,1);
@@ -156,7 +156,7 @@ V_out = cat(1,V_out,setdiff(V_in,V_out,'rows'));
 end % quick_hull
 
 
-% grow_tetrahedron subfunction
+%% grow_tetrahedron subfunction
 function [T, N, new_vtx_id] = grow_tetrahedron(V, T, N, tgl_id, epsilon)
 % grow_tetrahedron : function to find one
 % new vertex belonging to the convex hull
@@ -197,7 +197,7 @@ end
 end % grow_tetrahedron
 
 
-% detect_concavity subfunction
+%% detect_concavity subfunction
 function isconcave = detect_concavity(V, T, N, tgl_pair_id, epsilon)
 % detect_concavity : function to detect
 % concave triangle pair configurations.
@@ -224,7 +224,7 @@ isconcave = sign(dot(n1+n2,H2-H1,2)) > epsilon;
 end % detect_concavity
 
 
-% flip_two_ngb_triangles subfunction
+%% flip_two_ngb_triangles subfunction
 function [T, N, edg_list] = flip_two_ngb_triangles(tgl_pair_id, T, V, N, edg_list)
 % flip_two_ngb_triangles : function to flip
 % two triangles sharing one common edge.
@@ -274,7 +274,7 @@ edg_list(all(bsxfun(@eq,edg_list,sort(cmn_edg)),2),:) = [];
 end % flip_two_ngb_triangles
 
 
-% remove_inside_pts subfunction
+%% remove_inside_pts subfunction
 function [V_out, T] = remove_inside_pts(V_in, T, epsilon)
 % remove_inside_pts : function to remove points inside the convex hull
 % during its computational iterations to save cpu time.

@@ -23,7 +23,9 @@ V = cat(2,X,Y,Z);
 %              'cube';...             
 %              'octahedron';...
 %              'icosahedron';...   
-%              'dodecahedron_trimesh_optim';             
+%              'dodecahedron_trimesh_optim';
+%              'geoid_lvl4';...
+%              'ovoid_LR';...
 %              'Reuleaux_tetrahedron_light';...
 %              'Reuleaux_tetrahedron';...
 %              'sinusoidal_dodecahedron_MR';...
@@ -31,33 +33,33 @@ V = cat(2,X,Y,Z);
 %              'torus_light';...
 %              };
 % 
-% id = 5;
+% id = 6;
 % filename = strcat(cell2mat(filenames(id,1)),'.mat');         
 % load(filename); 
-% [V,T] = remove_duplicated_vertices(V,T);
+% V = unique(V,'rows');
 
 
 T_cv          = convhull(V);    % Matlab (R) embeded function
-% T_mcv         = convex_hull(V); % my Jarvis / gift wrapping algorithm
+T_mcv         = convex_hull(V); % my Jarvis / gift wrapping algorithm
 [V_out,T_qcv] = quick_hull(V);  % my quickhull algorithm
 
 
-% if isequal(sortrows(sort(T_mcv,2)),sortrows(sort(T_cv,2))) % no test with T_qcv since V_out and then triangulations are different
-%    
-%     disp('Same point sets and triangulations.');
-%     
-% else
-%     
-%     disp('Point sets and triangulations are different, possibly due to some coplanar points.');
-%     
-% end
+if isequal(sortrows(sort(T_mcv,2)),sortrows(sort(T_cv,2))) % no test with T_qcv since V_out and then triangulations are different
+   
+    disp('Same point sets and triangulations.');
+    
+else
+    
+    disp('Point sets and triangulations are different, possibly due to some coplanar points.');
+    
+end
 
 
 show_face_normals(V,T_cv);
 axis equal;
 
-% show_face_normals(V,T_mcv);
-% axis equal;
+show_face_normals(V,T_mcv);
+axis equal;
 
 show_face_normals(V_out,T_qcv);
 axis equal;

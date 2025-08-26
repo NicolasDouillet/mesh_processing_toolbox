@@ -1,16 +1,19 @@
 function T = convex_hull(V)
-% convex_hull : function to compute the 3D convex hull of a given
+%% convex_hull : function to compute the 3D convex hull of a given
 % point cloud (V) with the Jarvis / gift wrapping algorithm.
 %
-% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
+%%% Author : nicolas.douillet9 (at) gmail.com, 2020-2025.
 %
+%
+%
+% Input argument
 %
 %       [| | |]
 % - V = [X Y Z], real matrix double, the point set, size(V) = [nb_vertices,3]. Mandatory.
 %       [| | |]
 %
 %
-% Output argument
+%%% Output argument
 %
 %       [ |  |  |]
 % - T = [i1 i2 i3], positive integer matrix double, the convex hull triangulation, size(T) = [nb_triangles,3].
@@ -19,12 +22,11 @@ function T = convex_hull(V)
 
 tic
 
+%% Body
 G = mean(V,1);
 V = V - G; % to ensure [0 0 0] be inside the convex hull and for normals orientation matters
 % V = V - [2 2 2];
 
-
-% Body
 
 % 1st vertex : the one minimum z
 [~,v1] = mink(V(:,3),1);
@@ -111,7 +113,7 @@ fprintf('Mesh convex hull computed in %ds.\n',toc);
 end % convex_hull
 
 
-% is_edge_already_processed subfunction
+%% is_edge_already_processed subfunction
 function is_eap = is_edge_already_processed(T, edge)
 
 
@@ -121,7 +123,7 @@ is_eap = numel(find(sum(bitor(T == edge(1,1),T == edge(1,2)),2) == 2)) > 1;
 end
 
 
-% is_new_triangle_valid subfunction
+%% is_new_triangle_valid subfunction
 function is_ntv = is_new_triangle_valid(T, tgl)
 
 
@@ -132,7 +134,7 @@ is_ntv = ~is_edge_already_processed(T,[tgl(1,2) tgl(1,3)]) &&...
 end % is_new_triangle_valid
 
 
-% find_2nd_vertex subfunction
+%% find_2nd_vertex subfunction
 function vid2 = find_2nd_vertex(vid1, V)
 % find_2nd_vertex : function to find the second vertex of the convex hull
 
@@ -151,7 +153,7 @@ vid2 = nxt_vtx_id(1,1);
 end % find_2nd_vertex
 
 
-% find_3rd_vertex subfunction
+%% find_3rd_vertex subfunction
 function [vid3, tgl1] = find_3rd_vertex(first_edge, V, epsilon)
 % find_3rd_vertex : function to find the third vertex of the convex hull
 
@@ -205,7 +207,7 @@ tgl1 = tgl1(1,:);
 end % find_3rd_vertex
 
 
-% find_nxt_vertex subfunction
+%% find_nxt_vertex subfunction
 function [new_tgl, nxt_vtx_id] = find_nxt_vertex(curr_edge, V, T, opp_vtx_id, epsilon)
 % find_nxt_vertex : function to find the next vertices in the algorithm
 % given a current edge. These candidate new vertices are the ones which
@@ -223,8 +225,8 @@ vector2edge_prev = V(opp_vtx_id,:) - H_prev;
 vector2edge_nxt = V(vid2test,:) - H_nxt;
 theta = atan2(sqrt(sum(cross(repmat(vector2edge_prev,[numel(vid2test),1]),vector2edge_nxt,2).^2,2)),vector2edge_nxt*vector2edge_prev');
 
-nxt_vtx_id = find(abs(theta - max(theta)) < epsilon); % the largest angles
-% nxt_vtx_id = vid2test(nxt_vtx_id(dist2edge_nxt(nxt_vtx_id) == max(dist2edge_nxt(nxt_vtx_id)))); % filter : furthest vertex
+nxt_vtx_id = find(abs(theta - max(theta)) < epsilon); % filter : the largest angles
+% nxt_vtx_id = vid2test(nxt_vtx_id(dist2edge_nxt(nxt_vtx_id) == max(dist2edge_nxt(nxt_vtx_id)))); % filter : the furthest vertex
 % nxt_vtx_id = nxt_vtx_id(1,1);
 
 nxt_vtx_id = vid2test(nxt_vtx_id);

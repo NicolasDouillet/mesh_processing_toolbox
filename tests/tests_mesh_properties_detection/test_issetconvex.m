@@ -13,7 +13,7 @@ filenames = {'tetrahedron';...                        % true  (1) expected
              'icosahedron';...                        % true  (1) expected                
              'dodecahedron_trimesh_regular';...       % true  (1) expected -> failure because of coplanar points
              'dodecahedron_trimesh_optim';...         % true  (1) expected
-             'geoid_lvl_16';...                       % true  (1) expected
+             'geoid_lvl4';...                         % true  (1) expected
              'ovoid';...                              % true  (1) expected
              'Reuleaux_tetrahedron';                  % true  (1) expected
              'sinusoidal_dodecahedron_LR';...         % false (0) expected

@@ -1,4 +1,4 @@
-% test select_edge_normals
+% test edge_normals
 
 clc;
 
